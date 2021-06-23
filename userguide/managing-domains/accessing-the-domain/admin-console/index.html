@@ -4,28 +4,28 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Hugo 0.75.0-DEV" />
-    <meta name="description" content="">
+    <meta name="description" content="Use the WebLogic Remote Console to manage a domain running in Kubernetes.">
 
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title> :: WebLogic Kubernetes Operator</title>
+    <title>Use the Remote Console :: WebLogic Kubernetes Operator</title>
 
     
-    <link href="/css/nucleus.css?1624489125" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1624489125" rel="stylesheet">
-    <link href="/css/hybrid.css?1624489125" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1624489125" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1624489125" rel="stylesheet">
-    <link href="/css/auto-complete.css?1624489125" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1624489125" rel="stylesheet">
-    <link href="/css/theme.css?1624489125" rel="stylesheet">
-    <link href="/css/tabs.css?1624489125" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1624489125" rel="stylesheet">
+    <link href="/css/nucleus.css?1624489124" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1624489124" rel="stylesheet">
+    <link href="/css/hybrid.css?1624489124" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1624489124" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1624489124" rel="stylesheet">
+    <link href="/css/auto-complete.css?1624489124" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1624489124" rel="stylesheet">
+    <link href="/css/theme.css?1624489124" rel="stylesheet">
+    <link href="/css/tabs.css?1624489124" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1624489124" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1624489125"></script>
+    <script src="/js/jquery-3.3.1.min.js?1624489124"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/userguide/managing-domains/accessing-the-domain/admin-console/">
     <nav id="sidebar" class="">
 
 
@@ -59,14 +59,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1624489125"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1624489125"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1624489124"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1624489124"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/polite-dune-0a7bd1d10.azurestaticapps.net\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1624489125"></script>
+<script type="text/javascript" src="/js/search.js?1624489124"></script>
 
     
   </div>
@@ -266,7 +266,7 @@
   
     
     <li data-nav-id="/userguide/" title="User Guide" class="dd-item
-        
+        parent
         
         
         ">
@@ -682,7 +682,7 @@
   
     
     <li data-nav-id="/userguide/managing-domains/" title="Manage WebLogic domains" class="dd-item
-        
+        parent
         
         
         ">
@@ -1019,7 +1019,7 @@
   
     
     <li data-nav-id="/userguide/managing-domains/accessing-the-domain/" title="Access the domain" class="dd-item
-        
+        parent
         
         
         ">
@@ -1045,7 +1045,7 @@
  
   
     
-      <li data-nav-id="/userguide/managing-domains/accessing-the-domain/admin-console/" title="Use the Remote Console" class="dd-item ">
+      <li data-nav-id="/userguide/managing-domains/accessing-the-domain/admin-console/" title="Use the Remote Console" class="dd-item active">
         <a href="/userguide/managing-domains/accessing-the-domain/admin-console/">
         Use the Remote Console
         
@@ -3243,87 +3243,188 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'></a> > <a href='/userguide/'>User Guide</a> > <a href='/userguide/managing-domains/'>Manage WebLogic domains</a> > <a href='/userguide/managing-domains/accessing-the-domain/'>Access the domain</a> > Use the Remote Console
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#setup">Setup</a></li>
+        <li><a href="#test">Test</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Use the Remote Console
+            </h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h3 id="weblogic-kubernetes-operator">WebLogic Kubernetes Operator</h3>
-<p>The WebLogic Kubernetes Operator (the “operator”) supports running your WebLogic Server and Fusion Middleware Infrastructure domains on Kubernetes, an industry standard, cloud neutral deployment platform. It lets you encapsulate your entire WebLogic Server installation and layered applications into a portable set of cloud neutral images and simple resource description files. You can run them on any on-premises or public cloud that supports Kubernetes where you&rsquo;ve deployed the operator.</p>
-<p>Furthermore, the operator is well suited to CI/CD processes. You can easily inject changes when moving between environments, such as from test to production. For example, you can externally inject database URLs and credentials during deployment or you can inject arbitrary changes to most WebLogic configurations.</p>
-<p>The operator takes advantage of the <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">Kubernetes operator pattern</a>, which means that it uses Kubernetes APIs to provide support for operations, such as: provisioning, lifecycle management, application versioning, product patching, scaling, and security. The operator also enables the use of tooling that is native to this infrastructure for monitoring, logging, tracing, and security.</p>
-<p>You can:</p>
+<p>The WebLogic Remote Console is a lightweight, open source console that does not need to be collocated with a WebLogic Server domain.
+You can install and run the Remote Console anywhere. For an introduction, read the blog, <a href="https://blogs.oracle.com/weblogicserver/new-weblogic-server-remote-console">&ldquo;The NEW WebLogic Remote Console&rdquo;</a>.
+For detailed documentation, see the <a href="https://github.com/oracle/weblogic-remote-console">WebLogic Remote Console</a> GitHub project.</p>
+<p>A major benefit of using the Remote Console is that it runs in your browser or a desktop application, and can be used to connect to different WebLogic Server instances.
+You can use the Remote Console with WebLogic Server <em>slim</em> installers, available on the <a href="https://www.oracle.com/middleware/technologies/weblogic-server-installers-downloads.html">OTN</a>
+or <a href="https://edelivery.oracle.com/osdc/faces/Home.jspx;jsessionid=LchBX6sgzwv5MwSaamMxrIIk-etWJLb0IyCet9mcnqAYnINXvWzi!-1201085350">OSDC</a>.
+Slim installers reduce the size of WebLogic Server downloads, installations, container images, and Kubernetes pods.
+For example, a WebLogic Server 12.2.1.4 slim installer download is approximately 180 MB smaller.</p>
+<p>The Remote Console is deployed as a standalone Java program, which can connect to multiple WebLogic Server Administration Servers using REST APIs.
+You connect to the Remote Console and, when prompted, supply the WebLogic Server login credentials
+along with the URL of the WebLogic Server Administration Server&rsquo;s administration port to which you want to connect.</p>
+<p><strong>Note</strong>:  An Administration Server administration port typically is the same as its default port unless either an SSL port or an administration port is configured and enabled.</p>
+<h3 id="setup">Setup</h3>
+<p>To set up access to WebLogic Server domains running in Kubernetes using the Remote Console:</p>
+<ol>
+<li>
+<p>Install, configure, and start the Remote Console according to these <a href="https://github.com/oracle/weblogic-remote-console/blob/master/site/install_config.md">instructions</a>.</p>
+<p><strong>NOTE</strong>: These instructions assume that you are installing and running the Remote Console Java program externally to your Kubernetes cluster.</p>
+</li>
+<li>
+<p>When you first connect your browser to the Remote Console, which is at <code>http://localhost:8012</code> by default, the console will prompt you with a login dialog for a WebLogic Server Administration Server URL. To give the Remote Console access to an Administration Server running in Kubernetes, you can:</p>
 <ul>
-<li>Deploy an operator that manages all WebLogic domains in all namespaces in a Kubernetes cluster, or that only manages domains in a specific subset of the namespaces, or that manages only domains that are located in the same namespace as the operator. At most, a namespace can be managed by one operator.</li>
-<li>Supply WebLogic domain configuration using:
-<ul>
-<li><em>Domain in PV</em>: Locates WebLogic domain homes in a Kubernetes PersistentVolume (PV). This PV can reside in an NFS file system or other Kubernetes volume types.</li>
-<li><em>Domain in Image</em>: Includes a WebLogic domain home in a container image.</li>
-<li><em>Model in Image</em>: Includes <a href="https://oracle.github.io/weblogic-deploy-tooling/">WebLogic Deploy Tooling</a> models and archives in a container image.</li>
+<li>
+<p>Use an <a href="#use-an-administration-server-nodeport">Administration Server <code>NodePort</code></a>.</p>
+</li>
+<li>
+<p>Deploy a load balancer with <a href="#configure-ingress-path-routing-rules">ingress path routing rules</a>.</p>
+</li>
 </ul>
 </li>
-<li>Configure deployment of WebLogic domains as a Kubernetes resource (using a Kubernetes custom resource definition).</li>
-<li>Override certain aspects of the WebLogic domain configuration; for example, use a different database password for different deployments.</li>
-<li>Start and stop servers and clusters in the domain based on declarative startup parameters and desired states.</li>
-<li>Scale WebLogic domains by starting and stopping Managed Servers on demand, or by integrating with a REST API to initiate scaling based on the WebLogic Diagnostics Framework (WLDF), Prometheus, Grafana, or other rules.</li>
-<li>Expose the WebLogic Server Administration Console outside the Kubernetes cluster, if desired.</li>
-<li>Expose T3 channels outside the Kubernetes domain, if desired.</li>
-<li>Expose HTTP paths on a WebLogic domain outside the Kubernetes domain with load balancing, and automatically update the load balancer when Managed Servers in the WebLogic domain are started or stopped.</li>
-<li>Publish operator and WebLogic Server logs into Elasticsearch and interact with them in Kibana.</li>
-</ul>
+</ol>
+<h4 id="use-an-administration-server-nodeport">Use an Administration Server <code>NodePort</code></h4>
+<p>For the Remote Console to connect to the Kubernetes WebLogic Server Administration Server’s <code>NodePort</code>, use the URL:</p>
+<pre><code>http://hostname:adminserver-NodePort/
+</code></pre><p>The <code>adminserver-NodePort</code> is the port number of the Administration Server outside the Kubernetes cluster.
+For information about the <code>NodePort</code> Service on an Administration Server, see the <a href="https://github.com/oracle/weblogic-kubernetes-operator/blob/main/documentation/domains/Domain.md">Domain resource</a> document.</p>
 
-<div class="notices tip" ><p>The fastest way to experience the operator is to follow the <a href="/quickstart/">Quick Start guide</a>, or you can peruse our <a href="/userguide/">documentation</a>, read our <a href="https://blogs.oracle.com/weblogicserver/how-to-weblogic-server-on-kubernetes">blogs</a>, or try out the <a href="/samples/simple/">samples</a>.
-Also, you can step through the <a href="https://github.com/oracle/weblogic-kubernetes-operator/blob/main/kubernetes/hands-on-lab/README.md">Tutorial</a>
-using the operator to deploy and run a WebLogic domain container-packaged web application on an Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE) cluster.</p>
+<div class="notices warning" ><p>Exposing administrative, RMI, or T3 capable channels using a Kubernetes <code>NodePort</code>
+can create an insecure configuration. In general, only HTTP protocols should be made available externally and this exposure
+is usually accomplished by setting up an external load balancer that can access internal (non-<code>NodePort</code>) services.
+For more information, see <a href="/security/domain-security/weblogic-channels/#weblogic-t3-channels">T3 channels</a>.</p>
 </div>
 
-<hr>
-<h4 id="current-production-release">Current production release</h4>
-<p>The <a href="https://github.com/oracle/weblogic-kubernetes-operator/releases">current release of the operator</a> is 3.2.3.
-This release was published on May 21, 2021. See the operator prerequisites and supported environments <a href="/userguide/introduction/introduction/#operator-prerequisites">here</a>.</p>
-<hr>
-<h4 id="recent-changes-and-known-issues">Recent changes and known issues</h4>
-<p>See the <a href="/release-notes/">Release Notes</a>  for recent changes to the operator and known issues.</p>
-<h4 id="operator-earlier-versions">Operator earlier versions</h4>
-<p>Documentation for prior releases of the operator: <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.5/">2.5.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.6/">2.6.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.0/">3.0.x</a>, and <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.1/">3.1.x</a>.</p>
-<h4 id="backward-compatibility-guidelines">Backward compatibility guidelines</h4>
-<p>Starting from the 2.0.1 release, operator releases are backward compatible with respect to the domain
-resource schema, operator Helm chart input values, configuration overrides template, Kubernetes resources created
-by the operator Helm chart, Kubernetes resources created by the operator, and the operator REST interface. We intend to
-maintain compatibility for three releases, except in the case of a clearly communicated deprecated feature, which will be
-maintained for one release after a replacement is available.</p>
-<h3 id="about-this-documentation">About this documentation</h3>
-<p>This documentation includes sections targeted to different audiences.  To help you find what you are looking for more easily,
-please consult this table of contents:</p>
+<h4 id="configure-ingress-path-routing-rules">Configure ingress path routing rules</h4>
+<ol>
+<li>
+<p>Configure an ingress path routing rule. For information about ingresses, see the <a href="/userguide/managing-domains/ingress/">Ingress</a> documentation.</p>
+<p>For an example, see the following <code>path-routing</code> YAML file for a Traefik load balancer:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: traefik.containo.us/v1alpha1
+<span style="color:#66d9ef">kind</span>: IngressRoute
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">annotations</span>:
+    <span style="color:#66d9ef">kubernetes.io/ingress.class</span>: traefik
+  <span style="color:#66d9ef">name</span>: traefik-pathrouting<span style="color:#ae81ff">-1</span>
+  <span style="color:#66d9ef">namespace</span>: weblogic-domain
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">routes</span>:
+  - <span style="color:#66d9ef">kind</span>: Rule
+    <span style="color:#66d9ef">match</span>: PathPrefix(`/`)
+    <span style="color:#66d9ef">services</span>:
+    - <span style="color:#66d9ef">kind</span>: Service
+      <span style="color:#66d9ef">name</span>: domain1-adminserver
+      <span style="color:#66d9ef">namespace</span>: weblogic-domain
+      <span style="color:#66d9ef">port</span>: <span style="color:#ae81ff">7001</span>
+</code></pre></div></li>
+<li>
+<p>For the Remote Console to connect to the Kubernetes WebLogic Server Administration Server, supply a URL that resolves to the load balancer host and ingress that you supplied in the previous step. For example:</p>
+<pre><code>http://${HOSTNAME}:${LB_PORT}/
+</code></pre><p>Where:</p>
 <ul>
-<li>The <a href="/quickstart/">Quick Start guide</a> explains how to quickly get the operator running, using the defaults, nothing special.</li>
-<li>The <a href="/userguide/">User guide</a> contains detailed usage information, including how to install and configure the operator,
-and how to use it to create and manage WebLogic domains.</li>
-<li>The <a href="/samples/simple/">Samples</a> provide detailed example code and instructions that show you how to perform
-various tasks related to the operator.</li>
-<li>The <a href="/developerguide/">Developer guide</a> provides details for people who want to understand how the operator is built, tested, and so on. Those who wish to <a href="/developerguide/contributing/">contribute</a> to the operator code will find useful information here.</li>
-<li><a href="/reference/">Reference</a> describes domain resource attributes and the operator REST API.</li>
-<li><a href="/security/">Security</a> describes Kubernetes, WebLogic, and OpenShift security requirements.</li>
-<li><a href="/faq/">Frequently asked questions</a> provides answers to common questions.</li>
+<li>
+<p><code>${HOSTNAME}</code> is where the ingress load balancer is running.</p>
+</li>
+<li>
+<p>To determine the <code>${LB_PORT}</code> when using a Traefik load balancer:</p>
+<p><code>$ export LB_PORT=$(kubectl -n traefik get service traefik-operator -o jsonpath='{.spec.ports[?(@.name==&quot;web&quot;)].nodePort}')</code></p>
+</li>
 </ul>
-<h3 id="oracle-support">Oracle support</h3>
-<p>To access Oracle support for running WebLogic Server domains on Kubernetes platforms, see <a href="https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=208317433106215&amp;id=2349228.1&amp;_afrWindowMode=0&amp;_adf.ctrl-state=c2nhai8p3_4">WebLogic Server Certifications on Kubernetes in My Oracle Support Doc ID 2349228.1</a>.</p>
-<h3 id="need-more-help-have-a-suggestion-come-and-say-hello">Need more help? Have a suggestion? Come and say, &ldquo;Hello!&rdquo;</h3>
-<p>We have a <strong>public Slack channel</strong> where you can get in touch with us to ask questions about using the operator or give us feedback
-or suggestions about what features and improvements you would like to see.  We would love to hear from you. To join our channel,
-please <a href="https://weblogic-slack-inviter.herokuapp.com/">visit this site to get an invitation</a>.  The invitation email will include
-details of how to access our Slack workspace.  After you are logged in, please come to <code>#operator</code> and say, &ldquo;hello!&rdquo;</p>
+</li>
+</ol>
+<h3 id="test">Test</h3>
+<p>To verify that your WebLogic Server Administration Server URL is correct, and to verify that that your load balancer
+or <code>NodePort</code> are working as expected, run the following curl commands at the same location as your browser:</p>
+<pre><code>$ curl --user username:password \
+     http://${HOSTNAME}:${LB_PORT}/management/weblogic/latest/domainRuntime?fields=name\&amp;links=none ; echo
+
+$ curl --user username:password \
+     http://${HOSTNAME}:${LB_PORT}/management/weblogic/latest/serverRuntime?fields=name\&amp;links=none ; echo
+</code></pre><p>These commands access the REST interface of the WebLogic Server Administration Server in a way that is similar to the Remote Console&rsquo;s use of REST.
+If successful, then the output from the two commands will be <code>{&quot;name&quot;: &quot;your-weblogic-domain-name&quot;}</code> and <code>{&quot;name&quot;: &quot;your-weblogic-admin-server-name&quot;}</code>, respectively.</p>
+<p>If you want to see the full content of the domainRuntime and serverRuntime beans, then rerun the commands
+but remove <code>?fields=name\&amp;links=none</code>, which is appended at the end of each URL.</p>
+
+
+<footer class="footline">
 	
-  
+</footer>
+
         
         </div>
         
@@ -3486,164 +3587,6 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -3660,104 +3603,9 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
                         
                     
-                    
-
-                    
-                        
-            
-            
-                
-                    
                 
                 
 
@@ -3765,102 +3613,6 @@ details of how to access our Slack workspace.  After you are logged in, please c
                     
                     
 
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
                     
                         
             
@@ -3942,6 +3694,219 @@ details of how to access our Slack workspace.  After you are logged in, please c
                     
 
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
             
         
                     
@@ -3994,6 +3959,155 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
             
                 
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -5428,8 +5542,10 @@ details of how to access our Slack workspace.  After you are logged in, please c
 	 
 	 
 		
+			<a class="nav nav-prev" href="/userguide/managing-domains/accessing-the-domain/" title="Access the domain"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/quickstart/" title="Quick Start" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/userguide/managing-domains/accessing-the-domain/wlst/" title="Use WLST" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

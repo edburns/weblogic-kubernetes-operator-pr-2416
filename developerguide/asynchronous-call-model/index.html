@@ -9,23 +9,23 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title> :: WebLogic Kubernetes Operator</title>
+    <title>Asynchronous call model :: WebLogic Kubernetes Operator</title>
 
     
-    <link href="/css/nucleus.css?1624489125" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1624489125" rel="stylesheet">
-    <link href="/css/hybrid.css?1624489125" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1624489125" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1624489125" rel="stylesheet">
-    <link href="/css/auto-complete.css?1624489125" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1624489125" rel="stylesheet">
-    <link href="/css/theme.css?1624489125" rel="stylesheet">
-    <link href="/css/tabs.css?1624489125" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1624489125" rel="stylesheet">
+    <link href="/css/nucleus.css?1624489124" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1624489124" rel="stylesheet">
+    <link href="/css/hybrid.css?1624489124" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1624489124" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1624489124" rel="stylesheet">
+    <link href="/css/auto-complete.css?1624489124" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1624489124" rel="stylesheet">
+    <link href="/css/theme.css?1624489124" rel="stylesheet">
+    <link href="/css/tabs.css?1624489124" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1624489124" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1624489125"></script>
+    <script src="/js/jquery-3.3.1.min.js?1624489124"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/developerguide/asynchronous-call-model/">
     <nav id="sidebar" class="">
 
 
@@ -59,14 +59,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1624489125"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1624489125"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1624489124"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1624489124"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/polite-dune-0a7bd1d10.azurestaticapps.net\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1624489125"></script>
+<script type="text/javascript" src="/js/search.js?1624489124"></script>
 
     
   </div>
@@ -2318,7 +2318,7 @@
   
     
     <li data-nav-id="/developerguide/" title="Developer Guide" class="dd-item
-        
+        parent
         
         
         ">
@@ -2491,7 +2491,7 @@
  
   
     
-      <li data-nav-id="/developerguide/asynchronous-call-model/" title="Asynchronous call model" class="dd-item ">
+      <li data-nav-id="/developerguide/asynchronous-call-model/" title="Asynchronous call model" class="dd-item active">
         <a href="/developerguide/asynchronous-call-model/">
         Asynchronous call model
         
@@ -3243,87 +3243,201 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'></a> > <a href='/developerguide/'>Developer Guide</a> > Asynchronous call model
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Asynchronous call model
+            </h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h3 id="weblogic-kubernetes-operator">WebLogic Kubernetes Operator</h3>
-<p>The WebLogic Kubernetes Operator (the “operator”) supports running your WebLogic Server and Fusion Middleware Infrastructure domains on Kubernetes, an industry standard, cloud neutral deployment platform. It lets you encapsulate your entire WebLogic Server installation and layered applications into a portable set of cloud neutral images and simple resource description files. You can run them on any on-premises or public cloud that supports Kubernetes where you&rsquo;ve deployed the operator.</p>
-<p>Furthermore, the operator is well suited to CI/CD processes. You can easily inject changes when moving between environments, such as from test to production. For example, you can externally inject database URLs and credentials during deployment or you can inject arbitrary changes to most WebLogic configurations.</p>
-<p>The operator takes advantage of the <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">Kubernetes operator pattern</a>, which means that it uses Kubernetes APIs to provide support for operations, such as: provisioning, lifecycle management, application versioning, product patching, scaling, and security. The operator also enables the use of tooling that is native to this infrastructure for monitoring, logging, tracing, and security.</p>
-<p>You can:</p>
+<p>Our expectation is that customers will task the operator with managing hundreds of WebLogic domains across dozens of Kubernetes Namespaces.  Therefore, we have designed the operator with an efficient user-level threads pattern.  We&rsquo;ve used that pattern to implement an asynchronous call model for Kubernetes API requests.  This call model has built-in support for timeouts, retries with exponential back-off, and lists that exceed the requested maximum size using the continuance functionality.</p>
+<h4 id="user-level-thread-pattern">User-level thread pattern</h4>
+<p>The user-level thread pattern is implemented by the classes in the <code>oracle.kubernetes.operator.work</code> package.</p>
 <ul>
-<li>Deploy an operator that manages all WebLogic domains in all namespaces in a Kubernetes cluster, or that only manages domains in a specific subset of the namespaces, or that manages only domains that are located in the same namespace as the operator. At most, a namespace can be managed by one operator.</li>
-<li>Supply WebLogic domain configuration using:
-<ul>
-<li><em>Domain in PV</em>: Locates WebLogic domain homes in a Kubernetes PersistentVolume (PV). This PV can reside in an NFS file system or other Kubernetes volume types.</li>
-<li><em>Domain in Image</em>: Includes a WebLogic domain home in a container image.</li>
-<li><em>Model in Image</em>: Includes <a href="https://oracle.github.io/weblogic-deploy-tooling/">WebLogic Deploy Tooling</a> models and archives in a container image.</li>
+<li><code>Engine</code>: The executor service and factory for <code>Fibers</code>.</li>
+<li><code>Fiber</code>: The user-level thread.  <code>Fibers</code> represent the execution of a single processing flow through a series of <code>Steps</code>.  <code>Fibers</code> may be suspended and later resumed, and do not consume a <code>Thread</code> while suspended.</li>
+<li><code>Step</code>: Individual CPU-bound activity in a processing flow.</li>
+<li><code>Packet</code>: Context of the processing flow.</li>
+<li><code>NextAction</code>: Used by a <code>Step</code> when it returns control to the <code>Fiber</code> to indicate what should happen next.  Common &lsquo;next actions&rsquo; are to execute another <code>Step</code> or to suspend the <code>Fiber</code>.</li>
+<li><code>Component</code>: Provider of SPI&rsquo;s that may be useful to the processing flow.</li>
+<li><code>Container</code>: Represents the containing environment and is a <code>Component</code>.</li>
 </ul>
-</li>
-<li>Configure deployment of WebLogic domains as a Kubernetes resource (using a Kubernetes custom resource definition).</li>
-<li>Override certain aspects of the WebLogic domain configuration; for example, use a different database password for different deployments.</li>
-<li>Start and stop servers and clusters in the domain based on declarative startup parameters and desired states.</li>
-<li>Scale WebLogic domains by starting and stopping Managed Servers on demand, or by integrating with a REST API to initiate scaling based on the WebLogic Diagnostics Framework (WLDF), Prometheus, Grafana, or other rules.</li>
-<li>Expose the WebLogic Server Administration Console outside the Kubernetes cluster, if desired.</li>
-<li>Expose T3 channels outside the Kubernetes domain, if desired.</li>
-<li>Expose HTTP paths on a WebLogic domain outside the Kubernetes domain with load balancing, and automatically update the load balancer when Managed Servers in the WebLogic domain are started or stopped.</li>
-<li>Publish operator and WebLogic Server logs into Elasticsearch and interact with them in Kibana.</li>
-</ul>
+<p>Each <code>Step</code> has a reference to the next <code>Step</code> in the processing flow; however, <code>Steps</code> are not required to indicate that the next <code>Step</code> be invoked by the <code>Fiber</code> when the <code>Step</code> returns a <code>NextAction</code> to the <code>Fiber</code>.  This leads to common use cases where <code>Fibers</code> invoke a series of <code>Steps</code> that are linked by the &lsquo;is-next&rsquo; relationship, but just as commonly, use cases where the <code>Fiber</code> will invoke sets of <code>Steps</code> along a detour before returning to the normal flow.</p>
+<p>In this sample, the caller creates an <code>Engine</code>, <code>Fiber</code>, linked set of <code>Step</code> instances, and <code>Packet</code>.  The <code>Fiber</code> is then started.  The <code>Engine</code> would typically be a singleton, since it&rsquo;s backed by a <code>ScheduledExecutorService</code>.  The <code>Packet</code> would also typically be pre-loaded with values that the <code>Steps</code> would use in their <code>apply()</code> methods.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SomeClass</span> <span style="color:#f92672">{</span>
+  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    Engine engine <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Engine<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;worker-pool&#34;</span><span style="color:#f92672">);</span>
 
-<div class="notices tip" ><p>The fastest way to experience the operator is to follow the <a href="/quickstart/">Quick Start guide</a>, or you can peruse our <a href="/userguide/">documentation</a>, read our <a href="https://blogs.oracle.com/weblogicserver/how-to-weblogic-server-on-kubernetes">blogs</a>, or try out the <a href="/samples/simple/">samples</a>.
-Also, you can step through the <a href="https://github.com/oracle/weblogic-kubernetes-operator/blob/main/kubernetes/hands-on-lab/README.md">Tutorial</a>
-using the operator to deploy and run a WebLogic domain container-packaged web application on an Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE) cluster.</p>
-</div>
+    Fiber fiber <span style="color:#f92672">=</span> engine<span style="color:#f92672">.</span><span style="color:#a6e22e">createFiber</span><span style="color:#f92672">();</span>
 
-<hr>
-<h4 id="current-production-release">Current production release</h4>
-<p>The <a href="https://github.com/oracle/weblogic-kubernetes-operator/releases">current release of the operator</a> is 3.2.3.
-This release was published on May 21, 2021. See the operator prerequisites and supported environments <a href="/userguide/introduction/introduction/#operator-prerequisites">here</a>.</p>
-<hr>
-<h4 id="recent-changes-and-known-issues">Recent changes and known issues</h4>
-<p>See the <a href="/release-notes/">Release Notes</a>  for recent changes to the operator and known issues.</p>
-<h4 id="operator-earlier-versions">Operator earlier versions</h4>
-<p>Documentation for prior releases of the operator: <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.5/">2.5.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.6/">2.6.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.0/">3.0.x</a>, and <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.1/">3.1.x</a>.</p>
-<h4 id="backward-compatibility-guidelines">Backward compatibility guidelines</h4>
-<p>Starting from the 2.0.1 release, operator releases are backward compatible with respect to the domain
-resource schema, operator Helm chart input values, configuration overrides template, Kubernetes resources created
-by the operator Helm chart, Kubernetes resources created by the operator, and the operator REST interface. We intend to
-maintain compatibility for three releases, except in the case of a clearly communicated deprecated feature, which will be
-maintained for one release after a replacement is available.</p>
-<h3 id="about-this-documentation">About this documentation</h3>
-<p>This documentation includes sections targeted to different audiences.  To help you find what you are looking for more easily,
-please consult this table of contents:</p>
-<ul>
-<li>The <a href="/quickstart/">Quick Start guide</a> explains how to quickly get the operator running, using the defaults, nothing special.</li>
-<li>The <a href="/userguide/">User guide</a> contains detailed usage information, including how to install and configure the operator,
-and how to use it to create and manage WebLogic domains.</li>
-<li>The <a href="/samples/simple/">Samples</a> provide detailed example code and instructions that show you how to perform
-various tasks related to the operator.</li>
-<li>The <a href="/developerguide/">Developer guide</a> provides details for people who want to understand how the operator is built, tested, and so on. Those who wish to <a href="/developerguide/contributing/">contribute</a> to the operator code will find useful information here.</li>
-<li><a href="/reference/">Reference</a> describes domain resource attributes and the operator REST API.</li>
-<li><a href="/security/">Security</a> describes Kubernetes, WebLogic, and OpenShift security requirements.</li>
-<li><a href="/faq/">Frequently asked questions</a> provides answers to common questions.</li>
-</ul>
-<h3 id="oracle-support">Oracle support</h3>
-<p>To access Oracle support for running WebLogic Server domains on Kubernetes platforms, see <a href="https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=208317433106215&amp;id=2349228.1&amp;_afrWindowMode=0&amp;_adf.ctrl-state=c2nhai8p3_4">WebLogic Server Certifications on Kubernetes in My Oracle Support Doc ID 2349228.1</a>.</p>
-<h3 id="need-more-help-have-a-suggestion-come-and-say-hello">Need more help? Have a suggestion? Come and say, &ldquo;Hello!&rdquo;</h3>
-<p>We have a <strong>public Slack channel</strong> where you can get in touch with us to ask questions about using the operator or give us feedback
-or suggestions about what features and improvements you would like to see.  We would love to hear from you. To join our channel,
-please <a href="https://weblogic-slack-inviter.herokuapp.com/">visit this site to get an invitation</a>.  The invitation email will include
-details of how to access our Slack workspace.  After you are logged in, please come to <code>#operator</code> and say, &ldquo;hello!&rdquo;</p>
+    Step step <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StepOne<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> StepTwo<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> StepThree<span style="color:#f92672">(</span><span style="color:#66d9ef">null</span><span style="color:#f92672">)));</span>
+      Packet packet <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Packet<span style="color:#f92672">();</span>
+
+    fiber<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">(</span>
+        step<span style="color:#f92672">,</span>
+        packet<span style="color:#f92672">,</span>
+        <span style="color:#66d9ef">new</span> CompletionCallback<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+          <span style="color:#a6e22e">@Override</span>
+          <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onCompletion</span><span style="color:#f92672">(</span>Packet packet<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#75715e">// Fiber has completed successfully
+</span><span style="color:#75715e"></span>          <span style="color:#f92672">}</span>
+
+          <span style="color:#a6e22e">@Override</span>
+          <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">onThrowable</span><span style="color:#f92672">(</span>Packet packet<span style="color:#f92672">,</span> Throwable throwable<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#75715e">// Fiber processing was terminated with an exception
+</span><span style="color:#75715e"></span>          <span style="color:#f92672">}</span>
+        <span style="color:#f92672">});</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p><code>Steps</code> must not invoke sleep or blocking calls from within <code>apply()</code>.  This prevents the worker threads from serving other <code>Fibers</code>.  Instead, use asynchronous calls and the <code>Fiber</code> suspend/resume pattern.  <code>Step</code> provides a method, <code>doDelay()</code>, which creates a <code>NextAction</code> to drive <code>Fiber</code> suspend/resume that is a better option than sleep precisely because the worker thread can serve other <code>Fibers</code> during the delay.  For asynchronous IO or similar patterns, suspend the <code>Fiber</code>.  In the callback as the <code>Fiber</code> suspends, initiate the asynchronous call.  Finally, when the call completes, resume the <code>Fiber</code>.  The suspend/resume functionality handles the case where resumed before the suspending callback completes.</p>
+<p>In this sample, the step uses asynchronous file IO and the suspend/resume <code>Fiber</code> pattern.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StepTwo</span> <span style="color:#66d9ef">extends</span> Step <span style="color:#f92672">{</span>
+      <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">StepTwo</span><span style="color:#f92672">(</span>Step next<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">super</span><span style="color:#f92672">(</span>next<span style="color:#f92672">);</span>
+      <span style="color:#f92672">}</span>
+
+      <span style="color:#a6e22e">@Override</span>
+      <span style="color:#66d9ef">public</span> NextAction <span style="color:#a6e22e">apply</span><span style="color:#f92672">(</span>Packet packet<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> doSuspend<span style="color:#f92672">((</span>fiber<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+          <span style="color:#75715e">// The Fiber is now suspended
+</span><span style="color:#75715e"></span>          <span style="color:#75715e">// Start the asynchronous call
+</span><span style="color:#75715e"></span>          <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+            Path path <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>URI<span style="color:#f92672">.</span><span style="color:#a6e22e">create</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getClass</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getResource</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/somefile.dat&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">()));</span>
+            AsynchronousFileChannel fileChannel <span style="color:#f92672">=</span>
+                AsynchronousFileChannel<span style="color:#f92672">.</span><span style="color:#a6e22e">open</span><span style="color:#f92672">(</span>path<span style="color:#f92672">,</span> StandardOpenOption<span style="color:#f92672">.</span><span style="color:#a6e22e">READ</span><span style="color:#f92672">);</span>
+
+            ByteBuffer buffer <span style="color:#f92672">=</span> ByteBuffer<span style="color:#f92672">.</span><span style="color:#a6e22e">allocate</span><span style="color:#f92672">(</span>1024<span style="color:#f92672">);</span>
+            fileChannel<span style="color:#f92672">.</span><span style="color:#a6e22e">read</span><span style="color:#f92672">(</span>buffer<span style="color:#f92672">,</span> 0<span style="color:#f92672">,</span> buffer<span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> CompletionHandler<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">,</span> ByteBuffer<span style="color:#f92672">&gt;()</span> <span style="color:#f92672">{</span>
+              <span style="color:#a6e22e">@Override</span>
+              <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">completed</span><span style="color:#f92672">(</span>Integer result<span style="color:#f92672">,</span> ByteBuffer attachment<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                <span style="color:#75715e">// Store data in Packet and resume Fiber
+</span><span style="color:#75715e"></span>                packet<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;DATA_SIZE_READ&#34;</span><span style="color:#f92672">,</span> result<span style="color:#f92672">);</span>
+                packet<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;DATA_FROM_SOMEFILE&#34;</span><span style="color:#f92672">,</span> attachment<span style="color:#f92672">);</span>
+                fiber<span style="color:#f92672">.</span><span style="color:#a6e22e">resume</span><span style="color:#f92672">(</span>packet<span style="color:#f92672">);</span>
+              <span style="color:#f92672">}</span>
+
+              <span style="color:#a6e22e">@Override</span>
+              <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">failed</span><span style="color:#f92672">(</span>Throwable exc<span style="color:#f92672">,</span> ByteBuffer attachment<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+                <span style="color:#75715e">// log exc
+</span><span style="color:#75715e"></span>                completed<span style="color:#f92672">(</span>0<span style="color:#f92672">,</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">);</span>
+              <span style="color:#f92672">}</span>
+            <span style="color:#f92672">});</span>
+          <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>IOException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#75715e">// log exception
+</span><span style="color:#75715e"></span>            <span style="color:#75715e">// If not resumed here, Fiber will never be resumed
+</span><span style="color:#75715e"></span>          <span style="color:#f92672">}</span>
+        <span style="color:#f92672">});</span>
+      <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><h4 id="call-builder-pattern">Call builder pattern</h4>
+<p>The asynchronous call model is implemented by classes in the <code>oracle.kubernetes.operator.helpers</code> package, including <code>CallBuilder</code> and <code>ResponseStep</code>.  The model is based on the <code>Fiber</code> suspend/resume pattern described above.  <code>CallBuilder</code> provides many methods having names ending with &ldquo;Async&rdquo;, such as <code>listPodAsync()</code> or <code>deleteServiceAsync()</code>.  These methods return a <code>Step</code> that can be returned as part of a <code>NextAction</code>.  When creating these <code>Steps</code>, the developer must provide a <code>ResponseStep</code>.  Only <code>ResponseStep.onSuccess()</code> must be implemented; however, it is often useful to override <code>onFailure()</code> as Kubernetes treats <code>404 (Not Found)</code> as a failure.</p>
+<p>In this sample, the developer is using the pattern to list pods from the default namespace that are labeled as part of <code>cluster-1</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StepOne</span> <span style="color:#66d9ef">extends</span> Step <span style="color:#f92672">{</span>
+      <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">StepOne</span><span style="color:#f92672">(</span>Step next<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">super</span><span style="color:#f92672">(</span>next<span style="color:#f92672">);</span>
+      <span style="color:#f92672">}</span>
+
+      <span style="color:#a6e22e">@Override</span>
+      <span style="color:#66d9ef">public</span> NextAction <span style="color:#a6e22e">apply</span><span style="color:#f92672">(</span>Packet packet<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        String namespace <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;default&#34;</span><span style="color:#f92672">;</span>
+        Step step <span style="color:#f92672">=</span> CallBuilder<span style="color:#f92672">.</span><span style="color:#a6e22e">create</span><span style="color:#f92672">().</span><span style="color:#a6e22e">with</span><span style="color:#f92672">(</span>$ <span style="color:#f92672">-&gt;</span> <span style="color:#f92672">{</span>
+          $<span style="color:#f92672">.</span><span style="color:#a6e22e">labelSelector</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;weblogic.clusterName=cluster-1&#34;</span><span style="color:#f92672">;</span>
+          $<span style="color:#f92672">.</span><span style="color:#a6e22e">limit</span> <span style="color:#f92672">=</span> 50<span style="color:#f92672">;</span>
+          $<span style="color:#f92672">.</span><span style="color:#a6e22e">timeoutSeconds</span> <span style="color:#f92672">=</span> 30<span style="color:#f92672">;</span>
+        <span style="color:#f92672">}).</span><span style="color:#a6e22e">listPodAsync</span><span style="color:#f92672">(</span>namespace<span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> ResponseStep<span style="color:#f92672">&lt;</span>V1PodList<span style="color:#f92672">&gt;(</span>next<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+          <span style="color:#a6e22e">@Override</span>
+          <span style="color:#66d9ef">public</span> NextAction <span style="color:#a6e22e">onFailure</span><span style="color:#f92672">(</span>Packet packet<span style="color:#f92672">,</span> ApiException e<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> statusCode<span style="color:#f92672">,</span>
+              Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;&gt;</span> responseHeaders<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>statusCode <span style="color:#f92672">==</span> CallBuilder<span style="color:#f92672">.</span><span style="color:#a6e22e">NOT_FOUND</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+              <span style="color:#66d9ef">return</span> onSuccess<span style="color:#f92672">(</span>packet<span style="color:#f92672">,</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">,</span> statusCode<span style="color:#f92672">,</span> responseHeaders<span style="color:#f92672">);</span>
+            <span style="color:#f92672">}</span>
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">onFailure</span><span style="color:#f92672">(</span>packet<span style="color:#f92672">,</span> e<span style="color:#f92672">,</span> statusCode<span style="color:#f92672">,</span> responseHeaders<span style="color:#f92672">);</span>
+          <span style="color:#f92672">}</span>
+
+          <span style="color:#a6e22e">@Override</span>
+          NextAction <span style="color:#a6e22e">onSuccess</span><span style="color:#f92672">(</span>Packet packet<span style="color:#f92672">,</span> V1PodList result<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> statusCode<span style="color:#f92672">,</span>
+              Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;&gt;</span> responseHeaders<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#75715e">// do something with the result Pod, if not null
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">return</span> doNext<span style="color:#f92672">(</span>packet<span style="color:#f92672">);</span>
+          <span style="color:#f92672">}</span>
+        <span style="color:#f92672">});</span>
+
+        <span style="color:#66d9ef">return</span> doNext<span style="color:#f92672">(</span>step<span style="color:#f92672">,</span> packet<span style="color:#f92672">);</span>
+      <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>Notice that the required parameters, such as <code>namespace</code>, are method arguments, but optional parameters are designated using a simplified builder pattern using <code>with()</code> and a lambda.</p>
+<p>The default behavior of <code>onFailure()</code> will retry with an exponential backoff the request on status codes <code>429 (TooManyRequests)</code>, <code>500 (InternalServerError)</code>, <code>503 (ServiceUnavailable)</code>, <code>504 (ServerTimeout)</code> or a simple timeout with no response from the server.</p>
+<p>If the server responds with status code <code>409 (Conflict)</code>, then this indicates an optimistic locking failure.  Common use cases are that the code read a Kubernetes object in one asynchronous step, modified the object, and attempted to replace the object in another asynchronous step; however, another activity replaced that same object in the interim.  In this case, retrying the request would give the same result.  Therefore, developers may provide an &ldquo;on conflict&rdquo; step when calling <code>super.onFailure()</code>.  The conflict step will be invoked after an exponential backoff delay.  In this example, that conflict step should be the step that reads the existing Kubernetes object.</p>
+
+
+<footer class="footline">
 	
-  
+</footer>
+
         
         </div>
         
@@ -4782,6 +4896,7 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
+                    
                 
                 
 
@@ -4794,6 +4909,9 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -4907,6 +5025,7 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
+                    
                 
                 
 
@@ -4922,6 +5041,9 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -5428,8 +5550,10 @@ details of how to access our Slack workspace.  After you are logged in, please c
 	 
 	 
 		
+			<a class="nav nav-prev" href="/developerguide/code-structure/" title="Code structure"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/quickstart/" title="Quick Start" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/developerguide/domain-processing/" title="Domain processing" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -5439,19 +5563,19 @@ details of how to access our Slack workspace.  After you are logged in, please c
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1624489125"></script>
-    <script src="/js/perfect-scrollbar.min.js?1624489125"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1624489125"></script>
-    <script src="/js/jquery.sticky.js?1624489125"></script>
-    <script src="/js/featherlight.min.js?1624489125"></script>
-    <script src="/js/highlight.pack.js?1624489125"></script>
+    <script src="/js/clipboard.min.js?1624489124"></script>
+    <script src="/js/perfect-scrollbar.min.js?1624489124"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1624489124"></script>
+    <script src="/js/jquery.sticky.js?1624489124"></script>
+    <script src="/js/featherlight.min.js?1624489124"></script>
+    <script src="/js/highlight.pack.js?1624489124"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1624489125"></script>
-    <script src="/js/learn.js?1624489125"></script>
-    <script src="/js/hugo-learn.js?1624489125"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1624489124"></script>
+    <script src="/js/learn.js?1624489124"></script>
+    <script src="/js/hugo-learn.js?1624489124"></script>
     
         
-            <script src="/mermaid/mermaid.js?1624489125"></script>
+            <script src="/mermaid/mermaid.js?1624489124"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });

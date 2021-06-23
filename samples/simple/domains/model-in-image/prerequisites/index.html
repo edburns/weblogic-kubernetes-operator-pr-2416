@@ -9,23 +9,23 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title> :: WebLogic Kubernetes Operator</title>
+    <title>Prerequisites :: WebLogic Kubernetes Operator</title>
 
     
-    <link href="/css/nucleus.css?1624489125" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1624489125" rel="stylesheet">
-    <link href="/css/hybrid.css?1624489125" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1624489125" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1624489125" rel="stylesheet">
-    <link href="/css/auto-complete.css?1624489125" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1624489125" rel="stylesheet">
-    <link href="/css/theme.css?1624489125" rel="stylesheet">
-    <link href="/css/tabs.css?1624489125" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1624489125" rel="stylesheet">
+    <link href="/css/nucleus.css?1624489124" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1624489124" rel="stylesheet">
+    <link href="/css/hybrid.css?1624489124" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1624489124" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1624489124" rel="stylesheet">
+    <link href="/css/auto-complete.css?1624489124" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1624489124" rel="stylesheet">
+    <link href="/css/theme.css?1624489124" rel="stylesheet">
+    <link href="/css/tabs.css?1624489124" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1624489124" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1624489125"></script>
+    <script src="/js/jquery-3.3.1.min.js?1624489124"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/samples/simple/domains/model-in-image/prerequisites/">
     <nav id="sidebar" class="">
 
 
@@ -59,14 +59,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1624489125"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1624489125"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1624489124"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1624489124"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/polite-dune-0a7bd1d10.azurestaticapps.net\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1624489125"></script>
+<script type="text/javascript" src="/js/search.js?1624489124"></script>
 
     
   </div>
@@ -1522,7 +1522,7 @@
   
     
     <li data-nav-id="/samples/" title="Samples" class="dd-item
-        
+        parent
         
         
         ">
@@ -1551,7 +1551,7 @@
   
     
     <li data-nav-id="/samples/simple/" title="Simple samples" class="dd-item
-        
+        parent
         
         
         ">
@@ -1632,7 +1632,7 @@
   
     
     <li data-nav-id="/samples/simple/domains/" title="Domains" class="dd-item
-        
+        parent
         
         
         ">
@@ -1739,7 +1739,7 @@
   
     
     <li data-nav-id="/samples/simple/domains/model-in-image/" title="Model in image" class="dd-item
-        
+        parent
         
         
         ">
@@ -1765,7 +1765,7 @@
  
   
     
-      <li data-nav-id="/samples/simple/domains/model-in-image/prerequisites/" title="Prerequisites" class="dd-item ">
+      <li data-nav-id="/samples/simple/domains/model-in-image/prerequisites/" title="Prerequisites" class="dd-item active">
         <a href="/samples/simple/domains/model-in-image/prerequisites/">
         Prerequisites
         
@@ -3243,87 +3243,406 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'></a> > <a href='/samples/'>Samples</a> > <a href='/samples/simple/'>Simple samples</a> > <a href='/samples/simple/domains/'>Domains</a> > <a href='/samples/simple/domains/model-in-image/'>Model in image</a> > Prerequisites
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#prerequisites-for-all-domain-types">Prerequisites for all domain types</a></li>
+        <li><a href="#additional-prerequisites-for-jrf-domains">Additional prerequisites for JRF domains</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Prerequisites
+            </h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h3 id="weblogic-kubernetes-operator">WebLogic Kubernetes Operator</h3>
-<p>The WebLogic Kubernetes Operator (the “operator”) supports running your WebLogic Server and Fusion Middleware Infrastructure domains on Kubernetes, an industry standard, cloud neutral deployment platform. It lets you encapsulate your entire WebLogic Server installation and layered applications into a portable set of cloud neutral images and simple resource description files. You can run them on any on-premises or public cloud that supports Kubernetes where you&rsquo;ve deployed the operator.</p>
-<p>Furthermore, the operator is well suited to CI/CD processes. You can easily inject changes when moving between environments, such as from test to production. For example, you can externally inject database URLs and credentials during deployment or you can inject arbitrary changes to most WebLogic configurations.</p>
-<p>The operator takes advantage of the <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">Kubernetes operator pattern</a>, which means that it uses Kubernetes APIs to provide support for operations, such as: provisioning, lifecycle management, application versioning, product patching, scaling, and security. The operator also enables the use of tooling that is native to this infrastructure for monitoring, logging, tracing, and security.</p>
-<p>You can:</p>
+<h3 id="prerequisites-for-all-domain-types">Prerequisites for all domain types</h3>
+<ol>
+<li>
+<p>Choose the type of domain you&rsquo;re going to use throughout the sample, <code>WLS</code> or <code>JRF</code>.</p>
 <ul>
-<li>Deploy an operator that manages all WebLogic domains in all namespaces in a Kubernetes cluster, or that only manages domains in a specific subset of the namespaces, or that manages only domains that are located in the same namespace as the operator. At most, a namespace can be managed by one operator.</li>
-<li>Supply WebLogic domain configuration using:
-<ul>
-<li><em>Domain in PV</em>: Locates WebLogic domain homes in a Kubernetes PersistentVolume (PV). This PV can reside in an NFS file system or other Kubernetes volume types.</li>
-<li><em>Domain in Image</em>: Includes a WebLogic domain home in a container image.</li>
-<li><em>Model in Image</em>: Includes <a href="https://oracle.github.io/weblogic-deploy-tooling/">WebLogic Deploy Tooling</a> models and archives in a container image.</li>
+<li>The first time you try this sample, we recommend that you choose <code>WLS</code> even if you&rsquo;re familiar with <code>JRF</code>.</li>
+<li>This is because <code>WLS</code> is simpler and will more easily familiarize you with Model in Image concepts.</li>
+<li>We recommend choosing <code>JRF</code> only if you are already familiar with <code>JRF</code>, you have already tried the <code>WLS</code> path through this sample, and you have a definite use case where you need to use <code>JRF</code>.</li>
 </ul>
 </li>
-<li>Configure deployment of WebLogic domains as a Kubernetes resource (using a Kubernetes custom resource definition).</li>
-<li>Override certain aspects of the WebLogic domain configuration; for example, use a different database password for different deployments.</li>
-<li>Start and stop servers and clusters in the domain based on declarative startup parameters and desired states.</li>
-<li>Scale WebLogic domains by starting and stopping Managed Servers on demand, or by integrating with a REST API to initiate scaling based on the WebLogic Diagnostics Framework (WLDF), Prometheus, Grafana, or other rules.</li>
-<li>Expose the WebLogic Server Administration Console outside the Kubernetes cluster, if desired.</li>
-<li>Expose T3 channels outside the Kubernetes domain, if desired.</li>
-<li>Expose HTTP paths on a WebLogic domain outside the Kubernetes domain with load balancing, and automatically update the load balancer when Managed Servers in the WebLogic domain are started or stopped.</li>
-<li>Publish operator and WebLogic Server logs into Elasticsearch and interact with them in Kibana.</li>
-</ul>
+<li>
+<p>The <code>JAVA_HOME</code> environment variable must be set and must reference a valid JDK 8 or 11 installation.</p>
+</li>
+<li>
+<p>Get the operator source and put it in <code>/tmp/weblogic-kubernetes-operator</code>.</p>
+<p>For example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cd /tmp
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ git clone --branch v3.2.3 https://github.com/oracle/weblogic-kubernetes-operator.git
+</code></pre></div><blockquote>
+<p><strong>Note</strong>: We will refer to the top directory of the operator source tree as <code>/tmp/weblogic-kubernetes-operator</code>; however, you can use a different location.</p>
+</blockquote>
+<p>For additional information about obtaining the operator source, see the <a href="https://oracle.github.io/weblogic-kubernetes-operator/developerguide/requirements/">Developer Guide Requirements</a>.</p>
+</li>
+<li>
+<p>Copy the sample to a new directory; for example, use directory <code>/tmp/mii-sample</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ mkdir /tmp/mii-sample
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cp -r /tmp/weblogic-kubernetes-operator/kubernetes/samples/scripts/create-weblogic-domain/model-in-image/* /tmp/mii-sample
+</code></pre></div><blockquote>
+<p><strong>Note</strong>: We will refer to this working copy of the sample as <code>/tmp/mii-sample</code>; however, you can use a different location.
 
-<div class="notices tip" ><p>The fastest way to experience the operator is to follow the <a href="/quickstart/">Quick Start guide</a>, or you can peruse our <a href="/userguide/">documentation</a>, read our <a href="https://blogs.oracle.com/weblogicserver/how-to-weblogic-server-on-kubernetes">blogs</a>, or try out the <a href="/samples/simple/">samples</a>.
-Also, you can step through the <a href="https://github.com/oracle/weblogic-kubernetes-operator/blob/main/kubernetes/hands-on-lab/README.md">Tutorial</a>
-using the operator to deploy and run a WebLogic domain container-packaged web application on an Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE) cluster.</p>
+
+   <a name="resume"></a>
+   </p>
+</blockquote>
+</li>
+<li>
+<p>Make sure an operator is set up to manage namespace <code>sample-domain1-ns</code>. Also, make sure a Traefik ingress controller is managing the same namespace and listening on port 30305.</p>
+<p>For example, follow the same steps as the <a href="https://oracle.github.io/weblogic-kubernetes-operator/quickstart/">Quick Start</a> guide up through the <a href="/quickstart/prepare/">Prepare for a domain</a> step.</p>
+
+<div class="notices info" ><p>Make sure you stop when you complete the &ldquo;Prepare for a domain&rdquo; step and then resume following these instructions.</p>
 </div>
 
-<hr>
-<h4 id="current-production-release">Current production release</h4>
-<p>The <a href="https://github.com/oracle/weblogic-kubernetes-operator/releases">current release of the operator</a> is 3.2.3.
-This release was published on May 21, 2021. See the operator prerequisites and supported environments <a href="/userguide/introduction/introduction/#operator-prerequisites">here</a>.</p>
-<hr>
-<h4 id="recent-changes-and-known-issues">Recent changes and known issues</h4>
-<p>See the <a href="/release-notes/">Release Notes</a>  for recent changes to the operator and known issues.</p>
-<h4 id="operator-earlier-versions">Operator earlier versions</h4>
-<p>Documentation for prior releases of the operator: <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.5/">2.5.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.6/">2.6.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.0/">3.0.x</a>, and <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.1/">3.1.x</a>.</p>
-<h4 id="backward-compatibility-guidelines">Backward compatibility guidelines</h4>
-<p>Starting from the 2.0.1 release, operator releases are backward compatible with respect to the domain
-resource schema, operator Helm chart input values, configuration overrides template, Kubernetes resources created
-by the operator Helm chart, Kubernetes resources created by the operator, and the operator REST interface. We intend to
-maintain compatibility for three releases, except in the case of a clearly communicated deprecated feature, which will be
-maintained for one release after a replacement is available.</p>
-<h3 id="about-this-documentation">About this documentation</h3>
-<p>This documentation includes sections targeted to different audiences.  To help you find what you are looking for more easily,
-please consult this table of contents:</p>
+</li>
+<li>
+<p>Set up ingresses that will redirect HTTP from Traefik port 30305 to the clusters in this sample&rsquo;s WebLogic domains.</p>
 <ul>
-<li>The <a href="/quickstart/">Quick Start guide</a> explains how to quickly get the operator running, using the defaults, nothing special.</li>
-<li>The <a href="/userguide/">User guide</a> contains detailed usage information, including how to install and configure the operator,
-and how to use it to create and manage WebLogic domains.</li>
-<li>The <a href="/samples/simple/">Samples</a> provide detailed example code and instructions that show you how to perform
-various tasks related to the operator.</li>
-<li>The <a href="/developerguide/">Developer guide</a> provides details for people who want to understand how the operator is built, tested, and so on. Those who wish to <a href="/developerguide/contributing/">contribute</a> to the operator code will find useful information here.</li>
-<li><a href="/reference/">Reference</a> describes domain resource attributes and the operator REST API.</li>
-<li><a href="/security/">Security</a> describes Kubernetes, WebLogic, and OpenShift security requirements.</li>
-<li><a href="/faq/">Frequently asked questions</a> provides answers to common questions.</li>
+<li>
+<p>Option 1: To create the ingresses, use the following YAML file to create a file called <code>/tmp/mii-sample/ingresses/myingresses.yaml</code> and then call <code>kubectl apply -f /tmp/mii-sample/ingresses/myingresses.yaml</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: traefik.containo.us/v1alpha1
+<span style="color:#66d9ef">kind</span>: IngressRoute
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: traefik-ingress-sample-domain1-admin-server
+  <span style="color:#66d9ef">namespace</span>: sample-domain1-ns
+  <span style="color:#66d9ef">labels</span>:
+    <span style="color:#66d9ef">weblogic.domainUID</span>: sample-domain1
+  <span style="color:#66d9ef">annotations</span>:
+    <span style="color:#66d9ef">kubernetes.io/ingress.class</span>: traefik
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">routes</span>:
+  - <span style="color:#66d9ef">kind</span>: Rule
+    <span style="color:#66d9ef">match</span>: PathPrefix(`/console`)
+    <span style="color:#66d9ef">services</span>:
+    - <span style="color:#66d9ef">kind</span>: Service
+      <span style="color:#66d9ef">name</span>: sample-domain1-admin-server
+      <span style="color:#66d9ef">port</span>: <span style="color:#ae81ff">7001</span>
+---
+<span style="color:#66d9ef">apiVersion</span>: traefik.containo.us/v1alpha1
+<span style="color:#66d9ef">kind</span>: IngressRoute
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: traefik-ingress-sample-domain1-cluster-cluster<span style="color:#ae81ff">-1</span>
+  <span style="color:#66d9ef">namespace</span>: sample-domain1-ns
+  <span style="color:#66d9ef">labels</span>:
+    <span style="color:#66d9ef">weblogic.domainUID</span>: sample-domain1
+  <span style="color:#66d9ef">annotations</span>:
+    <span style="color:#66d9ef">kubernetes.io/ingress.class</span>: traefik
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">routes</span>:
+  - <span style="color:#66d9ef">kind</span>: Rule
+    <span style="color:#66d9ef">match</span>: Host(`sample-domain1-cluster-cluster<span style="color:#ae81ff">-1.</span>mii-sample.org`)
+    <span style="color:#66d9ef">services</span>:
+    - <span style="color:#66d9ef">kind</span>: Service
+      <span style="color:#66d9ef">name</span>: sample-domain1-cluster-cluster<span style="color:#ae81ff">-1</span>
+      <span style="color:#66d9ef">port</span>: <span style="color:#ae81ff">8001</span>
+---
+<span style="color:#66d9ef">apiVersion</span>: traefik.containo.us/v1alpha1
+<span style="color:#66d9ef">kind</span>: IngressRoute
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: traefik-ingress-sample-domain2-cluster-cluster<span style="color:#ae81ff">-1</span>
+  <span style="color:#66d9ef">namespace</span>: sample-domain1-ns
+  <span style="color:#66d9ef">labels</span>:
+    <span style="color:#66d9ef">weblogic.domainUID</span>: sample-domain2
+  <span style="color:#66d9ef">annotations</span>:
+    <span style="color:#66d9ef">kubernetes.io/ingress.class</span>: traefik
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">routes</span>:
+  - <span style="color:#66d9ef">kind</span>: Rule
+    <span style="color:#66d9ef">match</span>: Host(`sample-domain2-cluster-cluster<span style="color:#ae81ff">-1.</span>mii-sample.org`)
+    <span style="color:#66d9ef">services</span>:
+    - <span style="color:#66d9ef">kind</span>: Service
+      <span style="color:#66d9ef">name</span>: sample-domain2-cluster-cluster<span style="color:#ae81ff">-1</span>
+      <span style="color:#66d9ef">port</span>: <span style="color:#ae81ff">8001</span>
+</code></pre></div></li>
+<li>
+<p>Option 2: Run <code>kubectl apply -f</code> on each of the ingress YAML files that are already included in the sample source <code>/tmp/mii-sample/ingresses</code> directory:</p>
+<pre><code>$ cd /tmp/mii-sample/ingresses
+$ kubectl apply -f traefik-ingress-sample-domain1-admin-server.yaml
+$ kubectl apply -f traefik-ingress-sample-domain1-cluster-cluster-1.yaml
+$ kubectl apply -f traefik-ingress-sample-domain2-cluster-cluster-1.yaml
+</code></pre></li>
 </ul>
-<h3 id="oracle-support">Oracle support</h3>
-<p>To access Oracle support for running WebLogic Server domains on Kubernetes platforms, see <a href="https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=208317433106215&amp;id=2349228.1&amp;_afrWindowMode=0&amp;_adf.ctrl-state=c2nhai8p3_4">WebLogic Server Certifications on Kubernetes in My Oracle Support Doc ID 2349228.1</a>.</p>
-<h3 id="need-more-help-have-a-suggestion-come-and-say-hello">Need more help? Have a suggestion? Come and say, &ldquo;Hello!&rdquo;</h3>
-<p>We have a <strong>public Slack channel</strong> where you can get in touch with us to ask questions about using the operator or give us feedback
-or suggestions about what features and improvements you would like to see.  We would love to hear from you. To join our channel,
-please <a href="https://weblogic-slack-inviter.herokuapp.com/">visit this site to get an invitation</a>.  The invitation email will include
-details of how to access our Slack workspace.  After you are logged in, please come to <code>#operator</code> and say, &ldquo;hello!&rdquo;</p>
+<blockquote>
+<p><strong>NOTE</strong>: We give each cluster ingress a different host name that is decorated using both its operator domain UID and its cluster name. This makes each cluster uniquely addressable even when cluster names are the same across different clusters.  When using <code>curl</code> to access the WebLogic domain through the ingress, you will need to supply a host name header that matches the host names in the ingress.</p>
+</blockquote>
+<p>For more information on ingresses and load balancers, see <a href="/userguide/managing-domains/ingress/">Ingress</a>.</p>
+</li>
+<li>
+<p>Obtain the WebLogic 12.2.1.4 image that is required to create the sample&rsquo;s model images.</p>
+<p>a. Use a browser to access <a href="http://container-registry.oracle.com">Oracle Container Registry</a>.</p>
+<p>b. Choose an image location: for <code>JRF</code> domains, select <code>Middleware</code>, then <code>fmw-infrastructure</code>; for <code>WLS</code> domains, select <code>Middleware</code>, then <code>weblogic</code>.</p>
+<p>c. Select Sign In and accept the license agreement.</p>
+<p>d. Use your terminal to log in to the container registry: <code>docker login container-registry.oracle.com</code>.</p>
+<p>e. Later in this sample, when you run WebLogic Image Tool commands, the tool will use the image as a base image for creating model images. Specifically, the tool will implicitly call <code>docker pull</code> for one of the above licensed images as specified in the tool&rsquo;s command line using the <code>--fromImage</code> parameter. For <code>JRF</code>, this sample specifies <code>container-registry.oracle.com/middleware/fmw-infrastructure:12.2.1.4</code>, and for <code>WLS</code>, the sample specifies <code>container-registry.oracle.com/middleware/weblogic:12.2.1.4</code>.</p>
+
+<div class="notices info" ><p>If you prefer, you can create your own base image and then substitute this image name in the WebLogic Image Tool <code>--fromImage</code> parameter throughout this sample. For example, you may wish to start with a base image that has patches applied. See <a href="/userguide/base-images/">Preparing a Base Image</a>.</p>
+</div>
+
+</li>
+<li>
+<p>Download the latest <a href="https://github.com/oracle/weblogic-deploy-tooling/releases">WebLogic Deploy Tooling</a> (WDT) and <a href="https://github.com/oracle/weblogic-image-tool/releases">WebLogic Image Tool</a> (WIT) installer ZIP files to your <code>/tmp/mii-sample/model-images</code> directory. Both WDT and WIT are required to create your Model in Image container images.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cd /tmp/mii-sample/model-images
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ curl -m <span style="color:#ae81ff">120</span> -fL https://github.com/oracle/weblogic-deploy-tooling/releases/latest/download/weblogic-deploy.zip <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -o /tmp/mii-sample/model-images/weblogic-deploy.zip
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ curl -m <span style="color:#ae81ff">120</span> -fL https://github.com/oracle/weblogic-image-tool/releases/latest/download/imagetool.zip <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -o /tmp/mii-sample/model-images/imagetool.zip
+</code></pre></div></li>
+<li>
+<p>To set up the WebLogic Image Tool, run the following commands:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cd /tmp/mii-sample/model-images
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ unzip imagetool.zip
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ./imagetool/bin/imagetool.sh cache deleteEntry --key wdt_latest
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ./imagetool/bin/imagetool.sh cache addInstaller <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --type wdt <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --version latest <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --path /tmp/mii-sample/model-images/weblogic-deploy.zip
+</code></pre></div><p>Note that the WebLogic Image Tool <code>cache deleteEntry</code> command does nothing
+if the <code>wdt_latest</code> key doesn&rsquo;t have a corresponding cache entry. It is included
+because the WIT cache lookup information is stored in the <code>$HOME/cache/.metadata</code>
+file by default, and if the cache already
+has a version of WDT in its <code>--type wdt --version latest</code> location, then the
+<code>cache addInstaller</code> command would fail.
+For more information about the WIT cache, see the
+<a href="https://oracle.github.io/weblogic-image-tool/userguide/tools/cache/">WIT Cache documentation</a>.</p>
+<p>These steps will install WIT to the <code>/tmp/mii-sample/model-images/imagetool</code> directory,
+plus put a <code>wdt_latest</code> entry in the tool&rsquo;s cache which points to the WDT ZIP file installer.
+You will use WIT and its cached reference to the WDT installer later in the sample for creating model images.</p>
+</li>
+</ol>
+<h3 id="additional-prerequisites-for-jrf-domains">Additional prerequisites for JRF domains</h3>
+<blockquote>
+<p><strong>NOTE</strong>: If you&rsquo;re using a <code>WLS</code> domain type, skip this section and continue <a href="/samples/simple/domains/model-in-image/initial/">here</a>.</p>
+</blockquote>
+<h4 id="jrf-prerequisites-contents">JRF Prerequisites Contents</h4>
+<ul>
+<li><a href="#introduction-to-jrf-setups">Introduction to JRF setups</a></li>
+<li><a href="#set-up-and-initialize-an-infrastructure-database">Set up and initialize an infrastructure database</a></li>
+<li><a href="#increase-introspection-job-timeout">Increase introspection job timeout</a></li>
+<li><a href="#important-considerations-for-rcu-model-attributes-domain-fields-and-secrets">Important considerations for RCU model attributes, Domain fields, and secrets</a></li>
+</ul>
+<h5 id="introduction-to-jrf-setups">Introduction to JRF setups</h5>
+<blockquote>
+<p><strong>NOTE</strong>: The requirements in this section are in addition to <a href="#prerequisites-for-all-domain-types">Prerequisites for all domain types</a>.</p>
+</blockquote>
+<p>A JRF domain requires an infrastructure database, initializing this database with RCU, and configuring your domain to access this database. You must perform all these steps <em>before</em> you create your domain.</p>
+<h5 id="set-up-and-initialize-an-infrastructure-database">Set up and initialize an infrastructure database</h5>
+<p>A JRF domain requires an infrastructure database and requires initializing this database with a schema and a set of tables for each different domain. The following example shows how to set up a database and use the RCU tool to create the infrastructure schemas for two JRF domains. The database is set up with the following attributes:</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>database Kubernetes namespace</td>
+<td><code>default</code></td>
+</tr>
+<tr>
+<td>database Kubernetes pod</td>
+<td><code>oracle-db</code></td>
+</tr>
+<tr>
+<td>database image</td>
+<td><code>container-registry.oracle.com/database/enterprise:12.2.0.1-slim</code></td>
+</tr>
+<tr>
+<td>database password</td>
+<td><code>Oradoc_db1</code></td>
+</tr>
+<tr>
+<td>infrastructure schema prefixes</td>
+<td><code>FMW1</code> and <code>FMW2</code> (for domain1 and domain2)</td>
+</tr>
+<tr>
+<td>infrastructure schema password</td>
+<td><code>Oradoc_db1</code></td>
+</tr>
+<tr>
+<td>database URL</td>
+<td><code>oracle-db.default.svc.cluster.local:1521/devpdb.k8s</code></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>
+<p>Ensure that you have access to the database image, and then create a deployment using it:</p>
+<ul>
+<li>
+<p>Use a browser to log in to <code>https://container-registry.oracle.com</code>, select <code>Database -&gt; enterprise</code> and accept the license agreement.</p>
+</li>
+<li>
+<p>Get the database image:</p>
+<ul>
+<li>In the local shell, <code>docker login container-registry.oracle.com</code>.</li>
+<li>In the local shell, <code>docker pull container-registry.oracle.com/database/enterprise:12.2.0.1-slim</code>.</li>
+</ul>
+</li>
+<li>
+<p>Use the sample script in <code>/tmp/weblogic-kubernetes-operator/kubernetes/samples/scripts/create-oracle-db-service</code> to create an Oracle database running in the pod, <code>oracle-db</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cd /tmp/weblogic-kubernetes-operator/kubernetes/samples/scripts/create-oracle-db-service
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ start-db-service.sh
+</code></pre></div><p>This script will deploy a database in the <code>default</code> namespace with the connect string <code>oracle-db.default.svc.cluster.local:1521/devpdb.k8s</code>, and administration password <code>Oradoc_db1</code>.</p>
+<p>This step is based on the steps documented in <a href="https://oracle.github.io/weblogic-kubernetes-operator/userguide/overview/database/">Run a Database</a>.</p>
+<p><strong>NOTE</strong>: If your Kubernetes cluster nodes do not all have access to the database image in a local cache, then deploy a Kubernetes <code>docker secret</code> to the default namespace with login credentials for <code>container-registry.oracle.com</code>, and pass the name of this secret as a parameter to <code>start-db-service.sh</code> using <code>-s your-image-pull-secret</code>. Alternatively, copy the database image to each local Docker cache in the cluster.  For more information, see the <a href="/faq/cannot-pull-image/">Cannot pull image FAQ</a>.</p>
+<p><strong>WARNING:</strong> The Oracle Database images are supported only for non-production use. For more details, see My Oracle Support note: Oracle Support for Database Running on Docker (Doc ID 2216342.1).</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Use the sample script in <code>/tmp/weblogic-kubernetes-operator/kubernetes/samples/scripts/create-rcu-schema</code> to create an RCU schema for each domain (schema prefixes <code>FMW1</code> and <code>FMW2</code>).</p>
+<p>Note that this script assumes <code>Oradoc_db1</code> is the DBA password, <code>Oradoc_db1</code> is the schema password, and that the database URL is <code>oracle-db.default.svc.cluster.local:1521/devpdb.k8s</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cd /tmp/weblogic-kubernetes-operator/kubernetes/samples/scripts/create-rcu-schema
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ./create-rcu-schema.sh -s FMW1 -i container-registry.oracle.com/middleware/fmw-infrastructure:12.2.1.4
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ./create-rcu-schema.sh -s FMW2 -i container-registry.oracle.com/middleware/fmw-infrastructure:12.2.1.4
+</code></pre></div><p><strong>NOTE</strong>: If your Kubernetes cluster nodes do not all have access to the FMW infrastructure image in a local cache, then deploy a Kubernetes <code>docker secret</code> to the default namespace with login credentials for <code>container-registry.oracle.com</code>, and pass the name of this secret as a parameter to <code>./create-rcu-schema.sh</code> using <code>-p your-image-pull-secret</code>. Alternatively, copy the FMW infrastructure image to each local Docker cache in the cluster. For more information, see the <a href="/faq/cannot-pull-image/">Cannot pull image FAQ</a>.</p>
+<p><strong>NOTE</strong>: If you need to drop the repository, use this command:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ drop-rcu-schema.sh -s FMW1
+</code></pre></div></li>
+</ol>
+<h5 id="increase-introspection-job-timeout">Increase introspection job timeout</h5>
+<p>The JRF domain home creation can take more time than the introspection job&rsquo;s default timeout. You should increase the timeout for the introspection job. Use the <code>configuration.introspectorJobActiveDeadlineSeconds</code> in your Domain to override the default with a value of at least 300 seconds (the default is 120 seconds). Note that the <code>JRF</code> versions of the Domain YAML files that are provided in <code>/tmp/mii-sample/domain-resources</code> already set this value.</p>
+<h5 id="important-considerations-for-rcu-model-attributes-domain-fields-and-secrets">Important considerations for RCU model attributes, Domain fields, and secrets</h5>
+<p>To allow Model in Image to access the database and OPSS wallet, you must create an RCU access secret containing the database connect string, user name, and password that&rsquo;s referenced from your model and an OPSS wallet password secret that&rsquo;s referenced from your Domain before deploying your domain.  It&rsquo;s also necessary to define an <code>RCUDbInfo</code> stanza in your model.</p>
+<p>The sample includes examples of JRF models and Domain YAML files in the <code>/tmp/mii-sample/model-images</code> and <code>/tmp/mii-sample/domain-resources</code> directories, and instructions in the following sections will describe setting up the RCU and OPSS secrets.</p>
+<p>When you follow the instructions in the samples, avoid instructions that are <code>WLS</code> only, and substitute <code>JRF</code> for <code>WLS</code> in the corresponding model image tags and Domain YAML file names.</p>
+<p>For example, in this sample:</p>
+<ul>
+<li>
+<p>JRF Domain YAML files have an <code>configuration.opss.walletPasswordSecret</code> field that references a secret named <code>sample-domain1-opss-wallet-password-secret</code>, with <code>password=welcome1</code>.</p>
+</li>
+<li>
+<p>JRF image models have a <code>domainInfo -&gt; RCUDbInfo</code> stanza that reference a <code>sample-domain1-rcu-access</code> secret with appropriate values for attributes <code>rcu_prefix</code>, <code>rcu_schema_password</code>, and <code>rcu_db_conn_string</code> for accessing the Oracle database that you deployed to the default namespace as one of the prerequisite steps.</p>
+</li>
+</ul>
+<h5 id="important-considerations-for-reusing-or-sharing-opss-tables">Important considerations for reusing or sharing OPSS tables</h5>
+
+<div class="notices warning" ><p>We do not recommend that users share OPSS tables.  Extreme caution is required when sharing OPSS tables between domains.</p>
+</div>
+
+<p>When you successfully deploy your JRF Domain YAML file for the first time, the introspector job will initialize the OPSS tables for the domain using the <code>domainInfo -&gt; RCUDbInfo</code> stanza in the WDT model plus the <code>configuration.opss.walletPasswordSecret</code> specified in the Domain YAML file. The job will also create a new domain home. Finally, the operator will also capture an OPSS wallet file from the new domain&rsquo;s local directory and place this file in a new Kubernetes ConfigMap.</p>
+<p>There are scenarios when the domain needs to be recreated between updates, such as when WebLogic credentials are changed, security roles defined in the WDT model have been changed, or you want to share the same infrastructure tables with different domains.  In these scenarios, the operator needs the <code>walletPasswordSecret</code> as well as the OPSS wallet file, together with the exact information in <code>domainInfo -&gt; RCUDbInfo</code> so that the domain can be recreated and access the same set of tables.  Without the wallet file and wallet password, you will not be able to recreate a domain accessing the same set of  tables, therefore we strongly recommend that you back up the wallet file.</p>
+<p>To recover a domain&rsquo;s OPSS tables between domain restarts or to share an OPSS schema between different domains, it is necessary to extract this wallet file from the domain&rsquo;s automatically deployed introspector ConfigMap and save the OPSS wallet password secret that was used for the original domain. The wallet password and wallet file are needed again when you recreate the domain or share the database with other domains.</p>
+<p>To save the wallet file, assuming that your namespace is <code>sample-domain1-ns</code> and your domain UID is <code>sample-domain1</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">  $ kubectl -n sample-domain1-ns <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    get configmap sample-domain1-weblogic-domain-introspect-cm <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -o jsonpath<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;{.data.ewallet\.p12}&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    &gt; ./ewallet.p12
+</code></pre></div><p>Alternatively, you can save the file using the sample&rsquo;s wallet utility:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">  $ /tmp/mii-sample/utils/opss-wallet.sh -n sample-domain1-ns -d sample-domain1 -wf ./ewallet.p12
+</code></pre></div><pre><code>  # For help: /tmp/mii-sample/utils/opss-wallet.sh -?
+</code></pre><p><strong>Important! Back up your wallet file to a safe location that can be retrieved later.</strong></p>
+<p>To reuse the wallet file in subsequent redeployments or to share the domain&rsquo;s OPSS tables between different domains:</p>
+<ol>
+<li>Load the saved wallet file into a secret with a key named <code>walletFile</code> (again, assuming that your domain UID is <code>sample-domain1</code> and your namespace is <code>sample-domain1-ns</code>):</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">  $ kubectl -n sample-domain1-ns create secret generic sample-domain1-opss-walletfile-secret <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>     --from-file<span style="color:#f92672">=</span>walletFile<span style="color:#f92672">=</span>./ewallet.p12
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">  $ kubectl -n sample-domain1-ns label secret sample-domain1-opss-walletfile-secret <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>     weblogic.domainUID<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>sample-domain1<span style="color:#e6db74">`</span>
+</code></pre></div><p>Alternatively, use the sample&rsquo;s wallet utility:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">  $ /tmp/mii-sample/utils/opss-wallet.sh -n sample-domain1-ns -d sample-domain1 -wf ./ewallet.p12 -ws sample-domain1-opss-walletfile-secret
+</code></pre></div><pre><code>  # For help: /tmp/mii-sample/utils/opss-wallet.sh -?
+</code></pre><ol start="2">
+<li>Modify your Domain JRF YAML files to provide the wallet file secret name, for example:</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">  <span style="color:#66d9ef">configuration</span>:
+    <span style="color:#66d9ef">opss</span>:
+      <span style="color:#75715e"># Name of secret with walletPassword for extracting the wallet</span>
+      <span style="color:#66d9ef">walletPasswordSecret</span>: sample-domain1-opss-wallet-password-secret
+      <span style="color:#75715e"># Name of secret with walletFile containing base64 encoded opss wallet</span>
+      <span style="color:#66d9ef">walletFileSecret</span>: sample-domain1-opss-walletfile-secret
+</code></pre></div><blockquote>
+<p><strong>Note</strong>: The sample JRF Domain YAML files included in <code>/tmp/mii-sample/domain-resources</code> already have the above YAML file stanza.</p>
+</blockquote>
+
+
+<footer class="footline">
 	
-  
+</footer>
+
         
         </div>
         
@@ -4294,20 +4613,6 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -4323,6 +4628,76 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
             
                 
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -4361,7 +4736,22 @@ details of how to access our Slack workspace.  After you are logged in, please c
 
                     
                     
+                    
+
+                    
+            
+        
+                    
                         
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
                     
                     
 
@@ -4370,6 +4760,7 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
             
                 
+                    
                     
                 
                 
@@ -4387,66 +4778,8 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -5428,8 +5761,10 @@ details of how to access our Slack workspace.  After you are logged in, please c
 	 
 	 
 		
+			<a class="nav nav-prev" href="/samples/simple/domains/model-in-image/" title="Model in image"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/quickstart/" title="Quick Start" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/samples/simple/domains/model-in-image/initial/" title="Initial use case" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -5439,19 +5774,19 @@ details of how to access our Slack workspace.  After you are logged in, please c
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1624489125"></script>
-    <script src="/js/perfect-scrollbar.min.js?1624489125"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1624489125"></script>
-    <script src="/js/jquery.sticky.js?1624489125"></script>
-    <script src="/js/featherlight.min.js?1624489125"></script>
-    <script src="/js/highlight.pack.js?1624489125"></script>
+    <script src="/js/clipboard.min.js?1624489124"></script>
+    <script src="/js/perfect-scrollbar.min.js?1624489124"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1624489124"></script>
+    <script src="/js/jquery.sticky.js?1624489124"></script>
+    <script src="/js/featherlight.min.js?1624489124"></script>
+    <script src="/js/highlight.pack.js?1624489124"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1624489125"></script>
-    <script src="/js/learn.js?1624489125"></script>
-    <script src="/js/hugo-learn.js?1624489125"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1624489124"></script>
+    <script src="/js/learn.js?1624489124"></script>
+    <script src="/js/hugo-learn.js?1624489124"></script>
     
         
-            <script src="/mermaid/mermaid.js?1624489125"></script>
+            <script src="/mermaid/mermaid.js?1624489124"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });

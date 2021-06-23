@@ -9,23 +9,23 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title> :: WebLogic Kubernetes Operator</title>
+    <title>Istio support :: WebLogic Kubernetes Operator</title>
 
     
-    <link href="/css/nucleus.css?1624489125" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1624489125" rel="stylesheet">
-    <link href="/css/hybrid.css?1624489125" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1624489125" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1624489125" rel="stylesheet">
-    <link href="/css/auto-complete.css?1624489125" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1624489125" rel="stylesheet">
-    <link href="/css/theme.css?1624489125" rel="stylesheet">
-    <link href="/css/tabs.css?1624489125" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1624489125" rel="stylesheet">
+    <link href="/css/nucleus.css?1624489124" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1624489124" rel="stylesheet">
+    <link href="/css/hybrid.css?1624489124" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1624489124" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1624489124" rel="stylesheet">
+    <link href="/css/auto-complete.css?1624489124" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1624489124" rel="stylesheet">
+    <link href="/css/theme.css?1624489124" rel="stylesheet">
+    <link href="/css/tabs.css?1624489124" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1624489124" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1624489125"></script>
+    <script src="/js/jquery-3.3.1.min.js?1624489124"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/userguide/istio/istio/">
     <nav id="sidebar" class="">
 
 
@@ -59,14 +59,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1624489125"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1624489125"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1624489124"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1624489124"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/polite-dune-0a7bd1d10.azurestaticapps.net\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1624489125"></script>
+<script type="text/javascript" src="/js/search.js?1624489124"></script>
 
     
   </div>
@@ -266,7 +266,7 @@
   
     
     <li data-nav-id="/userguide/" title="User Guide" class="dd-item
-        
+        parent
         
         
         ">
@@ -1493,7 +1493,7 @@
  
   
     
-      <li data-nav-id="/userguide/istio/istio/" title="Istio support" class="dd-item ">
+      <li data-nav-id="/userguide/istio/istio/" title="Istio support" class="dd-item active">
         <a href="/userguide/istio/istio/">
         Istio support
         
@@ -3243,87 +3243,370 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'></a> > <a href='/userguide/'>User Guide</a> > Istio support
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+        <li><a href="#apply-the-domain-yaml-file">Apply the Domain YAML file</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Istio support
+            </h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h3 id="weblogic-kubernetes-operator">WebLogic Kubernetes Operator</h3>
-<p>The WebLogic Kubernetes Operator (the “operator”) supports running your WebLogic Server and Fusion Middleware Infrastructure domains on Kubernetes, an industry standard, cloud neutral deployment platform. It lets you encapsulate your entire WebLogic Server installation and layered applications into a portable set of cloud neutral images and simple resource description files. You can run them on any on-premises or public cloud that supports Kubernetes where you&rsquo;ve deployed the operator.</p>
-<p>Furthermore, the operator is well suited to CI/CD processes. You can easily inject changes when moving between environments, such as from test to production. For example, you can externally inject database URLs and credentials during deployment or you can inject arbitrary changes to most WebLogic configurations.</p>
-<p>The operator takes advantage of the <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">Kubernetes operator pattern</a>, which means that it uses Kubernetes APIs to provide support for operations, such as: provisioning, lifecycle management, application versioning, product patching, scaling, and security. The operator also enables the use of tooling that is native to this infrastructure for monitoring, logging, tracing, and security.</p>
-<p>You can:</p>
+<h4 id="overview">Overview</h4>
+<p>WebLogic Kubernetes Operator version 2.6 and later, includes support for Istio 1.4.2 and later.
+This support lets you run the operator, and WebLogic domains managed by
+the operator, with Istio sidecar injection enabled.  You can use
+Istio gateways and virtual services to access applications deployed in these domains.
+If your applications have suitable tracing code in them, then you will also be able to
+use distributed tracing, such as Jaeger, to trace requests across domains and to
+other components and services that have tracing enabled.</p>
+<h4 id="limitations">Limitations</h4>
+<p>The current support for Istio has these limitations:</p>
 <ul>
-<li>Deploy an operator that manages all WebLogic domains in all namespaces in a Kubernetes cluster, or that only manages domains in a specific subset of the namespaces, or that manages only domains that are located in the same namespace as the operator. At most, a namespace can be managed by one operator.</li>
-<li>Supply WebLogic domain configuration using:
-<ul>
-<li><em>Domain in PV</em>: Locates WebLogic domain homes in a Kubernetes PersistentVolume (PV). This PV can reside in an NFS file system or other Kubernetes volume types.</li>
-<li><em>Domain in Image</em>: Includes a WebLogic domain home in a container image.</li>
-<li><em>Model in Image</em>: Includes <a href="https://oracle.github.io/weblogic-deploy-tooling/">WebLogic Deploy Tooling</a> models and archives in a container image.</li>
-</ul>
+<li>
+<p>It is tested with Istio 1.4.2 and later (up to 1.7.x); it is tested with both single and
+multicluster installations of Istio.</p>
+<p><strong>NOTE</strong>: The WebLogic Kubernetes Operator creates Kubernetes headless Services for the domain; Istio 1.6.x does not work with headless Services. See <a href="https://github.com/istio/istio/issues/24082">Headless service broken in 1.6.0</a>. Instead, use Istio version 1.7 and higher.</p>
 </li>
-<li>Configure deployment of WebLogic domains as a Kubernetes resource (using a Kubernetes custom resource definition).</li>
-<li>Override certain aspects of the WebLogic domain configuration; for example, use a different database password for different deployments.</li>
-<li>Start and stop servers and clusters in the domain based on declarative startup parameters and desired states.</li>
-<li>Scale WebLogic domains by starting and stopping Managed Servers on demand, or by integrating with a REST API to initiate scaling based on the WebLogic Diagnostics Framework (WLDF), Prometheus, Grafana, or other rules.</li>
-<li>Expose the WebLogic Server Administration Console outside the Kubernetes cluster, if desired.</li>
-<li>Expose T3 channels outside the Kubernetes domain, if desired.</li>
-<li>Expose HTTP paths on a WebLogic domain outside the Kubernetes domain with load balancing, and automatically update the load balancer when Managed Servers in the WebLogic domain are started or stopped.</li>
-<li>Publish operator and WebLogic Server logs into Elasticsearch and interact with them in Kibana.</li>
+<li>
+<p>You cannot expose any of the default channels; any attempt will result in an error when deploying the domain.</p>
+</li>
+<li>
+<p>If the <code>istio-ingressgateway</code> service in your environment does not have an <code>EXTERNAL-IP</code> defined,
+in order to use WLST commands, define a network access point (NAP) in your WebLogic domain and expose it as a <code>NodePort</code> in your Domain YAML file
+and access it through the <code>NodePort</code> instead of accessing the channel through the Istio mesh network.</p>
+</li>
 </ul>
+<p>To learn more about service mesh, see <a href="https://istio.io/latest/docs/concepts/what-is-istio/">Istio</a>.</p>
+<h4 id="using-the-operator-with-istio-support">Using the operator with Istio support</h4>
 
-<div class="notices tip" ><p>The fastest way to experience the operator is to follow the <a href="/quickstart/">Quick Start guide</a>, or you can peruse our <a href="/userguide/">documentation</a>, read our <a href="https://blogs.oracle.com/weblogicserver/how-to-weblogic-server-on-kubernetes">blogs</a>, or try out the <a href="/samples/simple/">samples</a>.
-Also, you can step through the <a href="https://github.com/oracle/weblogic-kubernetes-operator/blob/main/kubernetes/hands-on-lab/README.md">Tutorial</a>
-using the operator to deploy and run a WebLogic domain container-packaged web application on an Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE) cluster.</p>
+<div class="notices note" ><p>These instructions assume that you are using a Kubernetes cluster with
+<a href="https://istio.io/latest/docs/setup/install/">Istio</a> installed and configured already.  The operator will not install
+Istio for you.</p>
 </div>
 
-<hr>
-<h4 id="current-production-release">Current production release</h4>
-<p>The <a href="https://github.com/oracle/weblogic-kubernetes-operator/releases">current release of the operator</a> is 3.2.3.
-This release was published on May 21, 2021. See the operator prerequisites and supported environments <a href="/userguide/introduction/introduction/#operator-prerequisites">here</a>.</p>
-<hr>
-<h4 id="recent-changes-and-known-issues">Recent changes and known issues</h4>
-<p>See the <a href="/release-notes/">Release Notes</a>  for recent changes to the operator and known issues.</p>
-<h4 id="operator-earlier-versions">Operator earlier versions</h4>
-<p>Documentation for prior releases of the operator: <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.5/">2.5.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.6/">2.6.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.0/">3.0.x</a>, and <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.1/">3.1.x</a>.</p>
-<h4 id="backward-compatibility-guidelines">Backward compatibility guidelines</h4>
-<p>Starting from the 2.0.1 release, operator releases are backward compatible with respect to the domain
-resource schema, operator Helm chart input values, configuration overrides template, Kubernetes resources created
-by the operator Helm chart, Kubernetes resources created by the operator, and the operator REST interface. We intend to
-maintain compatibility for three releases, except in the case of a clearly communicated deprecated feature, which will be
-maintained for one release after a replacement is available.</p>
-<h3 id="about-this-documentation">About this documentation</h3>
-<p>This documentation includes sections targeted to different audiences.  To help you find what you are looking for more easily,
-please consult this table of contents:</p>
-<ul>
-<li>The <a href="/quickstart/">Quick Start guide</a> explains how to quickly get the operator running, using the defaults, nothing special.</li>
-<li>The <a href="/userguide/">User guide</a> contains detailed usage information, including how to install and configure the operator,
-and how to use it to create and manage WebLogic domains.</li>
-<li>The <a href="/samples/simple/">Samples</a> provide detailed example code and instructions that show you how to perform
-various tasks related to the operator.</li>
-<li>The <a href="/developerguide/">Developer guide</a> provides details for people who want to understand how the operator is built, tested, and so on. Those who wish to <a href="/developerguide/contributing/">contribute</a> to the operator code will find useful information here.</li>
-<li><a href="/reference/">Reference</a> describes domain resource attributes and the operator REST API.</li>
-<li><a href="/security/">Security</a> describes Kubernetes, WebLogic, and OpenShift security requirements.</li>
-<li><a href="/faq/">Frequently asked questions</a> provides answers to common questions.</li>
-</ul>
-<h3 id="oracle-support">Oracle support</h3>
-<p>To access Oracle support for running WebLogic Server domains on Kubernetes platforms, see <a href="https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=208317433106215&amp;id=2349228.1&amp;_afrWindowMode=0&amp;_adf.ctrl-state=c2nhai8p3_4">WebLogic Server Certifications on Kubernetes in My Oracle Support Doc ID 2349228.1</a>.</p>
-<h3 id="need-more-help-have-a-suggestion-come-and-say-hello">Need more help? Have a suggestion? Come and say, &ldquo;Hello!&rdquo;</h3>
-<p>We have a <strong>public Slack channel</strong> where you can get in touch with us to ask questions about using the operator or give us feedback
-or suggestions about what features and improvements you would like to see.  We would love to hear from you. To join our channel,
-please <a href="https://weblogic-slack-inviter.herokuapp.com/">visit this site to get an invitation</a>.  The invitation email will include
-details of how to access our Slack workspace.  After you are logged in, please come to <code>#operator</code> and say, &ldquo;hello!&rdquo;</p>
+<p>You can deploy the operator into a namespace which has Istio automatic sidecar
+injection enabled.  Before installing the operator, create the namespace in which you want to run the domain and label it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl create namespace weblogic-operator
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl label namespace weblogic-operator istio-injection<span style="color:#f92672">=</span>enabled
+</code></pre></div><p>After the namespace is labeled, you can <a href="/userguide/managing-operators/installation/">install the operator</a>.<br>
+When the operator pod starts, you will notice that Istio automatically injects an <code>initContainer</code> called <code>istio-init</code>
+and the envoy container <code>istio-proxy</code>.</p>
+<p>You can validate this using the following commands:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl --namespace weblogic-operator get pods
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl --namespace weblogic-operator get pod weblogic-operator-xxx-xxx -o yaml
+</code></pre></div><p>In the second command, change <code>weblogic-operator-xxx-xxx</code> to the name of your pod.</p>
+<h4 id="creating-a-domain-with-istio-support">Creating a domain with Istio support</h4>
+<p>You can configure your domains to run with Istio automatic sidecar injection enabled.
+Before creating your domain, create the namespace in which you want to run the operator
+and label it for automatic injection.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl create namespace domain1
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl label namespace domain1 istio-injection<span style="color:#f92672">=</span>enabled
+</code></pre></div><p>To enable Istio support for a domain, you need to add the
+<code>configuration</code> section to your domain custom resource YAML file, as shown in the
+following example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: <span style="color:#e6db74">&#34;weblogic.oracle/v8&#34;</span>
+<span style="color:#66d9ef">kind</span>: Domain
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: domain2
+  <span style="color:#66d9ef">namespace</span>: domain1
+  <span style="color:#66d9ef">labels</span>:
+    <span style="color:#66d9ef">weblogic.domainUID</span>: domain2
+<span style="color:#66d9ef">spec</span>:
+  ... other content ...
+  <span style="color:#66d9ef">configuration</span>:
+    <span style="color:#66d9ef">istio</span>:
+      <span style="color:#66d9ef">enabled</span>: <span style="color:#66d9ef">true</span>
+      <span style="color:#66d9ef">readinessPort</span>: <span style="color:#ae81ff">8888</span>
+</code></pre></div><p>To enable Istio support, you must include the <code>istio</code> section
+and set <code>enabled: true</code> as shown.  The <code>readinessPort</code> is optional
+and defaults to <code>8888</code> if not provided; it is used for a readiness health check.</p>
+<h5 id="how-istio-enabled-domains-differ-from-regular-domains">How Istio-enabled domains differ from regular domains</h5>
+<p>Istio enforces a number of requirements on Pods.  When you enable Istio support in the Domain YAML file, the
+introspector job automatically creates configuration overrides with the necessary channels for the domain to satisfy Istio&rsquo;s requirements, including:</p>
+<p>When deploying a domain with Istio sidecar injection enabled, the operator automatically adds the following network
+channels using configuration overrides.</p>
+<p><a href="https://istio.io/latest/docs/ops/configuration/traffic-management/protocol-selection/">https://istio.io/latest/docs/ops/configuration/traffic-management/protocol-selection/</a></p>
+<p>For non-SSL traffic:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Port</th>
+<th>Protocol</th>
+<th>Exposed as a container port</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>http-probe</code></td>
+<td>From configuration Istio <code>readinessPort</code></td>
+<td><code>http</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>tcp-default</code></td>
+<td>Server listening port</td>
+<td><code>t3</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>http-default</code></td>
+<td>Server listening port</td>
+<td><code>http</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>tcp-snmp</code></td>
+<td>Server listening port</td>
+<td><code>snmp</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>tcp-cbt</code></td>
+<td>server listening port</td>
+<td><code>CLUSTER-BROADCAST</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>tcp-iiop</code></td>
+<td>Server listening port</td>
+<td><code>http</code></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>For SSL traffic, if SSL is enabled on the server:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Port</th>
+<th>Protocol</th>
+<th>Exposed as a container port</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tls-default</code></td>
+<td>Server SSL listening port</td>
+<td><code>t3s</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>https-secure</code></td>
+<td>Server SSL listening port</td>
+<td><code>https</code></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><code>tls-iiops</code></td>
+<td>Server SSL listening port</td>
+<td><code>iiops</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>tls-ldaps</code></td>
+<td>Server SSL listening port</td>
+<td><code>ldaps</code></td>
+<td>No</td>
+</tr>
+<tr>
+<td><code>tls-cbts</code></td>
+<td>Server listening port</td>
+<td><code>CLUSTER-BROADCAST-SECURE</code></td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>If the WebLogic administration port is enabled on the Administration Server:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Port</th>
+<th>Protocol</th>
+<th>Exposed in the container port</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>https-admin</code></td>
+<td>WebLogic administration port</td>
+<td><code>https</code></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>Additionally, when Istio support is enabled for a domain, the operator
+ensures that the Istio sidecar is not injected into the introspector job&rsquo;s pods.</p>
+<h3 id="apply-the-domain-yaml-file">Apply the Domain YAML file</h3>
+<p>After the Domain YAML file is modified, apply it by:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl apply -f domain.yaml
+</code></pre></div><p>After all the servers are up, you will see output like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl -n sample-domain1-ns get pods
+</code></pre></div><pre><code>NAME                             READY   STATUS    RESTARTS   AGE
+sample-domain1-admin-server      2/2     Running   0          154m
+sample-domain1-managed-server1   2/2     Running   0          153m
+sample-domain1-managed-server2   2/2     Running   0          153m
+</code></pre><p>If you use <code>istioctl proxy-status</code>, you will see the mesh status:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">istioctl proxy-status
+</code></pre></div><pre><code>NAME                                                               CDS        LDS        EDS        RDS          PILOT                            VERSION
+istio-ingressgateway-5c7d8d7b5d-tjgtd.istio-system                 SYNCED     SYNCED     SYNCED     NOT SENT     istio-pilot-6cfcdb75dd-87lqm     1.5.4
+sample-domain1-admin-server.sample-domain1-ns                      SYNCED     SYNCED     SYNCED     SYNCED       istio-pilot-6cfcdb75dd-87lqm     1.5.4
+sample-domain1-managed-server1.sample-domain1-ns                   SYNCED     SYNCED     SYNCED     SYNCED       istio-pilot-6cfcdb75dd-87lqm     1.5.4
+sample-domain1-managed-server2.sample-domain1-ns                   SYNCED     SYNCED     SYNCED     SYNCED       istio-pilot-6cfcdb75dd-87lqm     1.5.4
+weblogic-operator-7d86fffbdd-5dxzt.sample-weblogic-operator-ns     SYNCED     SYNCED     SYNCED     SYNCED       istio-pilot-6cfcdb75dd-87lqm     1.5.4
+</code></pre><h4 id="exposing-applications-in-istio-enabled-domains">Exposing applications in Istio-enabled domains</h4>
+<p>When a domain is running with Istio support, you should use the Istio ingress
+gateway to provide external access to applications, instead of using an ingress
+controller like Traefik.  Using the Istio ingress gateway, you can also view the
+traffic in Kiali and use distributed tracing from the entry point to
+the cluster.</p>
+<p>To configure external access to your domain, you need to create an Istio <code>Gateway</code> and
+<code>VirtualService</code>, as shown in the example below:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">---
+<span style="color:#66d9ef">apiVersion</span>: networking.istio.io/v1alpha3
+<span style="color:#66d9ef">kind</span>: Gateway
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: domain1-gateway
+  <span style="color:#66d9ef">namespace</span>: domain1
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">selector</span>:
+    <span style="color:#66d9ef">istio</span>: ingressgateway
+  <span style="color:#66d9ef">servers</span>:
+    - <span style="color:#66d9ef">hosts</span>:
+        - <span style="color:#e6db74">&#39;*&#39;</span>
+      <span style="color:#66d9ef">port</span>:
+        <span style="color:#66d9ef">name</span>: http
+        <span style="color:#66d9ef">number</span>: <span style="color:#ae81ff">80</span>
+        <span style="color:#66d9ef">protocol</span>: HTTP
+---
+<span style="color:#66d9ef">apiVersion</span>: networking.istio.io/v1alpha3
+<span style="color:#66d9ef">kind</span>: VirtualService
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: domain1-virtualservice
+  <span style="color:#66d9ef">namespace</span>: domain1
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">gateways</span>:
+    - domain1-gateway
+  <span style="color:#66d9ef">hosts</span>:
+    - <span style="color:#e6db74">&#39;*&#39;</span>
+  <span style="color:#66d9ef">http</span>:
+    - <span style="color:#66d9ef">match</span>:
+        - <span style="color:#66d9ef">uri</span>:
+            <span style="color:#66d9ef">prefix</span>: /console
+        - <span style="color:#66d9ef">port</span>: <span style="color:#ae81ff">7001</span>
+      <span style="color:#66d9ef">route</span>:
+        - <span style="color:#66d9ef">destination</span>:
+            <span style="color:#66d9ef">host</span>: sample-domain1-admin-server.sample-domain1-ns.svc.cluster.local
+            <span style="color:#66d9ef">port</span>:
+              <span style="color:#66d9ef">number</span>: <span style="color:#ae81ff">7001</span>
+    - <span style="color:#66d9ef">match</span>:
+        - <span style="color:#66d9ef">uri</span>:
+            <span style="color:#66d9ef">prefix</span>: /testwebapp
+        - <span style="color:#66d9ef">port</span>: <span style="color:#ae81ff">8001</span>
+      <span style="color:#66d9ef">route</span>:
+        - <span style="color:#66d9ef">destination</span>:
+            <span style="color:#66d9ef">host</span>: sample-domain1-cluster-cluster<span style="color:#ae81ff">-1.</span>domain1.svc.cluster.local
+            <span style="color:#66d9ef">port</span>:
+              <span style="color:#66d9ef">number</span>: <span style="color:#ae81ff">8001</span>
+</code></pre></div><p>This example creates a gateway that will accept requests with any host name
+using HTTP on port 80, and a virtual service that will route all of
+those requests to the cluster service for <code>cluster-1</code> in <code>domain1</code> in
+the namespace <code>domain1</code>.  <strong>Note</strong>: In a production environment, <code>hosts</code> should be limited to the proper DNS name.</p>
+<p>After the gateway and virtual service has been set up, you can access it through your ingress host and port.
+Refer to <a href="https://istio.io/latest/docs/setup/getting-started/#determining-the-ingress-ip-and-ports">Determining the ingress IP and ports</a>.</p>
+<p>For more information about providing ingress using Istio, see the <a href="https://istio.io/docs/tasks/traffic-management/ingress/">Istio documentation</a>.</p>
+<h4 id="traffic-management">Traffic management</h4>
+<p>Istio provides traffic management capabilities, including the ability to
+visualize traffic in Kiali.  You do not need to change your applications to use
+this feature.  The Istio proxy (envoy) sidecar that is injected into your pods
+provides it. The image below shows an example with traffic
+flowing: In from the Istio gateway on the left, to a domain called <code>domain1</code>.</p>
+<p>In this example, you can see how the traffic flows to the cluster services and
+then to the individual Managed Servers.</p>
+<img src="https://polite-dune-0a7bd1d10.azurestaticapps.net/images/kiali.png" alt="Traffic visualization with Kiali">
+<p>To learn more, see <a href="https://istio.io/docs/concepts/traffic-management/">Istio traffic management</a>.</p>
+<h4 id="distributed-tracing">Distributed tracing</h4>
+<p>Istio provides distributed tracing capabilities, including the ability to view
+traces in Jaeger.  In order to use distributed tracing though, first you will need to
+instrument your WebLogic application, for example, using the
+<a href="https://github.com/jaegertracing/jaeger-client-java">Jaeger Java client</a>.
+The image below shows an example of a distributed trace
+that shows a transaction following the same path through the system
+as shown in the image above.</p>
+<img src="https://polite-dune-0a7bd1d10.azurestaticapps.net/images/jaeger.png" alt="Distributed tracing with Jaeger">
+<p>To learn more, see <a href="https://istio.io/docs/tasks/telemetry/distributed-tracing/">distrubting tracing in Istio</a>.</p>
+
+
+<footer class="footline">
 	
-  
+</footer>
+
         
         </div>
         
@@ -3486,6 +3769,7 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
+                    
                 
                 
 
@@ -3501,85 +3785,8 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -3620,359 +3827,6 @@ details of how to access our Slack workspace.  After you are logged in, please c
                     
             
         
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
                     
                         
             
@@ -4070,6 +3924,53 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
         
                     
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
                         
             
             
@@ -4105,6 +4006,9 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
         
                     
+            
+        
+                    
                         
             
             
@@ -4121,9 +4025,6 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
         
                     
-            
-        
-                    
                         
             
             
@@ -4154,6 +4055,51 @@ details of how to access our Slack workspace.  After you are logged in, please c
                     
             
         
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
                     
             
         
@@ -4286,6 +4232,19 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
         
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
             
         
                     
@@ -4293,6 +4252,338 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
             
                 
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -5428,8 +5719,10 @@ details of how to access our Slack workspace.  After you are logged in, please c
 	 
 	 
 		
+			<a class="nav nav-prev" href="/userguide/cicd/tools/" title="Tools"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/quickstart/" title="Quick Start" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/samples/" title="Samples" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -5439,19 +5732,19 @@ details of how to access our Slack workspace.  After you are logged in, please c
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1624489125"></script>
-    <script src="/js/perfect-scrollbar.min.js?1624489125"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1624489125"></script>
-    <script src="/js/jquery.sticky.js?1624489125"></script>
-    <script src="/js/featherlight.min.js?1624489125"></script>
-    <script src="/js/highlight.pack.js?1624489125"></script>
+    <script src="/js/clipboard.min.js?1624489124"></script>
+    <script src="/js/perfect-scrollbar.min.js?1624489124"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1624489124"></script>
+    <script src="/js/jquery.sticky.js?1624489124"></script>
+    <script src="/js/featherlight.min.js?1624489124"></script>
+    <script src="/js/highlight.pack.js?1624489124"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1624489125"></script>
-    <script src="/js/learn.js?1624489125"></script>
-    <script src="/js/hugo-learn.js?1624489125"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1624489124"></script>
+    <script src="/js/learn.js?1624489124"></script>
+    <script src="/js/hugo-learn.js?1624489124"></script>
     
         
-            <script src="/mermaid/mermaid.js?1624489125"></script>
+            <script src="/mermaid/mermaid.js?1624489124"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });

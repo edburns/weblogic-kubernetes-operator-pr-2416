@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Hugo 0.75.0-DEV" />
-    <meta name="description" content="">
+    <meta name="description" content="This document describes domain introspection in the Oracle WebLogic Server in Kubernetes environment.">
 
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title> :: WebLogic Kubernetes Operator</title>
+    <title>Domain introspection :: WebLogic Kubernetes Operator</title>
 
     
     <link href="/css/nucleus.css?1624489125" rel="stylesheet">
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/userguide/managing-domains/domain-lifecycle/introspection/">
     <nav id="sidebar" class="">
 
 
@@ -266,7 +266,7 @@
   
     
     <li data-nav-id="/userguide/" title="User Guide" class="dd-item
-        
+        parent
         
         
         ">
@@ -682,7 +682,7 @@
   
     
     <li data-nav-id="/userguide/managing-domains/" title="Manage WebLogic domains" class="dd-item
-        
+        parent
         
         
         ">
@@ -1097,7 +1097,7 @@
   
     
     <li data-nav-id="/userguide/managing-domains/domain-lifecycle/" title="Domain life cycle" class="dd-item
-        
+        parent
         
         
         ">
@@ -1186,7 +1186,7 @@
  
   
     
-      <li data-nav-id="/userguide/managing-domains/domain-lifecycle/introspection/" title="Domain introspection" class="dd-item ">
+      <li data-nav-id="/userguide/managing-domains/domain-lifecycle/introspection/" title="Domain introspection" class="dd-item active">
         <a href="/userguide/managing-domains/domain-lifecycle/introspection/">
         Domain introspection
         
@@ -3243,87 +3243,189 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'></a> > <a href='/userguide/'>User Guide</a> > <a href='/userguide/managing-domains/'>Manage WebLogic domains</a> > <a href='/userguide/managing-domains/domain-lifecycle/'>Domain life cycle</a> > Domain introspection
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+        <li><a href="#introspection-use-cases">Introspection use cases</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Domain introspection
+            </h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h3 id="weblogic-kubernetes-operator">WebLogic Kubernetes Operator</h3>
-<p>The WebLogic Kubernetes Operator (the “operator”) supports running your WebLogic Server and Fusion Middleware Infrastructure domains on Kubernetes, an industry standard, cloud neutral deployment platform. It lets you encapsulate your entire WebLogic Server installation and layered applications into a portable set of cloud neutral images and simple resource description files. You can run them on any on-premises or public cloud that supports Kubernetes where you&rsquo;ve deployed the operator.</p>
-<p>Furthermore, the operator is well suited to CI/CD processes. You can easily inject changes when moving between environments, such as from test to production. For example, you can externally inject database URLs and credentials during deployment or you can inject arbitrary changes to most WebLogic configurations.</p>
-<p>The operator takes advantage of the <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">Kubernetes operator pattern</a>, which means that it uses Kubernetes APIs to provide support for operations, such as: provisioning, lifecycle management, application versioning, product patching, scaling, and security. The operator also enables the use of tooling that is native to this infrastructure for monitoring, logging, tracing, and security.</p>
-<p>You can:</p>
+<h4 id="contents">Contents</h4>
 <ul>
-<li>Deploy an operator that manages all WebLogic domains in all namespaces in a Kubernetes cluster, or that only manages domains in a specific subset of the namespaces, or that manages only domains that are located in the same namespace as the operator. At most, a namespace can be managed by one operator.</li>
-<li>Supply WebLogic domain configuration using:
-<ul>
-<li><em>Domain in PV</em>: Locates WebLogic domain homes in a Kubernetes PersistentVolume (PV). This PV can reside in an NFS file system or other Kubernetes volume types.</li>
-<li><em>Domain in Image</em>: Includes a WebLogic domain home in a container image.</li>
-<li><em>Model in Image</em>: Includes <a href="https://oracle.github.io/weblogic-deploy-tooling/">WebLogic Deploy Tooling</a> models and archives in a container image.</li>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#when-introspection-occurs-automatically">When introspection occurs automatically</a></li>
+<li><a href="#initiating-introspection">Initiating introspection</a></li>
+<li><a href="#failed-introspection">Failed introspection</a></li>
+<li><a href="#introspection-use-cases">Introspection use cases</a></li>
 </ul>
-</li>
-<li>Configure deployment of WebLogic domains as a Kubernetes resource (using a Kubernetes custom resource definition).</li>
-<li>Override certain aspects of the WebLogic domain configuration; for example, use a different database password for different deployments.</li>
-<li>Start and stop servers and clusters in the domain based on declarative startup parameters and desired states.</li>
-<li>Scale WebLogic domains by starting and stopping Managed Servers on demand, or by integrating with a REST API to initiate scaling based on the WebLogic Diagnostics Framework (WLDF), Prometheus, Grafana, or other rules.</li>
-<li>Expose the WebLogic Server Administration Console outside the Kubernetes cluster, if desired.</li>
-<li>Expose T3 channels outside the Kubernetes domain, if desired.</li>
-<li>Expose HTTP paths on a WebLogic domain outside the Kubernetes domain with load balancing, and automatically update the load balancer when Managed Servers in the WebLogic domain are started or stopped.</li>
-<li>Publish operator and WebLogic Server logs into Elasticsearch and interact with them in Kibana.</li>
-</ul>
+<h4 id="overview">Overview</h4>
+<p>This document describes domain introspection, when it occurs automatically, and how and when to initiate additional introspections of the domain configuration in the Oracle WebLogic Server in Kubernetes environment.</p>
+<p>In order to manage the operation of WebLogic domains in Kubernetes, the Oracle WebLogic Kubernetes Operator analyzes the WebLogic
+domain configuration using an &ldquo;introspection&rdquo; job. This Job will be named <code>DOMAIN_UID-introspector</code>, will be run in the same namespace as the Domain, and must successfully complete before the operator will begin to start WebLogic Server instances. Because each of the
+<a href="/userguide/managing-domains/choosing-a-model/">domain home source types</a> are different (for instance, Domain in PV uses a domain home on a PersistentVolume while Model in Image generates the domain home dynamically from a WDT model), the Pod created by this Job will be
+as similar as possible to the Pod that will later be generated for the Administration Server. This guarantees that the operator is
+analyzing the same WebLogic domain configuration that WebLogic Server instances will use.</p>
+<p>Introspection ensures that:</p>
+<ol>
+<li>The operator is aware of domain topology from the WebLogic domain configuration, including servers, clusters, network access points, listen addresses, and other configurations.</li>
+<li>The operator can generate configuration overrides to adjust the WebLogic domain configuration to match the Kubernetes environment, such as modifying listen addresses.</li>
+<li>For Model in Image, the operator can generate the WebLogic domain home, including the final domain configuration.</li>
+<li>For Domain in PV and Domain in Image, the operator can use any customer-provided <a href="/userguide/managing-domains/configoverrides/">configuration overrides</a> along with the operator-generated overrides to generate the final configuration overrides.</li>
+</ol>
+<h4 id="when-introspection-occurs-automatically">When introspection occurs automatically</h4>
+<p>Introspection automatically occurs when:</p>
+<ol>
+<li>The operator is starting a WebLogic Server instance when there are currently no other servers running. This occurs when the operator first starts servers for a domain or when starting servers following a full domain shutdown.</li>
+<li>For Model in Image, the operator determines that at least one WebLogic Server instance that is currently running must be shut down and restarted. This could be a rolling of one or more clusters, the shut down and restart of one or more WebLogic Server instances, or a combination.</li>
+</ol>
+<h4 id="initiating-introspection">Initiating introspection</h4>
+<p>Sometimes, such as for the <a href="#introspection-use-cases">use cases</a> described below, it is desirable to explicitly initiate introspection. To initiate introspection, change the value of your Domain <code>introspectVersion</code> field.</p>
+<p>Set <code>introspectVersion</code> to a new value.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">  <span style="color:#66d9ef">kind</span>: Domain
+  <span style="color:#66d9ef">metadata</span>:
+    <span style="color:#66d9ef">name</span>: domain1
+  <span style="color:#66d9ef">spec</span>:
+    <span style="color:#66d9ef">introspectVersion</span>: <span style="color:#e6db74">&#34;2&#34;</span>
+    ...
+</code></pre></div><p>As with <code>restartVersion</code>, the <code>introspectVersion</code> field has no required format; however, we recommend using a value likely to be unique such as a continually increasing number or a timestamp.</p>
+<p>Beginning with operator 3.1.0, if a domain resource&rsquo;s <code>spec.introspectVersion</code> is set, each of the domain&rsquo;s WebLogic Server pods will have a label with the key <code>weblogic.introspectVersion</code> to indicate the <code>introspectVersion</code> at which the pod is running.</p>
+<pre><code>Name:           domain1-admin-server
+Namespace:      domain1-ns
+Labels:         weblogic.createdByOperator=true
+                weblogic.domainName=domain1
+                weblogic.domainRestartVersion=abcdef
+                weblogic.domainUID=domain1
+                weblogic.introspectVersion=12345
+                weblogic.serverName=admin-server
+</code></pre><p>When a domain&rsquo;s <code>spec.introspectVersion</code> is changed, the <code>weblogic.introspectVersion</code> label of each WebLogic Server pod is updated to the new <code>introspectVersion</code> value, either when the operator restarts the pod or when the operator determines that the pod does not need to be restarted.</p>
+<h4 id="failed-introspection">Failed introspection</h4>
+<p>Sometimes the Kubernetes Job, named <code>DOMAIN_UID-introspector</code>, created for the introspection will fail.</p>
+<p>When introspection fails, the operator will not start any WebLogic Server instances. If this is not the initial introspection and there are already WebLogic Server instances running, then a failed introspection will leave the existing WebLogic Server instances running without making any changes to the operational state of the domain.</p>
+<p>The introspection will be periodically retried and then will eventually timeout with the Domain <code>status</code> indicating the processing failed. To recover from a failed state, correct the underlying problem and update the <code>introspectVersion</code>.</p>
+<p>Please review the details for diagnosing introspection failures related to <a href="/userguide/managing-domains/configoverrides/#debugging">configuration overrides</a> or <a href="/userguide/managing-domains/model-in-image/debugging/">Model in Image domain home generation</a>.</p>
 
-<div class="notices tip" ><p>The fastest way to experience the operator is to follow the <a href="/quickstart/">Quick Start guide</a>, or you can peruse our <a href="/userguide/">documentation</a>, read our <a href="https://blogs.oracle.com/weblogicserver/how-to-weblogic-server-on-kubernetes">blogs</a>, or try out the <a href="/samples/simple/">samples</a>.
-Also, you can step through the <a href="https://github.com/oracle/weblogic-kubernetes-operator/blob/main/kubernetes/hands-on-lab/README.md">Tutorial</a>
-using the operator to deploy and run a WebLogic domain container-packaged web application on an Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE) cluster.</p>
+<div class="notices tip" ><p>The introspector log is mirrored to the Domain resource <code>spec.logHome</code> directory
+when <code>spec.logHome</code> is configured and <code>spec.logHomeEnabled</code> is true.</p>
 </div>
 
-<hr>
-<h4 id="current-production-release">Current production release</h4>
-<p>The <a href="https://github.com/oracle/weblogic-kubernetes-operator/releases">current release of the operator</a> is 3.2.3.
-This release was published on May 21, 2021. See the operator prerequisites and supported environments <a href="/userguide/introduction/introduction/#operator-prerequisites">here</a>.</p>
-<hr>
-<h4 id="recent-changes-and-known-issues">Recent changes and known issues</h4>
-<p>See the <a href="/release-notes/">Release Notes</a>  for recent changes to the operator and known issues.</p>
-<h4 id="operator-earlier-versions">Operator earlier versions</h4>
-<p>Documentation for prior releases of the operator: <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.5/">2.5.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.6/">2.6.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.0/">3.0.x</a>, and <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.1/">3.1.x</a>.</p>
-<h4 id="backward-compatibility-guidelines">Backward compatibility guidelines</h4>
-<p>Starting from the 2.0.1 release, operator releases are backward compatible with respect to the domain
-resource schema, operator Helm chart input values, configuration overrides template, Kubernetes resources created
-by the operator Helm chart, Kubernetes resources created by the operator, and the operator REST interface. We intend to
-maintain compatibility for three releases, except in the case of a clearly communicated deprecated feature, which will be
-maintained for one release after a replacement is available.</p>
-<h3 id="about-this-documentation">About this documentation</h3>
-<p>This documentation includes sections targeted to different audiences.  To help you find what you are looking for more easily,
-please consult this table of contents:</p>
-<ul>
-<li>The <a href="/quickstart/">Quick Start guide</a> explains how to quickly get the operator running, using the defaults, nothing special.</li>
-<li>The <a href="/userguide/">User guide</a> contains detailed usage information, including how to install and configure the operator,
-and how to use it to create and manage WebLogic domains.</li>
-<li>The <a href="/samples/simple/">Samples</a> provide detailed example code and instructions that show you how to perform
-various tasks related to the operator.</li>
-<li>The <a href="/developerguide/">Developer guide</a> provides details for people who want to understand how the operator is built, tested, and so on. Those who wish to <a href="/developerguide/contributing/">contribute</a> to the operator code will find useful information here.</li>
-<li><a href="/reference/">Reference</a> describes domain resource attributes and the operator REST API.</li>
-<li><a href="/security/">Security</a> describes Kubernetes, WebLogic, and OpenShift security requirements.</li>
-<li><a href="/faq/">Frequently asked questions</a> provides answers to common questions.</li>
-</ul>
-<h3 id="oracle-support">Oracle support</h3>
-<p>To access Oracle support for running WebLogic Server domains on Kubernetes platforms, see <a href="https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=208317433106215&amp;id=2349228.1&amp;_afrWindowMode=0&amp;_adf.ctrl-state=c2nhai8p3_4">WebLogic Server Certifications on Kubernetes in My Oracle Support Doc ID 2349228.1</a>.</p>
-<h3 id="need-more-help-have-a-suggestion-come-and-say-hello">Need more help? Have a suggestion? Come and say, &ldquo;Hello!&rdquo;</h3>
-<p>We have a <strong>public Slack channel</strong> where you can get in touch with us to ask questions about using the operator or give us feedback
-or suggestions about what features and improvements you would like to see.  We would love to hear from you. To join our channel,
-please <a href="https://weblogic-slack-inviter.herokuapp.com/">visit this site to get an invitation</a>.  The invitation email will include
-details of how to access our Slack workspace.  After you are logged in, please come to <code>#operator</code> and say, &ldquo;hello!&rdquo;</p>
+<h3 id="introspection-use-cases">Introspection use cases</h3>
+<p>The following sections describe typical use cases for rerunning the introspector.</p>
+<h4 id="adding-clusters-or-managed-servers-to-a-domain-in-pv-configuration">Adding clusters or Managed Servers to a Domain in PV configuration</h4>
+<p>When you have an existing WebLogic domain home on a persistent volume (Domain in PV) and you currently have WebLogic Server instances running, it is now possible to define new WebLogic clusters or Managed Servers in the domain configuration and start these new instances without affecting the life cycle of any WebLogic Server instances that are already running.</p>
+<p>Prior to operator 3.0.0, this was not possible because there was no mechanism to initiate introspection other than a full domain shut down and restart and so the operator was unaware of the new clusters or Managed Servers. Now, after updating the domain configuration, you can initiate introspection by changing the <code>introspectVersion</code>.</p>
+<p>For instance, if you had a domain configuration with a single cluster named &ldquo;cluster-1&rdquo; then your Domain YAML file may have content like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">spec</span>:
+  ...
+  <span style="color:#66d9ef">clusters</span>:
+    - <span style="color:#66d9ef">clusterName</span>: cluster<span style="color:#ae81ff">-1</span>
+      <span style="color:#66d9ef">replicas</span>: <span style="color:#ae81ff">3</span>
+  ...
+</code></pre></div><p>If you modified your WebLogic domain configuration (using the console or WLST) to add a new dynamic cluster named &ldquo;cluster-2&rdquo;, then you could immediately start cluster members of this new cluster by updating your Domain YAML file like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">spec</span>:
+  ...
+  <span style="color:#66d9ef">clusters</span>:
+    - <span style="color:#66d9ef">clusterName</span>: cluster<span style="color:#ae81ff">-1</span>
+      <span style="color:#66d9ef">replicas</span>: <span style="color:#ae81ff">3</span>
+    - <span style="color:#66d9ef">clusterName</span>: cluster<span style="color:#ae81ff">-2</span>
+      <span style="color:#66d9ef">replicas</span>: <span style="color:#ae81ff">2</span>
+  <span style="color:#66d9ef">introspectVersion</span>: <span style="color:#e6db74">&#34;2&#34;</span>
+  ...
+</code></pre></div><p>When this updated Domain YAML file is applied, the operator will initiate a new introspection of the domain configuration during which it will learn about the additional WebLogic cluster and then the operator will continue to start WebLogic Server instances that are members of this new cluster. In this case, the operator will start two Managed Servers that are members of the cluster named &ldquo;cluster-2&rdquo;.</p>
+<h4 id="distributing-changes-to-configuration-overrides">Distributing changes to configuration overrides</h4>
+<p>The operator supports customer-provided <a href="/userguide/managing-domains/configoverrides/">configuration overrides</a>. These configuration overrides, which are supported with Domain in PV or Domain in Image, allow you to override elements of the domain configuration, such as data source URL&rsquo;s or credentials.</p>
+<p>With operator 3.0.0, you can now change the configuration overrides and distribute these new configuration overrides to already running WebLogic Server instances. To do this, update the ConfigMap that contains the configuration overrides or update one or more of the Secrets referenced by those configuration overrides and then initiate introspection by changing the <code>introspectVersion</code> field.</p>
+<p>We have introduced a new field, called <code>overrideDistributionStrategy</code> and located under <code>configuration</code>, that controls whether updated configuration overrides are distributed dynamically to already running WebLogic Server instances or if the new configuration overrides are only applied when servers are started or restarted.</p>
+<p>The default value for <code>overrideDistributionStrategy</code> is DYNAMIC, which means that new configuration overrides are distributed dynamically to already running WebLogic Server instances.</p>
+<p>Alternately, you can set <code>overrideDistributionStrategy</code> to ON_RESTART, which means that the new configuration overrides will not be distributed to already running WebLogic Server instances, but will instead be applied only to servers as they start or restart. Use of this value will <em>not</em> cause WebLogic Server instances to restart absent changes to other fields, such as <code>restartVersion</code>.</p>
+
+<div class="notices note" ><p>Changes to configuration overrides distributed to running WebLogic Server instances can only take effect if the corresponding WebLogic configuration MBean attribute is &ldquo;dynamic&rdquo;. For instance, the Data Source &ldquo;passwordEncrypted&rdquo; attribute is dynamic while the &ldquo;Url&rdquo; attribute is non-dynamic.</p>
+</div>
+
+<h4 id="distributing-changes-to-running-model-in-image-domains">Distributing changes to running Model in Image domains</h4>
+<p>The operator supports rerunning the introspector in order to propagate <a href="/userguide/managing-domains/model-in-image/runtime-updates/">model updates</a> to a running Model in Image domain.</p>
+
+
+<footer class="footline">
 	
-  
+</footer>
+
         
         </div>
         
@@ -3486,6 +3588,7 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
+                    
                 
                 
 
@@ -3501,85 +3604,8 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -3620,359 +3646,6 @@ details of how to access our Slack workspace.  After you are logged in, please c
                     
             
         
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
                     
                         
             
@@ -4070,6 +3743,24 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
         
                     
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
                         
             
             
@@ -4090,6 +3781,433 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
             
                 
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -5428,8 +5546,10 @@ details of how to access our Slack workspace.  After you are logged in, please c
 	 
 	 
 		
+			<a class="nav nav-prev" href="/userguide/managing-domains/domain-lifecycle/scaling/" title="Scaling"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/quickstart/" title="Quick Start" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/userguide/managing-domains/domain-lifecycle/liveness-readiness-probe-customization/" title="Liveness and readiness probes customization" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

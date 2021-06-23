@@ -4,28 +4,28 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Hugo 0.75.0-DEV" />
-    <meta name="description" content="">
+    <meta name="description" content="Review the operator prerequisites and supported environments.">
 
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title> :: WebLogic Kubernetes Operator</title>
+    <title>Get started :: WebLogic Kubernetes Operator</title>
 
     
-    <link href="/css/nucleus.css?1624489125" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1624489125" rel="stylesheet">
-    <link href="/css/hybrid.css?1624489125" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1624489125" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1624489125" rel="stylesheet">
-    <link href="/css/auto-complete.css?1624489125" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1624489125" rel="stylesheet">
-    <link href="/css/theme.css?1624489125" rel="stylesheet">
-    <link href="/css/tabs.css?1624489125" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1624489125" rel="stylesheet">
+    <link href="/css/nucleus.css?1624489124" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1624489124" rel="stylesheet">
+    <link href="/css/hybrid.css?1624489124" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1624489124" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1624489124" rel="stylesheet">
+    <link href="/css/auto-complete.css?1624489124" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1624489124" rel="stylesheet">
+    <link href="/css/theme.css?1624489124" rel="stylesheet">
+    <link href="/css/tabs.css?1624489124" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1624489124" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1624489125"></script>
+    <script src="/js/jquery-3.3.1.min.js?1624489124"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/userguide/introduction/introduction/">
     <nav id="sidebar" class="">
 
 
@@ -59,14 +59,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1624489125"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1624489125"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1624489124"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1624489124"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/polite-dune-0a7bd1d10.azurestaticapps.net\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1624489125"></script>
+<script type="text/javascript" src="/js/search.js?1624489124"></script>
 
     
   </div>
@@ -266,7 +266,7 @@
   
     
     <li data-nav-id="/userguide/" title="User Guide" class="dd-item
-        
+        parent
         
         
         ">
@@ -295,7 +295,7 @@
   
     
     <li data-nav-id="/userguide/introduction/" title="Introduction" class="dd-item
-        
+        parent
         
         
         ">
@@ -321,7 +321,7 @@
  
   
     
-      <li data-nav-id="/userguide/introduction/introduction/" title="Get started" class="dd-item ">
+      <li data-nav-id="/userguide/introduction/introduction/" title="Get started" class="dd-item active">
         <a href="/userguide/introduction/introduction/">
         Get started
         
@@ -3243,87 +3243,187 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'></a> > <a href='/userguide/'>User Guide</a> > <a href='/userguide/introduction/'>Introduction</a> > Get started
+          
+        
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#operator-prerequisites">Operator prerequisites</a></li>
+        <li><a href="#cloud-providers">Cloud providers</a></li>
+        <li><a href="#microsoft-azure-kubernetes-service">Microsoft Azure Kubernetes Service</a></li>
+        <li><a href="#vmware-tanzu-kubernetes-service">VMware Tanzu Kubernetes Service</a></li>
+        <li><a href="#oracle-linux-cloud-native-environment-olcne">Oracle Linux Cloud Native Environment (OLCNE)</a></li>
+        <li><a href="#openshift">OpenShift</a></li>
+        <li><a href="#important-note-about-development-focused-kubernetes-distributions">Important note about development-focused Kubernetes distributions</a></li>
+        <li><a href="#operator-image">Operator image</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Get started
+            </h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h3 id="weblogic-kubernetes-operator">WebLogic Kubernetes Operator</h3>
-<p>The WebLogic Kubernetes Operator (the “operator”) supports running your WebLogic Server and Fusion Middleware Infrastructure domains on Kubernetes, an industry standard, cloud neutral deployment platform. It lets you encapsulate your entire WebLogic Server installation and layered applications into a portable set of cloud neutral images and simple resource description files. You can run them on any on-premises or public cloud that supports Kubernetes where you&rsquo;ve deployed the operator.</p>
-<p>Furthermore, the operator is well suited to CI/CD processes. You can easily inject changes when moving between environments, such as from test to production. For example, you can externally inject database URLs and credentials during deployment or you can inject arbitrary changes to most WebLogic configurations.</p>
-<p>The operator takes advantage of the <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">Kubernetes operator pattern</a>, which means that it uses Kubernetes APIs to provide support for operations, such as: provisioning, lifecycle management, application versioning, product patching, scaling, and security. The operator also enables the use of tooling that is native to this infrastructure for monitoring, logging, tracing, and security.</p>
-<p>You can:</p>
+<p>An operator is an application-specific controller that extends Kubernetes to create, configure, and manage instances
+of complex applications. The WebLogic Kubernetes Operator follows the standard Kubernetes operator pattern, and
+simplifies the management and operation of WebLogic domains and deployments.</p>
+<p>You can have one or more operators in your Kubernetes cluster that manage one or more WebLogic domains each.
+We provide a Helm chart to manage the installation and configuration of the operator.
+Detailed instructions are available <a href="/userguide/managing-operators/installation/">here</a>.</p>
+<h3 id="operator-prerequisites">Operator prerequisites</h3>
+<p>For the current production release 3.2.3:</p>
 <ul>
-<li>Deploy an operator that manages all WebLogic domains in all namespaces in a Kubernetes cluster, or that only manages domains in a specific subset of the namespaces, or that manages only domains that are located in the same namespace as the operator. At most, a namespace can be managed by one operator.</li>
-<li>Supply WebLogic domain configuration using:
+<li>Kubernetes 1.16.15+, 1.17.13+, 1.18.10+, and 1.19.7+ (check with <code>kubectl version</code>).</li>
+<li>Flannel networking v0.9.1-amd64 or later (check with <code>docker images | grep flannel</code>), Calico networking v3.16.1 or later,
+<em>or</em> OpenShift SDN on OpenShift 4.3 systems.</li>
+<li>Docker 18.9.1 or 19.03.1+ (check with <code>docker version</code>) <em>or</em> CRI-O 1.14.7+ (check with <code>crictl version | grep RuntimeVersion</code>).</li>
+<li>Helm 3.3.4+ (check with <code>helm version --client --short</code>).</li>
+<li>For domain home source type <code>Model in Image</code>, WebLogic Deploy Tooling 1.9.11.</li>
+<li>Either Oracle WebLogic Server 12.2.1.3.0 with patch 29135930, Oracle WebLogic Server 12.2.1.4.0, or Oracle WebLogic Server 14.1.1.0.0.
 <ul>
-<li><em>Domain in PV</em>: Locates WebLogic domain homes in a Kubernetes PersistentVolume (PV). This PV can reside in an NFS file system or other Kubernetes volume types.</li>
-<li><em>Domain in Image</em>: Includes a WebLogic domain home in a container image.</li>
-<li><em>Model in Image</em>: Includes <a href="https://oracle.github.io/weblogic-deploy-tooling/">WebLogic Deploy Tooling</a> models and archives in a container image.</li>
+<li>The existing WebLogic Server image, <code>container-registry.oracle.com/middleware/weblogic:12.2.1.3</code>,
+has all the necessary patches applied.</li>
+<li>Check the WLS version with <code>docker run container-registry.oracle.com/middleware/weblogic:12.2.1.3 sh -c</code> <code>'source $ORACLE_HOME/wlserver/server/bin/setWLSEnv.sh &gt; /dev/null 2&gt;&amp;1 &amp;&amp; java weblogic.version'</code>.</li>
+<li>Check the WLS patches with <code>docker run container-registry.oracle.com/middleware/weblogic:12.2.1.3 sh -c</code> <code>'$ORACLE_HOME/OPatch/opatch lspatches'</code>.</li>
 </ul>
 </li>
-<li>Configure deployment of WebLogic domains as a Kubernetes resource (using a Kubernetes custom resource definition).</li>
-<li>Override certain aspects of the WebLogic domain configuration; for example, use a different database password for different deployments.</li>
-<li>Start and stop servers and clusters in the domain based on declarative startup parameters and desired states.</li>
-<li>Scale WebLogic domains by starting and stopping Managed Servers on demand, or by integrating with a REST API to initiate scaling based on the WebLogic Diagnostics Framework (WLDF), Prometheus, Grafana, or other rules.</li>
-<li>Expose the WebLogic Server Administration Console outside the Kubernetes cluster, if desired.</li>
-<li>Expose T3 channels outside the Kubernetes domain, if desired.</li>
-<li>Expose HTTP paths on a WebLogic domain outside the Kubernetes domain with load balancing, and automatically update the load balancer when Managed Servers in the WebLogic domain are started or stopped.</li>
-<li>Publish operator and WebLogic Server logs into Elasticsearch and interact with them in Kibana.</li>
+<li>Container images based on Oracle Linux 8 are now supported. The Oracle Container Registry hosts container images
+based on both Oracle Linux 7 and 8, including Oracle WebLogic Server 14.1.1.0.0 images based on Java 8 and 11.</li>
+<li>You must have the <code>cluster-admin</code> role to install the operator.  The operator does
+not need the <code>cluster-admin</code> role at runtime.</li>
+<li>We do not currently support running WebLogic in non-Linux containers.</li>
 </ul>
-
-<div class="notices tip" ><p>The fastest way to experience the operator is to follow the <a href="/quickstart/">Quick Start guide</a>, or you can peruse our <a href="/userguide/">documentation</a>, read our <a href="https://blogs.oracle.com/weblogicserver/how-to-weblogic-server-on-kubernetes">blogs</a>, or try out the <a href="/samples/simple/">samples</a>.
-Also, you can step through the <a href="https://github.com/oracle/weblogic-kubernetes-operator/blob/main/kubernetes/hands-on-lab/README.md">Tutorial</a>
-using the operator to deploy and run a WebLogic domain container-packaged web application on an Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE) cluster.</p>
-</div>
-
-<hr>
-<h4 id="current-production-release">Current production release</h4>
-<p>The <a href="https://github.com/oracle/weblogic-kubernetes-operator/releases">current release of the operator</a> is 3.2.3.
-This release was published on May 21, 2021. See the operator prerequisites and supported environments <a href="/userguide/introduction/introduction/#operator-prerequisites">here</a>.</p>
-<hr>
-<h4 id="recent-changes-and-known-issues">Recent changes and known issues</h4>
-<p>See the <a href="/release-notes/">Release Notes</a>  for recent changes to the operator and known issues.</p>
-<h4 id="operator-earlier-versions">Operator earlier versions</h4>
-<p>Documentation for prior releases of the operator: <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.5/">2.5.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.6/">2.6.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.0/">3.0.x</a>, and <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.1/">3.1.x</a>.</p>
-<h4 id="backward-compatibility-guidelines">Backward compatibility guidelines</h4>
-<p>Starting from the 2.0.1 release, operator releases are backward compatible with respect to the domain
-resource schema, operator Helm chart input values, configuration overrides template, Kubernetes resources created
-by the operator Helm chart, Kubernetes resources created by the operator, and the operator REST interface. We intend to
-maintain compatibility for three releases, except in the case of a clearly communicated deprecated feature, which will be
-maintained for one release after a replacement is available.</p>
-<h3 id="about-this-documentation">About this documentation</h3>
-<p>This documentation includes sections targeted to different audiences.  To help you find what you are looking for more easily,
-please consult this table of contents:</p>
+<h3 id="cloud-providers">Cloud providers</h3>
+<p>The Oracle <a href="https://www.oracle.com/corporate/pricing/specialty-topics.html">Global Pricing and Licensing site</a>
+provides details about licensing practices and policies.
+WebLogic Server and the operator are supported on &ldquo;Authorized Cloud Environments&rdquo; as defined in
+<a href="https://www.oracle.com/assets/cloud-licensing-070579.pdf">this Oracle licensing policy</a> and
+<a href="http://www.oracle.com/us/corporate/pricing/authorized-cloud-environments-3493562.pdf">this list of eligible products</a>.</p>
+<p>The official document that defines the supported configurations is <a href="https://www.oracle.com/middleware/technologies/ias/oracleas-supported-virtualization.html">here</a>.</p>
+<p>In accordance with these policies, the operator and WebLogic Server are supported on Oracle Cloud
+Infrastructure using <em>Oracle Container Engine for Kubernetes</em>, or in a cluster running <em>Oracle Linux
+Container Services for use with Kubernetes</em> on OCI Compute, and on &ldquo;Authorized Cloud Environments&rdquo;.</p>
+<h3 id="microsoft-azure-kubernetes-service">Microsoft Azure Kubernetes Service</h3>
+<p><a href="https://docs.microsoft.com/en-us/azure/aks/">Azure Kubernetes Service (AKS)</a> is a hosted Kubernetes environment.  The WebLogic Kubernetes
+Operator, Oracle WebLogic Sever 12c, and Oracle Fusion Middleware Infrastructure 12c are fully supported and certified on Azure Kubernetes Service (as per the documents
+referenced above).</p>
+<p>AKS support and limitations:</p>
 <ul>
-<li>The <a href="/quickstart/">Quick Start guide</a> explains how to quickly get the operator running, using the defaults, nothing special.</li>
-<li>The <a href="/userguide/">User guide</a> contains detailed usage information, including how to install and configure the operator,
-and how to use it to create and manage WebLogic domains.</li>
-<li>The <a href="/samples/simple/">Samples</a> provide detailed example code and instructions that show you how to perform
-various tasks related to the operator.</li>
-<li>The <a href="/developerguide/">Developer guide</a> provides details for people who want to understand how the operator is built, tested, and so on. Those who wish to <a href="/developerguide/contributing/">contribute</a> to the operator code will find useful information here.</li>
-<li><a href="/reference/">Reference</a> describes domain resource attributes and the operator REST API.</li>
-<li><a href="/security/">Security</a> describes Kubernetes, WebLogic, and OpenShift security requirements.</li>
-<li><a href="/faq/">Frequently asked questions</a> provides answers to common questions.</li>
+<li>Both Domain in Image and Domain in PV domain home source types are supported.</li>
+<li>For Domain in PV, we support Azure Files volumes accessed through
+a persistent volume claim; see <a href="https://docs.microsoft.com/en-us/azure/aks/azure-files-volume">here</a>.</li>
+<li>Azure Load Balancers are supported when provisioned using a Kubernetes Service of <code>type=LoadBalancer</code>.</li>
+<li>Oracle databases running in Oracle Cloud Infrastructure are supported for Fusion Middleware
+Infrastructure MDS data stores only when accessed through an OCI FastConnect.</li>
+<li>Windows Server containers are not currently supported, only Linux containers.</li>
 </ul>
-<h3 id="oracle-support">Oracle support</h3>
-<p>To access Oracle support for running WebLogic Server domains on Kubernetes platforms, see <a href="https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=208317433106215&amp;id=2349228.1&amp;_afrWindowMode=0&amp;_adf.ctrl-state=c2nhai8p3_4">WebLogic Server Certifications on Kubernetes in My Oracle Support Doc ID 2349228.1</a>.</p>
-<h3 id="need-more-help-have-a-suggestion-come-and-say-hello">Need more help? Have a suggestion? Come and say, &ldquo;Hello!&rdquo;</h3>
-<p>We have a <strong>public Slack channel</strong> where you can get in touch with us to ask questions about using the operator or give us feedback
-or suggestions about what features and improvements you would like to see.  We would love to hear from you. To join our channel,
-please <a href="https://weblogic-slack-inviter.herokuapp.com/">visit this site to get an invitation</a>.  The invitation email will include
-details of how to access our Slack workspace.  After you are logged in, please come to <code>#operator</code> and say, &ldquo;hello!&rdquo;</p>
+<h3 id="vmware-tanzu-kubernetes-service">VMware Tanzu Kubernetes Service</h3>
+<p>Tanzu Kubernetes Grid (TKG) is a managed Kubernetes Service that lets you quickly deploy and manage Kubernetes clusters. The WebLogic Kubernetes
+Operator and Oracle WebLogic Sever are fully supported and certified on VMware Tanzu Kubernetes Grid Multicloud 1.1.3 (with vSphere 6.7U3).</p>
+<p>TKG support and limitations:</p>
+<ul>
+<li>Both Domain in Image and Model in Image domain home source types are supported. Domain in PV is not supported.</li>
+<li>VSphere CSI driver supports only volumes with Read-Write-Once policy. This does not allow writing stores on PV.
+<ul>
+<li>For applications requiring HA, use JMS and JTA stores in the database.</li>
+</ul>
+</li>
+<li>The ingress used for certification is NGINX, with MetalLB load balancer.</li>
+</ul>
+<h3 id="oracle-linux-cloud-native-environment-olcne">Oracle Linux Cloud Native Environment (OLCNE)</h3>
+<p><a href="https://docs.oracle.com/en/operating-systems/olcne/">Oracle Linux Cloud Native Environment</a> is a fully integrated suite for the development and management of cloud-native applications. Based on Open Container Initiative (OCI) and Cloud Native Computing Foundation (CNCF) standards, Oracle Linux Cloud Native Environment delivers a simplified framework for installations, updates, upgrades, and configuration of key features for orchestrating microservices.</p>
+<p>WebLogic Server and the WebLogic Kubernetes Operator are certified and supported on Oracle Linux Cloud Native Environment. Operator 2.6.0 provides certified support of OLCNE 1.1 with Kubernetes 1.17.0.</p>
+<h3 id="openshift">OpenShift</h3>
+<p>Operator 2.0.1+ is certified for use on OpenShift Container Platform 3.11.43+, with Kubernetes 1.11.5+.</p>
+<p>Operator 2.5.0+ is certified for use on OpenShift Container Platform 4.3.0+ with Kubernetes 1.16.2+.</p>
+<p>When using the operator in OpenShift, a security context constraint is required to ensure that WebLogic containers run with a UNIX UID that has the correct permissions on the domain file system.
+This could be either the <code>anyuid</code> SCC or a custom one that you define for user/group <code>1000</code>. For more information, see <a href="/security/openshift/">OpenShift</a> in the Security section.</p>
+<h3 id="important-note-about-development-focused-kubernetes-distributions">Important note about development-focused Kubernetes distributions</h3>
+<p>There are a number of development-focused distributions of Kubernetes, like kind, Minikube, Minishift, and so on.
+Often these run Kubernetes in a virtual machine on your development machine.  We have found that these distributions
+present some extra challenges in areas like:</p>
+<ul>
+<li>Separate container image caches, making it necessary to save/load images to move them between Docker file systems</li>
+<li>Default virtual machine file sizes and resource limits that are too small to run WebLogic or hold the necessary images</li>
+<li>Storage providers that do not always support the features that the operator or WebLogic rely on</li>
+<li>Load balancing implementations that do not always support the features that the operator or WebLogic rely on</li>
+</ul>
+<p>As such, we <em>do not</em> recommend using these distributions to run the operator or WebLogic, and we do not
+provide support for WebLogic or the operator running in these distributions.</p>
+<p>We have found that Docker for Desktop does not seem to suffer the same limitations, and we do support that as a
+development/test option.</p>
+<h3 id="operator-image">Operator image</h3>
+<p>You can find the operator image in
+<a href="https://github.com/orgs/oracle/packages/container/package/weblogic-kubernetes-operator">GitHub Container Registry</a>.</p>
+
+
+<footer class="footline">
 	
-  
+</footer>
+
         
         </div>
         
@@ -3486,6 +3586,7 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
+                    
                 
                 
 
@@ -3501,6 +3602,7 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
+                    
                 
                 
 
@@ -3513,6 +3615,7 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
             
                 
+                    
                     
                 
                 
@@ -3529,6 +3632,9 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -5428,8 +5534,10 @@ details of how to access our Slack workspace.  After you are logged in, please c
 	 
 	 
 		
+			<a class="nav nav-prev" href="/userguide/introduction/" title="Introduction"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/quickstart/" title="Quick Start" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/userguide/introduction/demo/" title="Demo" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

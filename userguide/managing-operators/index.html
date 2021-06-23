@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Hugo 0.75.0-DEV" />
-    <meta name="description" content="">
+    <meta name="description" content="Helm is used to create and deploy necessary operator resources and to run the operator in a Kubernetes cluster. Use the operator&#39;s Helm chart to install and manage the operator.">
 
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title> :: WebLogic Kubernetes Operator</title>
+    <title>Manage operators :: WebLogic Kubernetes Operator</title>
 
     
     <link href="/css/nucleus.css?1624489125" rel="stylesheet">
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/userguide/managing-operators/">
     <nav id="sidebar" class="">
 
 
@@ -266,7 +266,7 @@
   
     
     <li data-nav-id="/userguide/" title="User Guide" class="dd-item
-        
+        parent
         
         
         ">
@@ -514,8 +514,8 @@
   
     
     <li data-nav-id="/userguide/managing-operators/" title="Manage operators" class="dd-item
-        
-        
+        parent
+        active
         
         ">
       <a href="/userguide/managing-operators/">
@@ -3243,87 +3243,150 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'></a> > <a href='/userguide/'>User Guide</a> > Manage operators
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#install-helm">Install Helm</a></li>
+        <li><a href="#operators-helm-chart-configuration">Operator&rsquo;s Helm chart configuration</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Manage operators
+            </h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h3 id="weblogic-kubernetes-operator">WebLogic Kubernetes Operator</h3>
-<p>The WebLogic Kubernetes Operator (the “operator”) supports running your WebLogic Server and Fusion Middleware Infrastructure domains on Kubernetes, an industry standard, cloud neutral deployment platform. It lets you encapsulate your entire WebLogic Server installation and layered applications into a portable set of cloud neutral images and simple resource description files. You can run them on any on-premises or public cloud that supports Kubernetes where you&rsquo;ve deployed the operator.</p>
-<p>Furthermore, the operator is well suited to CI/CD processes. You can easily inject changes when moving between environments, such as from test to production. For example, you can externally inject database URLs and credentials during deployment or you can inject arbitrary changes to most WebLogic configurations.</p>
-<p>The operator takes advantage of the <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">Kubernetes operator pattern</a>, which means that it uses Kubernetes APIs to provide support for operations, such as: provisioning, lifecycle management, application versioning, product patching, scaling, and security. The operator also enables the use of tooling that is native to this infrastructure for monitoring, logging, tracing, and security.</p>
-<p>You can:</p>
-<ul>
-<li>Deploy an operator that manages all WebLogic domains in all namespaces in a Kubernetes cluster, or that only manages domains in a specific subset of the namespaces, or that manages only domains that are located in the same namespace as the operator. At most, a namespace can be managed by one operator.</li>
-<li>Supply WebLogic domain configuration using:
-<ul>
-<li><em>Domain in PV</em>: Locates WebLogic domain homes in a Kubernetes PersistentVolume (PV). This PV can reside in an NFS file system or other Kubernetes volume types.</li>
-<li><em>Domain in Image</em>: Includes a WebLogic domain home in a container image.</li>
-<li><em>Model in Image</em>: Includes <a href="https://oracle.github.io/weblogic-deploy-tooling/">WebLogic Deploy Tooling</a> models and archives in a container image.</li>
-</ul>
-</li>
-<li>Configure deployment of WebLogic domains as a Kubernetes resource (using a Kubernetes custom resource definition).</li>
-<li>Override certain aspects of the WebLogic domain configuration; for example, use a different database password for different deployments.</li>
-<li>Start and stop servers and clusters in the domain based on declarative startup parameters and desired states.</li>
-<li>Scale WebLogic domains by starting and stopping Managed Servers on demand, or by integrating with a REST API to initiate scaling based on the WebLogic Diagnostics Framework (WLDF), Prometheus, Grafana, or other rules.</li>
-<li>Expose the WebLogic Server Administration Console outside the Kubernetes cluster, if desired.</li>
-<li>Expose T3 channels outside the Kubernetes domain, if desired.</li>
-<li>Expose HTTP paths on a WebLogic domain outside the Kubernetes domain with load balancing, and automatically update the load balancer when Managed Servers in the WebLogic domain are started or stopped.</li>
-<li>Publish operator and WebLogic Server logs into Elasticsearch and interact with them in Kibana.</li>
-</ul>
 
-<div class="notices tip" ><p>The fastest way to experience the operator is to follow the <a href="/quickstart/">Quick Start guide</a>, or you can peruse our <a href="/userguide/">documentation</a>, read our <a href="https://blogs.oracle.com/weblogicserver/how-to-weblogic-server-on-kubernetes">blogs</a>, or try out the <a href="/samples/simple/">samples</a>.
-Also, you can step through the <a href="https://github.com/oracle/weblogic-kubernetes-operator/blob/main/kubernetes/hands-on-lab/README.md">Tutorial</a>
-using the operator to deploy and run a WebLogic domain container-packaged web application on an Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE) cluster.</p>
+	<h3 id="overview">Overview</h3>
+<p>Helm is a framework that helps you manage Kubernetes applications, and Helm charts help you define and install Helm applications into a Kubernetes cluster. The operator&rsquo;s Helm chart is located in the <code>kubernetes/charts/weblogic-operator</code> directory.</p>
+<p><strong>Important note for users of operator releases before 2.0</strong></p>
+
+<div class="notices warning" ><p>If you have an older version of the operator installed on your cluster, for example, a 1.x version or one of the 2.0 release
+candidates, then you must remove it before installing this version. This includes the 2.0-rc1 version; it must be completely removed. You should remove the deployment (for example, <code>kubectl delete deploy weblogic-operator -n your-namespace</code>) and the custom
+resource definition (for example, <code>kubectl delete crd domain</code>).  If you do not remove
+the custom resource definition, then you might see errors like this:</p>
+<pre><code>Error from server (BadRequest): error when creating &quot;/scratch/output/uidomain/weblogic-domains/uidomain/domain.yaml&quot;:
+the API version in the data (weblogic.oracle/v2) does not match the expected API version (weblogic.oracle/v1
+</code></pre></div>
+
+<h3 id="install-helm">Install Helm</h3>
+<p>Helm manages releases (installations) of your charts. For detailed instructions on installing Helm, see <a href="https://github.com/helm/helm">https://github.com/helm/helm</a>.</p>
+<h3 id="operators-helm-chart-configuration">Operator&rsquo;s Helm chart configuration</h3>
+<p>The operator Helm chart is pre-configured with default values for the configuration of the operator.</p>
+<p>You can override these values by doing one of the following:</p>
+<ul>
+<li>Creating a custom YAML file with only the values to be overridden, and specifying the <code>--value</code> option on the Helm command line.</li>
+<li>Overriding individual values directly on the Helm command line, using the <code>--set</code> option.</li>
+</ul>
+<p>You can find out the configuration values that the Helm chart supports, as well as the default values, using this command:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ helm inspect values kubernetes/charts/weblogic-operator
+</code></pre></div><p>The available configuration values are explained by category in
+<a href="/userguide/managing-operators/using-the-operator/using-helm/#operator-helm-configuration-values">Operator Helm configuration values</a>.</p>
+<p>Helm commands are explained in more detail in
+<a href="/userguide/managing-operators/using-the-operator/using-helm/#useful-helm-operations">Useful Helm operations</a>.</p>
+<h4 id="optional-configure-the-operators-external-rest-https-interface">Optional: Configure the operator&rsquo;s external REST HTTPS interface</h4>
+<p>The operator can expose an external REST HTTPS interface which can be accessed from outside the Kubernetes cluster. As with the operator&rsquo;s internal REST interface, the external REST interface requires an SSL/TLS certificate and private key that the operator will use as the identity of the external REST interface (see below).</p>
+<p>To enable the external REST interface, configure these values in a custom configuration file, or on the Helm command line:</p>
+<ul>
+<li>Set <code>externalRestEnabled</code> to <code>true</code>.</li>
+<li>Set <code>externalRestIdentitySecret</code> to the name of the Kubernetes <code>tls secret</code> that contains the certificates and private key.</li>
+<li>Optionally, set <code>externalRestHttpsPort</code> to the external port number for the operator REST interface (defaults to <code>31001</code>).</li>
+</ul>
+<p>For more detailed information, see the <a href="/userguide/managing-operators/using-the-operator/using-helm/#rest-interface-configuration">REST interface configuration</a> values.</p>
+<h5 id="sample-ssl-certificate-and-private-key-for-the-rest-interface">Sample SSL certificate and private key for the REST interface</h5>
+<p>For testing purposes, the WebLogic Kubernetes Operator project provides a sample script
+that generates a self-signed certificate and private key for the operator external REST interface.
+The generated certificate and key are stored in a Kubernetes <code>tls secret</code> and the sample
+script outputs the corresponding configuration values in YAML format. These values can be added to your custom YAML configuration file, for use when the operator&rsquo;s Helm chart is installed.</p>
+
+<div class="notices warning" ><p>The sample script should <em><strong>not</strong></em> be used in a production environment because
+typically a self-signed certificate for external communication is not considered safe.
+A certificate signed by a commercial certificate authority is more widely accepted and
+should contain valid host names, expiration dates, and key constraints.</p>
 </div>
 
-<hr>
-<h4 id="current-production-release">Current production release</h4>
-<p>The <a href="https://github.com/oracle/weblogic-kubernetes-operator/releases">current release of the operator</a> is 3.2.3.
-This release was published on May 21, 2021. See the operator prerequisites and supported environments <a href="/userguide/introduction/introduction/#operator-prerequisites">here</a>.</p>
-<hr>
-<h4 id="recent-changes-and-known-issues">Recent changes and known issues</h4>
-<p>See the <a href="/release-notes/">Release Notes</a>  for recent changes to the operator and known issues.</p>
-<h4 id="operator-earlier-versions">Operator earlier versions</h4>
-<p>Documentation for prior releases of the operator: <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.5/">2.5.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.6/">2.6.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.0/">3.0.x</a>, and <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.1/">3.1.x</a>.</p>
-<h4 id="backward-compatibility-guidelines">Backward compatibility guidelines</h4>
-<p>Starting from the 2.0.1 release, operator releases are backward compatible with respect to the domain
-resource schema, operator Helm chart input values, configuration overrides template, Kubernetes resources created
-by the operator Helm chart, Kubernetes resources created by the operator, and the operator REST interface. We intend to
-maintain compatibility for three releases, except in the case of a clearly communicated deprecated feature, which will be
-maintained for one release after a replacement is available.</p>
-<h3 id="about-this-documentation">About this documentation</h3>
-<p>This documentation includes sections targeted to different audiences.  To help you find what you are looking for more easily,
-please consult this table of contents:</p>
+<p>For more detailed information about the sample script and how to run it, see
+the <a href="/samples/simple/rest/#sample-to-create-certificate-and-key">REST APIs</a>.</p>
+<h4 id="optional-elastic-stack-elasticsearch-logstash-and-kibana-integration">Optional: Elastic Stack (Elasticsearch, Logstash, and Kibana) integration</h4>
+<p>The operator Helm chart includes the option of installing the necessary Kubernetes resources for Elastic Stack integration.</p>
+<p>You are responsible for configuring Kibana and Elasticsearch, then configuring the operator Helm chart to send events to Elasticsearch. In turn, the operator Helm chart configures Logstash in the operator deployment to send the operator&rsquo;s log contents to that Elasticsearch location.</p>
+<h5 id="elastic-stack-per-operator-configuration">Elastic Stack per-operator configuration</h5>
+<p>As part of the Elastic Stack integration, Logstash configuration occurs for each deployed operator instance.  You can use the following configuration values to configure the integration:</p>
 <ul>
-<li>The <a href="/quickstart/">Quick Start guide</a> explains how to quickly get the operator running, using the defaults, nothing special.</li>
-<li>The <a href="/userguide/">User guide</a> contains detailed usage information, including how to install and configure the operator,
-and how to use it to create and manage WebLogic domains.</li>
-<li>The <a href="/samples/simple/">Samples</a> provide detailed example code and instructions that show you how to perform
-various tasks related to the operator.</li>
-<li>The <a href="/developerguide/">Developer guide</a> provides details for people who want to understand how the operator is built, tested, and so on. Those who wish to <a href="/developerguide/contributing/">contribute</a> to the operator code will find useful information here.</li>
-<li><a href="/reference/">Reference</a> describes domain resource attributes and the operator REST API.</li>
-<li><a href="/security/">Security</a> describes Kubernetes, WebLogic, and OpenShift security requirements.</li>
-<li><a href="/faq/">Frequently asked questions</a> provides answers to common questions.</li>
+<li>Set <code>elkIntegrationEnabled</code> is <code>true</code> to enable the integration.</li>
+<li>Set <code>logStashImage</code> to override the default version of Logstash to be used (<code>logstash:6.2</code>).</li>
+<li>Set <code>elasticSearchHost</code> and <code>elasticSearchPort</code> to override the default location where Elasticsearch is running (<code>elasticsearch2.default.svc.cluster.local:9201</code>). This will configure Logstash to send the operator&rsquo;s log contents there.</li>
 </ul>
-<h3 id="oracle-support">Oracle support</h3>
-<p>To access Oracle support for running WebLogic Server domains on Kubernetes platforms, see <a href="https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=208317433106215&amp;id=2349228.1&amp;_afrWindowMode=0&amp;_adf.ctrl-state=c2nhai8p3_4">WebLogic Server Certifications on Kubernetes in My Oracle Support Doc ID 2349228.1</a>.</p>
-<h3 id="need-more-help-have-a-suggestion-come-and-say-hello">Need more help? Have a suggestion? Come and say, &ldquo;Hello!&rdquo;</h3>
-<p>We have a <strong>public Slack channel</strong> where you can get in touch with us to ask questions about using the operator or give us feedback
-or suggestions about what features and improvements you would like to see.  We would love to hear from you. To join our channel,
-please <a href="https://weblogic-slack-inviter.herokuapp.com/">visit this site to get an invitation</a>.  The invitation email will include
-details of how to access our Slack workspace.  After you are logged in, please come to <code>#operator</code> and say, &ldquo;hello!&rdquo;</p>
+<p>For more detailed information, see the <a href="/userguide/managing-operators/using-the-operator/using-helm/#operator-helm-configuration-values">Operator Helm configuration values</a>.</p>
+
+
+
+
+
+<footer class=" footline" >
 	
-  
+</footer>
+
         
         </div>
         
@@ -3486,6 +3549,7 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
+                    
                 
                 
 
@@ -3501,18 +3565,8 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
                         
-            
-            
-                
+                        
                     
                 
                 
@@ -3521,9 +3575,6 @@ details of how to access our Slack workspace.  After you are logged in, please c
                     
                     
 
-                    
-            
-        
                     
                         
             
@@ -3540,54 +3591,6 @@ details of how to access our Slack workspace.  After you are logged in, please c
                     
             
         
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
                     
                         
             
@@ -3650,6 +3653,71 @@ details of how to access our Slack workspace.  After you are logged in, please c
 
                     
                     
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
                         
                     
                     
@@ -3659,6 +3727,9 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -5428,8 +5499,10 @@ details of how to access our Slack workspace.  After you are logged in, please c
 	 
 	 
 		
+			<a class="nav nav-prev" href="/userguide/overview/database/" title="Run a database"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/quickstart/" title="Quick Start" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/userguide/managing-operators/installation/" title="Install the operator" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -5461,4 +5534,3 @@ details of how to access our Slack workspace.  After you are logged in, please c
 
   </body>
 </html>
-

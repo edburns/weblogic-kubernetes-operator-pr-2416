@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Hugo 0.75.0-DEV" />
-    <meta name="description" content="">
+    <meta name="description" content="This document describes how to customize the liveness and readiness probes for WebLogic Server instance Pods.">
 
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title> :: WebLogic Kubernetes Operator</title>
+    <title>Liveness and readiness probes customization :: WebLogic Kubernetes Operator</title>
 
     
     <link href="/css/nucleus.css?1624489125" rel="stylesheet">
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/userguide/managing-domains/domain-lifecycle/liveness-readiness-probe-customization/">
     <nav id="sidebar" class="">
 
 
@@ -266,7 +266,7 @@
   
     
     <li data-nav-id="/userguide/" title="User Guide" class="dd-item
-        
+        parent
         
         
         ">
@@ -682,7 +682,7 @@
   
     
     <li data-nav-id="/userguide/managing-domains/" title="Manage WebLogic domains" class="dd-item
-        
+        parent
         
         
         ">
@@ -1097,7 +1097,7 @@
   
     
     <li data-nav-id="/userguide/managing-domains/domain-lifecycle/" title="Domain life cycle" class="dd-item
-        
+        parent
         
         
         ">
@@ -1207,7 +1207,7 @@
  
   
     
-      <li data-nav-id="/userguide/managing-domains/domain-lifecycle/liveness-readiness-probe-customization/" title="Liveness and readiness probes customization" class="dd-item ">
+      <li data-nav-id="/userguide/managing-domains/domain-lifecycle/liveness-readiness-probe-customization/" title="Liveness and readiness probes customization" class="dd-item active">
         <a href="/userguide/managing-domains/domain-lifecycle/liveness-readiness-probe-customization/">
         Liveness and readiness probes customization
         
@@ -3243,87 +3243,154 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'></a> > <a href='/userguide/'>User Guide</a> > <a href='/userguide/managing-domains/'>Manage WebLogic domains</a> > <a href='/userguide/managing-domains/domain-lifecycle/'>Domain life cycle</a> > Liveness and readiness probes customization
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Liveness and readiness probes customization
+            </h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h3 id="weblogic-kubernetes-operator">WebLogic Kubernetes Operator</h3>
-<p>The WebLogic Kubernetes Operator (the “operator”) supports running your WebLogic Server and Fusion Middleware Infrastructure domains on Kubernetes, an industry standard, cloud neutral deployment platform. It lets you encapsulate your entire WebLogic Server installation and layered applications into a portable set of cloud neutral images and simple resource description files. You can run them on any on-premises or public cloud that supports Kubernetes where you&rsquo;ve deployed the operator.</p>
-<p>Furthermore, the operator is well suited to CI/CD processes. You can easily inject changes when moving between environments, such as from test to production. For example, you can externally inject database URLs and credentials during deployment or you can inject arbitrary changes to most WebLogic configurations.</p>
-<p>The operator takes advantage of the <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">Kubernetes operator pattern</a>, which means that it uses Kubernetes APIs to provide support for operations, such as: provisioning, lifecycle management, application versioning, product patching, scaling, and security. The operator also enables the use of tooling that is native to this infrastructure for monitoring, logging, tracing, and security.</p>
-<p>You can:</p>
+<p>This document describes how to customize the liveness and readiness probes for WebLogic Server instance Pods.</p>
+<h4 id="contents">Contents</h4>
 <ul>
-<li>Deploy an operator that manages all WebLogic domains in all namespaces in a Kubernetes cluster, or that only manages domains in a specific subset of the namespaces, or that manages only domains that are located in the same namespace as the operator. At most, a namespace can be managed by one operator.</li>
-<li>Supply WebLogic domain configuration using:
-<ul>
-<li><em>Domain in PV</em>: Locates WebLogic domain homes in a Kubernetes PersistentVolume (PV). This PV can reside in an NFS file system or other Kubernetes volume types.</li>
-<li><em>Domain in Image</em>: Includes a WebLogic domain home in a container image.</li>
-<li><em>Model in Image</em>: Includes <a href="https://oracle.github.io/weblogic-deploy-tooling/">WebLogic Deploy Tooling</a> models and archives in a container image.</li>
+<li><a href="#liveness-probe-customization">Liveness probe customization</a></li>
+<li><a href="#readiness-probe-customization">Readiness probe customization</a></li>
 </ul>
+<h4 id="liveness-probe-customization">Liveness probe customization</h4>
+<p>The liveness probe is configured to check that a server is alive by querying the Node Manager process.  By default, the liveness probe is configured to check liveness every 45 seconds and to timeout after 5 seconds.  If a pod fails the liveness probe, Kubernetes will restart that container.</p>
+<p>You can customize the liveness probe interval and timeout using the <code>livenessProbe</code> attribute under the <code>serverPod</code> element of the domain resource.</p>
+<p>Following is an example configuration to change the liveness probe interval and timeout value.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">  <span style="color:#66d9ef">serverPod</span>:
+    <span style="color:#66d9ef">livenessProbe</span>:
+      <span style="color:#66d9ef">periodSeconds</span>: <span style="color:#ae81ff">30</span>
+      <span style="color:#66d9ef">timeoutSeconds</span>: <span style="color:#ae81ff">10</span>
+</code></pre></div><p>After the liveness probe script (livenessProbe.sh) performs its normal checks, you can customize the liveness probe by specifying a custom script, which will be invoked by livenessProbe.sh. You can specify the custom script either by using the <code>livenessProbeCustomScript</code> attribute in the domain resource or by setting the <code>LIVENESS_PROBE_CUSTOM_SCRIPT</code> environment variable using the <code>env</code> attribute under the <code>serverPod</code> element (see the configuration examples below). If the custom script fails with a non-zero exit status, the liveness probe will fail and Kubernetes will restart the container.</p>
+<ul>
+<li>The <code>spec.livenessProbeCustomScript</code> domain resource attribute affects all WebLogic Server instance Pods in the domain.</li>
+<li>The <code>LIVENESS_PROBE_CUSTOM_SCRIPT</code> environment variable takes precedence over the <code>spec.livenessProbeCustomScript</code> domain resource attribute when both are configured, and, like all domain resource environment variables, can be customized on a per domain, per cluster, or even a per server basis.</li>
+<li>Changes to either the domain resource attribute or the environment variable on a running domain take effect on running WebLogic Server instance Pods when such Pods are restarted (rolled).</li>
+</ul>
+<p><strong>Note</strong>: The liveness probe custom script option is for advanced usage only and its value is not set by default. If the specified script is not found, then the custom script is ignored and the existing liveness script will perform its normal checks.</p>
+<p><strong>Note</strong>: Oracle recommends against having any long running calls (for example, any network calls or executing wlst.sh) in the liveness probe custom script.</p>
+<p>Use the following configuration to specify a liveness probe custom script using the <code>livenessProbeCustomScript</code> domain resource field.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">livenessProbeCustomScript</span>: /u01/customLivenessProbe.sh
+</code></pre></div><p>Use the following configuration to specify the liveness probe custom script using the <code>LIVENESS_PROBE_CUSTOM_SCRIPT</code> environment variable.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">    <span style="color:#66d9ef">serverPod</span>:
+      <span style="color:#66d9ef">env</span>:
+      - <span style="color:#66d9ef">name</span>: LIVENESS_PROBE_CUSTOM_SCRIPT
+        <span style="color:#66d9ef">value</span>: /u01/customLivenessProbe.sh
+</code></pre></div><p>The following operator-populated environment variables are available for use in the liveness probe custom script, which will be invoked by <code>livenessProbe.sh</code>.</p>
+<p><code>ORACLE_HOME</code> or <code>MW_HOME</code>: The Oracle Fusion Middleware software location as a file system path within the container.</p>
+<p><code>WL_HOME</code>: The Weblogic Server installation location as a file system path within the container.</p>
+<p><code>DOMAIN_HOME</code>: The domain home location as a file system path within the container.</p>
+<p><code>JAVA_HOME</code>: The Java software installation location as a file system path within the container.</p>
+<p><code>DOMAIN_NAME</code>: The WebLogic Server domain name.</p>
+<p><code>DOMAIN_UID</code>: The domain unique identifier.</p>
+<p><code>SERVER_NAME</code>: The WebLogic Server instance name.</p>
+<p><code>LOG_HOME</code>: The WebLogic log location as a file system path within the container. This variable is available only if its value is set in the configuration.</p>
+<p><strong>NOTES</strong>:</p>
+<ul>
+<li>
+<p>Additional operator-populated environment variables that are not listed above, are not supported for use in the liveness probe custom script.</p>
 </li>
-<li>Configure deployment of WebLogic domains as a Kubernetes resource (using a Kubernetes custom resource definition).</li>
-<li>Override certain aspects of the WebLogic domain configuration; for example, use a different database password for different deployments.</li>
-<li>Start and stop servers and clusters in the domain based on declarative startup parameters and desired states.</li>
-<li>Scale WebLogic domains by starting and stopping Managed Servers on demand, or by integrating with a REST API to initiate scaling based on the WebLogic Diagnostics Framework (WLDF), Prometheus, Grafana, or other rules.</li>
-<li>Expose the WebLogic Server Administration Console outside the Kubernetes cluster, if desired.</li>
-<li>Expose T3 channels outside the Kubernetes domain, if desired.</li>
-<li>Expose HTTP paths on a WebLogic domain outside the Kubernetes domain with load balancing, and automatically update the load balancer when Managed Servers in the WebLogic domain are started or stopped.</li>
-<li>Publish operator and WebLogic Server logs into Elasticsearch and interact with them in Kibana.</li>
+<li>
+<p>The custom liveness probe script can call <code>source $DOMAIN_HOME/bin/setDomainEnv.sh</code> if it needs to set up its PATH or CLASSPATH to access WebLogic utilities in its domain.</p>
+</li>
+<li>
+<p>A custom liveness probe must not fail (exit non-zero) when the WebLogic Server instance itself is unavailable. This could be the case when the WebLogic Server instance is booting or about to boot.</p>
+</li>
 </ul>
+<h4 id="readiness-probe-customization">Readiness probe customization</h4>
+<p>By default, the readiness probe is configured to use the WebLogic Server ReadyApp framework. The ReadyApp framework allows fine customization of the readiness probe by the application&rsquo;s participation in the framework. For more details, see <a href="https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/12.2.1.4/depgd/managing.html#GUID-C98443B1-D368-4CA4-A7A4-97B86FFD3C28">Using the ReadyApp Framework</a>. The readiness probe is used to determine if the server is ready to accept user requests. The readiness is used to determine when a server should be included in a load balancer&rsquo;s endpoints, in the case of a rolling restart, when a restarted server is fully started, and for various other purposes.</p>
+<p>By default, the readiness probe is configured to check readiness every 5 seconds and to timeout after 5 seconds. You can customize the readiness probe interval and timeout using the <code>readinessProbe</code> attribute under the <code>serverPod</code> element of the domain resource.</p>
+<p>Following is an example configuration to change readiness probe interval and timeout value.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">  <span style="color:#66d9ef">serverPod</span>:
+    <span style="color:#66d9ef">readinessProbe</span>:
+      <span style="color:#66d9ef">periodSeconds</span>: <span style="color:#ae81ff">10</span>
+      <span style="color:#66d9ef">timeoutSeconds</span>: <span style="color:#ae81ff">10</span>
+</code></pre></div>
 
-<div class="notices tip" ><p>The fastest way to experience the operator is to follow the <a href="/quickstart/">Quick Start guide</a>, or you can peruse our <a href="/userguide/">documentation</a>, read our <a href="https://blogs.oracle.com/weblogicserver/how-to-weblogic-server-on-kubernetes">blogs</a>, or try out the <a href="/samples/simple/">samples</a>.
-Also, you can step through the <a href="https://github.com/oracle/weblogic-kubernetes-operator/blob/main/kubernetes/hands-on-lab/README.md">Tutorial</a>
-using the operator to deploy and run a WebLogic domain container-packaged web application on an Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE) cluster.</p>
-</div>
-
-<hr>
-<h4 id="current-production-release">Current production release</h4>
-<p>The <a href="https://github.com/oracle/weblogic-kubernetes-operator/releases">current release of the operator</a> is 3.2.3.
-This release was published on May 21, 2021. See the operator prerequisites and supported environments <a href="/userguide/introduction/introduction/#operator-prerequisites">here</a>.</p>
-<hr>
-<h4 id="recent-changes-and-known-issues">Recent changes and known issues</h4>
-<p>See the <a href="/release-notes/">Release Notes</a>  for recent changes to the operator and known issues.</p>
-<h4 id="operator-earlier-versions">Operator earlier versions</h4>
-<p>Documentation for prior releases of the operator: <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.5/">2.5.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.6/">2.6.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.0/">3.0.x</a>, and <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.1/">3.1.x</a>.</p>
-<h4 id="backward-compatibility-guidelines">Backward compatibility guidelines</h4>
-<p>Starting from the 2.0.1 release, operator releases are backward compatible with respect to the domain
-resource schema, operator Helm chart input values, configuration overrides template, Kubernetes resources created
-by the operator Helm chart, Kubernetes resources created by the operator, and the operator REST interface. We intend to
-maintain compatibility for three releases, except in the case of a clearly communicated deprecated feature, which will be
-maintained for one release after a replacement is available.</p>
-<h3 id="about-this-documentation">About this documentation</h3>
-<p>This documentation includes sections targeted to different audiences.  To help you find what you are looking for more easily,
-please consult this table of contents:</p>
-<ul>
-<li>The <a href="/quickstart/">Quick Start guide</a> explains how to quickly get the operator running, using the defaults, nothing special.</li>
-<li>The <a href="/userguide/">User guide</a> contains detailed usage information, including how to install and configure the operator,
-and how to use it to create and manage WebLogic domains.</li>
-<li>The <a href="/samples/simple/">Samples</a> provide detailed example code and instructions that show you how to perform
-various tasks related to the operator.</li>
-<li>The <a href="/developerguide/">Developer guide</a> provides details for people who want to understand how the operator is built, tested, and so on. Those who wish to <a href="/developerguide/contributing/">contribute</a> to the operator code will find useful information here.</li>
-<li><a href="/reference/">Reference</a> describes domain resource attributes and the operator REST API.</li>
-<li><a href="/security/">Security</a> describes Kubernetes, WebLogic, and OpenShift security requirements.</li>
-<li><a href="/faq/">Frequently asked questions</a> provides answers to common questions.</li>
-</ul>
-<h3 id="oracle-support">Oracle support</h3>
-<p>To access Oracle support for running WebLogic Server domains on Kubernetes platforms, see <a href="https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=208317433106215&amp;id=2349228.1&amp;_afrWindowMode=0&amp;_adf.ctrl-state=c2nhai8p3_4">WebLogic Server Certifications on Kubernetes in My Oracle Support Doc ID 2349228.1</a>.</p>
-<h3 id="need-more-help-have-a-suggestion-come-and-say-hello">Need more help? Have a suggestion? Come and say, &ldquo;Hello!&rdquo;</h3>
-<p>We have a <strong>public Slack channel</strong> where you can get in touch with us to ask questions about using the operator or give us feedback
-or suggestions about what features and improvements you would like to see.  We would love to hear from you. To join our channel,
-please <a href="https://weblogic-slack-inviter.herokuapp.com/">visit this site to get an invitation</a>.  The invitation email will include
-details of how to access our Slack workspace.  After you are logged in, please come to <code>#operator</code> and say, &ldquo;hello!&rdquo;</p>
+<footer class="footline">
 	
-  
+</footer>
+
         
         </div>
         
@@ -3486,6 +3553,7 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
+                    
                 
                 
 
@@ -3501,85 +3569,8 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -3620,359 +3611,6 @@ details of how to access our Slack workspace.  After you are logged in, please c
                     
             
         
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
                     
                         
             
@@ -4070,6 +3708,267 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
         
                     
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
                         
             
             
@@ -4109,6 +4008,190 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
             
                 
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -5428,8 +5511,10 @@ details of how to access our Slack workspace.  After you are logged in, please c
 	 
 	 
 		
+			<a class="nav nav-prev" href="/userguide/managing-domains/domain-lifecycle/introspection/" title="Domain introspection"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/quickstart/" title="Quick Start" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/userguide/managing-domains/domain-events/" title="Domain events" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

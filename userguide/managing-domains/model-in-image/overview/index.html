@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Hugo 0.75.0-DEV" />
-    <meta name="description" content="">
+    <meta name="description" content="Introduction to Model in Image, description of its runtime behavior, and references.">
 
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title> :: WebLogic Kubernetes Operator</title>
+    <title>Overview :: WebLogic Kubernetes Operator</title>
 
     
     <link href="/css/nucleus.css?1624489125" rel="stylesheet">
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/userguide/managing-domains/model-in-image/overview/">
     <nav id="sidebar" class="">
 
 
@@ -266,7 +266,7 @@
   
     
     <li data-nav-id="/userguide/" title="User Guide" class="dd-item
-        
+        parent
         
         
         ">
@@ -682,7 +682,7 @@
   
     
     <li data-nav-id="/userguide/managing-domains/" title="Manage WebLogic domains" class="dd-item
-        
+        parent
         
         
         ">
@@ -805,7 +805,7 @@
   
     
     <li data-nav-id="/userguide/managing-domains/model-in-image/" title="Model in Image" class="dd-item
-        
+        parent
         
         
         ">
@@ -831,7 +831,7 @@
  
   
     
-      <li data-nav-id="/userguide/managing-domains/model-in-image/overview/" title="Overview" class="dd-item ">
+      <li data-nav-id="/userguide/managing-domains/model-in-image/overview/" title="Overview" class="dd-item active">
         <a href="/userguide/managing-domains/model-in-image/overview/">
         <b> </b>Overview
         
@@ -3243,87 +3243,176 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'></a> > <a href='/userguide/'>User Guide</a> > <a href='/userguide/managing-domains/'>Manage WebLogic domains</a> > <a href='/userguide/managing-domains/model-in-image/'>Model in Image</a> > Overview
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#contents">Contents</a></li>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#weblogic-deploy-tool-models">WebLogic Deploy Tool models</a></li>
+        <li><a href="#runtime-behavior">Runtime behavior</a></li>
+        <li><a href="#runtime-updates">Runtime updates</a></li>
+        <li><a href="#continuous-integration-and-delivery-cicd">Continuous integration and delivery (CI/CD)</a></li>
+        <li><a href="#references">References</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Overview
+            </h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h3 id="weblogic-kubernetes-operator">WebLogic Kubernetes Operator</h3>
-<p>The WebLogic Kubernetes Operator (the “operator”) supports running your WebLogic Server and Fusion Middleware Infrastructure domains on Kubernetes, an industry standard, cloud neutral deployment platform. It lets you encapsulate your entire WebLogic Server installation and layered applications into a portable set of cloud neutral images and simple resource description files. You can run them on any on-premises or public cloud that supports Kubernetes where you&rsquo;ve deployed the operator.</p>
-<p>Furthermore, the operator is well suited to CI/CD processes. You can easily inject changes when moving between environments, such as from test to production. For example, you can externally inject database URLs and credentials during deployment or you can inject arbitrary changes to most WebLogic configurations.</p>
-<p>The operator takes advantage of the <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">Kubernetes operator pattern</a>, which means that it uses Kubernetes APIs to provide support for operations, such as: provisioning, lifecycle management, application versioning, product patching, scaling, and security. The operator also enables the use of tooling that is native to this infrastructure for monitoring, logging, tracing, and security.</p>
-<p>You can:</p>
+<h3 id="contents">Contents</h3>
 <ul>
-<li>Deploy an operator that manages all WebLogic domains in all namespaces in a Kubernetes cluster, or that only manages domains in a specific subset of the namespaces, or that manages only domains that are located in the same namespace as the operator. At most, a namespace can be managed by one operator.</li>
-<li>Supply WebLogic domain configuration using:
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#weblogic-deploy-tool-models">WebLogic Deploy Tool models</a></li>
+<li><a href="#runtime-behavior">Runtime behavior</a></li>
+<li><a href="#runtime-updates">Runtime updates</a></li>
+<li><a href="#continuous-integration-and-delivery-cicd">Continuous integration and delivery (CI/CD)</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+<h3 id="introduction">Introduction</h3>
+<p>Model in Image is an alternative to the operator&rsquo;s Domain in Image and Domain in PV domain types. See <a href="/userguide/managing-domains/choosing-a-model/">Choose a domain home source type</a> for a comparison of operator domain types.</p>
+<p>Unlike Domain in PV and Domain in Image, Model in Image eliminates the need to pre-create your WebLogic domain home prior to deploying your Domain YAML file.</p>
+<p>It enables:</p>
 <ul>
-<li><em>Domain in PV</em>: Locates WebLogic domain homes in a Kubernetes PersistentVolume (PV). This PV can reside in an NFS file system or other Kubernetes volume types.</li>
-<li><em>Domain in Image</em>: Includes a WebLogic domain home in a container image.</li>
-<li><em>Model in Image</em>: Includes <a href="https://oracle.github.io/weblogic-deploy-tooling/">WebLogic Deploy Tooling</a> models and archives in a container image.</li>
+<li>Defining a WebLogic domain home configuration using WebLogic Deploy Tool (WDT) model files and application archives.</li>
+<li>Embedding these files in a single image that also contains a WebLogic installation,
+and using the WebLogic Image Tool (WIT) to generate this image. Or, alternatively,
+embedding the files in one or more application specific images.</li>
+<li>Optionally, supplying additional model files using a Kubernetes ConfigMap.</li>
+<li>Supplying Kubernetes Secrets that resolve macro references within the models.
+For example, a secret can be used to supply a database credential.</li>
+<li>Updating WDT model files at runtime. For example, you can add a data source
+to a running domain. See <a href="#runtime-updates">Runtime updates</a> for details.</li>
+</ul>
+<p>This feature is supported for standard WLS domains, Restricted JRF domains, and JRF domains.</p>
+<p>For JRF domains, Model in Image provides additional support for initializing the infrastructure database for a domain when a domain is started for the first time, supplying an database password, and obtaining an database wallet for re-use in subsequent restarts of the same domain. See <a href="/userguide/managing-domains/model-in-image/usage/#requirements-for-jrf-domain-types">Requirements for JRF domain types</a>.</p>
+<h3 id="weblogic-deploy-tool-models">WebLogic Deploy Tool models</h3>
+<p>WDT models are a convenient and simple alternative to WebLogic Scripting Tool (WLST)
+configuration scripts and templates.
+They compactly define a WebLogic domain using YAML files and support including
+application archives in a ZIP file. For a description of the model format
+and its integration with Model in Image,
+see <a href="/userguide/managing-domains/model-in-image/usage/">Usage</a>
+and <a href="/userguide/managing-domains/model-in-image/model-files/">Model files</a>.
+The WDT model format is fully described in the open source,
+<a href="https://oracle.github.io/weblogic-deploy-tooling/">WebLogic Deploy Tool</a> GitHub project.</p>
+<h3 id="runtime-behavior">Runtime behavior</h3>
+<p>When you deploy a Model in Image domain resource YAML file:</p>
+<ul>
+<li>
+<p>The operator will run a Kubernetes Job called the &lsquo;introspector job&rsquo; that:</p>
+<ul>
+<li>Merges your WDT artifacts.</li>
+<li>Runs WDT tooling to generate a domain home.</li>
+<li>Packages the domain home and passes it to the operator.</li>
 </ul>
 </li>
-<li>Configure deployment of WebLogic domains as a Kubernetes resource (using a Kubernetes custom resource definition).</li>
-<li>Override certain aspects of the WebLogic domain configuration; for example, use a different database password for different deployments.</li>
-<li>Start and stop servers and clusters in the domain based on declarative startup parameters and desired states.</li>
-<li>Scale WebLogic domains by starting and stopping Managed Servers on demand, or by integrating with a REST API to initiate scaling based on the WebLogic Diagnostics Framework (WLDF), Prometheus, Grafana, or other rules.</li>
-<li>Expose the WebLogic Server Administration Console outside the Kubernetes cluster, if desired.</li>
-<li>Expose T3 channels outside the Kubernetes domain, if desired.</li>
-<li>Expose HTTP paths on a WebLogic domain outside the Kubernetes domain with load balancing, and automatically update the load balancer when Managed Servers in the WebLogic domain are started or stopped.</li>
-<li>Publish operator and WebLogic Server logs into Elasticsearch and interact with them in Kibana.</li>
-</ul>
-
-<div class="notices tip" ><p>The fastest way to experience the operator is to follow the <a href="/quickstart/">Quick Start guide</a>, or you can peruse our <a href="/userguide/">documentation</a>, read our <a href="https://blogs.oracle.com/weblogicserver/how-to-weblogic-server-on-kubernetes">blogs</a>, or try out the <a href="/samples/simple/">samples</a>.
-Also, you can step through the <a href="https://github.com/oracle/weblogic-kubernetes-operator/blob/main/kubernetes/hands-on-lab/README.md">Tutorial</a>
-using the operator to deploy and run a WebLogic domain container-packaged web application on an Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE) cluster.</p>
-</div>
-
-<hr>
-<h4 id="current-production-release">Current production release</h4>
-<p>The <a href="https://github.com/oracle/weblogic-kubernetes-operator/releases">current release of the operator</a> is 3.2.3.
-This release was published on May 21, 2021. See the operator prerequisites and supported environments <a href="/userguide/introduction/introduction/#operator-prerequisites">here</a>.</p>
-<hr>
-<h4 id="recent-changes-and-known-issues">Recent changes and known issues</h4>
-<p>See the <a href="/release-notes/">Release Notes</a>  for recent changes to the operator and known issues.</p>
-<h4 id="operator-earlier-versions">Operator earlier versions</h4>
-<p>Documentation for prior releases of the operator: <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.5/">2.5.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.6/">2.6.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.0/">3.0.x</a>, and <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.1/">3.1.x</a>.</p>
-<h4 id="backward-compatibility-guidelines">Backward compatibility guidelines</h4>
-<p>Starting from the 2.0.1 release, operator releases are backward compatible with respect to the domain
-resource schema, operator Helm chart input values, configuration overrides template, Kubernetes resources created
-by the operator Helm chart, Kubernetes resources created by the operator, and the operator REST interface. We intend to
-maintain compatibility for three releases, except in the case of a clearly communicated deprecated feature, which will be
-maintained for one release after a replacement is available.</p>
-<h3 id="about-this-documentation">About this documentation</h3>
-<p>This documentation includes sections targeted to different audiences.  To help you find what you are looking for more easily,
-please consult this table of contents:</p>
+<li>
+<p>After the introspector job completes:</p>
 <ul>
-<li>The <a href="/quickstart/">Quick Start guide</a> explains how to quickly get the operator running, using the defaults, nothing special.</li>
-<li>The <a href="/userguide/">User guide</a> contains detailed usage information, including how to install and configure the operator,
-and how to use it to create and manage WebLogic domains.</li>
-<li>The <a href="/samples/simple/">Samples</a> provide detailed example code and instructions that show you how to perform
-various tasks related to the operator.</li>
-<li>The <a href="/developerguide/">Developer guide</a> provides details for people who want to understand how the operator is built, tested, and so on. Those who wish to <a href="/developerguide/contributing/">contribute</a> to the operator code will find useful information here.</li>
-<li><a href="/reference/">Reference</a> describes domain resource attributes and the operator REST API.</li>
-<li><a href="/security/">Security</a> describes Kubernetes, WebLogic, and OpenShift security requirements.</li>
-<li><a href="/faq/">Frequently asked questions</a> provides answers to common questions.</li>
+<li>The operator creates a ConfigMap named <code>DOMAIN_UID-weblogic-domain-introspect-cm</code>
+(possibly with some additional maps distinguished by serial names) and puts the packaged domain home in it.</li>
+<li>The operator subsequently boots your domain&rsquo;s WebLogic Server pods.</li>
+<li>The pods will obtain their domain home from the ConfigMap.</li>
 </ul>
-<h3 id="oracle-support">Oracle support</h3>
-<p>To access Oracle support for running WebLogic Server domains on Kubernetes platforms, see <a href="https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=208317433106215&amp;id=2349228.1&amp;_afrWindowMode=0&amp;_adf.ctrl-state=c2nhai8p3_4">WebLogic Server Certifications on Kubernetes in My Oracle Support Doc ID 2349228.1</a>.</p>
-<h3 id="need-more-help-have-a-suggestion-come-and-say-hello">Need more help? Have a suggestion? Come and say, &ldquo;Hello!&rdquo;</h3>
-<p>We have a <strong>public Slack channel</strong> where you can get in touch with us to ask questions about using the operator or give us feedback
-or suggestions about what features and improvements you would like to see.  We would love to hear from you. To join our channel,
-please <a href="https://weblogic-slack-inviter.herokuapp.com/">visit this site to get an invitation</a>.  The invitation email will include
-details of how to access our Slack workspace.  After you are logged in, please come to <code>#operator</code> and say, &ldquo;hello!&rdquo;</p>
+</li>
+</ul>
+<h3 id="runtime-updates">Runtime updates</h3>
+<p>Model updates can be applied at runtime by changing an image, secrets, a domain resource, or a WDT model ConfigMap after initial deployment.</p>
+<p>Some updates may be applied to a running domain without requiring any WebLogic pod restarts (an online update),
+but others may require rolling the pods in order to propagate the update&rsquo;s changes (an offline update),
+and still others may require shutting down the entire domain before applying the update (a full domain restart update).
+<em>It is the administrator&rsquo;s responsibility to make the necessary changes to a domain resource in order to initiate the correct type of update.</em></p>
+<p>See <a href="/userguide/managing-domains/model-in-image/runtime-updates/">Runtime updates</a>.</p>
+<h3 id="continuous-integration-and-delivery-cicd">Continuous integration and delivery (CI/CD)</h3>
+<p>To understand how Model in Image works with CI/CD, see <a href="/userguide/cicd/">CI/CD considerations</a>.</p>
+<h3 id="references">References</h3>
+<ul>
+<li><a href="/samples/simple/domains/model-in-image/">Model in Image sample</a></li>
+<li><a href="https://oracle.github.io/weblogic-deploy-tooling/">WebLogic Deploy Tool (WDT)</a></li>
+<li><a href="https://oracle.github.io/weblogic-image-tool/">WebLogic Image Tool (WIT)</a></li>
+<li>Domain <a href="https://github.com/oracle/weblogic-kubernetes-operator/blob/main/documentation/domains/Domain.md">schema</a>, <a href="/userguide/managing-domains/domain-resource/">documentation</a></li>
+<li>HTTP load balancers: Ingress <a href="/userguide/managing-domains/ingress/">documentation</a>, <a href="/samples/simple/ingress/">sample</a></li>
+<li><a href="/userguide/cicd/">CI/CD considerations</a></li>
+</ul>
+
+
+<footer class="footline">
 	
-  
+</footer>
+
         
         </div>
         
@@ -3486,164 +3575,6 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -3660,95 +3591,13 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
                         
-            
-            
-                
                     
                 
                 
 
                     
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
                     
                     
 
@@ -3817,6 +3666,9 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
         
                     
+            
+        
+                    
                         
             
             
@@ -3850,6 +3702,256 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
             
                 
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -5428,8 +5530,10 @@ details of how to access our Slack workspace.  After you are logged in, please c
 	 
 	 
 		
+			<a class="nav nav-prev" href="/userguide/managing-domains/model-in-image/" title="Model in Image"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/quickstart/" title="Quick Start" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/userguide/managing-domains/model-in-image/usage/" title="Usage" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

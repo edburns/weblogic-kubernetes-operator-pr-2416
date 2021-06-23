@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Hugo 0.75.0-DEV" />
-    <meta name="description" content="">
+    <meta name="description" content="Use the operator&#39;s REST services.">
 
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title> :: WebLogic Kubernetes Operator</title>
+    <title>The REST API :: WebLogic Kubernetes Operator</title>
 
     
     <link href="/css/nucleus.css?1624489125" rel="stylesheet">
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/userguide/managing-operators/using-the-operator/the-rest-api/">
     <nav id="sidebar" class="">
 
 
@@ -266,7 +266,7 @@
   
     
     <li data-nav-id="/userguide/" title="User Guide" class="dd-item
-        
+        parent
         
         
         ">
@@ -514,7 +514,7 @@
   
     
     <li data-nav-id="/userguide/managing-operators/" title="Manage operators" class="dd-item
-        
+        parent
         
         
         ">
@@ -569,7 +569,7 @@
   
     
     <li data-nav-id="/userguide/managing-operators/using-the-operator/" title="Use the operator" class="dd-item
-        
+        parent
         
         
         ">
@@ -616,7 +616,7 @@
  
   
     
-      <li data-nav-id="/userguide/managing-operators/using-the-operator/the-rest-api/" title="The REST API" class="dd-item ">
+      <li data-nav-id="/userguide/managing-operators/using-the-operator/the-rest-api/" title="The REST API" class="dd-item active">
         <a href="/userguide/managing-operators/using-the-operator/the-rest-api/">
         The REST API
         
@@ -3243,87 +3243,260 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'></a> > <a href='/userguide/'>User Guide</a> > <a href='/userguide/managing-operators/'>Manage operators</a> > <a href='/userguide/managing-operators/using-the-operator/'>Use the operator</a> > The REST API
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              The REST API
+            </h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h3 id="weblogic-kubernetes-operator">WebLogic Kubernetes Operator</h3>
-<p>The WebLogic Kubernetes Operator (the “operator”) supports running your WebLogic Server and Fusion Middleware Infrastructure domains on Kubernetes, an industry standard, cloud neutral deployment platform. It lets you encapsulate your entire WebLogic Server installation and layered applications into a portable set of cloud neutral images and simple resource description files. You can run them on any on-premises or public cloud that supports Kubernetes where you&rsquo;ve deployed the operator.</p>
-<p>Furthermore, the operator is well suited to CI/CD processes. You can easily inject changes when moving between environments, such as from test to production. For example, you can externally inject database URLs and credentials during deployment or you can inject arbitrary changes to most WebLogic configurations.</p>
-<p>The operator takes advantage of the <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">Kubernetes operator pattern</a>, which means that it uses Kubernetes APIs to provide support for operations, such as: provisioning, lifecycle management, application versioning, product patching, scaling, and security. The operator also enables the use of tooling that is native to this infrastructure for monitoring, logging, tracing, and security.</p>
-<p>You can:</p>
+<h4 id="use-the-operators-rest-services">Use the operator&rsquo;s REST services</h4>
+<p>The operator provides a REST server which you can use to get a list of WebLogic domains and clusters and to initiate scaling operations.  Swagger documentation for the REST API is available <a href="https://oracle.github.io/weblogic-kubernetes-operator/swagger/index.html">here</a>.</p>
+<p>You can access most of the REST services using <code>GET</code>, for example:</p>
 <ul>
-<li>Deploy an operator that manages all WebLogic domains in all namespaces in a Kubernetes cluster, or that only manages domains in a specific subset of the namespaces, or that manages only domains that are located in the same namespace as the operator. At most, a namespace can be managed by one operator.</li>
-<li>Supply WebLogic domain configuration using:
-<ul>
-<li><em>Domain in PV</em>: Locates WebLogic domain homes in a Kubernetes PersistentVolume (PV). This PV can reside in an NFS file system or other Kubernetes volume types.</li>
-<li><em>Domain in Image</em>: Includes a WebLogic domain home in a container image.</li>
-<li><em>Model in Image</em>: Includes <a href="https://oracle.github.io/weblogic-deploy-tooling/">WebLogic Deploy Tooling</a> models and archives in a container image.</li>
+<li>To obtain a list of domains, send a <code>GET</code> request to the URL <code>/operator/latest/domains</code></li>
+<li>To obtain a list of clusters in a domain, send a <code>GET</code> request to the URL <code>/operator/latest/domains/&lt;domainUID&gt;/clusters</code></li>
 </ul>
-</li>
-<li>Configure deployment of WebLogic domains as a Kubernetes resource (using a Kubernetes custom resource definition).</li>
-<li>Override certain aspects of the WebLogic domain configuration; for example, use a different database password for different deployments.</li>
-<li>Start and stop servers and clusters in the domain based on declarative startup parameters and desired states.</li>
-<li>Scale WebLogic domains by starting and stopping Managed Servers on demand, or by integrating with a REST API to initiate scaling based on the WebLogic Diagnostics Framework (WLDF), Prometheus, Grafana, or other rules.</li>
-<li>Expose the WebLogic Server Administration Console outside the Kubernetes cluster, if desired.</li>
-<li>Expose T3 channels outside the Kubernetes domain, if desired.</li>
-<li>Expose HTTP paths on a WebLogic domain outside the Kubernetes domain with load balancing, and automatically update the load balancer when Managed Servers in the WebLogic domain are started or stopped.</li>
-<li>Publish operator and WebLogic Server logs into Elasticsearch and interact with them in Kibana.</li>
-</ul>
+<p>All of the REST services require authentication.  Callers must pass in a valid token header and a CA certificate file.  In previous operator versions, the operator performed authentication and authorization checks using the Kubernetes token review and subject access review APIs, and then updated the Domain resource using the operator&rsquo;s privileges.  Now, by default, the operator will use the caller&rsquo;s bearer token to perform the underlying update to the Domain resource using the caller&rsquo;s privileges and thus delegating authentication and authorization checks directly to the Kubernetes API Server (see <a href="/userguide/managing-operators/using-the-operator/using-helm/">REST interface configuration</a>).<br>
 
-<div class="notices tip" ><p>The fastest way to experience the operator is to follow the <a href="/quickstart/">Quick Start guide</a>, or you can peruse our <a href="/userguide/">documentation</a>, read our <a href="https://blogs.oracle.com/weblogicserver/how-to-weblogic-server-on-kubernetes">blogs</a>, or try out the <a href="/samples/simple/">samples</a>.
-Also, you can step through the <a href="https://github.com/oracle/weblogic-kubernetes-operator/blob/main/kubernetes/hands-on-lab/README.md">Tutorial</a>
-using the operator to deploy and run a WebLogic domain container-packaged web application on an Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE) cluster.</p>
+<div class="notices note" ><p>When using the operator&rsquo;s REST services to scale up or down a WebLogic cluster, you may need to grant <code>patch</code> access to the user or service account associated with the caller&rsquo;s bearer token. This can be done with an RBAC ClusterRoleBinding between the user or service account and the ClusterRole that defines the permissions for the WebLogic <code>domains</code> resource.</p>
+</div>
+</p>
+<p>Callers should pass in the <code>Accept:/application/json</code> header.</p>
+<p>To protect against Cross Site Request Forgery (CSRF) attacks, the operator REST API requires that you send in a <code>X-Requested-By</code> header when you invoke a REST endpoint that makes a change (for example, when you POST to the <code>/scale</code> endpoint).  The value is an arbitrary name such as <code>MyClient</code>. For example, when using <code>curl</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ curl ... -H X-Requested-By:MyClient ... -X POST .../scaling
+</code></pre></div><p>If you do not pass in the <code>X-Requested-By</code> header, then you&rsquo;ll get a 400 (bad request) response without any details explaining why the request is bad.
+The <code>X-Requested-By</code> header is not needed for requests that only read, for example, when you GET any of the operator&rsquo;s REST endpoints.</p>
+<p>Before using the sample script below, you must:</p>
+<ul>
+<li>Update it to ensure it has the correct service account, namespaces, and such, and it points to the <code>values.yaml</code>
+that you used to install the operator (so that it can get the certificates).</li>
+<li>Add your operator&rsquo;s certificate to your operating system&rsquo;s trust store (see below).</li>
+<li>If you are using a self-signed certificate and your client is macOS, you may need to update the version of <code>curl</code>
+you have installed.  The version of CURL that ships with macOS High Sierra (<code>curl 7.54.0 (x86_64-apple-darwin17.0) libcurl/7.54.0 LibreSSL/2.0.20 zlib/1.2.11 nghttp2/1.24.0</code>) has known issues with self-signed certificates.  Oracle
+recommends <code>curl 7.63.0 (x86_64-apple-darwin17.7.0) libcurl/7.63.0 SecureTransport zlib/1.2.11</code>, which can be installed
+with <code>brew install curl</code>.</li>
+</ul>
+<h4 id="how-to-add-your-certificate-to-your-operating-system-trust-store">How to add your certificate to your operating system trust store</h4>
+<p>For macOS, find the certificate in Finder, and double-click on it.  This will add it to your keystore and open Keychain
+Access.  Find the certificate in Keychain Access and double-click on it to open the details.  Open the &ldquo;Trust&rdquo; pull-down menu and set the value of &ldquo;When using this certificate&rdquo; to &ldquo;Always Trust&rdquo;, then close the detail window. Enter your password when prompted.</p>
+<p>For Oracle Linux, run the script below, once to copy the certificate into <code>/tmp/operator.cert.pem</code>, then run these
+commands to add the certificate to the trust store:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo cp /tmp/operator.cert.pem /etc/pki/ca-trust/source/anchors/
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo update-ca-trust enable; sudo update-ca-trust extract
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ openssl x509 -noout -hash -in /tmp/operator.cert.pem
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo ln -s /etc/pki/ca-trust/source/anchors/operator.cert.pem /etc/pki/tls/certs/e242d2da.0
+</code></pre></div><p>In the final command, the file name <code>e242d2da.0</code> should be the output of the previous command plus the suffix <code>.0</code>.</p>
+<p>For other operating systems, consult your operating system&rsquo;s documentation (or Google).</p>
+<h4 id="sample-operator-rest-client-script">Sample operator REST client script</h4>
+<p>Here is a small, sample BASH script that may help to prepare the necessary token, certificates, and such, to call the
+operator&rsquo;s REST services.  Please read the important caveats above before using this script:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/bash
+</span><span style="color:#75715e"></span>KUBERNETES_SERVER<span style="color:#f92672">=</span>$1
+URL_TAIL<span style="color:#f92672">=</span>$2
+
+REST_PORT<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>kubectl get services -n weblogic-operator -o jsonpath<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;{.items[?(@.metadata.name == &#34;external-weblogic-operator-svc&#34;)].spec.ports[?(@.name == &#34;rest&#34;)].nodePort}&#39;</span><span style="color:#e6db74">`</span>
+REST_ADDR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://</span><span style="color:#e6db74">${</span>KUBERNETES_SERVER<span style="color:#e6db74">}</span><span style="color:#e6db74">:</span><span style="color:#e6db74">${</span>REST_PORT<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+SECRET<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>kubectl get serviceaccount weblogic-operator -n weblogic-operator -o jsonpath<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;{.secrets[0].name}&#39;</span><span style="color:#e6db74">`</span>
+ENCODED_TOKEN<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>kubectl get secret <span style="color:#e6db74">${</span>SECRET<span style="color:#e6db74">}</span> -n weblogic-operator -o jsonpath<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;{.data.token}&#39;</span><span style="color:#e6db74">`</span>
+TOKEN<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>echo <span style="color:#e6db74">${</span>ENCODED_TOKEN<span style="color:#e6db74">}</span> | base64 --decode<span style="color:#e6db74">`</span>
+OPERATOR_CERT_DATA<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>kubectl get secret -n weblogic-operator weblogic-operator-external-rest-identity -o jsonpath<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;{.data.tls\.crt}&#39;</span><span style="color:#e6db74">`</span>
+OPERATOR_CERT_FILE<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/tmp/operator.cert.pem&#34;</span>
+echo <span style="color:#e6db74">${</span>OPERATOR_CERT_DATA<span style="color:#e6db74">}</span> | base64 --decode &gt; <span style="color:#e6db74">${</span>OPERATOR_CERT_FILE<span style="color:#e6db74">}</span>
+cat <span style="color:#e6db74">${</span>OPERATOR_CERT_FILE<span style="color:#e6db74">}</span>
+
+echo <span style="color:#e6db74">&#34;Ready to call operator REST APIs&#34;</span>
+
+STATUS_CODE<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>curl <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -v <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --cacert <span style="color:#e6db74">${</span>OPERATOR_CERT_FILE<span style="color:#e6db74">}</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span><span style="color:#e6db74">${</span>TOKEN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -H Accept:application/json <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -X GET <span style="color:#e6db74">${</span>REST_ADDR<span style="color:#e6db74">}</span>/<span style="color:#e6db74">${</span>URL_TAIL<span style="color:#e6db74">}</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -o curl.out <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --stderr curl.err <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -w <span style="color:#e6db74">&#34;%{http_code}&#34;</span><span style="color:#e6db74">`</span>
+
+cat curl.err
+cat curl.out | jq .
+</code></pre></div>
+<div class="notices note" ><p>You can use the <code>-k</code> option to bypass the check to verify that the operator&rsquo;s certificate is trusted (instead of <code>curl --cacert</code>), but this is insecure.</p>
 </div>
 
-<hr>
-<h4 id="current-production-release">Current production release</h4>
-<p>The <a href="https://github.com/oracle/weblogic-kubernetes-operator/releases">current release of the operator</a> is 3.2.3.
-This release was published on May 21, 2021. See the operator prerequisites and supported environments <a href="/userguide/introduction/introduction/#operator-prerequisites">here</a>.</p>
-<hr>
-<h4 id="recent-changes-and-known-issues">Recent changes and known issues</h4>
-<p>See the <a href="/release-notes/">Release Notes</a>  for recent changes to the operator and known issues.</p>
-<h4 id="operator-earlier-versions">Operator earlier versions</h4>
-<p>Documentation for prior releases of the operator: <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.5/">2.5.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.6/">2.6.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.0/">3.0.x</a>, and <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.1/">3.1.x</a>.</p>
-<h4 id="backward-compatibility-guidelines">Backward compatibility guidelines</h4>
-<p>Starting from the 2.0.1 release, operator releases are backward compatible with respect to the domain
-resource schema, operator Helm chart input values, configuration overrides template, Kubernetes resources created
-by the operator Helm chart, Kubernetes resources created by the operator, and the operator REST interface. We intend to
-maintain compatibility for three releases, except in the case of a clearly communicated deprecated feature, which will be
-maintained for one release after a replacement is available.</p>
-<h3 id="about-this-documentation">About this documentation</h3>
-<p>This documentation includes sections targeted to different audiences.  To help you find what you are looking for more easily,
-please consult this table of contents:</p>
-<ul>
-<li>The <a href="/quickstart/">Quick Start guide</a> explains how to quickly get the operator running, using the defaults, nothing special.</li>
-<li>The <a href="/userguide/">User guide</a> contains detailed usage information, including how to install and configure the operator,
-and how to use it to create and manage WebLogic domains.</li>
-<li>The <a href="/samples/simple/">Samples</a> provide detailed example code and instructions that show you how to perform
-various tasks related to the operator.</li>
-<li>The <a href="/developerguide/">Developer guide</a> provides details for people who want to understand how the operator is built, tested, and so on. Those who wish to <a href="/developerguide/contributing/">contribute</a> to the operator code will find useful information here.</li>
-<li><a href="/reference/">Reference</a> describes domain resource attributes and the operator REST API.</li>
-<li><a href="/security/">Security</a> describes Kubernetes, WebLogic, and OpenShift security requirements.</li>
-<li><a href="/faq/">Frequently asked questions</a> provides answers to common questions.</li>
-</ul>
-<h3 id="oracle-support">Oracle support</h3>
-<p>To access Oracle support for running WebLogic Server domains on Kubernetes platforms, see <a href="https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=208317433106215&amp;id=2349228.1&amp;_afrWindowMode=0&amp;_adf.ctrl-state=c2nhai8p3_4">WebLogic Server Certifications on Kubernetes in My Oracle Support Doc ID 2349228.1</a>.</p>
-<h3 id="need-more-help-have-a-suggestion-come-and-say-hello">Need more help? Have a suggestion? Come and say, &ldquo;Hello!&rdquo;</h3>
-<p>We have a <strong>public Slack channel</strong> where you can get in touch with us to ask questions about using the operator or give us feedback
-or suggestions about what features and improvements you would like to see.  We would love to hear from you. To join our channel,
-please <a href="https://weblogic-slack-inviter.herokuapp.com/">visit this site to get an invitation</a>.  The invitation email will include
-details of how to access our Slack workspace.  After you are logged in, please come to <code>#operator</code> and say, &ldquo;hello!&rdquo;</p>
+<p>To use this script, pass in the Kubernetes server address and then the URL you want to call.   The script assumes <code>jq</code> is installed and uses it to format the response.  This can be removed if desired.  The script also prints out quite a bit of useful debugging information, in addition to the response.  Here is an example of the output of this script:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ./rest.sh kubernetes001 operator/latest/domains/domain1/clusters
+Ready to call operator REST APIs
+Note: Unnecessary use of -X or --request, GET is already inferred.
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>    <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>    <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> --:--:-- --:--:-- --:--:--     0*   Trying 10.139.151.214...
+* TCP_NODELAY set
+* Connected to kubernetes001 <span style="color:#f92672">(</span>10.1.2.3<span style="color:#f92672">)</span> port <span style="color:#ae81ff">31001</span> <span style="color:#f92672">(</span><span style="color:#75715e">#0)</span>
+* ALPN, offering h2
+* ALPN, offering http/1.1
+* Cipher selection: ALL:!EXPORT:!EXPORT40:!EXPORT56:!aNULL:!LOW:!RC4:@STRENGTH
+* error setting certificate verify locations, continuing anyway:
+*   CAfile: /tmp/operator.cert.pem
+  CApath: none
+* TLSv1.2 <span style="color:#f92672">(</span>OUT<span style="color:#f92672">)</span>, TLS handshake, Client hello <span style="color:#f92672">(</span>1<span style="color:#f92672">)</span>:
+<span style="color:#f92672">}</span> <span style="color:#f92672">[</span><span style="color:#ae81ff">512</span> bytes data<span style="color:#f92672">]</span>
+* TLSv1.2 <span style="color:#f92672">(</span>IN<span style="color:#f92672">)</span>, TLS handshake, Server hello <span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>:
+<span style="color:#f92672">{</span> <span style="color:#f92672">[</span><span style="color:#ae81ff">81</span> bytes data<span style="color:#f92672">]</span>
+* TLSv1.2 <span style="color:#f92672">(</span>IN<span style="color:#f92672">)</span>, TLS handshake, Certificate <span style="color:#f92672">(</span>11<span style="color:#f92672">)</span>:
+<span style="color:#f92672">{</span> <span style="color:#f92672">[</span><span style="color:#ae81ff">799</span> bytes data<span style="color:#f92672">]</span>
+* TLSv1.2 <span style="color:#f92672">(</span>IN<span style="color:#f92672">)</span>, TLS handshake, Server key exchange <span style="color:#f92672">(</span>12<span style="color:#f92672">)</span>:
+<span style="color:#f92672">{</span> <span style="color:#f92672">[</span><span style="color:#ae81ff">413</span> bytes data<span style="color:#f92672">]</span>
+* TLSv1.2 <span style="color:#f92672">(</span>IN<span style="color:#f92672">)</span>, TLS handshake, Server finished <span style="color:#f92672">(</span>14<span style="color:#f92672">)</span>:
+<span style="color:#f92672">{</span> <span style="color:#f92672">[</span><span style="color:#ae81ff">4</span> bytes data<span style="color:#f92672">]</span>
+* TLSv1.2 <span style="color:#f92672">(</span>OUT<span style="color:#f92672">)</span>, TLS handshake, Client key exchange <span style="color:#f92672">(</span>16<span style="color:#f92672">)</span>:
+<span style="color:#f92672">}</span> <span style="color:#f92672">[</span><span style="color:#ae81ff">150</span> bytes data<span style="color:#f92672">]</span>
+* TLSv1.2 <span style="color:#f92672">(</span>OUT<span style="color:#f92672">)</span>, TLS change cipher, Client hello <span style="color:#f92672">(</span>1<span style="color:#f92672">)</span>:
+<span style="color:#f92672">}</span> <span style="color:#f92672">[</span><span style="color:#ae81ff">1</span> bytes data<span style="color:#f92672">]</span>
+* TLSv1.2 <span style="color:#f92672">(</span>OUT<span style="color:#f92672">)</span>, TLS handshake, Finished <span style="color:#f92672">(</span>20<span style="color:#f92672">)</span>:
+<span style="color:#f92672">}</span> <span style="color:#f92672">[</span><span style="color:#ae81ff">16</span> bytes data<span style="color:#f92672">]</span>
+* TLSv1.2 <span style="color:#f92672">(</span>IN<span style="color:#f92672">)</span>, TLS change cipher, Client hello <span style="color:#f92672">(</span>1<span style="color:#f92672">)</span>:
+<span style="color:#f92672">{</span> <span style="color:#f92672">[</span><span style="color:#ae81ff">1</span> bytes data<span style="color:#f92672">]</span>
+* TLSv1.2 <span style="color:#f92672">(</span>IN<span style="color:#f92672">)</span>, TLS handshake, Finished <span style="color:#f92672">(</span>20<span style="color:#f92672">)</span>:
+<span style="color:#f92672">{</span> <span style="color:#f92672">[</span><span style="color:#ae81ff">16</span> bytes data<span style="color:#f92672">]</span>
+* SSL connection using TLSv1.2 / ECDHE-RSA-AES128-GCM-SHA256
+* ALPN, server did not agree to a protocol
+* Server certificate:
+*  subject: CN<span style="color:#f92672">=</span>weblogic-operator
+*  start date: Jan <span style="color:#ae81ff">18</span> 16:30:01 <span style="color:#ae81ff">2018</span> GMT
+*  expire date: Jan <span style="color:#ae81ff">16</span> 16:30:01 <span style="color:#ae81ff">2028</span> GMT
+*  issuer: CN<span style="color:#f92672">=</span>weblogic-operator
+*  SSL certificate verify result: unable to get local issuer certificate <span style="color:#f92672">(</span>20<span style="color:#f92672">)</span>, continuing anyway.
+&gt; GET /operator/latest/domains/domain1/clusters HTTP/1.1
+&gt; Host: kubernetes001:31001
+&gt; User-Agent: curl/7.54.0
+&gt; Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJ3ZWJsb2dpYy1vcGVyYXRvciIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQ <span style="color:#f92672">(</span>truncated<span style="color:#f92672">)</span> 1vcGVyYXRvcjp3ZWJsb2dpYy1vcGVyYXRvciJ9.NgaGR0NbzbJpVXguQDjRKyDBnNTqwgwPEXv3NjWwMcaf0OlN54apHubdrIx6KYz9ONGz-QeTLnoMChFY7oWA6CBfbvjt-GQX6JvdoJYxsQo1pt-E6sO2YvqTFE4EG-gpEDaiCE_OjZ_bBpJydhIiFReToA3-mxpDAUK2_rUfkWe5YEaLGMWoYQfXPAykzFiH4vqIi_tzzyzNnGxI2tUcBxNh3tzWFPGXKhzG18HswiwlFU5pe7XEYv4gJbvtV5tlGz7YdmH74Rc0dveV-54qHD_VDC5M7JZVh0ZDlyJMAmWe4YcdwNQQNGs91jqo1-JEM0Wj8iQSDE3cZj6MB0wrdg
+&gt; Accept:application/json
+&gt;
+  <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>    <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>    <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span>      <span style="color:#ae81ff">0</span> --:--:--  0:00:01 --:--:--     0&lt; HTTP/1.1 <span style="color:#ae81ff">200</span> OK
+&lt; Content-Type: application/json
+&lt; Content-Length: <span style="color:#ae81ff">463</span>
+&lt;
+<span style="color:#f92672">{</span> <span style="color:#f92672">[</span><span style="color:#ae81ff">463</span> bytes data<span style="color:#f92672">]</span>
+<span style="color:#ae81ff">100</span>   <span style="color:#ae81ff">463</span>  <span style="color:#ae81ff">100</span>   <span style="color:#ae81ff">463</span>    <span style="color:#ae81ff">0</span>     <span style="color:#ae81ff">0</span>    <span style="color:#ae81ff">205</span>      <span style="color:#ae81ff">0</span>  0:00:02  0:00:02 --:--:--   <span style="color:#ae81ff">205</span>
+* Connection <span style="color:#75715e">#0 to host kubernetes001 left intact</span>
+<span style="color:#f92672">{</span>
+  <span style="color:#e6db74">&#34;links&#34;</span>: <span style="color:#f92672">[</span>
+    <span style="color:#f92672">{</span>
+      <span style="color:#e6db74">&#34;rel&#34;</span>: <span style="color:#e6db74">&#34;self&#34;</span>,
+      <span style="color:#e6db74">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+      <span style="color:#e6db74">&#34;href&#34;</span>: <span style="color:#e6db74">&#34;/operator/latest/domains/domain1/clusters&#34;</span>
+    <span style="color:#f92672">}</span>,
+    <span style="color:#f92672">{</span>
+      <span style="color:#e6db74">&#34;rel&#34;</span>: <span style="color:#e6db74">&#34;canonical&#34;</span>,
+      <span style="color:#e6db74">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+      <span style="color:#e6db74">&#34;href&#34;</span>: <span style="color:#e6db74">&#34;/operator/latest/domains/domain1/clusters&#34;</span>
+    <span style="color:#f92672">}</span>,
+    <span style="color:#f92672">{</span>
+      <span style="color:#e6db74">&#34;rel&#34;</span>: <span style="color:#e6db74">&#34;parent&#34;</span>,
+      <span style="color:#e6db74">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+      <span style="color:#e6db74">&#34;href&#34;</span>: <span style="color:#e6db74">&#34;/operator/latest/domains/domain1&#34;</span>
+    <span style="color:#f92672">}</span>
+  <span style="color:#f92672">]</span>,
+  <span style="color:#e6db74">&#34;items&#34;</span>: <span style="color:#f92672">[</span>
+    <span style="color:#f92672">{</span>
+      <span style="color:#e6db74">&#34;links&#34;</span>: <span style="color:#f92672">[</span>
+        <span style="color:#f92672">{</span>
+          <span style="color:#e6db74">&#34;rel&#34;</span>: <span style="color:#e6db74">&#34;self&#34;</span>,
+          <span style="color:#e6db74">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+          <span style="color:#e6db74">&#34;href&#34;</span>: <span style="color:#e6db74">&#34;/operator/latest/domains/domain1/clusters/cluster-1&#34;</span>
+        <span style="color:#f92672">}</span>,
+        <span style="color:#f92672">{</span>
+          <span style="color:#e6db74">&#34;rel&#34;</span>: <span style="color:#e6db74">&#34;canonical&#34;</span>,
+          <span style="color:#e6db74">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+          <span style="color:#e6db74">&#34;href&#34;</span>: <span style="color:#e6db74">&#34;/operator/latest/domains/domain1/clusters/cluster-1&#34;</span>
+        <span style="color:#f92672">}</span>
+      <span style="color:#f92672">]</span>,
+      <span style="color:#e6db74">&#34;cluster&#34;</span>: <span style="color:#e6db74">&#34;cluster-1&#34;</span>
+    <span style="color:#f92672">}</span>
+  <span style="color:#f92672">]</span>
+<span style="color:#f92672">}</span>
+</code></pre></div>
+
+<footer class="footline">
 	
-  
+</footer>
+
         
         </div>
         
@@ -3486,6 +3659,7 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
+                    
                 
                 
 
@@ -3501,18 +3675,8 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
                         
-            
-            
-                
+                        
                     
                 
                 
@@ -3521,9 +3685,6 @@ details of how to access our Slack workspace.  After you are logged in, please c
                     
                     
 
-                    
-            
-        
                     
                         
             
@@ -3540,54 +3701,6 @@ details of how to access our Slack workspace.  After you are logged in, please c
                     
             
         
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
                     
                         
             
@@ -3650,8 +3763,6 @@ details of how to access our Slack workspace.  After you are logged in, please c
 
                     
                     
-                        
-                    
                     
 
                     
@@ -3670,19 +3781,6 @@ details of how to access our Slack workspace.  After you are logged in, please c
                     
             
         
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
                     
                         
             
@@ -3719,6 +3817,38 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
         
                     
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
             
         
                     
@@ -3726,6 +3856,65 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
             
                 
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -5428,8 +5617,10 @@ details of how to access our Slack workspace.  After you are logged in, please c
 	 
 	 
 		
+			<a class="nav nav-prev" href="/userguide/managing-operators/using-the-operator/using-helm/" title="Use Helm"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/quickstart/" title="Quick Start" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/userguide/base-images/" title="WebLogic Server images" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

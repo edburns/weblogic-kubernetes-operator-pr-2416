@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title> :: WebLogic Kubernetes Operator</title>
+    <title>Choose a domain home source type :: WebLogic Kubernetes Operator</title>
 
     
     <link href="/css/nucleus.css?1624489125" rel="stylesheet">
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/userguide/managing-domains/choosing-a-model/">
     <nav id="sidebar" class="">
 
 
@@ -266,7 +266,7 @@
   
     
     <li data-nav-id="/userguide/" title="User Guide" class="dd-item
-        
+        parent
         
         
         ">
@@ -682,7 +682,7 @@
   
     
     <li data-nav-id="/userguide/managing-domains/" title="Manage WebLogic domains" class="dd-item
-        
+        parent
         
         
         ">
@@ -711,8 +711,8 @@
   
     
     <li data-nav-id="/userguide/managing-domains/choosing-a-model/" title="Choose a domain home source type" class="dd-item
-        
-        
+        parent
+        active
         
         ">
       <a href="/userguide/managing-domains/choosing-a-model/">
@@ -3243,87 +3243,159 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'></a> > <a href='/userguide/'>User Guide</a> > <a href='/userguide/managing-domains/'>Manage WebLogic domains</a> > Choose a domain home source type
+          
+        
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents"></nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Choose a domain home source type
+            </h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h3 id="weblogic-kubernetes-operator">WebLogic Kubernetes Operator</h3>
-<p>The WebLogic Kubernetes Operator (the “operator”) supports running your WebLogic Server and Fusion Middleware Infrastructure domains on Kubernetes, an industry standard, cloud neutral deployment platform. It lets you encapsulate your entire WebLogic Server installation and layered applications into a portable set of cloud neutral images and simple resource description files. You can run them on any on-premises or public cloud that supports Kubernetes where you&rsquo;ve deployed the operator.</p>
-<p>Furthermore, the operator is well suited to CI/CD processes. You can easily inject changes when moving between environments, such as from test to production. For example, you can externally inject database URLs and credentials during deployment or you can inject arbitrary changes to most WebLogic configurations.</p>
-<p>The operator takes advantage of the <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">Kubernetes operator pattern</a>, which means that it uses Kubernetes APIs to provide support for operations, such as: provisioning, lifecycle management, application versioning, product patching, scaling, and security. The operator also enables the use of tooling that is native to this infrastructure for monitoring, logging, tracing, and security.</p>
-<p>You can:</p>
-<ul>
-<li>Deploy an operator that manages all WebLogic domains in all namespaces in a Kubernetes cluster, or that only manages domains in a specific subset of the namespaces, or that manages only domains that are located in the same namespace as the operator. At most, a namespace can be managed by one operator.</li>
-<li>Supply WebLogic domain configuration using:
-<ul>
-<li><em>Domain in PV</em>: Locates WebLogic domain homes in a Kubernetes PersistentVolume (PV). This PV can reside in an NFS file system or other Kubernetes volume types.</li>
-<li><em>Domain in Image</em>: Includes a WebLogic domain home in a container image.</li>
-<li><em>Model in Image</em>: Includes <a href="https://oracle.github.io/weblogic-deploy-tooling/">WebLogic Deploy Tooling</a> models and archives in a container image.</li>
-</ul>
-</li>
-<li>Configure deployment of WebLogic domains as a Kubernetes resource (using a Kubernetes custom resource definition).</li>
-<li>Override certain aspects of the WebLogic domain configuration; for example, use a different database password for different deployments.</li>
-<li>Start and stop servers and clusters in the domain based on declarative startup parameters and desired states.</li>
-<li>Scale WebLogic domains by starting and stopping Managed Servers on demand, or by integrating with a REST API to initiate scaling based on the WebLogic Diagnostics Framework (WLDF), Prometheus, Grafana, or other rules.</li>
-<li>Expose the WebLogic Server Administration Console outside the Kubernetes cluster, if desired.</li>
-<li>Expose T3 channels outside the Kubernetes domain, if desired.</li>
-<li>Expose HTTP paths on a WebLogic domain outside the Kubernetes domain with load balancing, and automatically update the load balancer when Managed Servers in the WebLogic domain are started or stopped.</li>
-<li>Publish operator and WebLogic Server logs into Elasticsearch and interact with them in Kibana.</li>
-</ul>
 
-<div class="notices tip" ><p>The fastest way to experience the operator is to follow the <a href="/quickstart/">Quick Start guide</a>, or you can peruse our <a href="/userguide/">documentation</a>, read our <a href="https://blogs.oracle.com/weblogicserver/how-to-weblogic-server-on-kubernetes">blogs</a>, or try out the <a href="/samples/simple/">samples</a>.
-Also, you can step through the <a href="https://github.com/oracle/weblogic-kubernetes-operator/blob/main/kubernetes/hands-on-lab/README.md">Tutorial</a>
-using the operator to deploy and run a WebLogic domain container-packaged web application on an Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE) cluster.</p>
-</div>
-
-<hr>
-<h4 id="current-production-release">Current production release</h4>
-<p>The <a href="https://github.com/oracle/weblogic-kubernetes-operator/releases">current release of the operator</a> is 3.2.3.
-This release was published on May 21, 2021. See the operator prerequisites and supported environments <a href="/userguide/introduction/introduction/#operator-prerequisites">here</a>.</p>
-<hr>
-<h4 id="recent-changes-and-known-issues">Recent changes and known issues</h4>
-<p>See the <a href="/release-notes/">Release Notes</a>  for recent changes to the operator and known issues.</p>
-<h4 id="operator-earlier-versions">Operator earlier versions</h4>
-<p>Documentation for prior releases of the operator: <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.5/">2.5.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.6/">2.6.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.0/">3.0.x</a>, and <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.1/">3.1.x</a>.</p>
-<h4 id="backward-compatibility-guidelines">Backward compatibility guidelines</h4>
-<p>Starting from the 2.0.1 release, operator releases are backward compatible with respect to the domain
-resource schema, operator Helm chart input values, configuration overrides template, Kubernetes resources created
-by the operator Helm chart, Kubernetes resources created by the operator, and the operator REST interface. We intend to
-maintain compatibility for three releases, except in the case of a clearly communicated deprecated feature, which will be
-maintained for one release after a replacement is available.</p>
-<h3 id="about-this-documentation">About this documentation</h3>
-<p>This documentation includes sections targeted to different audiences.  To help you find what you are looking for more easily,
-please consult this table of contents:</p>
+	<p>When using the operator to start WebLogic Server instances from a domain, you have the choice of the following WebLogic domain home source types:</p>
 <ul>
-<li>The <a href="/quickstart/">Quick Start guide</a> explains how to quickly get the operator running, using the defaults, nothing special.</li>
-<li>The <a href="/userguide/">User guide</a> contains detailed usage information, including how to install and configure the operator,
-and how to use it to create and manage WebLogic domains.</li>
-<li>The <a href="/samples/simple/">Samples</a> provide detailed example code and instructions that show you how to perform
-various tasks related to the operator.</li>
-<li>The <a href="/developerguide/">Developer guide</a> provides details for people who want to understand how the operator is built, tested, and so on. Those who wish to <a href="/developerguide/contributing/">contribute</a> to the operator code will find useful information here.</li>
-<li><a href="/reference/">Reference</a> describes domain resource attributes and the operator REST API.</li>
-<li><a href="/security/">Security</a> describes Kubernetes, WebLogic, and OpenShift security requirements.</li>
-<li><a href="/faq/">Frequently asked questions</a> provides answers to common questions.</li>
+<li><strong>Domain in PV</strong>: Supply your domain home configuration in a persistent volume.</li>
+<li><strong>Domain in Image</strong>: Supply your domain home in an image.</li>
+<li><strong>Model in Image</strong>: Supply a WebLogic Deployment Tool (WDT) model file in an image.</li>
 </ul>
-<h3 id="oracle-support">Oracle support</h3>
-<p>To access Oracle support for running WebLogic Server domains on Kubernetes platforms, see <a href="https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=208317433106215&amp;id=2349228.1&amp;_afrWindowMode=0&amp;_adf.ctrl-state=c2nhai8p3_4">WebLogic Server Certifications on Kubernetes in My Oracle Support Doc ID 2349228.1</a>.</p>
-<h3 id="need-more-help-have-a-suggestion-come-and-say-hello">Need more help? Have a suggestion? Come and say, &ldquo;Hello!&rdquo;</h3>
-<p>We have a <strong>public Slack channel</strong> where you can get in touch with us to ask questions about using the operator or give us feedback
-or suggestions about what features and improvements you would like to see.  We would love to hear from you. To join our channel,
-please <a href="https://weblogic-slack-inviter.herokuapp.com/">visit this site to get an invitation</a>.  The invitation email will include
-details of how to access our Slack workspace.  After you are logged in, please come to <code>#operator</code> and say, &ldquo;hello!&rdquo;</p>
+<p>There are advantages for each domain home source type, but sometimes there are also technical limitations of various cloud providers that may make one type better suited to your needs.</p>
+<p>Note that you can use different domain home types for different domains; there&rsquo;s no restriction on having domains with different domain home types in the same Kubernetes cluster or namespace.</p>
+<table>
+<thead>
+<tr>
+<th>Domain in PV</th>
+<th>Domain in Image</th>
+<th>Model in Image</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lets you use the same standard WebLogic Server image for every server in every domain.</td>
+<td>Requires a different image for each domain, but all servers in that domain use the same image.</td>
+<td>Different domains can use the same image, but require different domainUID and may have different configuration.</td>
+</tr>
+<tr>
+<td>No state is kept in images making the containers created from these images completely throw away (cattle not pets).</td>
+<td>Runtime state should not be kept in the images, but applications and configuration are.</td>
+<td>Runtime state should not be kept in the images.  Application and configuration may be.</td>
+</tr>
+<tr>
+<td>You can deploy new applications using the Administration Console or WLST.</td>
+<td>If you want to deploy application updates, then you must create a new image.</td>
+<td>If you want to deploy application updates, then you must create a new image, which optionally can be a <a href="/userguide/managing-domains/model-in-image/common-mounts/">common mounts image</a> that doesn&rsquo;t include a WebLogic installation.</td>
+</tr>
+<tr>
+<td>You can use configuration overrides to mutate the domain configuration before it is deployed, but there are <a href="/userguide/managing-domains/configoverrides/#unsupported-overrides">limitations</a>.</td>
+<td>Same as Domain in PV.</td>
+<td>You can deploy model files to a ConfigMap to mutate the domain before it is deployed. The model file syntax is far simpler and less error prone than the configuration override syntax, and, unlike configuration overrides, allows you to directly add data sources and JMS modules.</td>
+</tr>
+<tr>
+<td>You can change WebLogic domain configuration at runtime using the Administration Console or WLST. You can also change configuration overrides and <a href="/userguide/managing-domains/domain-lifecycle/introspection/">distribute the new overrides</a> to running servers; however, non-dynamic configuration attributes can be changed only when servers are starting and some changes may require a full domain restart.</td>
+<td>You also can change configuration overrides and <a href="/userguide/managing-domains/domain-lifecycle/introspection/">distribute the new overrides</a> to running servers; however, non-dynamic configuration attributes can be changed only when servers are starting and some changes may require a full domain restart. You should not use the Administration Console or WLST for these domains as changes are ephemeral and will be lost when servers restart.</td>
+<td>You can change configuration at runtime using model YAML snippets supplied in <a href="/userguide/managing-domains/model-in-image/runtime-updates/">runtime updates</a> (which are substantially easier to specify than configuration overrides); however, non-dynamic configuration attributes will change only when servers are restarted (rolled) and some changes may require a full domain restart. You should not use the Administration Console or WLST for these domains as changes are ephemeral and will be lost when servers restart.</td>
+</tr>
+<tr>
+<td>Logs are automatically placed on persistent storage and sent to the pod&rsquo;s stdout.</td>
+<td>Logs are kept in the containers and sent to the pod&rsquo;s log (<code>stdout</code>) by default. To change the log location, you can set the Domain <code>logHomeEnabled</code> to true and configure the desired directory using <code>logHome</code>.</td>
+<td>Same as Domain in Image.</td>
+</tr>
+<tr>
+<td>Patches can be applied by simply changing the image and rolling the domain.</td>
+<td>To apply patches, you must update the domain-specific image and then restart or roll the domain depending on the nature of the patch.</td>
+<td>Same as Domain in PV when using dedicated <a href="/userguide/managing-domains/model-in-image/common-mounts/">common mounts images</a> to supply model artifacts; same as Domain in Image otherwise.</td>
+</tr>
+<tr>
+<td>Many cloud providers do not provide persistent volumes that are shared across availability zones, so you may not be able to use a single persistent volume.  You may need to use some kind of volume replication technology or a clustered file system.</td>
+<td>Provided you do not store and state in containers, you do not have to worry about volume replication across availability zones because each pod has its own copy of the domain.  WebLogic replication will handle propagation of any online configuration changes.</td>
+<td>Same as Domain in Image.</td>
+</tr>
+<tr>
+<td>CI/CD pipelines may be more complicated because you would need to run WLST against the live domain directory to effect changes.</td>
+<td>CI/CD pipelines are simpler because you can create the whole domain in the image and don&rsquo;t have to worry about a persistent copy of the domain.</td>
+<td>CI/CD pipelines are even simpler because you don&rsquo;t need to generate a domain home. The operator will create a domain home for you based on the model that you supply.</td>
+</tr>
+<tr>
+<td>There are fewer images to manage and store, which could provide significant storage and network savings.</td>
+<td>There are more images to manage and store in this approach.</td>
+<td>Same as Domain in Image unless you use the <a href="/userguide/managing-domains/model-in-image/common-mounts/">common mounts</a> approach. With common mounts, you can use a single image to distribute your WebLogic installation (similar to Domain on PV), plus one or more specific dedicated images that contain your WebLogic configuration and applications.</td>
+</tr>
+<tr>
+<td>You may be able to use standard Oracle-provided images or, at least, a very small number of self-built images, for example, with patches installed.</td>
+<td>You may need to do more work to set up processes to build and maintain your images.</td>
+<td>Same as Domain in Image.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+<footer class=" footline" >
 	
-  
+</footer>
+
         
         </div>
         
@@ -3486,6 +3558,7 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
+                    
                 
                 
 
@@ -3501,18 +3574,8 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
                         
-            
-            
-                
+                        
                     
                 
                 
@@ -3521,9 +3584,6 @@ details of how to access our Slack workspace.  After you are logged in, please c
                     
                     
 
-                    
-            
-        
                     
                         
             
@@ -3540,54 +3600,6 @@ details of how to access our Slack workspace.  After you are logged in, please c
                     
             
         
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
                     
                         
             
@@ -3650,37 +3662,6 @@ details of how to access our Slack workspace.  After you are logged in, please c
 
                     
                     
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
                     
 
                     
@@ -3716,12 +3697,6 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
         
                     
-            
-        
-                    
-            
-        
-                    
                         
             
             
@@ -3734,6 +3709,9 @@ details of how to access our Slack workspace.  After you are logged in, please c
                     
                     
 
+                    
+            
+        
                     
             
         
@@ -3773,6 +3751,109 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
             
                 
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -5428,8 +5509,10 @@ details of how to access our Slack workspace.  After you are logged in, please c
 	 
 	 
 		
+			<a class="nav nav-prev" href="/userguide/managing-domains/" title="Manage WebLogic domains"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/quickstart/" title="Quick Start" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/userguide/managing-domains/prepare/" title="Prepare to run a domain" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -5461,4 +5544,3 @@ details of how to access our Slack workspace.  After you are logged in, please c
 
   </body>
 </html>
-

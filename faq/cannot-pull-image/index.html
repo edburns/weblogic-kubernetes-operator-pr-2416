@@ -4,28 +4,28 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Hugo 0.75.0-DEV" />
-    <meta name="description" content="">
+    <meta name="description" content="My domain will not start and I see errors like `ImagePullBackoff` or `Cannot pull image`.">
 
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title> :: WebLogic Kubernetes Operator</title>
+    <title>Cannot pull image :: WebLogic Kubernetes Operator</title>
 
     
-    <link href="/css/nucleus.css?1624489125" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1624489125" rel="stylesheet">
-    <link href="/css/hybrid.css?1624489125" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1624489125" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1624489125" rel="stylesheet">
-    <link href="/css/auto-complete.css?1624489125" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1624489125" rel="stylesheet">
-    <link href="/css/theme.css?1624489125" rel="stylesheet">
-    <link href="/css/tabs.css?1624489125" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1624489125" rel="stylesheet">
+    <link href="/css/nucleus.css?1624489124" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1624489124" rel="stylesheet">
+    <link href="/css/hybrid.css?1624489124" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1624489124" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1624489124" rel="stylesheet">
+    <link href="/css/auto-complete.css?1624489124" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1624489124" rel="stylesheet">
+    <link href="/css/theme.css?1624489124" rel="stylesheet">
+    <link href="/css/tabs.css?1624489124" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1624489124" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1624489125"></script>
+    <script src="/js/jquery-3.3.1.min.js?1624489124"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/faq/cannot-pull-image/">
     <nav id="sidebar" class="">
 
 
@@ -59,14 +59,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1624489125"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1624489125"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1624489124"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1624489124"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/polite-dune-0a7bd1d10.azurestaticapps.net\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1624489125"></script>
+<script type="text/javascript" src="/js/search.js?1624489124"></script>
 
     
   </div>
@@ -2899,7 +2899,7 @@
   
     
     <li data-nav-id="/faq/" title="Frequently asked questions" class="dd-item
-        
+        parent
         
         
         ">
@@ -2967,7 +2967,7 @@
  
   
     
-      <li data-nav-id="/faq/cannot-pull-image/" title="Cannot pull image" class="dd-item ">
+      <li data-nav-id="/faq/cannot-pull-image/" title="Cannot pull image" class="dd-item active">
         <a href="/faq/cannot-pull-image/">
         Cannot pull image
         
@@ -3243,87 +3243,215 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'></a> > <a href='/faq/'>Frequently asked questions</a> > Cannot pull image
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Cannot pull image
+            </h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h3 id="weblogic-kubernetes-operator">WebLogic Kubernetes Operator</h3>
-<p>The WebLogic Kubernetes Operator (the “operator”) supports running your WebLogic Server and Fusion Middleware Infrastructure domains on Kubernetes, an industry standard, cloud neutral deployment platform. It lets you encapsulate your entire WebLogic Server installation and layered applications into a portable set of cloud neutral images and simple resource description files. You can run them on any on-premises or public cloud that supports Kubernetes where you&rsquo;ve deployed the operator.</p>
-<p>Furthermore, the operator is well suited to CI/CD processes. You can easily inject changes when moving between environments, such as from test to production. For example, you can externally inject database URLs and credentials during deployment or you can inject arbitrary changes to most WebLogic configurations.</p>
-<p>The operator takes advantage of the <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">Kubernetes operator pattern</a>, which means that it uses Kubernetes APIs to provide support for operations, such as: provisioning, lifecycle management, application versioning, product patching, scaling, and security. The operator also enables the use of tooling that is native to this infrastructure for monitoring, logging, tracing, and security.</p>
-<p>You can:</p>
+<blockquote>
+<p>My domain will not start and I see errors like <code>ImagePullBackoff</code> or <code>Cannot pull image</code></p>
+</blockquote>
+<p>When you see these kinds of errors, it means that Kubernetes cannot find your container image.
+The most common causes are:</p>
 <ul>
-<li>Deploy an operator that manages all WebLogic domains in all namespaces in a Kubernetes cluster, or that only manages domains in a specific subset of the namespaces, or that manages only domains that are located in the same namespace as the operator. At most, a namespace can be managed by one operator.</li>
-<li>Supply WebLogic domain configuration using:
-<ul>
-<li><em>Domain in PV</em>: Locates WebLogic domain homes in a Kubernetes PersistentVolume (PV). This PV can reside in an NFS file system or other Kubernetes volume types.</li>
-<li><em>Domain in Image</em>: Includes a WebLogic domain home in a container image.</li>
-<li><em>Model in Image</em>: Includes <a href="https://oracle.github.io/weblogic-deploy-tooling/">WebLogic Deploy Tooling</a> models and archives in a container image.</li>
+<li>The <code>image</code> value in your Domain is set incorrectly, meaning Kubernetes will be
+trying to pull the wrong image.</li>
+<li>The image requires authentication or permission in order to pull it and you have not
+configured Kubernetes with the necessary credentials, for example in an <code>imagePullSecret</code>.</li>
+<li>You built the image on a machine that is not where your <code>kubelet</code> is running and Kubernetes
+cannot see the image, meaning you need to copy the image to the worker nodes or put it in
+a container registry that is accessible the to all of the worker nodes.</li>
 </ul>
-</li>
-<li>Configure deployment of WebLogic domains as a Kubernetes resource (using a Kubernetes custom resource definition).</li>
-<li>Override certain aspects of the WebLogic domain configuration; for example, use a different database password for different deployments.</li>
-<li>Start and stop servers and clusters in the domain based on declarative startup parameters and desired states.</li>
-<li>Scale WebLogic domains by starting and stopping Managed Servers on demand, or by integrating with a REST API to initiate scaling based on the WebLogic Diagnostics Framework (WLDF), Prometheus, Grafana, or other rules.</li>
-<li>Expose the WebLogic Server Administration Console outside the Kubernetes cluster, if desired.</li>
-<li>Expose T3 channels outside the Kubernetes domain, if desired.</li>
-<li>Expose HTTP paths on a WebLogic domain outside the Kubernetes domain with load balancing, and automatically update the load balancer when Managed Servers in the WebLogic domain are started or stopped.</li>
-<li>Publish operator and WebLogic Server logs into Elasticsearch and interact with them in Kibana.</li>
-</ul>
+<p>Let&rsquo;s review what happens when Kubernetes starts a pod.</p>
+<img src="https://polite-dune-0a7bd1d10.azurestaticapps.net/images/image-pull.png" alt="Pulling an image">
+<p>The definition of the pod contains a list of container specifications.  Each container
+specification contains the name (and optionally, tag) of the image that should be used
+to run that container.  In the example above, there is a container called <code>c1</code> which is
+configured to use the container image <code>some.registry.com/owner/domain1:1.0</code>.  This image
+name is in the format <code>registry address / owner / name : tag</code>, so in this case the
+registry is <code>some.registry.com</code>, the owner is <code>owner</code>, the image name is <code>domain</code>
+and the tag is <code>1.0</code>.  Tags are a lot like version numbers, but they are not required
+to be numbers or to be in any particular sequence or format.  If you omit the tag, it
+is assumed to be <code>latest</code>.</p>
 
-<div class="notices tip" ><p>The fastest way to experience the operator is to follow the <a href="/quickstart/">Quick Start guide</a>, or you can peruse our <a href="/userguide/">documentation</a>, read our <a href="https://blogs.oracle.com/weblogicserver/how-to-weblogic-server-on-kubernetes">blogs</a>, or try out the <a href="/samples/simple/">samples</a>.
-Also, you can step through the <a href="https://github.com/oracle/weblogic-kubernetes-operator/blob/main/kubernetes/hands-on-lab/README.md">Tutorial</a>
-using the operator to deploy and run a WebLogic domain container-packaged web application on an Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE) cluster.</p>
+<div class="notices note" ><p>The tag <code>latest</code> is confusing - it does not actually mean the latest version of
+the image that was created or published in the registry; it just literally means
+whichever version the owner decided to call &ldquo;latest&rdquo;.  Docker and Kubernetes make
+some assumptions about latest, and it is generally recommended to avoid using it and instead
+specify the actual version or tag that you really want.</p>
 </div>
 
-<hr>
-<h4 id="current-production-release">Current production release</h4>
-<p>The <a href="https://github.com/oracle/weblogic-kubernetes-operator/releases">current release of the operator</a> is 3.2.3.
-This release was published on May 21, 2021. See the operator prerequisites and supported environments <a href="/userguide/introduction/introduction/#operator-prerequisites">here</a>.</p>
-<hr>
-<h4 id="recent-changes-and-known-issues">Recent changes and known issues</h4>
-<p>See the <a href="/release-notes/">Release Notes</a>  for recent changes to the operator and known issues.</p>
-<h4 id="operator-earlier-versions">Operator earlier versions</h4>
-<p>Documentation for prior releases of the operator: <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.5/">2.5.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.6/">2.6.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.0/">3.0.x</a>, and <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.1/">3.1.x</a>.</p>
-<h4 id="backward-compatibility-guidelines">Backward compatibility guidelines</h4>
-<p>Starting from the 2.0.1 release, operator releases are backward compatible with respect to the domain
-resource schema, operator Helm chart input values, configuration overrides template, Kubernetes resources created
-by the operator Helm chart, Kubernetes resources created by the operator, and the operator REST interface. We intend to
-maintain compatibility for three releases, except in the case of a clearly communicated deprecated feature, which will be
-maintained for one release after a replacement is available.</p>
-<h3 id="about-this-documentation">About this documentation</h3>
-<p>This documentation includes sections targeted to different audiences.  To help you find what you are looking for more easily,
-please consult this table of contents:</p>
+<p>First, Kubernetes will check to see if the requested image is available in the local
+container image store on whichever worker node the pod was scheduled on.  If it is there,
+then it will use that image to start the container.  If it is not there, then Kubernetes
+will attempt to pull the image from a remote container registry.</p>
+
+<div class="notices note" ><p>There is another setting called <code>imagePullPolicy</code> that can be used to force Kubernetes
+to always pull the image, even if it is already present in the local container image
+store.</p>
+</div>
+
+<p>If the image is available in the remote registry and it is public, that is it does not
+require authentication, then Kubernetes will pull the image to the local container image
+store and start the container.</p>
+<h4 id="images-that-require-authentication">Images that require authentication</h4>
+<p>If the remote container registry requires authentication, then you will need to provide
+the authentication details in a Kubernetes <code>docker-registry</code> secret and tell Kubernetes
+to use that secret when pulling the image.</p>
+<p>To create a secret, you can use the following command:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl create secret docker-registry secret1 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>        --docker-server<span style="color:#f92672">=</span>some.registry.com <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>        --docker-username<span style="color:#f92672">=</span>bob <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>        --docker-password<span style="color:#f92672">=</span>bigSecret <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>        --docker-email<span style="color:#f92672">=</span>bob@some.com <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>        --namespace<span style="color:#f92672">=</span>default
+</code></pre></div><p>In this command, you would replace <code>secret1</code> with the name of the secret; the <code>docker-server</code>
+is set to the registry name, without the <code>https://</code> prefix; the <code>docker-username</code>, <code>docker-password</code>
+and <code>docker-email</code> are set to match the credentials you use to authenticate to the remote
+container registry; and the <code>namespace</code> must be set to the same namespace where you intend to
+use the image.</p>
+
+<div class="notices note" ><p>Some registries may need a suffix making the <code>docker-server</code> something like <code>some.registry.com/v2</code>
+for example.  You will need to check with your registry provider&rsquo;s documentation to determine if this is needed.</p>
+</div>
+
+<p>After the secret is created, you need to tell Kubernetes to use it.  This is done by adding
+an <code>imagePullSecret</code> to your Kubernetes YAML file.  In the case of a WebLogic domain, you
+add the secret name to the <code>imagePullSecret</code> in the domain custom resource YAML file.</p>
+<p>Here is an example of part of a domain custom resource file with the <code>imagePullSecret</code> above
+specified:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: <span style="color:#e6db74">&#34;weblogic.oracle/v8&#34;</span>
+<span style="color:#66d9ef">kind</span>: Domain
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: domain1
+  <span style="color:#66d9ef">namespace</span>: default
+  <span style="color:#66d9ef">labels</span>:
+    <span style="color:#66d9ef">weblogic.domainUID</span>: domain1
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">domainHome</span>: /u01/oracle/user_projects/domains/domain1
+  <span style="color:#66d9ef">domainHomeSourceType</span>: Image
+  <span style="color:#66d9ef">image</span>: <span style="color:#e6db74">&#34;some.registry.com/owner/domain1:1.0&#34;</span>
+  <span style="color:#66d9ef">imagePullPolicy</span>: <span style="color:#e6db74">&#34;IfNotPresent&#34;</span>
+  <span style="color:#66d9ef">imagePullSecrets</span>:
+  - <span style="color:#66d9ef">name</span>: secret1
+</code></pre></div><p>Alternatively, you can associate the secret with the service account that will be used to run
+the pod.  If you do this, then you will not need to add the <code>imagePullSecret</code> to the domain
+resource.  This is useful if you are running multiple domains in the same namespace.</p>
+<p>To add the secret shown above to the <code>default</code> service account in the <code>weblogic</code> namespace, you
+would use a command like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl patch serviceaccount default <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>        -n weblogic <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>        -p <span style="color:#e6db74">&#39;{&#34;imagePullSecrets&#34;: [{&#34;name&#34;: &#34;secret1&#34;}]}&#39;</span>
+</code></pre></div>
+<div class="notices note" ><p>You can provide multiple <code>imagePullSecrets</code> if you need to pull container images from multiple
+remote container registries or if your images require different authentication credentials.
+For more information, see <a href="/security/domain-security/image-protection/#weblogic-domain-in-container-image-protection">Container Image Protection</a>.</p>
+</div>
+
+<h4 id="pushing-the-image-to-a-repository">Pushing the image to a repository</h4>
+<p>If you have an image in your local repository that you would like to copy to
+a remote repository, then the Docker steps are:</p>
 <ul>
-<li>The <a href="/quickstart/">Quick Start guide</a> explains how to quickly get the operator running, using the defaults, nothing special.</li>
-<li>The <a href="/userguide/">User guide</a> contains detailed usage information, including how to install and configure the operator,
-and how to use it to create and manage WebLogic domains.</li>
-<li>The <a href="/samples/simple/">Samples</a> provide detailed example code and instructions that show you how to perform
-various tasks related to the operator.</li>
-<li>The <a href="/developerguide/">Developer guide</a> provides details for people who want to understand how the operator is built, tested, and so on. Those who wish to <a href="/developerguide/contributing/">contribute</a> to the operator code will find useful information here.</li>
-<li><a href="/reference/">Reference</a> describes domain resource attributes and the operator REST API.</li>
-<li><a href="/security/">Security</a> describes Kubernetes, WebLogic, and OpenShift security requirements.</li>
-<li><a href="/faq/">Frequently asked questions</a> provides answers to common questions.</li>
+<li>Use <a href="https://docs.docker.com/engine/reference/commandline/login/">docker login</a>
+to log in to the target repository&rsquo;s registry. For example:</li>
 </ul>
-<h3 id="oracle-support">Oracle support</h3>
-<p>To access Oracle support for running WebLogic Server domains on Kubernetes platforms, see <a href="https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=208317433106215&amp;id=2349228.1&amp;_afrWindowMode=0&amp;_adf.ctrl-state=c2nhai8p3_4">WebLogic Server Certifications on Kubernetes in My Oracle Support Doc ID 2349228.1</a>.</p>
-<h3 id="need-more-help-have-a-suggestion-come-and-say-hello">Need more help? Have a suggestion? Come and say, &ldquo;Hello!&rdquo;</h3>
-<p>We have a <strong>public Slack channel</strong> where you can get in touch with us to ask questions about using the operator or give us feedback
-or suggestions about what features and improvements you would like to see.  We would love to hear from you. To join our channel,
-please <a href="https://weblogic-slack-inviter.herokuapp.com/">visit this site to get an invitation</a>.  The invitation email will include
-details of how to access our Slack workspace.  After you are logged in, please come to <code>#operator</code> and say, &ldquo;hello!&rdquo;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ docker login some.registry.com -u username -p password
+</code></pre></div><ul>
+<li>Use <a href="https://docs.docker.com/engine/reference/commandline/tag/">docker tag</a>
+to mark the image with the target registry, owner, repository name, and tag.
+For example:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ docker tag domain1:1.0 some.registry.com/owner/domain1:1.0
+</code></pre></div><ul>
+<li>Use <a href="https://docs.docker.com/engine/reference/commandline/push/">docker push</a>
+to push the image to the repository. For example:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ docker push some.registry.com/owner/domain1:1.0
+</code></pre></div><h4 id="manually-copying-the-image-to-your-worker-nodes">Manually copying the image to your worker nodes</h4>
+<p>If you are not able to use a remote container registry, for example if your Kubernetes cluster is
+in a secure network with no external access, then you can manually copy the container images to the
+cluster instead.</p>
+<p>On the machine where you created the image, export it into a TAR file using this command:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ docker save domain1:1.0 &gt; domain1.tar
+</code></pre></div><p>Then copy that TAR file to each worker node in your Kubernetes cluster and run this command
+on each node:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ docker load &lt; domain1.tar
+</code></pre></div><h4 id="restart-pods-to-clear-the-error">Restart pods to clear the error</h4>
+<p>After you have ensured that the images are accessible on all worker nodes, you may need to restart
+the pods so that Kubernetes will attempt to pull the images again.   You can do this by
+deleting the pods themselves, or deleting the Domain and then recreating it.</p>
+
+
+<footer class="footline">
 	
-  
+</footer>
+
         
         </div>
         
@@ -5184,6 +5312,7 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
+                    
                 
                 
 
@@ -5196,6 +5325,9 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -5229,6 +5361,7 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
+                    
                 
                 
 
@@ -5244,6 +5377,9 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -5428,8 +5564,10 @@ details of how to access our Slack workspace.  After you are logged in, please c
 	 
 	 
 		
+			<a class="nav nav-prev" href="/faq/namespace-management/" title="Managing domain namespaces"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/quickstart/" title="Quick Start" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/faq/boot-identity-not-valid/" title="Boot identity not valid" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -5439,19 +5577,19 @@ details of how to access our Slack workspace.  After you are logged in, please c
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1624489125"></script>
-    <script src="/js/perfect-scrollbar.min.js?1624489125"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1624489125"></script>
-    <script src="/js/jquery.sticky.js?1624489125"></script>
-    <script src="/js/featherlight.min.js?1624489125"></script>
-    <script src="/js/highlight.pack.js?1624489125"></script>
+    <script src="/js/clipboard.min.js?1624489124"></script>
+    <script src="/js/perfect-scrollbar.min.js?1624489124"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1624489124"></script>
+    <script src="/js/jquery.sticky.js?1624489124"></script>
+    <script src="/js/featherlight.min.js?1624489124"></script>
+    <script src="/js/highlight.pack.js?1624489124"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1624489125"></script>
-    <script src="/js/learn.js?1624489125"></script>
-    <script src="/js/hugo-learn.js?1624489125"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1624489124"></script>
+    <script src="/js/learn.js?1624489124"></script>
+    <script src="/js/hugo-learn.js?1624489124"></script>
     
         
-            <script src="/mermaid/mermaid.js?1624489125"></script>
+            <script src="/mermaid/mermaid.js?1624489124"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });

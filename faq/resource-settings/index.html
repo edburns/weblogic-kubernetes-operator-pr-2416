@@ -4,28 +4,28 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Hugo 0.75.0-DEV" />
-    <meta name="description" content="">
+    <meta name="description" content="Tune container memory and CPU usage by configuring Kubernetes resource requests and limits, and tune a WebLogic JVM heap usage using the `USER_MEM_ARGS` environment variable in your Domain YAML file.">
 
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title> :: WebLogic Kubernetes Operator</title>
+    <title>Pod memory and CPU resources :: WebLogic Kubernetes Operator</title>
 
     
-    <link href="/css/nucleus.css?1624489125" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1624489125" rel="stylesheet">
-    <link href="/css/hybrid.css?1624489125" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1624489125" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1624489125" rel="stylesheet">
-    <link href="/css/auto-complete.css?1624489125" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1624489125" rel="stylesheet">
-    <link href="/css/theme.css?1624489125" rel="stylesheet">
-    <link href="/css/tabs.css?1624489125" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1624489125" rel="stylesheet">
+    <link href="/css/nucleus.css?1624489124" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1624489124" rel="stylesheet">
+    <link href="/css/hybrid.css?1624489124" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1624489124" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1624489124" rel="stylesheet">
+    <link href="/css/auto-complete.css?1624489124" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1624489124" rel="stylesheet">
+    <link href="/css/theme.css?1624489124" rel="stylesheet">
+    <link href="/css/tabs.css?1624489124" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1624489124" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1624489125"></script>
+    <script src="/js/jquery-3.3.1.min.js?1624489124"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/faq/resource-settings/">
     <nav id="sidebar" class="">
 
 
@@ -59,14 +59,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1624489125"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1624489125"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1624489124"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1624489124"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/polite-dune-0a7bd1d10.azurestaticapps.net\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1624489125"></script>
+<script type="text/javascript" src="/js/search.js?1624489124"></script>
 
     
   </div>
@@ -2899,7 +2899,7 @@
   
     
     <li data-nav-id="/faq/" title="Frequently asked questions" class="dd-item
-        
+        parent
         
         
         ">
@@ -3198,7 +3198,7 @@
  
   
     
-      <li data-nav-id="/faq/resource-settings/" title="Pod memory and CPU resources" class="dd-item ">
+      <li data-nav-id="/faq/resource-settings/" title="Pod memory and CPU resources" class="dd-item active">
         <a href="/faq/resource-settings/">
         Pod memory and CPU resources
         
@@ -3243,87 +3243,228 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'></a> > <a href='/faq/'>Frequently asked questions</a> > Pod memory and CPU resources
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Pod memory and CPU resources
+            </h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h3 id="weblogic-kubernetes-operator">WebLogic Kubernetes Operator</h3>
-<p>The WebLogic Kubernetes Operator (the “operator”) supports running your WebLogic Server and Fusion Middleware Infrastructure domains on Kubernetes, an industry standard, cloud neutral deployment platform. It lets you encapsulate your entire WebLogic Server installation and layered applications into a portable set of cloud neutral images and simple resource description files. You can run them on any on-premises or public cloud that supports Kubernetes where you&rsquo;ve deployed the operator.</p>
-<p>Furthermore, the operator is well suited to CI/CD processes. You can easily inject changes when moving between environments, such as from test to production. For example, you can externally inject database URLs and credentials during deployment or you can inject arbitrary changes to most WebLogic configurations.</p>
-<p>The operator takes advantage of the <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">Kubernetes operator pattern</a>, which means that it uses Kubernetes APIs to provide support for operations, such as: provisioning, lifecycle management, application versioning, product patching, scaling, and security. The operator also enables the use of tooling that is native to this infrastructure for monitoring, logging, tracing, and security.</p>
-<p>You can:</p>
+<h4 id="contents">Contents</h4>
 <ul>
-<li>Deploy an operator that manages all WebLogic domains in all namespaces in a Kubernetes cluster, or that only manages domains in a specific subset of the namespaces, or that manages only domains that are located in the same namespace as the operator. At most, a namespace can be managed by one operator.</li>
-<li>Supply WebLogic domain configuration using:
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#setting-resource-requests-and-limits-in-a-domain">Setting resource requests and limits in a Domain YAML file</a></li>
+<li><a href="#determining-pod-quality-of-service">Determining Pod Quality Of Service</a></li>
+<li><a href="#java-heap-size-and-memory-resource-considerations">Java heap size and memory resource considerations</a>
 <ul>
-<li><em>Domain in PV</em>: Locates WebLogic domain homes in a Kubernetes PersistentVolume (PV). This PV can reside in an NFS file system or other Kubernetes volume types.</li>
-<li><em>Domain in Image</em>: Includes a WebLogic domain home in a container image.</li>
-<li><em>Model in Image</em>: Includes <a href="https://oracle.github.io/weblogic-deploy-tooling/">WebLogic Deploy Tooling</a> models and archives in a container image.</li>
+<li><a href="#importance-of-setting-heap-size-and-memory-resources">Importance of setting heap size and memory resources</a></li>
+<li><a href="#default-heap-sizes">Default heap sizes</a></li>
+<li><a href="#configuring-heap-size">Configuring heap size</a></li>
 </ul>
 </li>
-<li>Configure deployment of WebLogic domains as a Kubernetes resource (using a Kubernetes custom resource definition).</li>
-<li>Override certain aspects of the WebLogic domain configuration; for example, use a different database password for different deployments.</li>
-<li>Start and stop servers and clusters in the domain based on declarative startup parameters and desired states.</li>
-<li>Scale WebLogic domains by starting and stopping Managed Servers on demand, or by integrating with a REST API to initiate scaling based on the WebLogic Diagnostics Framework (WLDF), Prometheus, Grafana, or other rules.</li>
-<li>Expose the WebLogic Server Administration Console outside the Kubernetes cluster, if desired.</li>
-<li>Expose T3 channels outside the Kubernetes domain, if desired.</li>
-<li>Expose HTTP paths on a WebLogic domain outside the Kubernetes domain with load balancing, and automatically update the load balancer when Managed Servers in the WebLogic domain are started or stopped.</li>
-<li>Publish operator and WebLogic Server logs into Elasticsearch and interact with them in Kibana.</li>
+<li><a href="#cpu-resource-considerations">CPU resource considerations</a></li>
+<li><a href="#operator-sample-heap-and-resource-configuration">Operator sample heap and resource configuration</a></li>
+<li><a href="#configuring-cpu-affinity">Configuring CPU affinity</a></li>
+<li><a href="#measuring-jvm-heap-pod-cpu-and-pod-memory">Measuring JVM heap, Pod CPU, and Pod memory</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+<h4 id="introduction">Introduction</h4>
+<p>The operator creates a container in its own Pod for each WebLogic Server instance. You can tune container memory and CPU usage by configuring Kubernetes resource requests and limits, and you can tune a WebLogic JVM heap usage using the <code>USER_MEM_ARGS</code> environment variable in your Domain YAML file. A resource request sets the minimum amount of a resource that a container requires. A resource limit is the maximum amount of a resource a container is given and prevents a container from using more than its share of a resource. Additionally, resource requests and limits determine a Pod&rsquo;s quality of service.</p>
+<p>This FAQ discusses tuning these parameters so WebLogic Server instances run efficiently.</p>
+<h4 id="setting-resource-requests-and-limits-in-a-domain">Setting resource requests and limits in a Domain</h4>
+<p>You can set Kubernetes memory and CPU requests and limits in a <a href="/userguide/managing-domains/domain-resource/">Domain YAML file</a> using its <code>spec.serverPod.resources</code> stanza, and you can override the setting for individual WebLogic Server instances or clusters using the <code>serverPod.resources</code> element in <code>spec.adminServer</code>, <code>spec.clusters</code>, or <code>spec.managedServers</code>. For example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">  <span style="color:#66d9ef">spec</span>:
+    <span style="color:#66d9ef">serverPod</span>:
+      <span style="color:#66d9ef">resources</span>:
+        <span style="color:#66d9ef">requests</span>:
+          <span style="color:#66d9ef">cpu</span>: <span style="color:#e6db74">&#34;250m&#34;</span>
+          <span style="color:#66d9ef">memory</span>: <span style="color:#e6db74">&#34;768Mi&#34;</span>
+        <span style="color:#66d9ef">limits</span>:
+          <span style="color:#66d9ef">cpu</span>: <span style="color:#e6db74">&#34;2&#34;</span>
+          <span style="color:#66d9ef">memory</span>: <span style="color:#e6db74">&#34;2Gi&#34;</span>
+</code></pre></div><p>Limits and requests for CPU resources are measured in CPU units. One CPU, in Kubernetes, is equivalent to 1 vCPU/Core for cloud providers and 1 hyperthread on bare-metal Intel processors. An <code>m</code> suffix in a CPU attribute indicates &lsquo;milli-CPU&rsquo;, so <code>250m</code> is 25% of a CPU.</p>
+<p>Memory can be expressed in various units, where one <code>Mi</code> is one IEC unit mega-byte (1024^2), and one <code>Gi</code> is one IEC unit giga-byte (1024^3).</p>
+<p>See also <a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/">Managing Resources for Containers</a>, <a href="https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource">Assign Memory Resources to Containers and Pods</a> and <a href="https://kubernetes.io/docs/tasks/configure-pod-container/assign-cpu-resource">Assign CPU Resources to Containers and Pods</a> in the Kubernetes documentation.</p>
+<h4 id="determining-pod-quality-of-service">Determining Pod Quality Of Service</h4>
+<p>A Pod&rsquo;s Quality of Service (QoS) is based on whether it&rsquo;s configured with resource requests and limits:</p>
+<ul>
+<li>
+<p><strong>Best Effort QoS</strong> (lowest priority): If you don&rsquo;t configure requests and limits for a Pod, then the Pod is given a <code>best-effort</code> QoS. In cases where a Node runs out of non-shareable resources, the default out-of-resource eviction policy evicts running Pods with the <code>best-effort</code> QoS first.</p>
+</li>
+<li>
+<p><strong>Burstable QoS</strong> (medium priority): If you configure both resource requests and limits for a Pod, and set the requests to be less than their respective limits, then the Pod will be given a <code>burstable</code> QoS. Similarly, if you only configure resource requests (without limits) for a Pod, then the Pod QoS is also <code>burstable</code>. If a Node runs out of non-shareable resources, the Node&rsquo;s <code>kubelet</code> will evict <code>burstable</code> Pods only when there are no more running <code>best-effort</code> Pods.</p>
+</li>
+<li>
+<p><strong>Guaranteed QoS</strong> (highest priority): If you set a Pod&rsquo;s requests and the limits to equal values, then the Pod will have a <code>guaranteed</code> QoS. These settings indicate that your Pod will consume a fixed amount of memory and CPU. With this configuration, if a Node runs out of shareable resources, then the Node&rsquo;s <code>kubelet</code> will evict <code>best-effort</code> and <code>burstable</code> QoS Pods before terminating <code>guaranteed</code> QoS Pods.</p>
+</li>
 </ul>
 
-<div class="notices tip" ><p>The fastest way to experience the operator is to follow the <a href="/quickstart/">Quick Start guide</a>, or you can peruse our <a href="/userguide/">documentation</a>, read our <a href="https://blogs.oracle.com/weblogicserver/how-to-weblogic-server-on-kubernetes">blogs</a>, or try out the <a href="/samples/simple/">samples</a>.
-Also, you can step through the <a href="https://github.com/oracle/weblogic-kubernetes-operator/blob/main/kubernetes/hands-on-lab/README.md">Tutorial</a>
-using the operator to deploy and run a WebLogic domain container-packaged web application on an Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE) cluster.</p>
+<div class="notices note" ><p>For most use cases, Oracle recommends configuring WebLogic Pods with memory and CPU requests and limits, and furthermore, setting requests equal to their respective limits in order to ensure a <code>guaranteed</code> QoS.</p>
 </div>
 
-<hr>
-<h4 id="current-production-release">Current production release</h4>
-<p>The <a href="https://github.com/oracle/weblogic-kubernetes-operator/releases">current release of the operator</a> is 3.2.3.
-This release was published on May 21, 2021. See the operator prerequisites and supported environments <a href="/userguide/introduction/introduction/#operator-prerequisites">here</a>.</p>
-<hr>
-<h4 id="recent-changes-and-known-issues">Recent changes and known issues</h4>
-<p>See the <a href="/release-notes/">Release Notes</a>  for recent changes to the operator and known issues.</p>
-<h4 id="operator-earlier-versions">Operator earlier versions</h4>
-<p>Documentation for prior releases of the operator: <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.5/">2.5.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.6/">2.6.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.0/">3.0.x</a>, and <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.1/">3.1.x</a>.</p>
-<h4 id="backward-compatibility-guidelines">Backward compatibility guidelines</h4>
-<p>Starting from the 2.0.1 release, operator releases are backward compatible with respect to the domain
-resource schema, operator Helm chart input values, configuration overrides template, Kubernetes resources created
-by the operator Helm chart, Kubernetes resources created by the operator, and the operator REST interface. We intend to
-maintain compatibility for three releases, except in the case of a clearly communicated deprecated feature, which will be
-maintained for one release after a replacement is available.</p>
-<h3 id="about-this-documentation">About this documentation</h3>
-<p>This documentation includes sections targeted to different audiences.  To help you find what you are looking for more easily,
-please consult this table of contents:</p>
+
+<div class="notices note" ><p>In later versions of Kubernetes, it is possible to fine tune scheduling and eviction policies using <a href="https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/">Pod Priority Preemption</a> in combination with the <code>serverPod.priorityClassName</code> Domain field. Note that Kubernetes already ships with two PriorityClasses: <code>system-cluster-critical</code> and <code>system-node-critical</code>. These are common classes and are used to <a href="https://kubernetes.io/docs/tasks/administer-cluster/guaranteed-scheduling-critical-addon-pods/">ensure that critical components are always scheduled first</a>.</p>
+</div>
+
+<h4 id="java-heap-size-and-memory-resource-considerations">Java heap size and memory resource considerations</h4>
+
+<div class="notices note" ><p>Oracle recommends configuring Java heap sizes for WebLogic JVMs instead of relying on the defaults.</p>
+</div>
+
+<h5 id="importance-of-setting-heap-size-and-memory-resources">Importance of setting heap size and memory resources</h5>
+<p>It&rsquo;s extremely important to set correct heap sizes, memory requests, and memory limits for WebLogic JVMs and Pods.</p>
+<p>A WebLogic JVM heap must be sufficiently sized to run its applications and services, but should not be sized too large so as not to waste memory resources.</p>
+<p>A Pod memory limit must be sufficiently sized to accommodate the configured heap and native memory requirements, but should not be sized too large so as not to waste memory resources. If a JVM&rsquo;s memory usage (sum of heap and native memory) exceeds its Pod&rsquo;s limit, then the JVM process will be abruptly killed due to an out-of-memory error and the WebLogic container will consequently automatically restart due to a liveness probe failure.</p>
+<p>Oracle recommends setting minimum and maximum heap (or heap percentages) and at least a container memory request.</p>
+
+<div class="notices warning" ><p>If resource requests and resource limits are set too high, then your Pods may not be scheduled due to a lack of Node resources. It will unnecessarily use up CPU shared resources that could be used by other Pods, or may prevent other Pods from running.</p>
+</div>
+
+<h5 id="default-heap-sizes">Default heap sizes</h5>
+<p>With the latest Java versions, Java 8 update 191 and later, or Java 11, if you don&rsquo;t configure a heap size (no <code>-Xms</code> or <code>-Xms</code>), the default heap size is dynamically determined:</p>
 <ul>
-<li>The <a href="/quickstart/">Quick Start guide</a> explains how to quickly get the operator running, using the defaults, nothing special.</li>
-<li>The <a href="/userguide/">User guide</a> contains detailed usage information, including how to install and configure the operator,
-and how to use it to create and manage WebLogic domains.</li>
-<li>The <a href="/samples/simple/">Samples</a> provide detailed example code and instructions that show you how to perform
-various tasks related to the operator.</li>
-<li>The <a href="/developerguide/">Developer guide</a> provides details for people who want to understand how the operator is built, tested, and so on. Those who wish to <a href="/developerguide/contributing/">contribute</a> to the operator code will find useful information here.</li>
-<li><a href="/reference/">Reference</a> describes domain resource attributes and the operator REST API.</li>
-<li><a href="/security/">Security</a> describes Kubernetes, WebLogic, and OpenShift security requirements.</li>
-<li><a href="/faq/">Frequently asked questions</a> provides answers to common questions.</li>
+<li>
+<p>If you configure the memory limit for a container, then the JVM default maximum heap size will be 25% (1/4th) of container memory limit and the default minimum heap size will be 1.56% (1/64th) of the limit value.</p>
+<p>In this case, the default JVM heap settings are often too conservative because the WebLogic JVM is the only major process running in the container.</p>
+</li>
+<li>
+<p>If no memory limit is configured, then the JVM default maximum heap size will be  25% (1/4th) of its Node&rsquo;s machine RAM and the default minimum heap size will be 1.56% (1/64th) of the RAM.</p>
+<p>In this case, the default JVM heap settings can have undesirable behavior, including using unnecessary amounts of memory to the point where it might affect other Pods that run on the same Node.</p>
+</li>
 </ul>
-<h3 id="oracle-support">Oracle support</h3>
-<p>To access Oracle support for running WebLogic Server domains on Kubernetes platforms, see <a href="https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=208317433106215&amp;id=2349228.1&amp;_afrWindowMode=0&amp;_adf.ctrl-state=c2nhai8p3_4">WebLogic Server Certifications on Kubernetes in My Oracle Support Doc ID 2349228.1</a>.</p>
-<h3 id="need-more-help-have-a-suggestion-come-and-say-hello">Need more help? Have a suggestion? Come and say, &ldquo;Hello!&rdquo;</h3>
-<p>We have a <strong>public Slack channel</strong> where you can get in touch with us to ask questions about using the operator or give us feedback
-or suggestions about what features and improvements you would like to see.  We would love to hear from you. To join our channel,
-please <a href="https://weblogic-slack-inviter.herokuapp.com/">visit this site to get an invitation</a>.  The invitation email will include
-details of how to access our Slack workspace.  After you are logged in, please come to <code>#operator</code> and say, &ldquo;hello!&rdquo;</p>
+<h5 id="configuring-heap-size">Configuring heap size</h5>
+<p>If you specify Pod memory limits, Oracle recommends configuring WebLogic Server heap sizes as a percentage. The JVM will interpret the percentage as a fraction of the limit. This is done using the JVM <code>-XX:MinRAMPercentage</code> and <code>-XX:MaxRAMPercentage</code> options in the <code>USER_MEM_ARGS</code> <a href="/userguide/managing-domains/domain-resource/#jvm-memory-and-java-option-environment-variables">Domain environment variable</a>.  For example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">  <span style="color:#66d9ef">spec</span>:
+    <span style="color:#66d9ef">resources</span>:
+      <span style="color:#66d9ef">env</span>:
+      - <span style="color:#66d9ef">name</span>: USER_MEM_ARGS
+        <span style="color:#66d9ef">value</span>: <span style="color:#e6db74">&#34;-XX:MinRAMPercentage=25.0 -XX:MaxRAMPercentage=50.0 -Djava.security.egd=file:/dev/./urandom&#34;</span>
+</code></pre></div><p>Additionally, there&rsquo;s a <code>node-manager</code> process that&rsquo;s running in the same container as the WebLogic Server, which has its own heap and native memory requirements. Its heap is tuned by using <code>-Xms</code> and <code>-Xmx</code> in the <code>NODEMGR_MEM_ARGS</code> environment variable. Oracle recommends setting the Node Manager heap memory to fixed sizes, instead of percentages, where <a href="/userguide/managing-domains/domain-resource/#jvm-memory-and-java-option-environment-variables">the default tuning</a> is usually sufficient.</p>
+
+<div class="notices note" ><p>Notice that the <code>NODEMGR_MEM_ARGS</code>, <code>USER_MEM_ARGS</code>, and <code>WLST_EXTRA_PROPERTIES</code> environment variables all include <code>-Djava.security.egd=file:/dev/./urandom</code> by default. This helps to speed up the Node Manager and WebLogic Server startup on systems with low entropy, plus similarly helps to speed up introspection job usage of the WLST <code>encrypt</code> command. We have included this property in the above example for specifying a custom <code>USER_MEM_ARGS</code> value in order to preserve this speedup. See the <a href="/userguide/managing-domains/domain-resource/#jvm-memory-and-java-option-environment-variables">environment variable defaults</a> documentation for more information.</p>
+</div>
+
+<p>In some cases, you might only want to configure memory resource requests but not configure memory resource limits. In such scenarios, you can use the traditional fixed heap size settings (<code>-Xms</code> and <code>-Xmx</code>) in your WebLogic Server <code>USER_MEM_ARGS</code> instead of the percentage settings (<code>-XX:MinRAMPercentage</code> and <code>-XX:MaxRAMPercentage</code>).</p>
+<h4 id="cpu-resource-considerations">CPU resource considerations</h4>
+<p>It&rsquo;s important to set both a CPU request and a limit for WebLogic Server Pods. This ensures that all WebLogic Server Pods have enough CPU resources, and, as discussed earlier, if the request and limit are set to the same value, then they get a <code>guaranteed</code> QoS. A <code>guaranteed</code> QoS ensures that the Pods are handled with a higher priority during scheduling and as such, are the least likely to be evicted.</p>
+<p>If a CPU request and limit are <em>not</em> configured for a WebLogic Server Pod:</p>
+<ul>
+<li>
+<p>The Pod can end up using all the CPU resources available on its Node and starve other containers from using shareable CPU cycles.</p>
+</li>
+<li>
+<p>The WebLogic Server JVM may choose an unsuitable garbage collection (GC) strategy.</p>
+</li>
+<li>
+<p>A WebLogic Server self-tuning <code>work-manager</code> may incorrectly optimize the number of threads it allocates for the default thread pool.</p>
+</li>
+</ul>
+<p>It&rsquo;s also important to keep in mind that if you set a value of CPU core count that&rsquo;s larger than the core count of your biggest Node, then the Pod will never be scheduled. Let&rsquo;s say you have a Pod that needs 4 cores but you have a Kubernetes cluster that&rsquo;s comprised of 2 core VMs. In this case, your Pod will never be scheduled and will have <code>Pending</code> status. For example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl get pod sample-domain1-managed-server1 -n sample-domain1-ns
+</code></pre></div><pre><code>NAME                              READY   STATUS    RESTARTS   AGE
+sample-domain1-managed-server1    0/1     Pending   0          65s
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl describe pod sample-domain1-managed-server1 -n sample-domain1-ns
+</code></pre></div><pre><code>Events:
+  Type     Reason            Age                From               Message
+  ----     ------            ----               ----               -------
+  Warning  FailedScheduling  16s (x3 over 26s)  default-scheduler  0/2 nodes are available: 2 Insufficient cpu.
+</code></pre><h4 id="operator-sample-heap-and-resource-configuration">Operator sample heap and resource configuration</h4>
+<p>The operator samples configure non-default minimum and maximum heap sizes for WebLogic Server JVMs of at least 256MB and 512MB respectively. You can edit a sample&rsquo;s template or Domain YAML file <code>resources.env</code> <code>USER_MEM_ARGS</code> to have different values. See <a href="#configuring-heap-size">Configuring heap size</a>.</p>
+<p>Similarly, the operator samples configure CPU and memory resource requests to at least <code>250m</code> and <code>768Mi</code> respectively.</p>
+<p>There&rsquo;s no memory or CPU limit configured by default in samples and so the default QoS for sample WebLogic Server Pod&rsquo;s is <code>burstable</code>.</p>
+<p>If you wish to set resource requests or limits differently on a sample Domain YAML file or template, see <a href="#setting-resource-requests-and-limits-in-a-domain-resource">Setting resource requests and limits in a Domain resource</a>. Or, for samples that generate their Domain resource using an &lsquo;inputs&rsquo; file, see the <code>serverPodMemoryRequest</code>, <code>serverPodMemoryLimit</code>, <code>serverPodCpuRequest</code>, and <code>serverPodCpuLimit</code> parameters in the sample&rsquo;s <code>create-domain.sh</code> input file.</p>
+<h4 id="configuring-cpu-affinity">Configuring CPU affinity</h4>
+<p>A Kubernetes hosted WebLogic Server may exhibit high lock contention in comparison to an on-premises deployment. This lock contention may be due to a lack of CPU cache affinity or scheduling latency when workloads move between different CPU cores.</p>
+<p>In an on-premises deployment, CPU cache affinity, and therefore reduced lock contention, can be achieved by binding WLS Java process to a particular CPU core(s) (using the <code>taskset</code> command).</p>
+<p>In a Kubernetes deployment, similar cache affinity can be achieved by doing the following:</p>
+<ul>
+<li>Ensuring a Pod&rsquo;s CPU resource request and limit are set and equal (to ensure a <code>guaranteed</code> QoS).</li>
+<li>Configuring the <code>kubelet</code> CPU manager policy to be <code>static</code> (the default is <code>none</code>). See <a href="https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies">Control CPU Management Policies on the Node</a>.
+Note that some Kubernetes environments may not allow changing the CPU management policy.</li>
+</ul>
+<h4 id="measuring-jvm-heap-pod-cpu-and-pod-memory">Measuring JVM heap, Pod CPU, and Pod memory</h4>
+<p>You can monitor JVM heap, Pod CPU, and Pod memory using Prometheus and Grafana. Also, see <a href="https://kubernetes.io/docs/tasks/debug-application-cluster/resource-usage-monitoring/">Tools for Monitoring Resources</a> in the Kubernetes documentation.</p>
+<h4 id="references">References</h4>
+<ol>
+<li><a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/">Managing Resources for Containers</a> in the Kubernetes documentation.</li>
+<li><a href="https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource">Assign Memory Resources to Containers and Pods</a> in the Kubernetes documentation.</li>
+<li><a href="https://kubernetes.io/docs/tasks/configure-pod-container/assign-cpu-resource/">Assign CPU Resources to Containers and Pods</a> in the Kubernetes documentation.</li>
+<li><a href="https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/">Pod Priority Preemption</a> in the Kubernetes documentation.</li>
+<li><a href="https://cloud.google.com/blog/products/gcp/kubernetes-best-practices-resource-requests-and-limits">GCP Kubernetes best practices: Resource requests and limits</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/debug-application-cluster/resource-usage-monitoring/">Tools for Monitoring Resources</a> in the Kubernetes documentation.</li>
+<li><a href="https://blog.softwaremill.com/docker-support-in-new-java-8-finally-fd595df0ca54">Blog &ndash; Docker support in Java 8</a>. (Discusses Java container support in general.)</li>
+<li><a href="https://www.magalix.com/blog/kubernetes-patterns-capacity-planning">Blog &ndash; Kubernetes Patterns : Capacity Planning</a></li>
+</ol>
+
+
+<footer class="footline">
 	
-  
+</footer>
+
         
         </div>
         
@@ -5184,6 +5325,7 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
+                    
                 
                 
 
@@ -5196,6 +5338,9 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -5404,6 +5549,7 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
             
                 
+                    
                     
                 
                 
@@ -5428,8 +5574,10 @@ details of how to access our Slack workspace.  After you are logged in, please c
 	 
 	 
 		
+			<a class="nav nav-prev" href="/faq/coherence-requirements/" title="Coherence requirements"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/quickstart/" title="Quick Start" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/faq/newbie/" title="Answers for newcomers" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -5439,19 +5587,19 @@ details of how to access our Slack workspace.  After you are logged in, please c
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1624489125"></script>
-    <script src="/js/perfect-scrollbar.min.js?1624489125"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1624489125"></script>
-    <script src="/js/jquery.sticky.js?1624489125"></script>
-    <script src="/js/featherlight.min.js?1624489125"></script>
-    <script src="/js/highlight.pack.js?1624489125"></script>
+    <script src="/js/clipboard.min.js?1624489124"></script>
+    <script src="/js/perfect-scrollbar.min.js?1624489124"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1624489124"></script>
+    <script src="/js/jquery.sticky.js?1624489124"></script>
+    <script src="/js/featherlight.min.js?1624489124"></script>
+    <script src="/js/highlight.pack.js?1624489124"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1624489125"></script>
-    <script src="/js/learn.js?1624489125"></script>
-    <script src="/js/hugo-learn.js?1624489125"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1624489124"></script>
+    <script src="/js/learn.js?1624489124"></script>
+    <script src="/js/hugo-learn.js?1624489124"></script>
     
         
-            <script src="/mermaid/mermaid.js?1624489125"></script>
+            <script src="/mermaid/mermaid.js?1624489124"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });

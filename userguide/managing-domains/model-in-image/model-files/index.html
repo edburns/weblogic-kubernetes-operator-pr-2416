@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Hugo 0.75.0-DEV" />
-    <meta name="description" content="">
+    <meta name="description" content="Model file requirements, macros, and loading order.">
 
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title> :: WebLogic Kubernetes Operator</title>
+    <title>Model files :: WebLogic Kubernetes Operator</title>
 
     
     <link href="/css/nucleus.css?1624489125" rel="stylesheet">
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/userguide/managing-domains/model-in-image/model-files/">
     <nav id="sidebar" class="">
 
 
@@ -266,7 +266,7 @@
   
     
     <li data-nav-id="/userguide/" title="User Guide" class="dd-item
-        
+        parent
         
         
         ">
@@ -682,7 +682,7 @@
   
     
     <li data-nav-id="/userguide/managing-domains/" title="Manage WebLogic domains" class="dd-item
-        
+        parent
         
         
         ">
@@ -805,7 +805,7 @@
   
     
     <li data-nav-id="/userguide/managing-domains/model-in-image/" title="Model in Image" class="dd-item
-        
+        parent
         
         
         ">
@@ -894,7 +894,7 @@
  
   
     
-      <li data-nav-id="/userguide/managing-domains/model-in-image/model-files/" title="Model files" class="dd-item ">
+      <li data-nav-id="/userguide/managing-domains/model-in-image/model-files/" title="Model files" class="dd-item active">
         <a href="/userguide/managing-domains/model-in-image/model-files/">
         <b> </b>Model files
         
@@ -3243,87 +3243,252 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'></a> > <a href='/userguide/'>User Guide</a> > <a href='/userguide/managing-domains/'>Manage WebLogic domains</a> > <a href='/userguide/managing-domains/model-in-image/'>Model in Image</a> > Model files
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#contents">Contents</a></li>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#sample-model-file">Sample model file</a></li>
+        <li><a href="#important-notes-about-model-in-image-model-files">Important notes about Model in Image model files</a></li>
+        <li><a href="#model-file-naming-and-loading-order">Model file naming and loading order</a></li>
+        <li><a href="#model-file-macros">Model file macros</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Model files
+            </h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h3 id="weblogic-kubernetes-operator">WebLogic Kubernetes Operator</h3>
-<p>The WebLogic Kubernetes Operator (the “operator”) supports running your WebLogic Server and Fusion Middleware Infrastructure domains on Kubernetes, an industry standard, cloud neutral deployment platform. It lets you encapsulate your entire WebLogic Server installation and layered applications into a portable set of cloud neutral images and simple resource description files. You can run them on any on-premises or public cloud that supports Kubernetes where you&rsquo;ve deployed the operator.</p>
-<p>Furthermore, the operator is well suited to CI/CD processes. You can easily inject changes when moving between environments, such as from test to production. For example, you can externally inject database URLs and credentials during deployment or you can inject arbitrary changes to most WebLogic configurations.</p>
-<p>The operator takes advantage of the <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">Kubernetes operator pattern</a>, which means that it uses Kubernetes APIs to provide support for operations, such as: provisioning, lifecycle management, application versioning, product patching, scaling, and security. The operator also enables the use of tooling that is native to this infrastructure for monitoring, logging, tracing, and security.</p>
-<p>You can:</p>
+<h3 id="contents">Contents</h3>
 <ul>
-<li>Deploy an operator that manages all WebLogic domains in all namespaces in a Kubernetes cluster, or that only manages domains in a specific subset of the namespaces, or that manages only domains that are located in the same namespace as the operator. At most, a namespace can be managed by one operator.</li>
-<li>Supply WebLogic domain configuration using:
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#sample-model-file">Sample model file</a></li>
+<li><a href="#important-notes-about-model-in-image-model-files">Important notes about Model in Image model files</a></li>
+<li><a href="#model-file-naming-and-loading-order">Model file naming and loading order</a></li>
+<li><a href="#model-file-macros">Model file macros</a>
 <ul>
-<li><em>Domain in PV</em>: Locates WebLogic domain homes in a Kubernetes PersistentVolume (PV). This PV can reside in an NFS file system or other Kubernetes volume types.</li>
-<li><em>Domain in Image</em>: Includes a WebLogic domain home in a container image.</li>
-<li><em>Model in Image</em>: Includes <a href="https://oracle.github.io/weblogic-deploy-tooling/">WebLogic Deploy Tooling</a> models and archives in a container image.</li>
+<li><a href="#using-secrets-in-model-files">Using secrets in model files</a></li>
+<li><a href="#using-environment-variables-in-model-files">Using environment variables in model files</a></li>
+<li><a href="#combining-secrets-and-environment-variables-in-model-files">Combining secrets and environment variables in model files</a></li>
 </ul>
 </li>
-<li>Configure deployment of WebLogic domains as a Kubernetes resource (using a Kubernetes custom resource definition).</li>
-<li>Override certain aspects of the WebLogic domain configuration; for example, use a different database password for different deployments.</li>
-<li>Start and stop servers and clusters in the domain based on declarative startup parameters and desired states.</li>
-<li>Scale WebLogic domains by starting and stopping Managed Servers on demand, or by integrating with a REST API to initiate scaling based on the WebLogic Diagnostics Framework (WLDF), Prometheus, Grafana, or other rules.</li>
-<li>Expose the WebLogic Server Administration Console outside the Kubernetes cluster, if desired.</li>
-<li>Expose T3 channels outside the Kubernetes domain, if desired.</li>
-<li>Expose HTTP paths on a WebLogic domain outside the Kubernetes domain with load balancing, and automatically update the load balancer when Managed Servers in the WebLogic domain are started or stopped.</li>
-<li>Publish operator and WebLogic Server logs into Elasticsearch and interact with them in Kibana.</li>
 </ul>
+<h3 id="introduction">Introduction</h3>
+<p>This document describes basic Model in Image model file syntax, naming, and macros. For additional information, see the <a href="https://oracle.github.io/weblogic-deploy-tooling/">WebLogic Deploy Tool</a> documentation.</p>
 
-<div class="notices tip" ><p>The fastest way to experience the operator is to follow the <a href="/quickstart/">Quick Start guide</a>, or you can peruse our <a href="/userguide/">documentation</a>, read our <a href="https://blogs.oracle.com/weblogicserver/how-to-weblogic-server-on-kubernetes">blogs</a>, or try out the <a href="/samples/simple/">samples</a>.
-Also, you can step through the <a href="https://github.com/oracle/weblogic-kubernetes-operator/blob/main/kubernetes/hands-on-lab/README.md">Tutorial</a>
-using the operator to deploy and run a WebLogic domain container-packaged web application on an Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE) cluster.</p>
+<div class="notices tip" ><p>The WDT <a href="https://oracle.github.io/weblogic-deploy-tooling/userguide/tools/discover/">Discover Domain Tool</a> is particularly useful for generating model files from an existing domain home.</p>
 </div>
 
-<hr>
-<h4 id="current-production-release">Current production release</h4>
-<p>The <a href="https://github.com/oracle/weblogic-kubernetes-operator/releases">current release of the operator</a> is 3.2.3.
-This release was published on May 21, 2021. See the operator prerequisites and supported environments <a href="/userguide/introduction/introduction/#operator-prerequisites">here</a>.</p>
-<hr>
-<h4 id="recent-changes-and-known-issues">Recent changes and known issues</h4>
-<p>See the <a href="/release-notes/">Release Notes</a>  for recent changes to the operator and known issues.</p>
-<h4 id="operator-earlier-versions">Operator earlier versions</h4>
-<p>Documentation for prior releases of the operator: <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.5/">2.5.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.6/">2.6.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.0/">3.0.x</a>, and <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.1/">3.1.x</a>.</p>
-<h4 id="backward-compatibility-guidelines">Backward compatibility guidelines</h4>
-<p>Starting from the 2.0.1 release, operator releases are backward compatible with respect to the domain
-resource schema, operator Helm chart input values, configuration overrides template, Kubernetes resources created
-by the operator Helm chart, Kubernetes resources created by the operator, and the operator REST interface. We intend to
-maintain compatibility for three releases, except in the case of a clearly communicated deprecated feature, which will be
-maintained for one release after a replacement is available.</p>
-<h3 id="about-this-documentation">About this documentation</h3>
-<p>This documentation includes sections targeted to different audiences.  To help you find what you are looking for more easily,
-please consult this table of contents:</p>
+<h3 id="sample-model-file">Sample model file</h3>
+<p>Here&rsquo;s an example of a model YAML file that defines a WebLogic Server Administration Server and dynamic cluster.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">domainInfo</span>:
+  <span style="color:#66d9ef">AdminUserName</span>: <span style="color:#e6db74">&#39;@@SECRET:__weblogic-credentials__:username@@&#39;</span>
+  <span style="color:#66d9ef">AdminPassword</span>: <span style="color:#e6db74">&#39;@@SECRET:__weblogic-credentials__:password@@&#39;</span>
+  <span style="color:#66d9ef">ServerStartMode</span>: <span style="color:#e6db74">&#39;prod&#39;</span>
+
+<span style="color:#66d9ef">topology</span>:
+  <span style="color:#66d9ef">Name</span>: <span style="color:#e6db74">&#39;@@ENV:DOMAIN_UID@@&#39;</span>
+  <span style="color:#66d9ef">AdminServerName</span>: <span style="color:#e6db74">&#34;admin-server&#34;</span>
+  <span style="color:#66d9ef">Cluster</span>:
+    <span style="color:#e6db74">&#34;cluster-1&#34;</span>:
+      <span style="color:#66d9ef">DynamicServers</span>:
+        <span style="color:#66d9ef">ServerTemplate</span>:  <span style="color:#e6db74">&#34;cluster-1-template&#34;</span>
+        <span style="color:#66d9ef">ServerNamePrefix</span>: <span style="color:#e6db74">&#34;managed-server&#34;</span>
+        <span style="color:#66d9ef">DynamicClusterSize</span>: <span style="color:#ae81ff">5</span>
+        <span style="color:#66d9ef">MaxDynamicClusterSize</span>: <span style="color:#ae81ff">5</span>
+        <span style="color:#66d9ef">CalculatedListenPorts</span>: <span style="color:#66d9ef">false</span>
+  <span style="color:#66d9ef">Server</span>:
+    <span style="color:#e6db74">&#34;admin-server&#34;</span>:
+      <span style="color:#66d9ef">ListenPort</span>: <span style="color:#ae81ff">7001</span>
+  <span style="color:#66d9ef">ServerTemplate</span>:
+    <span style="color:#e6db74">&#34;cluster-1-template&#34;</span>:
+      <span style="color:#66d9ef">Cluster</span>: <span style="color:#e6db74">&#34;cluster-1&#34;</span>
+      <span style="color:#66d9ef">ListenPort</span>: <span style="color:#ae81ff">8001</span>
+</code></pre></div><p>This sample model file:</p>
 <ul>
-<li>The <a href="/quickstart/">Quick Start guide</a> explains how to quickly get the operator running, using the defaults, nothing special.</li>
-<li>The <a href="/userguide/">User guide</a> contains detailed usage information, including how to install and configure the operator,
-and how to use it to create and manage WebLogic domains.</li>
-<li>The <a href="/samples/simple/">Samples</a> provide detailed example code and instructions that show you how to perform
-various tasks related to the operator.</li>
-<li>The <a href="/developerguide/">Developer guide</a> provides details for people who want to understand how the operator is built, tested, and so on. Those who wish to <a href="/developerguide/contributing/">contribute</a> to the operator code will find useful information here.</li>
-<li><a href="/reference/">Reference</a> describes domain resource attributes and the operator REST API.</li>
-<li><a href="/security/">Security</a> describes Kubernetes, WebLogic, and OpenShift security requirements.</li>
-<li><a href="/faq/">Frequently asked questions</a> provides answers to common questions.</li>
+<li>Includes a WebLogic credentials stanza that is required by Model in Image.</li>
+<li>Derives its domain name from the predefined environment variable <code>DOMAIN_UID</code>, but note that this is not required.</li>
 </ul>
-<h3 id="oracle-support">Oracle support</h3>
-<p>To access Oracle support for running WebLogic Server domains on Kubernetes platforms, see <a href="https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=208317433106215&amp;id=2349228.1&amp;_afrWindowMode=0&amp;_adf.ctrl-state=c2nhai8p3_4">WebLogic Server Certifications on Kubernetes in My Oracle Support Doc ID 2349228.1</a>.</p>
-<h3 id="need-more-help-have-a-suggestion-come-and-say-hello">Need more help? Have a suggestion? Come and say, &ldquo;Hello!&rdquo;</h3>
-<p>We have a <strong>public Slack channel</strong> where you can get in touch with us to ask questions about using the operator or give us feedback
-or suggestions about what features and improvements you would like to see.  We would love to hear from you. To join our channel,
-please <a href="https://weblogic-slack-inviter.herokuapp.com/">visit this site to get an invitation</a>.  The invitation email will include
-details of how to access our Slack workspace.  After you are logged in, please come to <code>#operator</code> and say, &ldquo;hello!&rdquo;</p>
+<p>For a description of model file macro references to secrets and environment variables, see <a href="#model-file-macros">Model file macros</a>.</p>
+<h3 id="important-notes-about-model-in-image-model-files">Important notes about Model in Image model files</h3>
+<ul>
+<li>
+<p>Using model file macros</p>
+<ul>
+<li>
+<p>You can use model macros to reference arbitrary secrets from model files. This is recommended for handling mutable values such as database user names, passwords, and URLs. See <a href="#using-secrets-in-model-files">Using secrets in model files</a>.</p>
+<ul>
+<li>
+<p>All password fields in a model should use a secret macro. Passwords should not be directly included in property or model files because the files may appear in logs or debugging.</p>
+</li>
+<li>
+<p>Model files encrypted with the WDT <a href="https://oracle.github.io/weblogic-deploy-tooling/userguide/tools/encrypt/">Encrypt Model Tool</a> are not supported. Use secrets instead.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>You can use model macros to reference arbitrary environment variables from model files. This is useful for handling plain text mutable values that you can define using an <code>env</code> stanza in your Domain YAML file, and is also useful for accessing the built in <code>DOMAIN_UID</code> environment variable. See <a href="#using-environment-variables-in-model-files">Using environment variables in model files</a>.</p>
+</li>
+<li>
+<p>For most models, it&rsquo;s useful to minimize or eliminate the usage of model variable files (also known as property files) and use secrets or environment variables instead.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>A model <strong>must</strong> contain a <code>domainInfo</code> stanza that references your WebLogic administrative credentials. You can use the <code>@@SECRET</code> macro with the reserved secret name <code>__weblogic-credentials__</code> to reference your Domain YAML file&rsquo;s WebLogic credentials secret for this purpose. For example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">domainInfo</span>:
+  <span style="color:#66d9ef">AdminUserName</span>: <span style="color:#e6db74">&#39;@@SECRET:__weblogic-credentials__:username@@&#39;</span>
+  <span style="color:#66d9ef">AdminPassword</span>: <span style="color:#e6db74">&#39;@@SECRET:__weblogic-credentials__:password@@&#39;</span>
+</code></pre></div></li>
+<li>
+<p>A JRF domain type model <strong>must</strong> contain a <code>domainInfo.RCUDbInfo</code> stanza; see <a href="/userguide/managing-domains/model-in-image/usage/#requirements-for-jrf-domain-types">Requirements for JRF domain types</a>.</p>
+</li>
+<li>
+<p>You can control the order that WDT uses to load your model files, see <a href="#model-file-naming-and-loading-order">Model file naming and loading order</a>.</p>
+</li>
+</ul>
+<h3 id="model-file-naming-and-loading-order">Model file naming and loading order</h3>
+<p>Refer to this section if you need to control the order in which your model files are loaded.  The order is important when two or more model files refer to the same configuration, because the last model that&rsquo;s loaded has the highest precedence.</p>
+<p>During domain home creation, model, and property files are first loaded from the <code>configuration.models.modelHome</code> directory within the image, which defaults to <code>/u01/wdt/models</code>, and are then loaded from the optional WDT ConfigMap, described in <a href="/userguide/managing-domains/model-in-image/usage/#optional-wdt-model-configmap">Optional WDT model ConfigMap</a>.</p>
+<p>The loading order within each of these locations is first determined using the convention <code>filename.##.yaml</code> and <code>filename.##.properties</code>, where <code>##</code> are digits that specify the desired order when sorted numerically. Additional details:</p>
+<ul>
+<li>Embedding a <code>.##.</code> in a file name is optional.
+<ul>
+<li>When present, it must be placed just before the <code>properties</code> or <code>yaml</code> extension in order for it to take precedence over alphabetical precedence.</li>
+<li>The precedence of file names that include more than one <code>.##.</code> is undefined.</li>
+<li>The number can be any integer greater than or equal to zero.</li>
+</ul>
+</li>
+<li>File names that don&rsquo;t include <code>.##.</code> sort <em>before</em> other files as if they implicitly have the lowest possible <code>.##.</code></li>
+<li>If two files share the same number, the loading order is determined alphabetically as a tie-breaker.</li>
+</ul>
+<p>If an image file and ConfigMap file both have the same name, then both files are loaded.</p>
+<p>For example, if you have these files in the model home directory <code>/u01/wdt/models</code>:</p>
+<pre><code>jdbc.20.yaml
+main-model.10.yaml
+my-model.10.yaml
+y.yaml  
+</code></pre><p>And you have these files in the ConfigMap:</p>
+<pre><code>jdbc-dev-urlprops.10.yaml
+z.yaml
+</code></pre><p>Then the combined model files list is passed to the WebLogic Deploy Tool as:</p>
+<pre><code>y.yaml,main-model.10.yaml,my-model.10.yaml,jdbc.20.yaml,z.yaml,jdbc-dev-urlprops.10.yaml
+</code></pre><p>Property files (ending in <code>.properties</code>) use the same sorting algorithm, but they are appended together into a single file prior to passing them to the WebLogic Deploy Tool.</p>
+<h3 id="model-file-macros">Model file macros</h3>
+<h4 id="using-secrets-in-model-files">Using secrets in model files</h4>
+<p>You can use WDT model <code>@@SECRET</code> macros to reference the WebLogic administrator <code>username</code> and <code>password</code> keys that are stored in a Kubernetes Secret and to optionally reference additional secrets. Here is the macro pattern for accessing these secrets:</p>
+<table>
+<thead>
+<tr>
+<th>Domain Resource Attribute</th>
+<th>Corresponding WDT Model <code>@@SECRET</code> Macro</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>webLogicCredentialsSecret</code></td>
+<td><code>@@SECRET:__weblogic-credentials__:username@@</code> and <code>@@SECRET:__weblogic-credentials__:password@@</code></td>
+</tr>
+<tr>
+<td><code>configuration.secrets</code></td>
+<td><code>@@SECRET:mysecret:mykey@@</code></td>
+</tr>
+</tbody>
+</table>
+<p>For example, you can reference the WebLogic credential user name using <code>@@SECRET:__weblogic-credentials__:username@@</code>, and you can reference a custom secret <code>mysecret</code> with key <code>mykey</code> using <code>@@SECRET:mysecret:mykey@@</code>.</p>
+<p>Any secrets that are referenced by an <code>@@SECRET</code> macro must be deployed to the same namespace as your Domain, and must be referenced in your Domain YAML file using the <code>weblogicCredentialsSecret</code> and <code>configuration.secrets</code> fields.</p>
+<p>Here&rsquo;s a sample snippet from a Domain YAML file that sets a <code>webLogicCredentialsSecret</code> and two custom secrets <code>my-custom-secret1</code> and <code>my-custom-secret2</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">...
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">webLogicCredentialsSecret</span>:
+    <span style="color:#66d9ef">name</span>: my-weblogic-credentials-secret
+  <span style="color:#66d9ef">configuration</span>:
+    <span style="color:#66d9ef">secrets</span>: [ my-custom-secret1,my-custom-secret2 ]
+...
+</code></pre></div><h4 id="using-environment-variables-in-model-files">Using environment variables in model files</h4>
+<p>You can reference operator environment variables in model files. This includes any that you define yourself in your Domain YAML file using <code>domain.spec.serverPod.env</code> or <code>domain.spec.adminServer.serverPod.env</code>, or the built-in <code>DOMAIN_UID</code> environment variable.</p>
+<p>For example, the <code>@@ENV:DOMAIN_UID@@</code> macro resolves to the current domain&rsquo;s domain UID.</p>
+<h4 id="combining-secrets-and-environment-variables-in-model-files">Combining secrets and environment variables in model files</h4>
+<p>You can embed an environment variable macro in a secret macro. This is useful for referencing secrets that you&rsquo;ve named based on your domain&rsquo;s <code>domainUID</code>.</p>
+<p>For example, if your <code>domainUID</code> is <code>domain1</code>, then the macro <code>@@SECRET:@@ENV:DOMAIN_UID@@-super-double-secret:mykey@@</code> resolves to the value stored in <code>mykey</code> for secret <code>domain1-super-double-secret</code>.</p>
+
+
+<footer class="footline">
 	
-  
+</footer>
+
         
         </div>
         
@@ -3486,164 +3651,6 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -3660,167 +3667,8 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -3894,10 +3742,343 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
         
                     
+            
+        
+                    
                         
             
             
                 
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -5428,8 +5609,10 @@ details of how to access our Slack workspace.  After you are logged in, please c
 	 
 	 
 		
+			<a class="nav nav-prev" href="/userguide/managing-domains/model-in-image/common-mounts/" title="Common mounts"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/quickstart/" title="Quick Start" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/userguide/managing-domains/model-in-image/runtime-updates/" title="Runtime updates" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

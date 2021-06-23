@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Hugo 0.75.0-DEV" />
-    <meta name="description" content="">
+    <meta name="description" content="Debugging a deployed Model in Image domain.">
 
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title> :: WebLogic Kubernetes Operator</title>
+    <title>Debugging :: WebLogic Kubernetes Operator</title>
 
     
     <link href="/css/nucleus.css?1624489125" rel="stylesheet">
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/userguide/managing-domains/model-in-image/debugging/">
     <nav id="sidebar" class="">
 
 
@@ -266,7 +266,7 @@
   
     
     <li data-nav-id="/userguide/" title="User Guide" class="dd-item
-        
+        parent
         
         
         ">
@@ -682,7 +682,7 @@
   
     
     <li data-nav-id="/userguide/managing-domains/" title="Manage WebLogic domains" class="dd-item
-        
+        parent
         
         
         ">
@@ -805,7 +805,7 @@
   
     
     <li data-nav-id="/userguide/managing-domains/model-in-image/" title="Model in Image" class="dd-item
-        
+        parent
         
         
         ">
@@ -936,7 +936,7 @@
  
   
     
-      <li data-nav-id="/userguide/managing-domains/model-in-image/debugging/" title="Debugging" class="dd-item ">
+      <li data-nav-id="/userguide/managing-domains/model-in-image/debugging/" title="Debugging" class="dd-item active">
         <a href="/userguide/managing-domains/model-in-image/debugging/">
         <b> </b>Debugging
         
@@ -3243,87 +3243,183 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'></a> > <a href='/userguide/'>User Guide</a> > <a href='/userguide/managing-domains/'>Manage WebLogic domains</a> > <a href='/userguide/managing-domains/model-in-image/'>Model in Image</a> > Debugging
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#contents">Contents</a></li>
+        <li><a href="#check-the-domain-status">Check the Domain status</a></li>
+        <li><a href="#check-the-domain-events">Check the Domain events</a></li>
+        <li><a href="#check-the-introspector-job">Check the introspector job</a></li>
+        <li><a href="#check-the-weblogic-server-pods">Check the WebLogic Server pods</a></li>
+        <li><a href="#check-the-operator-log">Check the operator log</a></li>
+        <li><a href="#check-the-faq">Check the FAQ</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Debugging
+            </h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h3 id="weblogic-kubernetes-operator">WebLogic Kubernetes Operator</h3>
-<p>The WebLogic Kubernetes Operator (the “operator”) supports running your WebLogic Server and Fusion Middleware Infrastructure domains on Kubernetes, an industry standard, cloud neutral deployment platform. It lets you encapsulate your entire WebLogic Server installation and layered applications into a portable set of cloud neutral images and simple resource description files. You can run them on any on-premises or public cloud that supports Kubernetes where you&rsquo;ve deployed the operator.</p>
-<p>Furthermore, the operator is well suited to CI/CD processes. You can easily inject changes when moving between environments, such as from test to production. For example, you can externally inject database URLs and credentials during deployment or you can inject arbitrary changes to most WebLogic configurations.</p>
-<p>The operator takes advantage of the <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">Kubernetes operator pattern</a>, which means that it uses Kubernetes APIs to provide support for operations, such as: provisioning, lifecycle management, application versioning, product patching, scaling, and security. The operator also enables the use of tooling that is native to this infrastructure for monitoring, logging, tracing, and security.</p>
-<p>You can:</p>
+<p>Here are some suggestions for debugging problems with Model in Image after your Domain YAML file is deployed.</p>
+<h3 id="contents">Contents</h3>
 <ul>
-<li>Deploy an operator that manages all WebLogic domains in all namespaces in a Kubernetes cluster, or that only manages domains in a specific subset of the namespaces, or that manages only domains that are located in the same namespace as the operator. At most, a namespace can be managed by one operator.</li>
-<li>Supply WebLogic domain configuration using:
-<ul>
-<li><em>Domain in PV</em>: Locates WebLogic domain homes in a Kubernetes PersistentVolume (PV). This PV can reside in an NFS file system or other Kubernetes volume types.</li>
-<li><em>Domain in Image</em>: Includes a WebLogic domain home in a container image.</li>
-<li><em>Model in Image</em>: Includes <a href="https://oracle.github.io/weblogic-deploy-tooling/">WebLogic Deploy Tooling</a> models and archives in a container image.</li>
+<li><a href="#check-the-domain-status">Check the Domain status</a></li>
+<li><a href="#check-the-domain-events">Check the Domain events</a></li>
+<li><a href="#check-the-introspector-job">Check the introspector job</a></li>
+<li><a href="#check-the-weblogic-server-pods">Check the WebLogic Server pods</a></li>
+<li><a href="#check-the-operator-log">Check the operator log</a></li>
+<li><a href="#check-the-faq">Check the FAQ</a></li>
 </ul>
-</li>
-<li>Configure deployment of WebLogic domains as a Kubernetes resource (using a Kubernetes custom resource definition).</li>
-<li>Override certain aspects of the WebLogic domain configuration; for example, use a different database password for different deployments.</li>
-<li>Start and stop servers and clusters in the domain based on declarative startup parameters and desired states.</li>
-<li>Scale WebLogic domains by starting and stopping Managed Servers on demand, or by integrating with a REST API to initiate scaling based on the WebLogic Diagnostics Framework (WLDF), Prometheus, Grafana, or other rules.</li>
-<li>Expose the WebLogic Server Administration Console outside the Kubernetes cluster, if desired.</li>
-<li>Expose T3 channels outside the Kubernetes domain, if desired.</li>
-<li>Expose HTTP paths on a WebLogic domain outside the Kubernetes domain with load balancing, and automatically update the load balancer when Managed Servers in the WebLogic domain are started or stopped.</li>
-<li>Publish operator and WebLogic Server logs into Elasticsearch and interact with them in Kibana.</li>
-</ul>
+<h3 id="check-the-domain-status">Check the Domain status</h3>
+<p>To check the Domain status: <code>kubectl -n MY_NAMESPACE describe domain MY_DOMAINUID</code>.</p>
+<p>If you are performing an online update to a running domain&rsquo;s WebLogic configuration,
+then see <a href="/userguide/managing-domains/model-in-image/runtime-updates/#online-update-status-and-labels">Online update status and labels</a>.</p>
+<h3 id="check-the-domain-events">Check the Domain events</h3>
+<p>To check events for the Domain: <code>kubectl -n MY_NAMESPACE get events --sort-by='.lastTimestamp'</code>.</p>
+<p>For more information, see <a href="/userguide/managing-domains/domain-events/">Domain events</a>.</p>
+<h3 id="check-the-introspector-job">Check the introspector job</h3>
+<p>If your introspector job failed, then examine the <code>kubectl describe</code> of the job and its pod, and also examine its log, if one exists.</p>
 
-<div class="notices tip" ><p>The fastest way to experience the operator is to follow the <a href="/quickstart/">Quick Start guide</a>, or you can peruse our <a href="/userguide/">documentation</a>, read our <a href="https://blogs.oracle.com/weblogicserver/how-to-weblogic-server-on-kubernetes">blogs</a>, or try out the <a href="/samples/simple/">samples</a>.
-Also, you can step through the <a href="https://github.com/oracle/weblogic-kubernetes-operator/blob/main/kubernetes/hands-on-lab/README.md">Tutorial</a>
-using the operator to deploy and run a WebLogic domain container-packaged web application on an Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE) cluster.</p>
+<div class="notices tip" ><p>To prevent the introspector job from retrying while you are debugging a failure, set the operator&rsquo;s Helm <code>domainPresenceFailureRetryMaxCount</code> parameter to <code>0</code>. For more information, see  <a href="/userguide/managing-operators/using-the-operator/using-helm/">Manage operators -&gt; Use the operator -&gt; Use Helm</a>.</p>
 </div>
 
-<hr>
-<h4 id="current-production-release">Current production release</h4>
-<p>The <a href="https://github.com/oracle/weblogic-kubernetes-operator/releases">current release of the operator</a> is 3.2.3.
-This release was published on May 21, 2021. See the operator prerequisites and supported environments <a href="/userguide/introduction/introduction/#operator-prerequisites">here</a>.</p>
-<hr>
-<h4 id="recent-changes-and-known-issues">Recent changes and known issues</h4>
-<p>See the <a href="/release-notes/">Release Notes</a>  for recent changes to the operator and known issues.</p>
-<h4 id="operator-earlier-versions">Operator earlier versions</h4>
-<p>Documentation for prior releases of the operator: <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.5/">2.5.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.6/">2.6.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.0/">3.0.x</a>, and <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.1/">3.1.x</a>.</p>
-<h4 id="backward-compatibility-guidelines">Backward compatibility guidelines</h4>
-<p>Starting from the 2.0.1 release, operator releases are backward compatible with respect to the domain
-resource schema, operator Helm chart input values, configuration overrides template, Kubernetes resources created
-by the operator Helm chart, Kubernetes resources created by the operator, and the operator REST interface. We intend to
-maintain compatibility for three releases, except in the case of a clearly communicated deprecated feature, which will be
-maintained for one release after a replacement is available.</p>
-<h3 id="about-this-documentation">About this documentation</h3>
-<p>This documentation includes sections targeted to different audiences.  To help you find what you are looking for more easily,
-please consult this table of contents:</p>
+<p>For example, assuming your domain UID is <code>sample-domain1</code> and your domain namespace is <code>sample-domain1-ns</code>:</p>
+<pre><code>$ # here we see a failed introspector job pod among the domain's pods:
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl -n sample-domain1-ns get pods -l weblogic.domainUID<span style="color:#f92672">=</span>sample-domain1
+</code></pre></div><pre><code>NAME                                         READY   STATUS    RESTARTS   AGE
+sample-domain1-admin-server                  1/1     Running   0          19h
+sample-domain1-introspector-v2l7k            0/1     Error     0          75m
+sample-domain1-managed-server1               1/1     Running   0          19h
+sample-domain1-managed-server2               1/1     Running   0          19h
+
+$ # let's look at the job's describe
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl -n sample-domain1-ns describe job/sample-domain1-introspector
+
+</code></pre></div><pre><code>$ # now let's look at the job's pod describe, in particular look at its 'events'
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl -n sample-domain1-ns describe pod/sample-domain1-introspector-v2l7k
+</code></pre></div><pre><code>$ # finally let's look at job's pod's log
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl -n sample-domain1-ns logs job/sample-domain1-introspector
+</code></pre></div><pre><code>$ # alternative log command (will have same output as previous)
+# kubectl -n sample-domain1-ns logs pod/sample-domain1-introspector-v2l7k
+
+A common reason for the introspector job to fail is because of an error in a model file. Here's some sample log output from an introspector job that shows such a failure:
+...
+
+SEVERE Messages:
+      1. WLSDPLY-05007: Model file /u01/wdt/models/model1.yaml,/weblogic-operator/wdt-config-map/..2020_03_19_15_43_05.993607882/datasource.yaml contains an unrecognized section: TYPOresources. The recognized sections are domainInfo, topology, resources, appDeployments, kubernetes
+</code></pre>
+<div class="notices tip" ><p>The introspector log is mirrored to the Domain resource <code>spec.logHome</code> directory
+when <code>spec.logHome</code> is configured and <code>spec.logHomeEnabled</code> is true.</p>
+</div>
+
+
+<div class="notices tip" ><p>If a model file error references a model file in your <code>spec.configuration.model.configMap</code>, then you can correct the error by redeploying the ConfigMap with a corrected model file and then initiating a domain restart or roll. Similarly, if a model file error references a model file in your model image, then you can correct the error by deploying a corrected image, modifying your Domain YAML file to reference the new image, and then initiating a domain restart or roll.</p>
+</div>
+
+<h3 id="check-the-weblogic-server-pods">Check the WebLogic Server pods</h3>
+<p>If your introspector job succeeded, then there will be no introspector job or pod, the operator will create a <code>MY_DOMAIN_UID-weblogic-domain-introspect-cm</code> ConfigMap for your domain, and the operator will then run the domain&rsquo;s WebLogic Server pods.</p>
+<p>If <code>kubectl -n MY_NAMESPACE get pods</code> reveals that your WebLogic Server pods have errors, then use <code>kubectl -n MY_NAMESPACE describe pod POD_NAME</code>, <code>kubectl -n MY_NAMESPACE logs POD_NAME</code>, and/or <code>kubectl -n MY_NAMESPACE get events --sort-by='.lastTimestamp'</code> to debug.</p>
+<p>If you are performing an online update to a running domain&rsquo;s WebLogic configuration,
+then see <a href="/userguide/managing-domains/model-in-image/runtime-updates/#online-update-status-and-labels">Online update status and labels</a>.</p>
+<h3 id="check-the-operator-log">Check the operator log</h3>
+<p>Look for <code>SEVERE</code> and <code>ERROR</code> level messages in your operator logs. For example:</p>
+<pre><code>$ # find your operator
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl get deployment --all-namespaces<span style="color:#f92672">=</span>true -l weblogic.operatorName
+</code></pre></div><pre><code>NAMESPACE                     NAME                DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+sample-weblogic-operator-ns   weblogic-operator   1         1         1            1           20h
+
+$ # grep operator log for SEVERE and WARNING level messages
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl logs deployment/weblogic-operator -n sample-weblogic-operator-ns  <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  | egrep -e <span style="color:#e6db74">&#34;level...(SEVERE|WARNING)&#34;</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{<span style="color:#f92672">&#34;timestamp&#34;</span>:<span style="color:#e6db74">&#34;03-18-2020T20:42:21.702+0000&#34;</span>,<span style="color:#f92672">&#34;thread&#34;</span>:<span style="color:#ae81ff">11</span>,<span style="color:#f92672">&#34;fiber&#34;</span>:<span style="color:#e6db74">&#34;&#34;</span>,<span style="color:#f92672">&#34;domainUID&#34;</span>:<span style="color:#e6db74">&#34;&#34;</span>,<span style="color:#f92672">&#34;level&#34;</span>:<span style="color:#e6db74">&#34;WARNING&#34;</span>,<span style="color:#f92672">&#34;class&#34;</span>:<span style="color:#e6db74">&#34;oracle.kubernetes.operator.helpers.HealthCheckHelper&#34;</span>,<span style="color:#f92672">&#34;method&#34;</span>:<span style="color:#e6db74">&#34;createAndValidateKubernetesVersion&#34;</span>,<span style="color:#f92672">&#34;timeInMillis&#34;</span>:<span style="color:#ae81ff">1584564141702</span>,<span style="color:#f92672">&#34;message&#34;</span>:<span style="color:#e6db74">&#34;Kubernetes minimum version check failed. Supported versions are 1.13.5+,1.14.8+,1.15.7+, but found version v1.12.3&#34;</span>,<span style="color:#f92672">&#34;exception&#34;</span>:<span style="color:#e6db74">&#34;&#34;</span>,<span style="color:#f92672">&#34;code&#34;</span>:<span style="color:#e6db74">&#34;&#34;</span>,<span style="color:#f92672">&#34;headers&#34;</span>:{},<span style="color:#f92672">&#34;body&#34;</span>:<span style="color:#e6db74">&#34;&#34;</span>}
+</code></pre></div><p>You can filter out operator log messages specific to your <code>domainUID</code> by piping the above logs command through <code>grep &quot;domainUID...MY_DOMAINUID&quot;</code>. For example, assuming your operator is running in namespace <code>sample-weblogic-operator-ns</code> and your domain UID is <code>sample-domain1</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl logs deployment/weblogic-operator -n sample-weblogic-operator-ns  <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  | egrep -e <span style="color:#e6db74">&#34;level...(SEVERE|WARNING)&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  | grep <span style="color:#e6db74">&#34;domainUID...sample-domain1&#34;</span>
+</code></pre></div><h3 id="check-the-faq">Check the FAQ</h3>
+<p>Common issues that have corresponding FAQ entries include:</p>
 <ul>
-<li>The <a href="/quickstart/">Quick Start guide</a> explains how to quickly get the operator running, using the defaults, nothing special.</li>
-<li>The <a href="/userguide/">User guide</a> contains detailed usage information, including how to install and configure the operator,
-and how to use it to create and manage WebLogic domains.</li>
-<li>The <a href="/samples/simple/">Samples</a> provide detailed example code and instructions that show you how to perform
-various tasks related to the operator.</li>
-<li>The <a href="/developerguide/">Developer guide</a> provides details for people who want to understand how the operator is built, tested, and so on. Those who wish to <a href="/developerguide/contributing/">contribute</a> to the operator code will find useful information here.</li>
-<li><a href="/reference/">Reference</a> describes domain resource attributes and the operator REST API.</li>
-<li><a href="/security/">Security</a> describes Kubernetes, WebLogic, and OpenShift security requirements.</li>
-<li><a href="/faq/">Frequently asked questions</a> provides answers to common questions.</li>
+<li>When a Domain YAML file is deployed and no introspector or WebLogic Server pods start, plus the operator log contains no mention of the domain, then check to make sure that the Domain&rsquo;s namespace has been set up to be monitored by an operator. See the <a href="/faq/namespace-management/">Managing domain namespaces FAQ</a>.</li>
+<li>If a <code>describe</code> of an introspector job or WebLogic Server pod reveals image access errors, see the <a href="/faq/cannot-pull-image/">Cannot pull image FAQ</a>.</li>
 </ul>
-<h3 id="oracle-support">Oracle support</h3>
-<p>To access Oracle support for running WebLogic Server domains on Kubernetes platforms, see <a href="https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=208317433106215&amp;id=2349228.1&amp;_afrWindowMode=0&amp;_adf.ctrl-state=c2nhai8p3_4">WebLogic Server Certifications on Kubernetes in My Oracle Support Doc ID 2349228.1</a>.</p>
-<h3 id="need-more-help-have-a-suggestion-come-and-say-hello">Need more help? Have a suggestion? Come and say, &ldquo;Hello!&rdquo;</h3>
-<p>We have a <strong>public Slack channel</strong> where you can get in touch with us to ask questions about using the operator or give us feedback
-or suggestions about what features and improvements you would like to see.  We would love to hear from you. To join our channel,
-please <a href="https://weblogic-slack-inviter.herokuapp.com/">visit this site to get an invitation</a>.  The invitation email will include
-details of how to access our Slack workspace.  After you are logged in, please come to <code>#operator</code> and say, &ldquo;hello!&rdquo;</p>
+
+
+<footer class="footline">
 	
-  
+</footer>
+
         
         </div>
         
@@ -3486,164 +3582,6 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -3660,167 +3598,8 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -3894,6 +3673,117 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
         
                     
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
                         
             
             
@@ -3929,10 +3819,232 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
         
                     
+            
+        
+                    
                         
             
             
                 
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -5428,8 +5540,10 @@ details of how to access our Slack workspace.  After you are logged in, please c
 	 
 	 
 		
+			<a class="nav nav-prev" href="/userguide/managing-domains/model-in-image/runtime-updates/" title="Runtime updates"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/quickstart/" title="Quick Start" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/userguide/managing-domains/configoverrides/" title="Configuration overrides" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

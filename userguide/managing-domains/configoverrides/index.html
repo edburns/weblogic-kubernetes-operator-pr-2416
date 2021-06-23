@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title> :: WebLogic Kubernetes Operator</title>
+    <title>Configuration overrides :: WebLogic Kubernetes Operator</title>
 
     
     <link href="/css/nucleus.css?1624489125" rel="stylesheet">
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/userguide/managing-domains/configoverrides/">
     <nav id="sidebar" class="">
 
 
@@ -266,7 +266,7 @@
   
     
     <li data-nav-id="/userguide/" title="User Guide" class="dd-item
-        
+        parent
         
         
         ">
@@ -682,7 +682,7 @@
   
     
     <li data-nav-id="/userguide/managing-domains/" title="Manage WebLogic domains" class="dd-item
-        
+        parent
         
         
         ">
@@ -967,8 +967,8 @@
   
     
     <li data-nav-id="/userguide/managing-domains/configoverrides/" title="Configuration overrides" class="dd-item
-        
-        
+        parent
+        active
         
         ">
       <a href="/userguide/managing-domains/configoverrides/">
@@ -3243,87 +3243,736 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'></a> > <a href='/userguide/'>User Guide</a> > <a href='/userguide/managing-domains/'>Manage WebLogic domains</a> > Configuration overrides
+          
+        
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#typical-overrides">Typical overrides</a></li>
+        <li><a href="#unsupported-overrides">Unsupported overrides</a></li>
+        <li><a href="#overrides-distribution">Overrides distribution</a></li>
+        <li><a href="#override-template-names-and-syntax">Override template names and syntax</a></li>
+        <li><a href="#step-by-step-guide">Step-by-step guide</a></li>
+        <li><a href="#debugging">Debugging</a></li>
+        <li><a href="#internal-design-flow">Internal design flow</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Configuration overrides
+            </h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h3 id="weblogic-kubernetes-operator">WebLogic Kubernetes Operator</h3>
-<p>The WebLogic Kubernetes Operator (the “operator”) supports running your WebLogic Server and Fusion Middleware Infrastructure domains on Kubernetes, an industry standard, cloud neutral deployment platform. It lets you encapsulate your entire WebLogic Server installation and layered applications into a portable set of cloud neutral images and simple resource description files. You can run them on any on-premises or public cloud that supports Kubernetes where you&rsquo;ve deployed the operator.</p>
-<p>Furthermore, the operator is well suited to CI/CD processes. You can easily inject changes when moving between environments, such as from test to production. For example, you can externally inject database URLs and credentials during deployment or you can inject arbitrary changes to most WebLogic configurations.</p>
-<p>The operator takes advantage of the <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">Kubernetes operator pattern</a>, which means that it uses Kubernetes APIs to provide support for operations, such as: provisioning, lifecycle management, application versioning, product patching, scaling, and security. The operator also enables the use of tooling that is native to this infrastructure for monitoring, logging, tracing, and security.</p>
-<p>You can:</p>
+
+	<h4 id="contents">Contents</h4>
 <ul>
-<li>Deploy an operator that manages all WebLogic domains in all namespaces in a Kubernetes cluster, or that only manages domains in a specific subset of the namespaces, or that manages only domains that are located in the same namespace as the operator. At most, a namespace can be managed by one operator.</li>
-<li>Supply WebLogic domain configuration using:
+<li><a href="#overview">Overview</a></li>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#typical-overrides">Typical overrides</a></li>
+<li><a href="#unsupported-overrides">Unsupported overrides</a></li>
+<li><a href="#overrides-distribution">Overrides distribution</a></li>
+<li><a href="#override-template-names-and-syntax">Override template names and syntax</a>
 <ul>
-<li><em>Domain in PV</em>: Locates WebLogic domain homes in a Kubernetes PersistentVolume (PV). This PV can reside in an NFS file system or other Kubernetes volume types.</li>
-<li><em>Domain in Image</em>: Includes a WebLogic domain home in a container image.</li>
-<li><em>Model in Image</em>: Includes <a href="https://oracle.github.io/weblogic-deploy-tooling/">WebLogic Deploy Tooling</a> models and archives in a container image.</li>
+<li><a href="#override-template-names">Override template names</a></li>
+<li><a href="#override-template-schemas">Override template schemas</a></li>
+<li><a href="#override-template-macros">Override template macros</a></li>
+<li><a href="#override-template-syntax-special-requirements">Override template syntax special requirements</a></li>
+<li><a href="#override-template-samples">Override template samples</a></li>
 </ul>
 </li>
-<li>Configure deployment of WebLogic domains as a Kubernetes resource (using a Kubernetes custom resource definition).</li>
-<li>Override certain aspects of the WebLogic domain configuration; for example, use a different database password for different deployments.</li>
-<li>Start and stop servers and clusters in the domain based on declarative startup parameters and desired states.</li>
-<li>Scale WebLogic domains by starting and stopping Managed Servers on demand, or by integrating with a REST API to initiate scaling based on the WebLogic Diagnostics Framework (WLDF), Prometheus, Grafana, or other rules.</li>
-<li>Expose the WebLogic Server Administration Console outside the Kubernetes cluster, if desired.</li>
-<li>Expose T3 channels outside the Kubernetes domain, if desired.</li>
-<li>Expose HTTP paths on a WebLogic domain outside the Kubernetes domain with load balancing, and automatically update the load balancer when Managed Servers in the WebLogic domain are started or stopped.</li>
-<li>Publish operator and WebLogic Server logs into Elasticsearch and interact with them in Kibana.</li>
+<li><a href="#step-by-step-guide">Step-by-step guide</a></li>
+<li><a href="#debugging">Debugging</a></li>
+<li><a href="#internal-design-flow">Internal design flow</a></li>
 </ul>
+<hr>
+<h3 id="overview">Overview</h3>
 
-<div class="notices tip" ><p>The fastest way to experience the operator is to follow the <a href="/quickstart/">Quick Start guide</a>, or you can peruse our <a href="/userguide/">documentation</a>, read our <a href="https://blogs.oracle.com/weblogicserver/how-to-weblogic-server-on-kubernetes">blogs</a>, or try out the <a href="/samples/simple/">samples</a>.
-Also, you can step through the <a href="https://github.com/oracle/weblogic-kubernetes-operator/blob/main/kubernetes/hands-on-lab/README.md">Tutorial</a>
-using the operator to deploy and run a WebLogic domain container-packaged web application on an Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE) cluster.</p>
+<div class="notices note" ><p>Configuration overrides can only be used in combination with Domain in Image and Domain in PV domains. For Model in Image domains, use <a href="/userguide/managing-domains/model-in-image/runtime-updates/">Model in Image Runtime Updates</a> instead.</p>
 </div>
 
-<hr>
-<h4 id="current-production-release">Current production release</h4>
-<p>The <a href="https://github.com/oracle/weblogic-kubernetes-operator/releases">current release of the operator</a> is 3.2.3.
-This release was published on May 21, 2021. See the operator prerequisites and supported environments <a href="/userguide/introduction/introduction/#operator-prerequisites">here</a>.</p>
-<hr>
-<h4 id="recent-changes-and-known-issues">Recent changes and known issues</h4>
-<p>See the <a href="/release-notes/">Release Notes</a>  for recent changes to the operator and known issues.</p>
-<h4 id="operator-earlier-versions">Operator earlier versions</h4>
-<p>Documentation for prior releases of the operator: <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.5/">2.5.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.6/">2.6.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.0/">3.0.x</a>, and <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.1/">3.1.x</a>.</p>
-<h4 id="backward-compatibility-guidelines">Backward compatibility guidelines</h4>
-<p>Starting from the 2.0.1 release, operator releases are backward compatible with respect to the domain
-resource schema, operator Helm chart input values, configuration overrides template, Kubernetes resources created
-by the operator Helm chart, Kubernetes resources created by the operator, and the operator REST interface. We intend to
-maintain compatibility for three releases, except in the case of a clearly communicated deprecated feature, which will be
-maintained for one release after a replacement is available.</p>
-<h3 id="about-this-documentation">About this documentation</h3>
-<p>This documentation includes sections targeted to different audiences.  To help you find what you are looking for more easily,
-please consult this table of contents:</p>
+<p>Use configuration overrides (also called <em>situational configuration</em>) to customize a Domain in Image or Domain in PV domain&rsquo;s WebLogic domain configuration without modifying the domain&rsquo;s actual <code>config.xml</code> or system resource files. For example, you may want to override a JDBC data source XML module user name, password, and URL so that it references a local database.</p>
+<p>You can use overrides to customize domains as they are moved from QA to production, are deployed to different sites, or are even deployed multiple times at the same site. Beginning with operator version 3.0.0, you can now modify configuration overrides for running WebLogic Server instances and have these new overrides take effect dynamically. There are <a href="#unsupported-overrides">limitations</a> to the WebLogic configuration attributes that can be modified by overrides and only changes to dynamic configuration MBean attributes may be changed while a server is running. Other changes, specifically overrides to non-dynamic MBeans, must be applied when servers are starting or restarting.</p>
+<h4 id="how-do-you-specify-overrides">How do you specify overrides?</h4>
 <ul>
-<li>The <a href="/quickstart/">Quick Start guide</a> explains how to quickly get the operator running, using the defaults, nothing special.</li>
-<li>The <a href="/userguide/">User guide</a> contains detailed usage information, including how to install and configure the operator,
-and how to use it to create and manage WebLogic domains.</li>
-<li>The <a href="/samples/simple/">Samples</a> provide detailed example code and instructions that show you how to perform
-various tasks related to the operator.</li>
-<li>The <a href="/developerguide/">Developer guide</a> provides details for people who want to understand how the operator is built, tested, and so on. Those who wish to <a href="/developerguide/contributing/">contribute</a> to the operator code will find useful information here.</li>
-<li><a href="/reference/">Reference</a> describes domain resource attributes and the operator REST API.</li>
-<li><a href="/security/">Security</a> describes Kubernetes, WebLogic, and OpenShift security requirements.</li>
-<li><a href="/faq/">Frequently asked questions</a> provides answers to common questions.</li>
+<li>Make sure your domain home meets the prerequisites. See <a href="#prerequisites">Prerequisites</a>.</li>
+<li>Make sure your overrides are supported. See <a href="#typical-overrides">Typical overrides</a> and <a href="#unsupported-overrides">Unsupported overrides</a>.</li>
+<li>Create a Kubernetes ConfigMap that contains:
+<ul>
+<li>Override templates (also known as situational configuration templates), with names and syntax as described in <a href="#override-template-names-and-syntax">Override template names and syntax</a>.</li>
+<li>A file named <code>version.txt</code> that contains the exact string <code>2.0</code>.</li>
 </ul>
-<h3 id="oracle-support">Oracle support</h3>
-<p>To access Oracle support for running WebLogic Server domains on Kubernetes platforms, see <a href="https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=208317433106215&amp;id=2349228.1&amp;_afrWindowMode=0&amp;_adf.ctrl-state=c2nhai8p3_4">WebLogic Server Certifications on Kubernetes in My Oracle Support Doc ID 2349228.1</a>.</p>
-<h3 id="need-more-help-have-a-suggestion-come-and-say-hello">Need more help? Have a suggestion? Come and say, &ldquo;Hello!&rdquo;</h3>
-<p>We have a <strong>public Slack channel</strong> where you can get in touch with us to ask questions about using the operator or give us feedback
-or suggestions about what features and improvements you would like to see.  We would love to hear from you. To join our channel,
-please <a href="https://weblogic-slack-inviter.herokuapp.com/">visit this site to get an invitation</a>.  The invitation email will include
-details of how to access our Slack workspace.  After you are logged in, please come to <code>#operator</code> and say, &ldquo;hello!&rdquo;</p>
+</li>
+<li>Set your Domain <code>configuration.overridesConfigMap</code> field to the name of this ConfigMap.</li>
+<li>If templates leverage secret macros:
+<ul>
+<li>Create Kubernetes Secrets that contain template macro values.</li>
+<li>Set your domain <code>configuration.secrets</code> to reference the aforementioned Secrets.</li>
+</ul>
+</li>
+<li>If your configuration overrides modify non-dynamic MBean attributes and you currently have WebLogic Server instances from this domain running:
+<ul>
+<li>Decide if the changes you are making to non-dynamic MBean attributes can be applied by rolling the affected clusters or Managed Server instances or if the change required a full domain shutdown.</li>
+<li>If a full domain shut down is requried, stop all running WebLogic Server instance Pods in your domain and then restart them. (See <a href="/userguide/managing-domains/domain-lifecycle/startup/#starting-and-stopping-servers">Starting and stopping servers</a>.)</li>
+<li>Otherwise, simply restart your domain, which includes rolling clusters. (See <a href="/userguide/managing-domains/domain-lifecycle/startup/#restarting-servers">Restarting servers</a>.)</li>
+</ul>
+</li>
+<li>Verify your overrides are taking effect.  (See <a href="#debugging">Debugging</a>).</li>
+</ul>
+<p>For a detailed walk-through of these steps, see the <a href="#step-by-step-guide">Step-by-step guide</a>.</p>
+<h4 id="how-do-overrides-work-during-runtime">How do overrides work during runtime?</h4>
+<ul>
+<li>Configuration overrides are processed during the operator&rsquo;s <a href="/userguide/managing-domains/domain-lifecycle/introspection/">introspection</a> phase.</li>
+<li>Introspection automatically occurs when:
+<ol>
+<li>The operator is starting a WebLogic Server instance when there are currently no other servers running. This occurs when the operator first starts servers for a domain or when starting servers following a full domain shutdown.</li>
+<li>For Model in Image, the operator determines that at least one WebLogic Server instance that is currently running must be shut down and restarted. This could be a rolling of one or more clusters, the shut down and restart of one or more WebLogic Server instances, or a combination.</li>
+</ol>
+</li>
+<li>You can <a href="/userguide/managing-domains/domain-lifecycle/introspection/#initiating-introspection">initiate introspection</a> by changing the value of the Domain <code>introspectVersion</code> field.</li>
+<li>For configuration overrides and during introspection, the operator will:
+<ul>
+<li>Resolve any macros in your override templates.</li>
+<li>Place expanded override templates in the <code>optconfig</code> directory located in each WebLogic domain home directory.</li>
+</ul>
+</li>
+<li>When the WebLogic Server instances start, they will:
+<ul>
+<li>Automatically load the override files from the <code>optconfig</code> directory.</li>
+<li>Use the override values in the override files instead of the values specified in their <code>config.xml</code> or system resource XML files.</li>
+</ul>
+</li>
+<li>WebLogic Server instances monitor the files in the <code>optconfig</code> directory so that if these files change while the server is running, WebLogic will detect and use the new configuration values based on the updated contents of these files. This only works for changes to configuration overrides related to dynamic configuration MBean attributes.</li>
+</ul>
+<p>For a detailed walk-through of the runtime flow, see the <a href="#internal-design-flow">Internal design flow</a>.</p>
+<hr>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>
+<p>Configuration overrides can be used in combination with Domain in Image and Domain in PV domains.
+For Model in Image domains (introduced in 3.0.0), use <a href="/userguide/managing-domains/model-in-image/runtime-updates/">Model in Image Runtime Updates</a> instead.</p>
+</li>
+<li>
+<p>A WebLogic domain home must not contain any configuration overrides XML file in its <code>optconfig</code> directory that was not placed there by the operator. Any existing configuration overrides XML files in this directory will be deleted and replaced by your operator override templates, if any.</p>
+</li>
+<li>
+<p>If you want to override a JDBC, JMS, or WLDF (diagnostics) module, then the original module must be located in your domain home <code>config/jdbc</code>, <code>config/jms</code>, and <code>config/diagnostics</code> directory, respectively. These are the default locations for these types of modules.</p>
+</li>
+</ul>
+<hr>
+<h3 id="typical-overrides">Typical overrides</h3>
+<p>Typical attributes for overrides include:</p>
+<ul>
+<li>User names, passwords, and URLs for:
+<ul>
+<li>JDBC data sources</li>
+<li>JMS bridges, foreign servers, and SAF</li>
+</ul>
+</li>
+<li>Network channel external/public addresses
+<ul>
+<li>For remote RMI clients (T3, JMS, EJB)</li>
+<li>For remote WLST clients</li>
+</ul>
+</li>
+<li>Network channel external/public ports
+<ul>
+<li>For remote RMI clients (T3, JMS, EJB)</li>
+</ul>
+</li>
+<li>Debugging</li>
+<li>Tuning (<code>MaxMessageSize</code>, and such)</li>
+</ul>
+<p>See <a href="#overrides-distribution">overrides distribution</a> for a discussion of distributing new or changed configuration overrides to already running WebLogic Server instances.</p>
+<hr>
+<h3 id="unsupported-overrides">Unsupported overrides</h3>
+<p><strong>IMPORTANT: The operator does not support customer-provided overrides in the following areas.</strong></p>
+<ul>
+<li>Domain topology (cluster members)</li>
+<li>Network channel listen address, port, and enabled configuration</li>
+<li>Server and domain log locations</li>
+<li>Default or custom file store directories when <code>domain.spec.dataHome</code> is set</li>
+<li>Node Manager related configuration</li>
+<li>Changing any existing MBean name</li>
+<li>Adding or removing a module (for example, a JDBC module)</li>
+</ul>
+<p><strong>Specifically, do not use custom overrides for:</strong></p>
+<ul>
+<li>Adding or removing:
+<ul>
+<li>Servers</li>
+<li>Clusters</li>
+<li>Network Access Points (custom channels)</li>
+<li>Modules</li>
+</ul>
+</li>
+<li>Changing any of the following:
+<ul>
+<li>Dynamic cluster size</li>
+<li>Default, SSL, and Admin channel <code>Enabled</code>, listen address, and port</li>
+<li>Network Access Point (custom channel), listen address, or port</li>
+<li>Server and domain log locations &ndash; use the <code>domain.spec.logHome</code> setting instead and ensure that <code>domain.spec.logHomeEnabled</code> is set to true</li>
+<li>Default or custom file store directories when <code>domain.spec.dataHome</code> is set</li>
+<li>Node Manager access credentials</li>
+<li>Any existing MBean name (for example, you cannot change the domain name)</li>
+</ul>
+</li>
+</ul>
+<p>Note that it&rsquo;s supported, even expected, to override network access point <code>public</code> or <code>external</code> addresses and ports. Also note that external access to JMX (MBean) or online WLST requires that the network access point internal port and external port match (external T3 or HTTP tunneling access to JMS, RMI, or EJBs don&rsquo;t require port matching).</p>
+<p>The behavior when using an unsupported override is undefined.</p>
+<h3 id="overrides-distribution">Overrides distribution</h3>
+<p>The operator generates the final configuration overrides, combining customer-provided configuration overrides and operator-generated overrides, during the operator&rsquo;s introspection phase. These overrides are then used when starting or restarting WebLogic Server instances. Starting with operator version 3.0.0, these <a href="/userguide/managing-domains/domain-lifecycle/introspection/#distributing-changes-to-configuration-overrides">overrides can also be distributed</a> and applied to already running WebLogic Server instances.</p>
+<p>For <a href="/userguide/managing-domains/domain-lifecycle/restarting/#domain-in-pv">Domain in PV</a>, the ability to change WebLogic domain configuration using traditional management transactions involving the Administration Console or WLST can be combined with the ability to initiate a repeat introspection and distribute updated configuration overrides. This combination supports use cases such as defining a new WebLogic cluster and then immediately starting Managed Server cluster members.</p>
+<hr>
+<h3 id="override-template-names-and-syntax">Override template names and syntax</h3>
+<p>Overrides leverage a built-in WebLogic feature called &ldquo;Configuration Overriding&rdquo; which is often informally called &ldquo;Situational Configuration.&rdquo; Configuration overriding consists of XML formatted files that closely resemble the structure of WebLogic <code>config.xml</code> and system resource module XML files. In addition, the attribute fields in these files can embed <code>add</code>, <code>replace</code>, and <code>delete</code> verbs to specify the desired override action for the field.</p>
+<h4 id="override-template-names">Override template names</h4>
+<p>The operator requires a different file name format for override templates than WebLogic&rsquo;s built-in configuration overrides feature.  It converts the names to the format required by the configuration overrides feature when it moves the templates to the domain home <code>optconfig</code> directory.  The following table describes the format:</p>
+<table>
+<thead>
+<tr>
+<th>Original Configuration</th>
+<th>Required Override Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>config.xml</code></td>
+<td><code>config.xml</code></td>
+</tr>
+<tr>
+<td>JMS module</td>
+<td><code>jms-MODULENAME.xml</code></td>
+</tr>
+<tr>
+<td>JDBC module</td>
+<td><code>jdbc-MODULENAME.xml</code></td>
+</tr>
+<tr>
+<td>Diagnostics module</td>
+<td><code>diagnostics-MODULENAME.xml</code></td>
+</tr>
+</tbody>
+</table>
+<p>A <code>MODULENAME</code> must correspond to the MBean name of a system resource defined in your original <code>config.xml</code> file. It&rsquo;s not possible to add a new module by using overrides. If you need your overrides to set up a new module, then have your original configuration specify &lsquo;skeleton&rsquo; modules that can be overridden.</p>
+<h4 id="override-template-schemas">Override template schemas</h4>
+<p>An override template must define the exact schemas required by the configuration overrides feature.  The schemas vary based on the file type you wish to override.</p>
+<p><em><code>config.xml</code></em></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;?&gt;</span>
+<span style="color:#f92672">&lt;d:domain</span> <span style="color:#a6e22e">xmlns:d=</span><span style="color:#e6db74">&#34;http://xmlns.oracle.com/weblogic/domain&#34;</span>
+          <span style="color:#a6e22e">xmlns:f=</span><span style="color:#e6db74">&#34;http://xmlns.oracle.com/weblogic/domain-fragment&#34;</span>
+          <span style="color:#a6e22e">xmlns:s=</span><span style="color:#e6db74">&#34;http://xmlns.oracle.com/weblogic/situational-config&#34;</span><span style="color:#f92672">&gt;</span>
+  ...
+<span style="color:#f92672">&lt;/d:domain&gt;</span>
+</code></pre></div><p><em><code>jdbc-MODULENAME.xml</code></em></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;?&gt;</span>
+<span style="color:#f92672">&lt;jdbc:jdbc-data-source</span> <span style="color:#a6e22e">xmlns:jdbc=</span><span style="color:#e6db74">&#34;http://xmlns.oracle.com/weblogic/jdbc-data-source&#34;</span>
+                       <span style="color:#a6e22e">xmlns:f=</span><span style="color:#e6db74">&#34;http://xmlns.oracle.com/weblogic/jdbc-data-source-fragment&#34;</span>
+                       <span style="color:#a6e22e">xmlns:s=</span><span style="color:#e6db74">&#34;http://xmlns.oracle.com/weblogic/situational-config&#34;</span><span style="color:#f92672">&gt;</span>
+  ...
+<span style="color:#f92672">&lt;/jdbc:jdbc-data-source&gt;</span>
+</code></pre></div><p><em><code>jms-MODULENAME.xml</code></em></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;?&gt;</span>
+<span style="color:#f92672">&lt;jms:weblogic-jms</span> <span style="color:#a6e22e">xmlns:jms=</span><span style="color:#e6db74">&#34;http://xmlns.oracle.com/weblogic/weblogic-jms&#34;</span>
+                  <span style="color:#a6e22e">xmlns:f=</span><span style="color:#e6db74">&#34;http://xmlns.oracle.com/weblogic/weblogic-jms-fragment&#34;</span>
+                  <span style="color:#a6e22e">xmlns:s=</span><span style="color:#e6db74">&#34;http://xmlns.oracle.com/weblogic/situational-config&#34;</span> <span style="color:#f92672">&gt;</span>
+  ...
+<span style="color:#f92672">&lt;/jms:weblogic-jms&gt;</span>
+</code></pre></div><p><em><code>diagnostics-MODULENAME.xml</code></em></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;?&gt;</span>
+<span style="color:#f92672">&lt;wldf:wldf-resource</span> <span style="color:#a6e22e">xmlns:wldf=</span><span style="color:#e6db74">&#34;http://xmlns.oracle.com/weblogic/weblogic-diagnostics&#34;</span>
+                    <span style="color:#a6e22e">xmlns:f=</span><span style="color:#e6db74">&#34;http://xmlns.oracle.com/weblogic/weblogic-diagnostics-fragment&#34;</span>
+                    <span style="color:#a6e22e">xmlns:s=</span><span style="color:#e6db74">&#34;http://xmlns.oracle.com/weblogic/situational-config&#34;</span> <span style="color:#f92672">&gt;</span>
+  ...
+<span style="color:#f92672">&lt;/wldf:wldf-resource&gt;</span>
+</code></pre></div><h4 id="override-template-macros">Override template macros</h4>
+<p>The operator supports embedding macros within override templates. This helps make your templates flexibly handle multiple use cases, such as specifying a different URL, user name, and password for a different deployment.</p>
+<p>Two types of macros are supported, environment variable macros and secret macros:</p>
+<ul>
+<li>
+<p>Environment variable macros have the syntax <code>${env:ENV-VAR-NAME}</code>, where the supported environment variables include <code>DOMAIN_UID</code>, <code>DOMAIN_NAME</code>, <code>DOMAIN_HOME</code>,  and <code>LOG_HOME</code>.</p>
+</li>
+<li>
+<p>Secret macros have the syntax <code>${secret:SECRETNAME.SECRETKEY}</code> and <code>${secret:SECRETNAME.SECRETKEY:encrypt}</code>.</p>
+</li>
+</ul>
+<p>The secret macro <code>SECRETNAME</code> field must reference the name of a Kubernetes Secret, and the <code>SECRETKEY</code> field must reference a key within that Secret. For example, if you have created a Secret named <code>dbuser</code> with a key named <code>username</code> that contains the value <code>scott</code>, then the macro <code>${secret:dbuser.username}</code> will be replaced with the word <code>scott</code> before the template is copied into its WebLogic Server instance Pod.</p>
+
+<div class="notices warning" ><p><strong>SECURITY NOTE</strong>: Use the <code>:encrypt</code> suffix in a secret macro to encrypt its replacement value with the WebLogic WLST <code>encrypt</code> command (instead of leaving it at its plain text value).  This is useful for overriding MBean attributes that expect encrypted values, such as the <code>password-encrypted</code> field of a data source, and is also useful for ensuring that a custom overrides configuration file the operator places in the domain home does not expose passwords in plain-text.</p>
+</div>
+
+<h4 id="override-template-syntax-special-requirements">Override template syntax special requirements</h4>
+<p><strong>Check each item below for best practices and to ensure custom overrides configuration takes effect:</strong></p>
+<ul>
+<li>Reference the name of the current bean and each parent bean in any hierarchy you override.
+<ul>
+<li>Note that the <code>combine-mode</code> verbs (<code>add</code> and <code>replace</code>) should be omitted for beans that are already defined in your original domain home configuration.
+<ul>
+<li>See <a href="#override-template-samples">Override template samples</a> for examples.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Use <code>replace</code> and <code>add</code> verbs as follows:
+<ul>
+<li>If you are adding a new bean that doesn&rsquo;t already exist in your original domain home <code>config.xml</code>, then specify <code>add</code> on the MBean itself and on each attribute within the bean.
+<ul>
+<li>See the <code>server-debug</code> stanza in <a href="#override-template-samples">Override template samples</a> for an example.</li>
+</ul>
+</li>
+<li>If you are adding a new attribute to an existing bean in the domain home <code>config.xml</code>, then the attribute needs an <code>add</code> verb.
+<ul>
+<li>See the <code>max-message-size</code> stanza in <a href="#override-template-samples">Override template samples</a> for an example.</li>
+</ul>
+</li>
+<li>If you are changing the value of an existing attribute within a domain home <code>config.xml</code>, then the attribute needs a <code>replace</code> verb.
+<ul>
+<li>See the <code>public-address</code> stanza in  <a href="#override-template-samples">Override template samples</a> for an example.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>When overriding <code>config.xml</code>:
+<ul>
+<li>The XML namespace (<code>xmlns:</code> in the XML) must be exactly as specified in <a href="#override-template-schemas">Override template schemas</a>.
+<ul>
+<li>For example, use <code>d:</code> to reference <code>config.xml</code> beans and attributes, <code>f:</code> for <code>add</code> and <code>replace</code> <code>domain-fragment</code> verbs, and <code>s:</code> to reference the configuration overrides schema.</li>
+</ul>
+</li>
+<li>Avoid specifying the domain name stanza, as this may cause some overrides to be ignored (for example, server-template scoped overrides).</li>
+</ul>
+</li>
+<li>When overriding modules:
+<ul>
+<li>It is a best practice to use XML namespace abbreviations <code>jms:</code>, <code>jdbc:</code>, and <code>wldf:</code> respectively for JMS, JDBC, and WLDF (diagnostics) module override files.</li>
+<li>A module must already exist in your original configuration if you want to override it; it&rsquo;s not possible to add a new module by using overrides. If you need your overrides to set up a new module, then have your original configuration specify &lsquo;skeleton&rsquo; modules that can be overridden.</li>
+<li>See <a href="#overriding-a-data-source-module">Overriding a data source module</a> for best practice advice. Note that similar advice applies generally to other module types.</li>
+</ul>
+</li>
+<li>Consider having your original configuration reference invalid user names, passwords, and URLs:
+<ul>
+<li>If your original (non-overridden) configuration references non-working user names, passwords, and URLS, then this helps guard against accidentally deploying a working configuration that&rsquo;s invalid for the intended environment. For example, if your base configuration references a working QA database, and there is some mistake in setting up overrides, then it&rsquo;s possible the running servers will connect to the QA database when you deploy to your production environment.</li>
+</ul>
+</li>
+</ul>
+<h4 id="override-template-samples">Override template samples</h4>
+<p>Here are some sample template override files.</p>
+<h4 id="overriding-configxml">Overriding <code>config.xml</code></h4>
+<p>The following <code>config.xml</code> override file demonstrates:</p>
+<ul>
+<li>Setting the <code>max-message-size</code> field on a WebLogic Server named <code>admin-server</code>.  It assumes the original <code>config.xml</code> does not define this value, and so uses <code>add</code> instead of <code>replace</code>.</li>
+<li>Sets the <code>public-address</code> and <code>public-port</code> fields with values obtained from a Secret named <code>test-host</code> with keys <code>hostname</code> and <code>port</code>. It assumes the original config.xml already sets these fields, and so uses <code>replace</code> instead of <code>add</code>.</li>
+<li>Sets two debug settings. It assumes the original config.xml does not have a <code>server-debug</code> stanza, so it uses <code>add</code> throughout the entire stanza.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;?&gt;</span>
+<span style="color:#f92672">&lt;d:domain</span> <span style="color:#a6e22e">xmlns:d=</span><span style="color:#e6db74">&#34;http://xmlns.oracle.com/weblogic/domain&#34;</span>
+          <span style="color:#a6e22e">xmlns:f=</span><span style="color:#e6db74">&#34;http://xmlns.oracle.com/weblogic/domain-fragment&#34;</span>
+          <span style="color:#a6e22e">xmlns:s=</span><span style="color:#e6db74">&#34;http://xmlns.oracle.com/weblogic/situational-config&#34;</span> <span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;d:server&gt;</span>
+        <span style="color:#f92672">&lt;d:name&gt;</span>admin-server<span style="color:#f92672">&lt;/d:name&gt;</span>
+        <span style="color:#f92672">&lt;d:max-message-size</span> <span style="color:#a6e22e">f:combine-mode=</span><span style="color:#e6db74">&#34;add&#34;</span><span style="color:#f92672">&gt;</span>78787878<span style="color:#f92672">&lt;/d:max-message-size&gt;</span>
+        <span style="color:#f92672">&lt;d:server-debug</span> <span style="color:#a6e22e">f:combine-mode=</span><span style="color:#e6db74">&#34;add&#34;</span><span style="color:#f92672">&gt;</span>
+          <span style="color:#f92672">&lt;d:debug-server-life-cycle</span> <span style="color:#a6e22e">f:combine-mode=</span><span style="color:#e6db74">&#34;add&#34;</span><span style="color:#f92672">&gt;</span>true<span style="color:#f92672">&lt;/d:debug-server-life-cycle&gt;</span>
+          <span style="color:#f92672">&lt;d:debug-jmx-core</span> <span style="color:#a6e22e">f:combine-mode=</span><span style="color:#e6db74">&#34;add&#34;</span><span style="color:#f92672">&gt;</span>true<span style="color:#f92672">&lt;/d:debug-jmx-core&gt;</span>
+        <span style="color:#f92672">&lt;/d:server-debug&gt;</span>
+        <span style="color:#f92672">&lt;d:network-access-point&gt;</span>
+          <span style="color:#f92672">&lt;d:name&gt;</span>T3Channel<span style="color:#f92672">&lt;/d:name&gt;</span>
+          <span style="color:#f92672">&lt;d:public-address</span> <span style="color:#a6e22e">f:combine-mode=</span><span style="color:#e6db74">&#34;replace&#34;</span><span style="color:#f92672">&gt;</span>${secret:test-host.hostname}<span style="color:#f92672">&lt;/d:public-address&gt;</span>
+          <span style="color:#f92672">&lt;d:public-port</span> <span style="color:#a6e22e">f:combine-mode=</span><span style="color:#e6db74">&#34;replace&#34;</span><span style="color:#f92672">&gt;</span>${secret:test-host.port}<span style="color:#f92672">&lt;/d:public-port&gt;</span>
+        <span style="color:#f92672">&lt;/d:network-access-point&gt;</span>
+    <span style="color:#f92672">&lt;/d:server&gt;</span>
+<span style="color:#f92672">&lt;/d:domain&gt;</span>
+</code></pre></div><h4 id="overriding-a-data-source-module">Overriding a data source module</h4>
+<p>The following <code>jdbc-testDS.xml</code> override template demonstrates setting the URL, user name, and password-encrypted fields of a JDBC module named <code>testDS</code> by using <code>secret macros</code>.  The generated configuration overrides that replaces the macros with secret values will be located in the <code>DOMAIN_HOME/optconfig/jdbc</code> directory.   The <code>password-encrypted</code> field will be populated with an encrypted value because it uses a secret macro with an <code>:encrypt</code> suffix.  The Secret is named <code>dbsecret</code> and contains three keys: <code>url</code>, <code>username</code>, and <code>password</code>.</p>
+<p>Best practices for data source modules and their overrides:</p>
+<ul>
+<li>A data source module must already exist in your original configuration if you want to override it; it&rsquo;s not possible to add a new module by using overrides. If you need your overrides to set up a new module, then have your original configuration specify &lsquo;skeleton&rsquo; modules that can be overridden. See the next two bulleted items for the typical contents of a skeleton data source module.</li>
+<li>Set your original (non-overridden) URL, username, and password to invalid values. This helps prevent accidentally starting a server without overrides, and then having the data source successfully connect to a database that&rsquo;s wrong for the current environment. For example, if these attributes are set to reference a QA database in your original configuration, then a mistake configuring overrides in your production Kubernetes Deployment could cause your production applications to use your QA database.</li>
+<li>Set your original (non-overridden) <code>JDBCConnectionPoolParams</code> <code>MinCapacity</code> and <code>InitialCapacity</code> to <code>0</code>, and set your original <code>DriverName</code> to a reference an existing JDBC Driver. This ensures that you can still successfully boot a server even when you have configured invalid URL/username/password values, your database isn&rsquo;t running, or you haven&rsquo;t specified your overrides yet.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;?&gt;</span>
+<span style="color:#f92672">&lt;jdbc:jdbc-data-source</span> <span style="color:#a6e22e">xmlns:jdbc=</span><span style="color:#e6db74">&#34;http://xmlns.oracle.com/weblogic/jdbc-data-source&#34;</span>
+                       <span style="color:#a6e22e">xmlns:f=</span><span style="color:#e6db74">&#34;http://xmlns.oracle.com/weblogic/jdbc-data-source-fragment&#34;</span>
+                       <span style="color:#a6e22e">xmlns:s=</span><span style="color:#e6db74">&#34;http://xmlns.oracle.com/weblogic/situational-config&#34;</span><span style="color:#f92672">&gt;</span>
+
+  <span style="color:#f92672">&lt;jdbc:name&gt;</span>testDS<span style="color:#f92672">&lt;/jdbc:name&gt;</span>
+  <span style="color:#f92672">&lt;jdbc:jdbc-driver-params&gt;</span>
+    <span style="color:#f92672">&lt;jdbc:url</span> <span style="color:#a6e22e">f:combine-mode=</span><span style="color:#e6db74">&#34;replace&#34;</span><span style="color:#f92672">&gt;</span>${secret:dbsecret.url}<span style="color:#f92672">&lt;/jdbc:url&gt;</span>
+    <span style="color:#f92672">&lt;jdbc:properties&gt;</span>
+       <span style="color:#f92672">&lt;jdbc:property&gt;</span>
+          <span style="color:#f92672">&lt;jdbc:name&gt;</span>user<span style="color:#f92672">&lt;/jdbc:name&gt;</span>
+          <span style="color:#f92672">&lt;jdbc:value</span> <span style="color:#a6e22e">f:combine-mode=</span><span style="color:#e6db74">&#34;replace&#34;</span><span style="color:#f92672">&gt;</span>${secret:dbsecret.username}<span style="color:#f92672">&lt;/jdbc:value&gt;</span>
+       <span style="color:#f92672">&lt;/jdbc:property&gt;</span>
+    <span style="color:#f92672">&lt;/jdbc:properties&gt;</span>
+    <span style="color:#f92672">&lt;jdbc:password-encrypted</span> <span style="color:#a6e22e">f:combine-mode=</span><span style="color:#e6db74">&#34;replace&#34;</span><span style="color:#f92672">&gt;</span>${secret:dbsecret.password:encrypt}<span style="color:#f92672">&lt;/jdbc:password-encrypted&gt;</span>
+  <span style="color:#f92672">&lt;/jdbc:jdbc-driver-params&gt;</span>
+<span style="color:#f92672">&lt;/jdbc:jdbc-data-source&gt;</span>
+</code></pre></div><hr>
+<h3 id="step-by-step-guide">Step-by-step guide</h3>
+<ul>
+<li>Make sure your domain home meets the prerequisites. See <a href="#prerequisites">Prerequisites</a>.</li>
+<li>Make sure your overrides are supported. See <a href="#typical-overrides">Typical overrides</a>, <a href="#overrides-distribution">Overrides distribution</a>, and <a href="#unsupported-overrides">Unsupported overrides</a>.</li>
+<li>Create a directory containing (A) a set of configuration overrides templates for overriding the MBean properties you want to replace and (B) a <code>version.txt</code> file.
+<ul>
+<li>This directory must not contain any other files.</li>
+<li>The <code>version.txt</code> file must contain exactly the string <code>2.0</code>.
+<ul>
+<li>Note: This version.txt file must stay <code>2.0</code> even when you are updating your templates from a previous deployment.</li>
+</ul>
+</li>
+<li>Templates must not override the settings listed in <a href="#unsupported-overrides">Unsupported overrides</a>.</li>
+<li>Templates must be formatted and named as per <a href="#override-template-names-and-syntax">Override template names and syntax</a>.</li>
+<li>Templates can embed macros that reference environment variables or Kubernetes Secrets.  See <a href="#override-template-macros">Override template macros</a>.</li>
+</ul>
+</li>
+<li>Create a Kubernetes ConfigMap from the directory of templates.
+<ul>
+<li>
+<p>The ConfigMap must be in the same Kubernetes Namespace as the domain.</p>
+</li>
+<li>
+<p>If the ConfigMap is going to be used by a single <code>DOMAIN_UID</code>, then we recommend adding the <code>weblogic.domainUID=&lt;mydomainuid&gt;</code> label to help track the resource.</p>
+</li>
+<li>
+<p>For example, assuming <code>./mydir</code> contains your <code>version.txt</code> and situation configuration template files:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl -n MYNAMESPACE create cm MYCMNAME --from-file ./mydir
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl -n MYNAMESPACE label cm MYCMNAME weblogic.domainUID<span style="color:#f92672">=</span>DOMAIN_UID
+</code></pre></div></li>
+</ul>
+</li>
+<li>Create any Kubernetes Secrets referenced by a template &ldquo;secret macro&rdquo;.
+<ul>
+<li>
+<p>Secrets can have multiple keys (files) that can hold either cleartext or base64 values. We recommend that you use base64 values for passwords by using <code>Opaque</code> type secrets in their <code>data</code> field, so that they can&rsquo;t be easily read at a casual glance. For more information, see <a href="https://kubernetes.io/docs/concepts/configuration/secret/">https://kubernetes.io/docs/concepts/configuration/secret/</a>.</p>
+</li>
+<li>
+<p>Secrets must be in the same Kubernetes Namespace as the domain.</p>
+</li>
+<li>
+<p>If a Secret is going to be used by a single <code>DOMAIN_UID</code>, then we recommend adding the <code>weblogic.domainUID=&lt;mydomainuid&gt;</code> label to help track the resource.</p>
+</li>
+<li>
+<p>For example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl -n MYNAMESPACE create secret generic my-secret --from-literal<span style="color:#f92672">=</span>key1<span style="color:#f92672">=</span>supersecret --from-literal<span style="color:#f92672">=</span>key2<span style="color:#f92672">=</span>topsecret
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl -n MYNAMESPACE label secret my-secret weblogic.domainUID<span style="color:#f92672">=</span>DOMAIN_UID
+</code></pre></div></li>
+</ul>
+</li>
+<li>Configure the name of the ConfigMap in the Domain YAML file <code>configuration.overridesConfigMap</code> field.</li>
+<li>Configure the names of each Secret in Domain YAML file.
+<ul>
+<li>If the Secret contains the WebLogic admin <code>username</code> and <code>password</code> keys, then set the Domain YAML file <code>webLogicCredentialsSecret</code> field.</li>
+<li>For all other Secrets, add them to the Domain YAML file <code>configuration.secrets</code> field. Note: This must be in an array format even if you only add one Secret (see the sample Domain YAML below).</li>
+</ul>
+</li>
+<li>Changes to configuration overrides, including the contents of the ConfigMap containing the override templates or the contents of referenced Secrets, do not take effect until the operator runs or repeats its <a href="/userguide/managing-domains/domain-lifecycle/introspection/">introspection</a> of the WebLogic domain configuration.</li>
+<li>If your configuration overrides modify non-dynamic MBean attributes and you currently have WebLogic Server instances from this domain running:
+<ul>
+<li>Decide if the changes you are making to non-dynamic MBean attributes can be applied by rolling the affected clusters or Managed Server instances, or if the change requires a full domain shutdown. (See <a href="#overrides-distribution">Overrides distribution</a>)</li>
+<li>If a full domain shut down is requried, stop all running WebLogic Server instance Pods in your domain and then restart them. (See <a href="/userguide/managing-domains/domain-lifecycle/startup/#starting-and-stopping-servers">Starting and stopping servers</a>.)</li>
+<li>Otherwise, simply restart your domain, which includes rolling clusters. (See <a href="/userguide/managing-domains/domain-lifecycle/startup/#restarting-servers">Restarting servers</a>.)</li>
+</ul>
+</li>
+<li>See <a href="#debugging">Debugging</a> for ways to check if the configuration overrides are taking effect or if there are errors.</li>
+</ul>
+<p>Example Domain YAML:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: <span style="color:#e6db74">&#34;weblogic.oracle/v8&#34;</span>
+<span style="color:#66d9ef">kind</span>: Domain
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: domain1
+  <span style="color:#66d9ef">namespace</span>: default
+  <span style="color:#66d9ef">labels</span>:
+    <span style="color:#66d9ef">weblogic.domainUID</span>: domain1
+<span style="color:#66d9ef">spec</span>:
+  [ ... ]
+  <span style="color:#66d9ef">webLogicCredentialsSecret</span>:
+    <span style="color:#66d9ef">name</span>: domain1-wl-credentials-secret
+  <span style="color:#66d9ef">configuration</span>:
+    <span style="color:#66d9ef">overridesConfigMap</span>: domain1-overrides-config-map
+    <span style="color:#66d9ef">secrets</span>: [my-secret, my-other-secret]
+  [ ... ]
+</code></pre></div><hr>
+<h3 id="debugging">Debugging</h3>
+<p>Use this information to verify that your overrides are taking effect or if there are errors.</p>
+<p><strong>Background notes:</strong></p>
+<ul>
+<li>
+<p>The WebLogic Server Administration Console will <em>not</em> reflect any override changes.</p>
+<ul>
+<li>You cannot use the Console to verify that overrides are taking effect.</li>
+<li>Instead, you can check overrides using WLST; see the <code>wlst.sh</code> script below for details.</li>
+</ul>
+</li>
+<li>
+<p>Incorrect override files may be silently accepted without warnings or errors.</p>
+<ul>
+<li>For example, WebLogic Server instance Pods may fully start regardless of XML
+override syntax errors or if the specified name of an MBean is incorrect.</li>
+<li>So, it is important to make sure that the template files are correct in a QA environment,
+otherwise, WebLogic Servers may start even though critically required
+overrides are failing to take effect.</li>
+</ul>
+</li>
+<li>
+<p>Some incorrect overrides may be detected on WebLogic Server versions that
+support the <code>weblogic.SituationalConfig.failBootOnError</code> system property
+(not applicable to WebLogic Server 12.2.1.3.0).</p>
+<ul>
+<li>If the system property is supported, then, by default, WebLogic Server will fail to boot
+if it encounters a syntax error while loading configuration overrides files.</li>
+<li>If you <em>want</em> to start up WebLogic Servers with incorrectly formatted override files,
+then disable this check by setting the <code>FAIL_BOOT_ON_SITUATIONAL_CONFIG_ERROR</code>
+environment variable in the Kubernetes
+containers for the WebLogic Servers to <code>false</code>.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Debugging steps:</strong></p>
+<ul>
+<li>
+<p>Make sure that you&rsquo;ve followed each step in the <a href="#step-by-step-guide">Step-by-step guide</a>.</p>
+</li>
+<li>
+<p>If WebLogic Server instance Pods do not come up at all, then:</p>
+<ul>
+<li>
+<p>Examine your Domain resource status: <code>kubectl -n MYDOMAINNAMESPACE describe domain MYDOMAIN</code></p>
+</li>
+<li>
+<p>Check events for the Domain: <code>kubectl -n MY_NAMESPACE get events --sort-by='.lastTimestamp'</code>.
+For more information, see <a href="/userguide/managing-domains/domain-events/">Domain events</a>.</p>
+</li>
+<li>
+<p>Check the introspector job and its log.</p>
+<ul>
+<li>In the domain&rsquo;s namespace, see if you can find a job named <code>DOMAIN_UID-introspector</code>
+and a corresponding pod named something like <code>DOMAIN_UID-introspector-xxxx</code>.  If so, examine:
+<ul>
+<li><code>kubectl -n MYDOMAINNAMESPACE describe job INTROSPECTJOBNAME</code></li>
+<li><code>kubectl -n MYDOMAINNAMESPACE logs INTROSPECTPODNAME</code></li>
+</ul>
+</li>
+<li>The introspector log is mirrored to the Domain resource <code>spec.logHome</code> directory
+when <code>spec.logHome</code> is configured and <code>spec.logHomeEnabled</code> is true.</li>
+</ul>
+</li>
+<li>
+<p>Check the operator log for <code>Warning</code>/<code>Error</code>/<code>Severe</code> messages.</p>
+<ul>
+<li><code>kubectl -n MYOPERATORNAMESPACE logs OPERATORPODNAME</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>If WebLogic Server instance Pods do start, then:</p>
+<ul>
+<li>Search your Administration Server Pod&rsquo;s <code>kubectl log</code> for the keyword <code>situational</code>, for example, <code>kubectl logs MYADMINPOD | grep -i situational</code>.
+<ul>
+<li>The only WebLogic Server log lines that match should look something like:
+<ul>
+<li><code>&lt;Dec 14, 2018 12:20:47 PM UTC&gt; &lt;Info&gt; &lt;Management&gt; &lt;BEA-141330&gt; &lt;Loading situational configuration file: /shared/domains/domain1/optconfig/custom-situational-config.xml&gt;</code></li>
+<li>This line indicates a configuration overrides file has been loaded.</li>
+</ul>
+</li>
+<li>If the search yields <code>Warning</code> or <code>Error</code> lines, then the format of the custom configuration overrides template is incorrect, and the <code>Warning</code> or <code>Error</code> text should describe the problem.</li>
+<li><strong>Note</strong>: The following exception may show up in the server logs when overriding JDBC modules. It is not expected to affect runtime behavior, and can be ignored:
+<pre><code>java.lang.NullPointerException
+  at weblogic.management.provider.internal.situationalconfig.SituationalConfigManagerImpl.registerListener(SituationalConfigManagerImpl.java:227)
+  at weblogic.management.provider.internal.situationalconfig.SituationalConfigManagerImpl.start(SituationalConfigManagerImpl.java:319)
+  ...
+  at weblogic.management.configuration.DomainMBeanImpl.setJDBCSystemResources(DomainMBeanImpl.java:11444)
+  ...
+</code></pre></li>
+</ul>
+</li>
+<li>Look in your <code>DOMAIN_HOME/optconfig</code> directory.
+<ul>
+<li>This directory, or a subdirectory within this directory, should contain each of your custom configuration overrides files.</li>
+<li>If it doesn&rsquo;t, then this likely indicates that your Domain YAML file <code>configuration.overridesConfigMap</code> was not set to match your custom override ConfigMap name, or that your custom override ConfigMap does not contain your override files.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>If the Administration Server Pod does start but fails to reach ready state or tries to restart:</p>
+<ul>
+<li>Check for this message <code> WebLogic Server failed to start due to missing or invalid situational configuration files</code> in the Administration Server Pod&rsquo;s <code>kubectl log</code>
+<ul>
+<li>This suggests that the Administration Server failure to start may have been caused by errors found in a configuration override file.
+<ul>
+<li>Lines containing the String <code>situational</code> may be found in the Administration Server Pod log to provide more hints.</li>
+<li>For example:</li>
+</ul>
+<pre><code>  &lt;Jun 20, 2019 3:48:45 AM GMT&gt; &lt;Warning&gt; &lt;Management&gt; &lt;BEA-141323&gt;
+  &lt;The situational config file has an invalid format, it is being ignored: XMLSituationalConfigFile[/shared/domains/domain1/optconfig/jdbc/testDS-0527-jdbc-situational-config.xml] because org.xml.sax.SAXParseException; lineNumber: 8; columnNumber: 3; The element type &quot;jdbc:jdbc-driver-params&quot; must be terminated by the matching end-tag &quot;&lt;/jdbc:jdbc-driver-params&gt;&quot;.
+</code></pre><ul>
+<li>The warning message suggests a syntax error is found in the provided configuration override file for the <code>testDS</code> JDBC data source.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Check for pod-related Kubernetes events: <code>kubectl -n MY_NAMESPACE get events --sort-by='.lastTimestamp'</code>.</li>
+</ul>
+</li>
+<li>
+<p>If you&rsquo;d like to verify that the configuration overrides are taking effect in the WebLogic MBean tree, then one way to do this is to compare the <code>server config</code> and <code>domain config</code> MBean tree values.</p>
+<ul>
+<li>The <code>domain config</code> value should reflect the original value in your domain home configuration.</li>
+<li>The <code>server config</code> value should reflect the overridden value.</li>
+<li>For example, assuming your <code>DOMAIN_UID</code> is <code>domain1</code>, and your domain contains a WebLogic Server named <code>admin-server</code>, then:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl exec -it domain1-admin-server /bin/bash
+$ wlst.sh
+&gt; connect<span style="color:#f92672">(</span>MYADMINUSERNAME, MYADMINPASSWORD, <span style="color:#e6db74">&#39;t3://domain1-admin-server:7001&#39;</span><span style="color:#f92672">)</span>
+&gt; domainConfig<span style="color:#f92672">()</span>
+&gt; get<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;/Servers/admin-server/MaxMessageSize&#39;</span><span style="color:#f92672">)</span>
+&gt; serverConfig<span style="color:#f92672">()</span>
+&gt; get<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;/Servers/admin-server/MaxMessageSize&#39;</span><span style="color:#f92672">)</span>
+&gt; exit<span style="color:#f92672">()</span>
+</code></pre></div></li>
+<li>
+<p>To cause the WebLogic configuration overrides feature to produce additional debugging information in the WebLogic Server logs, configure the <code>JAVA_OPTIONS</code> environment variable in your Domain YAML file with:</p>
+<pre><code>-Dweblogic.debug.DebugSituationalConfig=true
+-Dweblogic.debug.DebugSituationalConfigDumpXml=true
+</code></pre></li>
+</ul>
+<hr>
+<h3 id="internal-design-flow">Internal design flow</h3>
+<ul>
+<li>The operator generates the final configuration overrides, which include the merging of operator-generated overrides and the processing of any customer-provided configuration overrides templates and Secrets, during its introspection phase.</li>
+<li>The operator creates a Kubernetes Job for introspection named <code>DOMAIN_UID-introspector</code>.</li>
+<li>The introspector Job&rsquo;s Pod:
+<ul>
+<li>Mounts the Kubernetes ConfigMap and Secrets specified by using the operator Domain <code>configuration.overridesConfigMap</code>, <code>webLogicCredentialsSecret</code>, and <code>configuration.secrets</code> fields.</li>
+<li>Reads the mounted configuration overrides templates from the ConfigMap and expands them to create the actual configuration overrides files for the domain:
+<ul>
+<li>It expands some fixed replaceable values (for example, <code>${env:DOMAIN_UID}</code>).</li>
+<li>It expands referenced Secrets by reading the value from the corresponding mounted secret file (for example, <code>${secret:mysecret.mykey}</code>).</li>
+<li>It optionally encrypts secrets using offline WLST to encrypt the value - useful for passwords (for example, <code>${secret:mysecret.mykey:encrypt}</code>).</li>
+<li>It returns expanded configuration overrides files to the operator.</li>
+<li>It reports any errors when attempting expansion to the operator.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>The operator runtime:
+<ul>
+<li>Reads the expanded configuration overrides files or errors from the introspector.</li>
+<li>And, if the introspector reported no errors, it:
+<ul>
+<li>Puts configuration overrides files in one or more ConfigMaps whose names start with <code>DOMAIN_UID-weblogic-domain-introspect-cm</code>.</li>
+<li>Mounts these ConfigMaps into the WebLogic Server instance Pods.</li>
+</ul>
+</li>
+<li>Otherwise, if the introspector reported errors, it:
+<ul>
+<li>Logs warning, error, or severe messages.</li>
+<li>Will not start WebLogic Server instance Pods; however, any already running Pods are preserved.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>The <code>startServer.sh</code> script in the WebLogic Server instance Pods:
+<ul>
+<li>Copies the expanded configuration overrides files to a special location where the WebLogic runtime can find them:
+<ul>
+<li><code>config.xml</code> overrides are copied to the <code>optconfig</code> directory in its domain home.</li>
+<li>Module overrides are copied to the <code>optconfig/jdbc</code>, <code>optconfig/jms</code>, or <code>optconfig/diagnostics</code> directory.</li>
+</ul>
+</li>
+<li>Deletes any configuration overrides files in the <code>optconfig</code> directory that do not have corresponding template files in the ConfigMap.</li>
+</ul>
+</li>
+<li>WebLogic Servers read their overrides from their domain home&rsquo;s <code>optconfig</code> directory.</li>
+<li>If WebLogic Server instance Pods are already running when introspection is repeated and this new introspection generates different configuration overrides then:
+<ul>
+<li>After the operator updates the ConfigMap, Kubernetes modifies the mounted files in running containers to match the new contents of the ConfigMap.</li>
+<li>The rate of this periodic sync of ConfigMap data by <code>kubelet</code> is configurable, but defaults to 10 seconds.</li>
+<li>If <code>overridesDistributionStrategy</code> is DYNAMIC, then the <code>livenessProbe.sh</code> script, which is already periodically invoked by Kubernetes, will perform the same actions as <code>startServer.sh</code> to update the files in <code>optconfig</code>.</li>
+<li>WebLogic Server instances monitor the files in <code>optconfig</code> and dynamically update the active configuration based on the current contents of the configuration overrides files.</li>
+<li>Otherwise, if the <code>overridesDistributionStrategy</code> is ON_RESTART, then the updated files at the ConfigMap&rsquo;s mount point are not copied to <code>optconfig</code> while the WebLogic Server instance is running and, therefore, don&rsquo;t affect the active configuration.</li>
+</ul>
+</li>
+</ul>
+
+<div class="notices note" ><p>Changes to configuration overrides distributed to running WebLogic Server instances can only take effect if the corresponding WebLogic configuration MBean attribute is &ldquo;dynamic&rdquo;. For instance, the Data Source <code>passwordEncrypted</code> attribute is dynamic while the <code>Url</code> attribute is non-dynamic.</p>
+</div>
+
+
+
+
+
+
+<footer class=" footline" >
 	
-  
+</footer>
+
         
         </div>
         
@@ -3486,164 +4135,6 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -3660,104 +4151,9 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
                         
                     
-                    
-
-                    
-                        
-            
-            
-                
-                    
                 
                 
 
@@ -3765,102 +4161,6 @@ details of how to access our Slack workspace.  After you are logged in, please c
                     
                     
 
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
                     
                         
             
@@ -3942,6 +4242,19 @@ details of how to access our Slack workspace.  After you are logged in, please c
                     
 
                     
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
             
         
                     
@@ -3949,6 +4262,354 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
             
                 
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -5428,8 +6089,10 @@ details of how to access our Slack workspace.  After you are logged in, please c
 	 
 	 
 		
+			<a class="nav nav-prev" href="/userguide/managing-domains/model-in-image/debugging/" title="Debugging"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/quickstart/" title="Quick Start" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/userguide/managing-domains/ingress/" title="Ingress" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -5461,4 +6124,3 @@ details of how to access our Slack workspace.  After you are logged in, please c
 
   </body>
 </html>
-

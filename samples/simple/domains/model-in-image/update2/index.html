@@ -9,23 +9,23 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title> :: WebLogic Kubernetes Operator</title>
+    <title>Update 2 :: WebLogic Kubernetes Operator</title>
 
     
-    <link href="/css/nucleus.css?1624489125" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1624489125" rel="stylesheet">
-    <link href="/css/hybrid.css?1624489125" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1624489125" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1624489125" rel="stylesheet">
-    <link href="/css/auto-complete.css?1624489125" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1624489125" rel="stylesheet">
-    <link href="/css/theme.css?1624489125" rel="stylesheet">
-    <link href="/css/tabs.css?1624489125" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1624489125" rel="stylesheet">
+    <link href="/css/nucleus.css?1624489124" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1624489124" rel="stylesheet">
+    <link href="/css/hybrid.css?1624489124" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1624489124" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1624489124" rel="stylesheet">
+    <link href="/css/auto-complete.css?1624489124" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1624489124" rel="stylesheet">
+    <link href="/css/theme.css?1624489124" rel="stylesheet">
+    <link href="/css/tabs.css?1624489124" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1624489124" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1624489125"></script>
+    <script src="/js/jquery-3.3.1.min.js?1624489124"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/samples/simple/domains/model-in-image/update2/">
     <nav id="sidebar" class="">
 
 
@@ -59,14 +59,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1624489125"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1624489125"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1624489124"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1624489124"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/polite-dune-0a7bd1d10.azurestaticapps.net\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1624489125"></script>
+<script type="text/javascript" src="/js/search.js?1624489124"></script>
 
     
   </div>
@@ -1522,7 +1522,7 @@
   
     
     <li data-nav-id="/samples/" title="Samples" class="dd-item
-        
+        parent
         
         
         ">
@@ -1551,7 +1551,7 @@
   
     
     <li data-nav-id="/samples/simple/" title="Simple samples" class="dd-item
-        
+        parent
         
         
         ">
@@ -1632,7 +1632,7 @@
   
     
     <li data-nav-id="/samples/simple/domains/" title="Domains" class="dd-item
-        
+        parent
         
         
         ">
@@ -1739,7 +1739,7 @@
   
     
     <li data-nav-id="/samples/simple/domains/model-in-image/" title="Model in image" class="dd-item
-        
+        parent
         
         
         ">
@@ -1828,7 +1828,7 @@
  
   
     
-      <li data-nav-id="/samples/simple/domains/model-in-image/update2/" title="Update 2" class="dd-item ">
+      <li data-nav-id="/samples/simple/domains/model-in-image/update2/" title="Update 2" class="dd-item active">
         <a href="/samples/simple/domains/model-in-image/update2/">
         Update 2
         
@@ -3243,87 +3243,599 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'></a> > <a href='/samples/'>Samples</a> > <a href='/samples/simple/'>Simple samples</a> > <a href='/samples/simple/domains/'>Domains</a> > <a href='/samples/simple/domains/model-in-image/'>Model in image</a> > Update 2
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents"></nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Update 2
+            </h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h3 id="weblogic-kubernetes-operator">WebLogic Kubernetes Operator</h3>
-<p>The WebLogic Kubernetes Operator (the “operator”) supports running your WebLogic Server and Fusion Middleware Infrastructure domains on Kubernetes, an industry standard, cloud neutral deployment platform. It lets you encapsulate your entire WebLogic Server installation and layered applications into a portable set of cloud neutral images and simple resource description files. You can run them on any on-premises or public cloud that supports Kubernetes where you&rsquo;ve deployed the operator.</p>
-<p>Furthermore, the operator is well suited to CI/CD processes. You can easily inject changes when moving between environments, such as from test to production. For example, you can externally inject database URLs and credentials during deployment or you can inject arbitrary changes to most WebLogic configurations.</p>
-<p>The operator takes advantage of the <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">Kubernetes operator pattern</a>, which means that it uses Kubernetes APIs to provide support for operations, such as: provisioning, lifecycle management, application versioning, product patching, scaling, and security. The operator also enables the use of tooling that is native to this infrastructure for monitoring, logging, tracing, and security.</p>
-<p>You can:</p>
+<p>This use case demonstrates concurrently deploying a domain that is similar to the <a href="/samples/simple/domains/model-in-image/update1/">Update 1</a> use case domain to the same <code>sample-domain1-ns</code> namespace, but with a different domain UID, a different WebLogic domain name, and a different WebLogic domain encryption key. It does this by:</p>
 <ul>
-<li>Deploy an operator that manages all WebLogic domains in all namespaces in a Kubernetes cluster, or that only manages domains in a specific subset of the namespaces, or that manages only domains that are located in the same namespace as the operator. At most, a namespace can be managed by one operator.</li>
-<li>Supply WebLogic domain configuration using:
+<li>Using the same image, image model YAML file, and application archive as the Initial and Update 1 use cases.</li>
+<li>Using the same model update ConfigMap source file as the Update 1 use case (a data source).</li>
+<li>Using a different (unique) domain UID, <code>sample-domain2</code>, for the new domain.</li>
+<li>Using a different (unique) domain name, <code>domain2</code>, for the different domains.</li>
+<li>Deploying secrets and a model update ConfigMap that are uniquely labeled and named for the new domain.</li>
+</ul>
+<p>Note that this use case shows Model in Image&rsquo;s unique ability to quickly deploy a copy of a WebLogic domain that has a different WebLogic domain name and domain encryption key. This is a useful capability that is not supported by the Domain in Image <a href="/userguide/managing-domains/choosing-a-model/">domain home source type</a>:</p>
 <ul>
-<li><em>Domain in PV</em>: Locates WebLogic domain homes in a Kubernetes PersistentVolume (PV). This PV can reside in an NFS file system or other Kubernetes volume types.</li>
-<li><em>Domain in Image</em>: Includes a WebLogic domain home in a container image.</li>
-<li><em>Model in Image</em>: Includes <a href="https://oracle.github.io/weblogic-deploy-tooling/">WebLogic Deploy Tooling</a> models and archives in a container image.</li>
+<li>
+<p>Domain in Image does not support overriding the domain name, but different domain names are necessary when two domains need to interoperate. This use case takes advantage of model macros to ensure that its two different domains have a different domain name:</p>
+<ul>
+<li>First, you define the domain name in the model YAML file using the <code>@@ENV:CUSTOM_DOMAIN_NAME@@</code> environment variable macro.</li>
+<li>Second, you set the value of the <code>CUSTOM_DOMAIN_NAME</code> environment variable to be different using the <code>env</code> stanza in each Domain&rsquo;s YAML file.</li>
 </ul>
 </li>
-<li>Configure deployment of WebLogic domains as a Kubernetes resource (using a Kubernetes custom resource definition).</li>
-<li>Override certain aspects of the WebLogic domain configuration; for example, use a different database password for different deployments.</li>
-<li>Start and stop servers and clusters in the domain based on declarative startup parameters and desired states.</li>
-<li>Scale WebLogic domains by starting and stopping Managed Servers on demand, or by integrating with a REST API to initiate scaling based on the WebLogic Diagnostics Framework (WLDF), Prometheus, Grafana, or other rules.</li>
-<li>Expose the WebLogic Server Administration Console outside the Kubernetes cluster, if desired.</li>
-<li>Expose T3 channels outside the Kubernetes domain, if desired.</li>
-<li>Expose HTTP paths on a WebLogic domain outside the Kubernetes domain with load balancing, and automatically update the load balancer when Managed Servers in the WebLogic domain are started or stopped.</li>
-<li>Publish operator and WebLogic Server logs into Elasticsearch and interact with them in Kibana.</li>
+<li>
+<p>Domain in Image requires that its images embed a WebLogic <code>security/SerializedSystemIni.dat</code> domain encryption key that cannot be changed for the image (see <a href="/userguide/cicd/why-layering-matters/">Why layering matters</a> in CI/CD considerations). This necessarily means that two Domain in Image domains that share the same image can decrypt each other&rsquo;s encrypted passwords. On the other hand, a Model in Image&rsquo;s domain encryption key is not embedded in the image and instead, is dynamically and uniquely created each time the domain is started.</p>
+</li>
 </ul>
 
-<div class="notices tip" ><p>The fastest way to experience the operator is to follow the <a href="/quickstart/">Quick Start guide</a>, or you can peruse our <a href="/userguide/">documentation</a>, read our <a href="https://blogs.oracle.com/weblogicserver/how-to-weblogic-server-on-kubernetes">blogs</a>, or try out the <a href="/samples/simple/">samples</a>.
-Also, you can step through the <a href="https://github.com/oracle/weblogic-kubernetes-operator/blob/main/kubernetes/hands-on-lab/README.md">Tutorial</a>
-using the operator to deploy and run a WebLogic domain container-packaged web application on an Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE) cluster.</p>
+<div class="notices warning" ><p>Oracle requires interoperating WebLogic domains to have different domain names. This is necessary when two domains communicate, or when a WebLogic Server or WebLogic Java client concurrently connects to multiple domains.</p>
 </div>
 
-<hr>
-<h4 id="current-production-release">Current production release</h4>
-<p>The <a href="https://github.com/oracle/weblogic-kubernetes-operator/releases">current release of the operator</a> is 3.2.3.
-This release was published on May 21, 2021. See the operator prerequisites and supported environments <a href="/userguide/introduction/introduction/#operator-prerequisites">here</a>.</p>
-<hr>
-<h4 id="recent-changes-and-known-issues">Recent changes and known issues</h4>
-<p>See the <a href="/release-notes/">Release Notes</a>  for recent changes to the operator and known issues.</p>
-<h4 id="operator-earlier-versions">Operator earlier versions</h4>
-<p>Documentation for prior releases of the operator: <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.5/">2.5.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.6/">2.6.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.0/">3.0.x</a>, and <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.1/">3.1.x</a>.</p>
-<h4 id="backward-compatibility-guidelines">Backward compatibility guidelines</h4>
-<p>Starting from the 2.0.1 release, operator releases are backward compatible with respect to the domain
-resource schema, operator Helm chart input values, configuration overrides template, Kubernetes resources created
-by the operator Helm chart, Kubernetes resources created by the operator, and the operator REST interface. We intend to
-maintain compatibility for three releases, except in the case of a clearly communicated deprecated feature, which will be
-maintained for one release after a replacement is available.</p>
-<h3 id="about-this-documentation">About this documentation</h3>
-<p>This documentation includes sections targeted to different audiences.  To help you find what you are looking for more easily,
-please consult this table of contents:</p>
+<p>Here are the steps for this use case:</p>
+<ol>
+<li>
+<p>Make sure you have deployed the domain from the <a href="/samples/simple/domains/model-in-image/update1/">Update 1</a> use case.</p>
+</li>
+<li>
+<p>Create a ConfigMap with the WDT model that contains the data source definition.</p>
+<p>Run the following commands:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl -n sample-domain1-ns create configmap sample-domain2-wdt-config-map <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --from-file<span style="color:#f92672">=</span>/tmp/mii-sample/model-configmaps/datasource
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl -n sample-domain1-ns label configmap sample-domain2-wdt-config-map <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  weblogic.domainUID<span style="color:#f92672">=</span>sample-domain2
+</code></pre></div><p>If you&rsquo;ve created your own data source file in the Update 1 use case, then substitute the file name in the <code>--from-file=</code> parameter (we suggested <code>/tmp/mii-sample/mydatasource.yaml</code> earlier). Note that the <code>-from-file=</code> parameter can reference a single file, in which case it puts the designated file in the ConfigMap, or it can reference a directory, in which case it populates the ConfigMap with all of the files in the designated directory.</p>
+<p>Observations:</p>
 <ul>
-<li>The <a href="/quickstart/">Quick Start guide</a> explains how to quickly get the operator running, using the defaults, nothing special.</li>
-<li>The <a href="/userguide/">User guide</a> contains detailed usage information, including how to install and configure the operator,
-and how to use it to create and manage WebLogic domains.</li>
-<li>The <a href="/samples/simple/">Samples</a> provide detailed example code and instructions that show you how to perform
-various tasks related to the operator.</li>
-<li>The <a href="/developerguide/">Developer guide</a> provides details for people who want to understand how the operator is built, tested, and so on. Those who wish to <a href="/developerguide/contributing/">contribute</a> to the operator code will find useful information here.</li>
-<li><a href="/reference/">Reference</a> describes domain resource attributes and the operator REST API.</li>
-<li><a href="/security/">Security</a> describes Kubernetes, WebLogic, and OpenShift security requirements.</li>
-<li><a href="/faq/">Frequently asked questions</a> provides answers to common questions.</li>
+<li>We are leaving the namespace <code>sample-domain1-ns</code> unchanged for the ConfigMap because you will deploy domain <code>sample-domain2</code> to the same namespace as <code>sample-domain1</code>.</li>
+<li>You name and label the ConfigMap using its associated domain UID for two reasons:
+<ul>
+<li>To make it obvious which ConfigMap belongs to which domain.</li>
+<li>To make it easier to clean up a domain. Typical cleanup scripts use the <code>weblogic.domainUID</code> label as a convenience for finding all resources associated with a domain.</li>
 </ul>
-<h3 id="oracle-support">Oracle support</h3>
-<p>To access Oracle support for running WebLogic Server domains on Kubernetes platforms, see <a href="https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=208317433106215&amp;id=2349228.1&amp;_afrWindowMode=0&amp;_adf.ctrl-state=c2nhai8p3_4">WebLogic Server Certifications on Kubernetes in My Oracle Support Doc ID 2349228.1</a>.</p>
-<h3 id="need-more-help-have-a-suggestion-come-and-say-hello">Need more help? Have a suggestion? Come and say, &ldquo;Hello!&rdquo;</h3>
-<p>We have a <strong>public Slack channel</strong> where you can get in touch with us to ask questions about using the operator or give us feedback
-or suggestions about what features and improvements you would like to see.  We would love to hear from you. To join our channel,
-please <a href="https://weblogic-slack-inviter.herokuapp.com/">visit this site to get an invitation</a>.  The invitation email will include
-details of how to access our Slack workspace.  After you are logged in, please come to <code>#operator</code> and say, &ldquo;hello!&rdquo;</p>
+</li>
+<li>You use a different ConfigMap for the new domain for two reasons:
+<ul>
+<li>To make it easier to keep the life cycle and/or CI/CD process for the two domains simple and independent.</li>
+<li>To &lsquo;future proof&rsquo; the new domain so that changes to the original domain or new domain&rsquo;s ConfigMap can be independent.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Create the secrets that are referenced by the WDT model files in the image and ConfigMap; they also will be referenced by the Domain YAML file.</p>
+<p>Run the following commands:</p>
+<pre><code># spec.webLogicCredentialsSecret
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl -n sample-domain1-ns create secret generic <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  sample-domain2-weblogic-credentials <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>   --from-literal<span style="color:#f92672">=</span>username<span style="color:#f92672">=</span>weblogic --from-literal<span style="color:#f92672">=</span>password<span style="color:#f92672">=</span>welcome1
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl -n sample-domain1-ns label  secret <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  sample-domain2-weblogic-credentials <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  weblogic.domainUID<span style="color:#f92672">=</span>sample-domain2
+</code></pre></div><pre><code># spec.configuration.model.runtimeEncryptionSecret
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl -n sample-domain1-ns create secret generic <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  sample-domain2-runtime-encryption-secret <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>   --from-literal<span style="color:#f92672">=</span>password<span style="color:#f92672">=</span>my_runtime_password
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl -n sample-domain1-ns label  secret <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  sample-domain2-runtime-encryption-secret <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  weblogic.domainUID<span style="color:#f92672">=</span>sample-domain2
+</code></pre></div><pre><code># referenced by spec.configuration.secrets and by the data source model YAML in the ConfigMap
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl -n sample-domain1-ns create secret generic <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>   sample-domain2-datasource-secret <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>   --from-literal<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;user=sys as sysdba&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>   --from-literal<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;password=incorrect_password&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>   --from-literal<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;max-capacity=1&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>   --from-literal<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;url=jdbc:oracle:thin:@oracle-db.default.svc.cluster.local:1521/devpdb.k8s&#39;</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl -n sample-domain1-ns label  secret <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>   sample-domain2-datasource-secret <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>   weblogic.domainUID<span style="color:#f92672">=</span>sample-domain2
+</code></pre></div><p>Observations:</p>
+<ul>
+<li>We are leaving the namespace <code>sample-domain1-ns</code> unchanged for each secret because you will deploy domain <code>sample-domain2</code> to the same namespace as <code>sample-domain1</code>.</li>
+<li>You name and label the secrets using their associated domain UID for two reasons:
+<ul>
+<li>To make it obvious which secret belongs to which domain.</li>
+<li>To make it easier to clean up a domain. Typical cleanup scripts use the <code>weblogic.domainUID</code> label as a convenience for finding all resources associated with a domain.</li>
+</ul>
+</li>
+<li>You use a different set of secrets for the new domain for two reasons:
+<ul>
+<li>To make it easier to keep the life cycle and/or CI/CD process for the two domains simple and independent.</li>
+<li>To &lsquo;future proof&rsquo; the new domain so that changes to the original domain&rsquo;s secrets or new domain&rsquo;s secrets can be independent.</li>
+</ul>
+</li>
+<li>We deliberately specify an incorrect password and a low maximum pool capacity in the data source secret because we will demonstrate dynamically correcting the data source attributes for <code>sample-domain1</code> in the <a href="/samples/simple/domains/model-in-image/update4/">Update 4</a> use case.</li>
+</ul>
+<p>If you&rsquo;re following the <code>JRF</code> path through the sample, then you also need to deploy the additional secret referenced by macros in the <code>JRF</code> model <code>RCUDbInfo</code> clause, plus an <code>OPSS</code> wallet password secret. For details about the uses of these secrets, see the <a href="/userguide/managing-domains/model-in-image/">Model in Image</a> user documentation. Note that we are using the RCU prefix <code>FMW2</code> for this domain, because the first domain is already using <code>FMW1</code>.</p>
+
+<div class="expand">
+    <div class="expand-label" style="cursor: pointer;" onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
+        <i style="font-size:x-small;" class="fas fa-chevron-right"></i>
+        <span>
+        
+    	
+    	Click here for the commands for deploying additional secrets for JRF.
+    	
+    	</span>
+    </div>
+    <div class="expand-content" style="display: none;">
+        <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl -n sample-domain1-ns create secret generic <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  sample-domain2-rcu-access <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>   --from-literal<span style="color:#f92672">=</span>rcu_prefix<span style="color:#f92672">=</span>FMW2 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>   --from-literal<span style="color:#f92672">=</span>rcu_schema_password<span style="color:#f92672">=</span>Oradoc_db1 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>   --from-literal<span style="color:#f92672">=</span>rcu_db_conn_string<span style="color:#f92672">=</span>oracle-db.default.svc.cluster.local:1521/devpdb.k8s
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl -n sample-domain1-ns label  secret <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  sample-domain2-rcu-access <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  weblogic.domainUID<span style="color:#f92672">=</span>sample-domain2
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl -n sample-domain1-ns create secret generic <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  sample-domain2-opss-wallet-password-secret <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>   --from-literal<span style="color:#f92672">=</span>walletPassword<span style="color:#f92672">=</span>welcome1
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl -n sample-domain1-ns label  secret <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  sample-domain2-opss-wallet-password-secret <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  weblogic.domainUID<span style="color:#f92672">=</span>sample-domain2
+</code></pre></div>
+    </div>
+</div>
+</li>
+<li>
+<p>Set up a Domain YAML file that is similar to your Update 1 use case Domain YAML file but with a different domain UID, domain name, model update ConfigMap reference, and Secret references:</p>
+<ul>
+<li>
+<p>Option 1: Update a copy of your Domain YAML file from the Update 1 use case.</p>
+<ul>
+<li>
+<p>In the <a href="/samples/simple/domains/model-in-image/update1/">Update 1</a> use case, we suggested creating a file named <code>/tmp/mii-sample/mii-update1.yaml</code> or using the <code>/tmp/mii-sample/domain-resources/WLS/mii-update1-d1-WLS-v1-ds.yaml</code> file that is supplied with the sample.</p>
+<ul>
+<li>
+<p>We suggest copying this Domain YAML file and naming the copy <code>/tmp/mii-sample/mii-update2.yaml</code> before making any changes.</p>
+</li>
+<li>
+<p>Working on a copy is not strictly necessary, but it helps keep track of your work for the different use cases in this sample and provides you a backup of your previous work.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Change the <code>/tmp/mii-sample/mii-update2.yaml</code> Domain YAML file name and <code>weblogic.domainUID</code> label to <code>sample-domain2</code>.</p>
+<p>The final result will look something like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: <span style="color:#e6db74">&#34;weblogic.oracle/v8&#34;</span>
+<span style="color:#66d9ef">kind</span>: Domain
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: sample-domain2
+  <span style="color:#66d9ef">namespace</span>: sample-domain1-ns
+  <span style="color:#66d9ef">labels</span>:
+    <span style="color:#66d9ef">weblogic.domainUID</span>: sample-domain2
+</code></pre></div><blockquote>
+<p><strong>NOTE</strong>: We are leaving the namespace <code>sample-domain1-ns</code> unchanged because you will be deploying domain <code>sample-domain2</code> to the same namespace as <code>sample-domain1</code>.</p>
+</blockquote>
+</li>
+<li>
+<p>Change the <code>/tmp/mii-sample/mii-update2.yaml</code> Domain YAML file&rsquo;s <code>CUSTOM_DOMAIN_NAME</code> environment variable from <code>domain1</code> to <code>domain2</code>.</p>
+<p>The model file in the image uses macro <code>@@ENV:CUSTOM_DOMAIN_NAME@@</code> to reference this environment variable when setting its domain name.</p>
+<p>Specifically, change the corresponding Domain <code>spec.serverPod.env</code> YAML file stanza to look something like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">...
+<span style="color:#66d9ef">spec</span>:
+  ...
+  <span style="color:#66d9ef">serverPod</span>:
+  ...
+    <span style="color:#66d9ef">env</span>:
+    - <span style="color:#66d9ef">name</span>: CUSTOM_DOMAIN_NAME
+      <span style="color:#66d9ef">value</span>: <span style="color:#e6db74">&#34;domain2&#34;</span>
+  ...
+</code></pre></div></li>
+<li>
+<p>Change the <code>/tmp/mii-sample/mii-update2.yaml</code> Domain YAML file&rsquo;s <code>spec.domainHome</code> value to <code>/u01/domains/sample-domain2</code>. The corresponding YAML file stanza will look something like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">...
+<span style="color:#66d9ef">spec</span>:
+  ...
+  <span style="color:#66d9ef">domainHome</span>: /u01/domains/sample-domain2
+  ...
+</code></pre></div><p>(This change is not strictly needed, but it is a helpful convention to decorate a WebLogic domain&rsquo;s home directory with its domain name or domain UID.)</p>
+</li>
+<li>
+<p>Change the <code>/tmp/mii-sample/mii-update2.yaml</code> secret references in the <code>spec.webLogicCredentialsSecret</code> and <code>spec.configuration.secrets</code> stanzas to reference this use case&rsquo;s secrets. Specifically, change:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">spec</span>:
+  ...
+  <span style="color:#66d9ef">webLogicCredentialsSecret</span>:
+    <span style="color:#66d9ef">name</span>: sample-domain1-weblogic-credentials
+  ...
+  <span style="color:#66d9ef">configuration</span>:
+  ...
+    <span style="color:#66d9ef">secrets</span>:
+    - sample-domain1-datasource-secret
+    ...
+    <span style="color:#66d9ef">model</span>:
+      ...
+      <span style="color:#66d9ef">runtimeEncryptionSecret</span>: sample-domain1-runtime-encryption-secret
+</code></pre></div><p>To this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">spec</span>:
+  ...
+  <span style="color:#66d9ef">webLogicCredentialsSecret</span>:
+    <span style="color:#66d9ef">name</span>: sample-domain2-weblogic-credentials
+  ...
+  <span style="color:#66d9ef">configuration</span>:
+    ...
+    <span style="color:#66d9ef">secrets</span>:
+    - sample-domain2-datasource-secret
+    ...
+    <span style="color:#66d9ef">model</span>:
+      ...
+      <span style="color:#66d9ef">runtimeEncryptionSecret</span>: sample-domain2-runtime-encryption-secret
+</code></pre></div><blockquote>
+<p><strong>NOTE</strong>: If you are following the <code>JRF</code> path through the sample, similarly change your <code>spec.configuration.opss.walletPasswordSecret</code> and the RCU secret name referenced in <code>spec.configuration.secrets</code>.</p>
+</blockquote>
+</li>
+<li>
+<p>Change the Domain YAML file&rsquo;s <code>spec.configuration.model.configMap</code> value from <code>sample-domain1-wdt-config-map</code> to <code>sample-domain2-wdt-config-map</code>. The corresponding YAML file stanza will look something like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">spec</span>:
+  ...
+  <span style="color:#66d9ef">configuration</span>:
+    ...
+    <span style="color:#66d9ef">model</span>:
+    ...
+      <span style="color:#66d9ef">configMap</span>: sample-domain2-wdt-config-map
+</code></pre></div></li>
+<li>
+<p>Now, compare your original and changed Domain YAML files to double check your changes.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ diff /tmp/mii-sample/mii-update1.yaml /tmp/mii-sample/mii-update2.yaml
+</code></pre></div><pre><code>9c9
+&lt;   name: sample-domain1
+---
+&gt;   name: sample-domain2
+13c13
+&lt;     weblogic.domainUID: sample-domain1
+---
+&gt;     weblogic.domainUID: sample-domain2
+21c21
+&lt;   domainHome: /u01/domains/sample-domain1
+---
+&gt;   domainHome: /u01/domains/sample-domain2
+36c36
+&lt;     name: sample-domain1-weblogic-credentials
+---
+&gt;     name: sample-domain2-weblogic-credentials
+46c46
+&lt;   #logHome: /shared/logs/sample-domain1
+---
+&gt;   #logHome: /shared/logs/sample-domain2
+61c61
+&lt;       value: &quot;domain1&quot;
+---
+&gt;       value: &quot;domain2&quot;
+71c71
+&lt;     #    claimName: sample-domain1-weblogic-sample-pvc
+---
+&gt;     #    claimName: sample-domain2-weblogic-sample-pvc
+110c110
+&lt;       configMap: sample-domain1-wdt-config-map
+---
+&gt;       configMap: sample-domain2-wdt-config-map
+113c113
+&lt;       runtimeEncryptionSecret: sample-domain1-runtime-encryption-secret
+---
+&gt;       runtimeEncryptionSecret: sample-domain2-runtime-encryption-secret
+118c118
+&lt;     - sample-domain1-datasource-secret
+---
+&gt;     - sample-domain2-datasource-secret
+</code></pre>
+<div class="expand">
+    <div class="expand-label" style="cursor: pointer;" onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
+        <i style="font-size:x-small;" class="fas fa-chevron-right"></i>
+        <span>
+        
+    	
+    	Click here to see additional &#39;diff&#39; expected for the JRF path through the sample.
+    	
+    	</span>
+    </div>
+    <div class="expand-content" style="display: none;">
+        <pre><code>    ```
+    &lt;       walletPasswordSecret: sample-domain1-opss-wallet-password-secret
+    ---
+    &gt;       walletPasswordSecret: sample-domain2-opss-wallet-password-secret
+    130c130
+    &lt;       #walletFileSecret: sample-domain1-opss-walletfile-secret
+    ---
+    &gt;       #walletFileSecret: sample-domain2-opss-walletfile-secret
+    ```
+</code></pre>
+
+    </div>
+</div>
+<blockquote>
+<p><strong>NOTE</strong>: The diff should <em>not</em> contain a namespace change. You are deploying domain <code>sample-domain2</code> to the same namespace as <code>sample-domain1</code> (namespace <code>sample-domain1-ns</code>).</p>
+</blockquote>
+</li>
+<li>
+<p>Apply your changed Domain YAML file:</p>
+<blockquote>
+<p><strong>Note</strong>: Before you deploy the Domain YAML file, determine if you have Kubernetes cluster worker nodes that are remote to your local machine. If so, you need to put the Domain&rsquo;s image in a location that these nodes can access and you may also need to modify your Domain YAML file to reference the new location. See <a href="/samples/simple/domains/model-in-image/#ensuring-your-kubernetes-cluster-can-access-images">Ensuring your Kubernetes cluster can access images</a>.</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl apply -f /tmp/mii-sample/mii-update2.yaml
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>Option 2: Use the updated Domain YAML file that is supplied with the sample:</p>
+<blockquote>
+<p><strong>Note</strong>: Before you deploy the Domain YAML file, determine if you have Kubernetes cluster worker nodes that are remote to your local machine. If so, you need to put the Domain&rsquo;s image in a location that these nodes can access and you may also need to modify your Domain YAML file to reference the new location. See <a href="/samples/simple/domains/model-in-image/#ensuring-your-kubernetes-cluster-can-access-images">Ensuring your Kubernetes cluster can access images</a>.</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl apply -f /tmp/miisample/domain-resources/WLS/mii-update2-d2-WLS-v1-ds.yaml
+</code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>Wait for <code>sample-domain2</code> to start.</p>
+<p>If you run <code>kubectl get pods -n sample-domain1-ns --watch</code>, then you will see the introspector job for <code>sample-domain2</code> run and your WebLogic Server pods start. The output will look something like this:</p>
+
+<div class="expand">
+    <div class="expand-label" style="cursor: pointer;" onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
+        <i style="font-size:x-small;" class="fas fa-chevron-right"></i>
+        <span>
+        
+    	
+    	Click here to expand.
+    	
+    	</span>
+    </div>
+    <div class="expand-content" style="display: none;">
+        <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl get pods -n sample-domain1-ns --watch
+</code></pre></div><pre><code>NAME                             READY   STATUS    RESTARTS   AGE
+sample-domain1-admin-server      1/1     Running   0          5d2h
+sample-domain1-managed-server1   1/1     Running   1          5d2h
+sample-domain1-managed-server2   1/1     Running   2          5d2h
+sample-domain2-introspector-plssr   0/1     Pending   0          0s
+sample-domain2-introspector-plssr   0/1     Pending   0          0s
+sample-domain2-introspector-plssr   0/1     ContainerCreating   0          0s
+sample-domain2-introspector-plssr   1/1     Running             0          2s
+sample-domain2-introspector-plssr   0/1     Completed           0          69s
+sample-domain2-introspector-plssr   0/1     Terminating         0          71s
+sample-domain2-introspector-plssr   0/1     Terminating         0          71s
+sample-domain2-admin-server                  0/1     Pending             0          0s
+sample-domain2-admin-server                  0/1     Pending             0          0s
+sample-domain2-admin-server                  0/1     ContainerCreating   0          0s
+sample-domain2-admin-server                  0/1     Running             0          1s
+sample-domain2-admin-server                  1/1     Running             0          34s
+sample-domain2-managed-server1               0/1     Pending             0          0s
+sample-domain2-managed-server1               0/1     Pending             0          0s
+sample-domain2-managed-server1               0/1     ContainerCreating   0          0s
+sample-domain2-managed-server2               0/1     Pending             0          0s
+sample-domain2-managed-server2               0/1     Pending             0          0s
+sample-domain2-managed-server2               0/1     ContainerCreating   0          0s
+sample-domain2-managed-server1               0/1     Running             0          1s
+sample-domain2-managed-server2               0/1     Running             0          1s
+sample-domain2-managed-server1               1/1     Running             0          45s
+sample-domain2-managed-server2               1/1     Running             0          45s
+</code></pre>
+    </div>
+</div>
+<p>For a more detailed view of this activity, you can instead call <code>/tmp/mii-sample/utils/wl-pod-wait.sh -n sample-domain1-ns -d sample-domain2 -p 3</code>. The output will look something like this:</p>
+
+<div class="expand">
+    <div class="expand-label" style="cursor: pointer;" onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
+        <i style="font-size:x-small;" class="fas fa-chevron-right"></i>
+        <span>
+        
+    	
+    	Click here to expand.
+    	
+    	</span>
+    </div>
+    <div class="expand-content" style="display: none;">
+        <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ./wl-pod-wait.sh -n sample-domain1-ns -d sample-domain2 -p <span style="color:#ae81ff">3</span>
+</code></pre></div><pre><code>@@ [2020-05-13T17:06:00][seconds=1] Info: Waiting up to 1000 seconds for exactly '3' WebLogic Server pods to reach the following criteria:
+@@ [2020-05-13T17:06:00][seconds=1] Info:   ready='true'
+@@ [2020-05-13T17:06:00][seconds=1] Info:   image='model-in-image:WLS-v1'
+@@ [2020-05-13T17:06:00][seconds=1] Info:   domainRestartVersion='1'
+@@ [2020-05-13T17:06:00][seconds=1] Info:   namespace='sample-domain1-ns'
+@@ [2020-05-13T17:06:00][seconds=1] Info:   domainUID='sample-domain2'
+
+@@ [2020-05-13T17:06:00][seconds=1] Info: '0' WebLogic Server pods currently match all criteria, expecting '3'.
+@@ [2020-05-13T17:06:00][seconds=1] Info: Introspector and WebLogic Server pods with same namespace and domain-uid:
+
+NAME                                          VERSION  IMAGE  READY  PHASE
+--------------------------------------------  -------  -----  -----  ---------
+'sample-domain2-introspector-plssr'           ''       ''     ''     'Running'
+
+@@ [2020-05-13T17:07:03][seconds=64] Info: '0' WebLogic Server pods currently match all criteria, expecting '3'.
+@@ [2020-05-13T17:07:03][seconds=64] Info: Introspector and WebLogic Server pods with same namespace and domain-uid:
+
+NAME                                          VERSION  IMAGE  READY  PHASE
+--------------------------------------------  -------  -----  -----  -----------
+'sample-domain2-introspector-plssr'           ''       ''     ''     'Succeeded'
+
+@@ [2020-05-13T17:07:06][seconds=67] Info: '0' WebLogic Server pods currently match all criteria, expecting '3'.
+@@ [2020-05-13T17:07:06][seconds=67] Info: Introspector and WebLogic Server pods with same namespace and domain-uid:
+
+NAME  VERSION  IMAGE  READY  PHASE
+----  -------  -----  -----  -----
+
+@@ [2020-05-13T17:07:14][seconds=75] Info: '0' WebLogic Server pods currently match all criteria, expecting '3'.
+@@ [2020-05-13T17:07:14][seconds=75] Info: Introspector and WebLogic Server pods with same namespace and domain-uid:
+
+NAME                           VERSION  IMAGE                    READY    PHASE
+-----------------------------  -------  -----------------------  -------  ---------
+'sample-domain2-admin-server'  '1'      'model-in-image:WLS-v1'  'false'  'Running'
+
+@@ [2020-05-13T17:07:47][seconds=108] Info: '1' WebLogic Server pods currently match all criteria, expecting '3'.
+@@ [2020-05-13T17:07:47][seconds=108] Info: Introspector and WebLogic Server pods with same namespace and domain-uid:
+
+NAME                              VERSION  IMAGE                    READY    PHASE
+--------------------------------  -------  -----------------------  -------  ---------
+'sample-domain2-admin-server'     '1'      'model-in-image:WLS-v1'  'true'   'Running'
+'sample-domain2-managed-server1'  '1'      'model-in-image:WLS-v1'  'false'  'Pending'
+
+@@ [2020-05-13T17:07:49][seconds=110] Info: '1' WebLogic Server pods currently match all criteria, expecting '3'.
+@@ [2020-05-13T17:07:49][seconds=110] Info: Introspector and WebLogic Server pods with same namespace and domain-uid:
+
+NAME                              VERSION  IMAGE                    READY    PHASE
+--------------------------------  -------  -----------------------  -------  ---------
+'sample-domain2-admin-server'     '1'      'model-in-image:WLS-v1'  'true'   'Running'
+'sample-domain2-managed-server1'  '1'      'model-in-image:WLS-v1'  'false'  'Running'
+'sample-domain2-managed-server2'  '1'      'model-in-image:WLS-v1'  'false'  'Pending'
+
+@@ [2020-05-13T17:07:50][seconds=111] Info: '1' WebLogic Server pods currently match all criteria, expecting '3'.
+@@ [2020-05-13T17:07:50][seconds=111] Info: Introspector and WebLogic Server pods with same namespace and domain-uid:
+
+NAME                              VERSION  IMAGE                    READY    PHASE
+--------------------------------  -------  -----------------------  -------  ---------
+'sample-domain2-admin-server'     '1'      'model-in-image:WLS-v1'  'true'   'Running'
+'sample-domain2-managed-server1'  '1'      'model-in-image:WLS-v1'  'false'  'Running'
+'sample-domain2-managed-server2'  '1'      'model-in-image:WLS-v1'  'false'  'Running'
+
+@@ [2020-05-13T17:08:32][seconds=153] Info: '2' WebLogic Server pods currently match all criteria, expecting '3'.
+@@ [2020-05-13T17:08:32][seconds=153] Info: Introspector and WebLogic Server pods with same namespace and domain-uid:
+
+NAME                              VERSION  IMAGE                    READY    PHASE
+--------------------------------  -------  -----------------------  -------  ---------
+'sample-domain2-admin-server'     '1'      'model-in-image:WLS-v1'  'true'   'Running'
+'sample-domain2-managed-server1'  '1'      'model-in-image:WLS-v1'  'true'   'Running'
+'sample-domain2-managed-server2'  '1'      'model-in-image:WLS-v1'  'false'  'Running'
+
+@@ [2020-05-13T17:08:34][seconds=155] Info: '3' WebLogic Server pods currently match all criteria, expecting '3'.
+@@ [2020-05-13T17:08:34][seconds=155] Info: Introspector and WebLogic Server pods with same namespace and domain-uid:
+
+NAME                              VERSION  IMAGE                    READY   PHASE
+--------------------------------  -------  -----------------------  ------  ---------
+'sample-domain2-admin-server'     '1'      'model-in-image:WLS-v1'  'true'  'Running'
+'sample-domain2-managed-server1'  '1'      'model-in-image:WLS-v1'  'true'  'Running'
+'sample-domain2-managed-server2'  '1'      'model-in-image:WLS-v1'  'true'  'Running'
+
+
+@@ [2020-05-13T17:08:34][seconds=155] Info: Success!
+
+</code></pre>
+    </div>
+</div>
+</li>
+<li>
+<p>After the <code>sample-domain2</code> domain is running, you can call its sample web application to verify that it&rsquo;s fully active.</p>
+<p>Send a web application request to the ingress controller for <code>sample-domain2</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ curl -s -S -m <span style="color:#ae81ff">10</span> -H <span style="color:#e6db74">&#39;host: sample-domain2-cluster-cluster-1.mii-sample.org&#39;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>   http://localhost:30305/myapp_war/index.jsp
+</code></pre></div><p>Or, if Traefik is unavailable and your <code>domain2</code> Administration Server pod is running, you can run <code>kubectl exec</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl exec -n sample-domain1-ns sample-domain2-admin-server -- bash -c <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  <span style="color:#e6db74">&#34;curl -s -S -m 10 http://sample-domain2-cluster-cluster-1:8001/myapp_war/index.jsp&#34;</span>
+</code></pre></div><p>You will see something like the following:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">html</span>&gt;&lt;<span style="color:#f92672">body</span>&gt;&lt;<span style="color:#f92672">pre</span>&gt;
+*****************************************************************
+
+Hello World! This is version &#39;v1&#39; of the mii-sample JSP web-app.
+
+Welcome to WebLogic Server &#39;managed-server1&#39;!
+
+  domain UID  = &#39;sample-domain2&#39;
+  domain name = &#39;domain2&#39;
+
+Found 1 local cluster runtime:
+  Cluster &#39;cluster-1&#39;
+
+Found min threads constraint runtime named &#39;SampleMinThreads&#39; with configured count: 1
+
+Found max threads constraint runtime named &#39;SampleMaxThreads&#39; with configured count: 10
+
+Found 1 local data source:
+  Datasource &#39;mynewdatasource&#39;:  State=&#39;Running&#39;, testPool=&#39;Failed&#39;
+    ---TestPool Failure Reason---
+    NOTE: Ignore &#39;mynewdatasource&#39; failures until the sample&#39;s Update 4 use case.
+    ---
+    ...
+    ... invalid host/username/password
+    ...
+    -----------------------------
+
+*****************************************************************
+&lt;/<span style="color:#f92672">pre</span>&gt;&lt;/<span style="color:#f92672">body</span>&gt;&lt;/<span style="color:#f92672">html</span>&gt;
+
+</code></pre></div></li>
+</ol>
+<p>A <code>TestPool Failure</code> is expected because we will demonstrate dynamically correcting the data source attributes for <code>sample-domain1</code> in <a href="/samples/simple/domains/model-in-image/update4/">Update 4</a>.</p>
+<p>If you see an error other than the expected <code>TestPool Failure</code>, then consult <a href="/userguide/managing-domains/model-in-image/debugging/">Debugging</a> in the Model in Image user guide.</p>
+<p>You will not be using the <code>sample-domain2</code> domain again in this sample; if you wish, you can shut it down now by calling <code>kubectl -n sample-domain1-ns delete domain sample-domain2</code>.</p>
+<p>To remove the resources you have created in the samples, see <a href="/samples/simple/domains/model-in-image/cleanup/">Cleanup</a>.</p>
+
+
+<footer class="footline">
 	
-  
+</footer>
+
         
         </div>
         
@@ -4294,20 +4806,6 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -4323,6 +4821,25 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
             
                 
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -4356,6 +4873,7 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
+                    
                 
                 
 
@@ -4371,66 +4889,8 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -4480,6 +4940,23 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
                 
                 
 
@@ -4495,6 +4972,58 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
             
                 
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -5428,8 +5957,10 @@ details of how to access our Slack workspace.  After you are logged in, please c
 	 
 	 
 		
+			<a class="nav nav-prev" href="/samples/simple/domains/model-in-image/update1/" title="Update 1"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/quickstart/" title="Quick Start" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/samples/simple/domains/model-in-image/update3/" title="Update 3" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -5439,19 +5970,19 @@ details of how to access our Slack workspace.  After you are logged in, please c
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1624489125"></script>
-    <script src="/js/perfect-scrollbar.min.js?1624489125"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1624489125"></script>
-    <script src="/js/jquery.sticky.js?1624489125"></script>
-    <script src="/js/featherlight.min.js?1624489125"></script>
-    <script src="/js/highlight.pack.js?1624489125"></script>
+    <script src="/js/clipboard.min.js?1624489124"></script>
+    <script src="/js/perfect-scrollbar.min.js?1624489124"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1624489124"></script>
+    <script src="/js/jquery.sticky.js?1624489124"></script>
+    <script src="/js/featherlight.min.js?1624489124"></script>
+    <script src="/js/highlight.pack.js?1624489124"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1624489125"></script>
-    <script src="/js/learn.js?1624489125"></script>
-    <script src="/js/hugo-learn.js?1624489125"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1624489124"></script>
+    <script src="/js/learn.js?1624489124"></script>
+    <script src="/js/hugo-learn.js?1624489124"></script>
     
         
-            <script src="/mermaid/mermaid.js?1624489125"></script>
+            <script src="/mermaid/mermaid.js?1624489124"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });

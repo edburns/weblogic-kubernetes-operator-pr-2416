@@ -1,0 +1,664 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/elastic-stack/operator/</loc>
+    <lastmod>2019-10-01T14:32:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/faq/newbie/</loc>
+    <lastmod>2019-09-19T10:41:32-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-fmw-domains/fmw-infra/</loc>
+    <lastmod>2019-04-18T06:46:23-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/cicd/layering/</loc>
+    <lastmod>2019-04-11T13:15:32-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/security/domain-security/image-protection/</loc>
+    <lastmod>2019-03-08T19:00:49-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/security/certificates/</loc>
+    <lastmod>2019-03-06T21:14:18-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/credentials/</loc>
+    <lastmod>2019-02-23T17:32:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/domains/manually-create-domain/</loc>
+    <lastmod>2019-02-23T17:32:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/domains/model-in-image/prerequisites/</loc>
+    <lastmod>2019-02-23T17:32:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/storage/</loc>
+    <lastmod>2019-02-23T17:32:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/developerguide/contributing/</loc>
+    <lastmod>2019-02-23T17:19:19-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/developerguide/requirements/</loc>
+    <lastmod>2019-02-23T17:19:19-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/</loc>
+    <lastmod>2019-02-23T17:11:34-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-operators/using-the-operator/using-helm/</loc>
+    <lastmod>2019-02-23T17:08:43-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-domains/domain-lifecycle/startup/</loc>
+    <lastmod>2019-02-23T17:04:41-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-operators/installation/</loc>
+    <lastmod>2019-02-23T16:47:21-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-domains/choosing-a-model/</loc>
+    <lastmod>2019-02-23T16:44:54-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-domains/prepare/</loc>
+    <lastmod>2019-02-23T16:43:45-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/overview/prepare/</loc>
+    <lastmod>2019-02-23T16:43:10-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/introduction/introduction/</loc>
+    <lastmod>2019-02-23T16:40:54-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/quickstart/introduction/</loc>
+    <lastmod>2019-02-22T15:44:42-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/quickstart/</loc>
+    <lastmod>2019-02-22T15:27:38-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/azure-kubernetes-service/domain-on-pv/</loc>
+    <lastmod>2020-07-12T18:22:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/elastic-stack/weblogic-domain/</loc>
+    <lastmod>2019-10-01T14:32:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/faq/namespace-management/</loc>
+    <lastmod>2019-09-19T10:41:32-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/cicd/why-layering-matters/</loc>
+    <lastmod>2019-04-11T13:27:58-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/faq/cannot-pull-image/</loc>
+    <lastmod>2019-03-23T08:08:19-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/security/domain-security/</loc>
+    <lastmod>2019-03-08T19:17:42-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/security/domain-security/weblogic-channels/</loc>
+    <lastmod>2019-03-08T19:07:36-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-domains/domain-lifecycle/restarting/</loc>
+    <lastmod>2019-02-23T20:58:51-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/introduction/demo/</loc>
+    <lastmod>2019-02-23T20:51:59-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-domains/accessing-the-domain/admin-console/</loc>
+    <lastmod>2019-02-23T17:39:15-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/domains/domain-home-on-pv/</loc>
+    <lastmod>2019-02-23T17:32:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/domains/model-in-image/initial/</loc>
+    <lastmod>2019-02-23T17:32:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-operators/using-the-operator/</loc>
+    <lastmod>2019-02-23T17:08:18-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-domains/domain-resource/</loc>
+    <lastmod>2019-02-23T16:43:45-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/introduction/</loc>
+    <lastmod>2019-02-23T16:43:10-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/overview/</loc>
+    <lastmod>2019-02-23T16:43:10-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/overview/k8s-setup/</loc>
+    <lastmod>2019-02-23T16:43:10-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/reference/swagger/</loc>
+    <lastmod>2019-02-22T16:17:07-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/quickstart/prerequisites/</loc>
+    <lastmod>2019-02-22T15:44:42-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/</loc>
+    <lastmod>2019-02-22T15:27:48-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/azure-kubernetes-service/model-in-image/</loc>
+    <lastmod>2020-11-24T18:22:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/azure-kubernetes-service/troubleshooting/</loc>
+    <lastmod>2020-11-24T18:22:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/faq/boot-identity-not-valid/</loc>
+    <lastmod>2020-03-02T08:08:19-04:01</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/cicd/choose-an-approach/</loc>
+    <lastmod>2019-04-11T13:36:57-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/introduction/architecture/</loc>
+    <lastmod>2019-02-23T20:51:45-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-domains/accessing-the-domain/wlst/</loc>
+    <lastmod>2019-02-23T17:39:19-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/security/encryption/</loc>
+    <lastmod>2019-02-23T17:36:29-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/domains/domain-home-in-image/</loc>
+    <lastmod>2019-02-23T17:32:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/domains/</loc>
+    <lastmod>2019-02-23T17:32:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/domains/model-in-image/update1/</loc>
+    <lastmod>2019-02-23T17:32:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/developerguide/building/</loc>
+    <lastmod>2019-02-23T17:19:24-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-operators/using-the-operator/the-rest-api/</loc>
+    <lastmod>2019-02-23T17:08:32-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-domains/domain-lifecycle/scaling/</loc>
+    <lastmod>2019-02-23T17:04:45-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-domains/persistent-storage/</loc>
+    <lastmod>2019-02-23T16:45:09-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-operators/</loc>
+    <lastmod>2019-02-23T16:43:38-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/overview/database/</loc>
+    <lastmod>2019-02-23T16:43:10-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/reference/domain-resource/</loc>
+    <lastmod>2019-02-22T16:17:07-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/quickstart/get-images/</loc>
+    <lastmod>2019-02-22T15:44:42-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/</loc>
+    <lastmod>2019-02-22T15:28:03-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/faq/domain-secret-mismatch/</loc>
+    <lastmod>2020-03-02T08:08:19-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/cicd/mutate-the-domain-layer/</loc>
+    <lastmod>2019-04-11T13:43:41-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/introduction/design/</loc>
+    <lastmod>2019-02-23T20:51:51-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/security/service-accounts/</loc>
+    <lastmod>2019-02-23T17:36:12-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/domains/model-in-image/</loc>
+    <lastmod>2019-02-23T17:32:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/rest/</loc>
+    <lastmod>2019-02-23T17:32:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/domains/model-in-image/update2/</loc>
+    <lastmod>2019-02-23T17:32:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/developerguide/integration-tests/</loc>
+    <lastmod>2019-02-23T17:23:22-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/developerguide/branching/</loc>
+    <lastmod>2019-02-23T17:19:29-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/base-images/</loc>
+    <lastmod>2019-02-23T16:45:55-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-domains/</loc>
+    <lastmod>2019-02-23T16:43:45-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-fmw-domains/</loc>
+    <lastmod>2019-02-23T16:43:10-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/quickstart/install/</loc>
+    <lastmod>2019-02-22T15:44:42-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/developerguide/</loc>
+    <lastmod>2019-02-22T15:27:54-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-domains/domain-lifecycle/introspection/</loc>
+    <lastmod>2020-07-07T08:14:51-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/faq/node-heating/</loc>
+    <lastmod>2020-06-03T08:08:19-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-domains/model-in-image/</loc>
+    <lastmod>2020-03-11T16:45:16-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/domains/fmw-domain/</loc>
+    <lastmod>2019-04-18T07:32:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/cicd/how-to-copy-domains/</loc>
+    <lastmod>2019-04-11T13:48:15-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/cicd/</loc>
+    <lastmod>2019-04-11T13:01:55-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/ingress/</loc>
+    <lastmod>2019-02-23T17:32:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/domains/model-in-image/update3/</loc>
+    <lastmod>2019-02-23T17:32:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/developerguide/coding-standards/</loc>
+    <lastmod>2019-02-23T17:24:10-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/security/rbac/</loc>
+    <lastmod>2019-02-23T17:15:36-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-domains/configoverrides/</loc>
+    <lastmod>2019-02-23T16:45:16-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/reference/</loc>
+    <lastmod>2019-02-22T16:16:39-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/quickstart/prepare/</loc>
+    <lastmod>2019-02-22T15:44:42-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/faq/fan/</loc>
+    <lastmod>2019-10-11T17:20:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/istio/istio/</loc>
+    <lastmod>2019-08-15T13:30:04-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/domains/fmw-domain-home-in-image/</loc>
+    <lastmod>2019-04-18T07:32:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/cicd/tools/</loc>
+    <lastmod>2019-04-11T13:50:15-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-domains/domain-lifecycle/liveness-readiness-probe-customization/</loc>
+    <lastmod>2019-02-23T20:58:51-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-domains/ingress/</loc>
+    <lastmod>2019-02-23T20:46:32-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/security/secrets/</loc>
+    <lastmod>2019-02-23T17:36:33-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/security/</loc>
+    <lastmod>2019-02-23T17:34:48-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/elastic-stack/</loc>
+    <lastmod>2019-02-23T17:32:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/domains/model-in-image/update4/</loc>
+    <lastmod>2019-02-23T17:32:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/developerguide/code-structure/</loc>
+    <lastmod>2019-02-23T17:25:04-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/quickstart/create-domain/</loc>
+    <lastmod>2019-02-22T15:44:42-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/faq/oci-fss-pv/</loc>
+    <lastmod>2020-02-12T12:12:12-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/security/openshift/</loc>
+    <lastmod>2019-10-04T08:08:08-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-domains/accessing-the-domain/</loc>
+    <lastmod>2019-02-23T17:39:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/domains/model-in-image/cleanup/</loc>
+    <lastmod>2019-02-23T17:32:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/domains/delete-domain/</loc>
+    <lastmod>2019-02-23T17:32:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/developerguide/asynchronous-call-model/</loc>
+    <lastmod>2019-02-23T17:20:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/faq/</loc>
+    <lastmod>2019-02-23T08:14:59-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/quickstart/cleanup/</loc>
+    <lastmod>2019-02-22T15:44:42-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/azure-kubernetes-service/</loc>
+    <lastmod>2020-07-12T18:22:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/faq/oci-lb/</loc>
+    <lastmod>2019-09-25T12:41:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/domains/lifecycle/</loc>
+    <lastmod>2019-02-23T17:32:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/developerguide/domain-processing/</loc>
+    <lastmod>2019-02-23T17:20:20-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-domains/domain-lifecycle/</loc>
+    <lastmod>2019-02-23T16:50:09-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/samples/simple/tanzu-kubernetes-service/</loc>
+    <lastmod>2020-11-16T13:34:31-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/faq/volumes/</loc>
+    <lastmod>2020-01-07T15:02:28-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/developerguide/documentation/</loc>
+    <lastmod>2019-03-19T07:13:22-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/developerguide/backwards-compatibility/</loc>
+    <lastmod>2019-02-23T17:26:09-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-domains/domain-events/</loc>
+    <lastmod>2020-11-30T16:43:45-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-domains/model-in-image/overview/</loc>
+    <lastmod>2020-03-11T16:45:16-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/faq/configmaps/</loc>
+    <lastmod>2020-01-07T15:02:28-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/faq/external-clients/</loc>
+    <lastmod>2019-11-21T21:23:03+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/faq/coherence-requirements/</loc>
+    <lastmod>2019-08-12T12:41:38-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/faq/resource-settings/</loc>
+    <lastmod>2020-06-30T08:55:00-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-domains/model-in-image/usage/</loc>
+    <lastmod>2020-03-11T16:45:16-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-domains/model-in-image/common-mounts/</loc>
+    <lastmod>2019-02-23T16:45:16-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-domains/model-in-image/model-files/</loc>
+    <lastmod>2020-03-11T16:45:16-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-domains/model-in-image/runtime-updates/</loc>
+    <lastmod>2020-03-11T16:45:16-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/userguide/managing-domains/model-in-image/debugging/</loc>
+    <lastmod>2020-03-11T16:45:16-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/</loc>
+    <lastmod>2020-11-30T16:43:45-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/release-notes/</loc>
+    <lastmod>2019-03-15T11:25:28-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>https://polite-dune-0a7bd1d10.azurestaticapps.net/tags/</loc>
+  </url>
+  
+</urlset>

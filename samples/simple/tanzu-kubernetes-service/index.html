@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Hugo 0.75.0-DEV" />
-    <meta name="description" content="">
+    <meta name="description" content="Sample for using the operator to set up a WLS cluster on the Tanzu Kubernetes Service.">
 
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title> :: WebLogic Kubernetes Operator</title>
+    <title>Tanzu Kubernetes Service :: WebLogic Kubernetes Operator</title>
 
     
     <link href="/css/nucleus.css?1624489125" rel="stylesheet">
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/samples/simple/tanzu-kubernetes-service/">
     <nav id="sidebar" class="">
 
 
@@ -1522,7 +1522,7 @@
   
     
     <li data-nav-id="/samples/" title="Samples" class="dd-item
-        
+        parent
         
         
         ">
@@ -1551,7 +1551,7 @@
   
     
     <li data-nav-id="/samples/simple/" title="Simple samples" class="dd-item
-        
+        parent
         
         
         ">
@@ -2276,8 +2276,8 @@
   
     
     <li data-nav-id="/samples/simple/tanzu-kubernetes-service/" title="Tanzu Kubernetes Service" class="dd-item
-        
-        
+        parent
+        active
         
         ">
       <a href="/samples/simple/tanzu-kubernetes-service/">
@@ -3243,87 +3243,677 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'></a> > <a href='/samples/'>Samples</a> > <a href='/samples/simple/'>Simple samples</a> > Tanzu Kubernetes Service
+          
+        
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Tanzu Kubernetes Service
+            </h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h3 id="weblogic-kubernetes-operator">WebLogic Kubernetes Operator</h3>
-<p>The WebLogic Kubernetes Operator (the “operator”) supports running your WebLogic Server and Fusion Middleware Infrastructure domains on Kubernetes, an industry standard, cloud neutral deployment platform. It lets you encapsulate your entire WebLogic Server installation and layered applications into a portable set of cloud neutral images and simple resource description files. You can run them on any on-premises or public cloud that supports Kubernetes where you&rsquo;ve deployed the operator.</p>
-<p>Furthermore, the operator is well suited to CI/CD processes. You can easily inject changes when moving between environments, such as from test to production. For example, you can externally inject database URLs and credentials during deployment or you can inject arbitrary changes to most WebLogic configurations.</p>
-<p>The operator takes advantage of the <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">Kubernetes operator pattern</a>, which means that it uses Kubernetes APIs to provide support for operations, such as: provisioning, lifecycle management, application versioning, product patching, scaling, and security. The operator also enables the use of tooling that is native to this infrastructure for monitoring, logging, tracing, and security.</p>
-<p>You can:</p>
+
+	<p>This sample demonstrates how to use the <a href="/weblogic-kubernetes-operator/">WebLogic Kubernetes Operator</a> (hereafter “the operator”) to set up a WebLogic Server (WLS) cluster on the Tanzu Kubernetes Grid (TKG).
+After performing the sample steps, your WLS domain with a Model in Image domain source type runs on a TKG Kubernetes cluster instance. After the domain has been provisioned, you can monitor it using the WebLogic Server Administration console.</p>
+<p>TKG is a managed Kubernetes Service that lets you quickly deploy and manage Kubernetes clusters. To learn more, see the <a href="https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.2/vmware-tanzu-kubernetes-grid-12/GUID-index.html">Tanzu Kubernetes Grid (TKG)</a> overview page.</p>
+<h4 id="contents">Contents</h4>
 <ul>
-<li>Deploy an operator that manages all WebLogic domains in all namespaces in a Kubernetes cluster, or that only manages domains in a specific subset of the namespaces, or that manages only domains that are located in the same namespace as the operator. At most, a namespace can be managed by one operator.</li>
-<li>Supply WebLogic domain configuration using:
+<li><a href="#prerequisites">Prerequisites</a>
 <ul>
-<li><em>Domain in PV</em>: Locates WebLogic domain homes in a Kubernetes PersistentVolume (PV). This PV can reside in an NFS file system or other Kubernetes volume types.</li>
-<li><em>Domain in Image</em>: Includes a WebLogic domain home in a container image.</li>
-<li><em>Model in Image</em>: Includes <a href="https://oracle.github.io/weblogic-deploy-tooling/">WebLogic Deploy Tooling</a> models and archives in a container image.</li>
+<li><a href="#create-a-tanzu-kubernetes-cluster">Create a Tanzu Kubernetes cluster</a></li>
+<li><a href="#oracle-container-registry">Oracle Container Registry</a></li>
 </ul>
 </li>
-<li>Configure deployment of WebLogic domains as a Kubernetes resource (using a Kubernetes custom resource definition).</li>
-<li>Override certain aspects of the WebLogic domain configuration; for example, use a different database password for different deployments.</li>
-<li>Start and stop servers and clusters in the domain based on declarative startup parameters and desired states.</li>
-<li>Scale WebLogic domains by starting and stopping Managed Servers on demand, or by integrating with a REST API to initiate scaling based on the WebLogic Diagnostics Framework (WLDF), Prometheus, Grafana, or other rules.</li>
-<li>Expose the WebLogic Server Administration Console outside the Kubernetes cluster, if desired.</li>
-<li>Expose T3 channels outside the Kubernetes domain, if desired.</li>
-<li>Expose HTTP paths on a WebLogic domain outside the Kubernetes domain with load balancing, and automatically update the load balancer when Managed Servers in the WebLogic domain are started or stopped.</li>
-<li>Publish operator and WebLogic Server logs into Elasticsearch and interact with them in Kibana.</li>
+<li><a href="#install-weblogic-kubernetes-operator">Install WebLogic Kubernetes Operator</a></li>
+<li><a href="#create-an-image">Create an image</a></li>
+<li><a href="#create-weblogic-domain">Create WebLogic domain</a></li>
+<li><a href="#invoke-the-web-application">Invoke the web application</a></li>
 </ul>
-
-<div class="notices tip" ><p>The fastest way to experience the operator is to follow the <a href="/quickstart/">Quick Start guide</a>, or you can peruse our <a href="/userguide/">documentation</a>, read our <a href="https://blogs.oracle.com/weblogicserver/how-to-weblogic-server-on-kubernetes">blogs</a>, or try out the <a href="/samples/simple/">samples</a>.
-Also, you can step through the <a href="https://github.com/oracle/weblogic-kubernetes-operator/blob/main/kubernetes/hands-on-lab/README.md">Tutorial</a>
-using the operator to deploy and run a WebLogic domain container-packaged web application on an Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE) cluster.</p>
-</div>
-
-<hr>
-<h4 id="current-production-release">Current production release</h4>
-<p>The <a href="https://github.com/oracle/weblogic-kubernetes-operator/releases">current release of the operator</a> is 3.2.3.
-This release was published on May 21, 2021. See the operator prerequisites and supported environments <a href="/userguide/introduction/introduction/#operator-prerequisites">here</a>.</p>
-<hr>
-<h4 id="recent-changes-and-known-issues">Recent changes and known issues</h4>
-<p>See the <a href="/release-notes/">Release Notes</a>  for recent changes to the operator and known issues.</p>
-<h4 id="operator-earlier-versions">Operator earlier versions</h4>
-<p>Documentation for prior releases of the operator: <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.5/">2.5.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.6/">2.6.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.0/">3.0.x</a>, and <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.1/">3.1.x</a>.</p>
-<h4 id="backward-compatibility-guidelines">Backward compatibility guidelines</h4>
-<p>Starting from the 2.0.1 release, operator releases are backward compatible with respect to the domain
-resource schema, operator Helm chart input values, configuration overrides template, Kubernetes resources created
-by the operator Helm chart, Kubernetes resources created by the operator, and the operator REST interface. We intend to
-maintain compatibility for three releases, except in the case of a clearly communicated deprecated feature, which will be
-maintained for one release after a replacement is available.</p>
-<h3 id="about-this-documentation">About this documentation</h3>
-<p>This documentation includes sections targeted to different audiences.  To help you find what you are looking for more easily,
-please consult this table of contents:</p>
+<h4 id="prerequisites">Prerequisites</h4>
+<p>This sample assumes the following prerequisite environment setup:</p>
 <ul>
-<li>The <a href="/quickstart/">Quick Start guide</a> explains how to quickly get the operator running, using the defaults, nothing special.</li>
-<li>The <a href="/userguide/">User guide</a> contains detailed usage information, including how to install and configure the operator,
-and how to use it to create and manage WebLogic domains.</li>
-<li>The <a href="/samples/simple/">Samples</a> provide detailed example code and instructions that show you how to perform
-various tasks related to the operator.</li>
-<li>The <a href="/developerguide/">Developer guide</a> provides details for people who want to understand how the operator is built, tested, and so on. Those who wish to <a href="/developerguide/contributing/">contribute</a> to the operator code will find useful information here.</li>
-<li><a href="/reference/">Reference</a> describes domain resource attributes and the operator REST API.</li>
-<li><a href="/security/">Security</a> describes Kubernetes, WebLogic, and OpenShift security requirements.</li>
-<li><a href="/faq/">Frequently asked questions</a> provides answers to common questions.</li>
+<li>WebLogic Kubernetes Operator: This document was tested with version v3.1.0.</li>
+<li>Operating System: GNU/Linux.</li>
+<li><a href="https://git-scm.com/downloads">Git</a>; use <code>git --version</code> to test if <code>git</code> works.  This document was tested with version 2.17.1.</li>
+<li>TKG CLI; use <code>tkg version</code> to test if TKG works. This document was tested with version v1.1.3.</li>
+<li><a href="https://kubernetes-io-vnext-staging.netlify.com/docs/tasks/tools/install-kubectl/">kubectl</a>; use <code>kubectl version</code> to test if <code>kubectl</code> works.  This document was tested with version v1.18.6.</li>
+<li><a href="https://helm.sh/docs/intro/install/">Helm</a> version 3.1 or later; use <code>helm version</code> to check the <code>helm</code> version.  This document was tested with version v3.2.1.</li>
 </ul>
-<h3 id="oracle-support">Oracle support</h3>
-<p>To access Oracle support for running WebLogic Server domains on Kubernetes platforms, see <a href="https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=208317433106215&amp;id=2349228.1&amp;_afrWindowMode=0&amp;_adf.ctrl-state=c2nhai8p3_4">WebLogic Server Certifications on Kubernetes in My Oracle Support Doc ID 2349228.1</a>.</p>
-<h3 id="need-more-help-have-a-suggestion-come-and-say-hello">Need more help? Have a suggestion? Come and say, &ldquo;Hello!&rdquo;</h3>
-<p>We have a <strong>public Slack channel</strong> where you can get in touch with us to ask questions about using the operator or give us feedback
-or suggestions about what features and improvements you would like to see.  We would love to hear from you. To join our channel,
-please <a href="https://weblogic-slack-inviter.herokuapp.com/">visit this site to get an invitation</a>.  The invitation email will include
-details of how to access our Slack workspace.  After you are logged in, please come to <code>#operator</code> and say, &ldquo;hello!&rdquo;</p>
+<h5 id="create-a-tanzu-kubernetes-cluster">Create a Tanzu Kubernetes cluster</h5>
+<p>Create the Kubernetes cluster using the TKG CLI. See the <a href="https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.2/vmware-tanzu-kubernetes-grid-12/GUID-index.html">Tanzu documentation</a> to set up your Kubernetes cluster.
+After your Kubernetes cluster is up and running, run the following commands to make sure <code>kubectl</code> can access the Kubernetes cluster:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl get nodes -o wide
+</code></pre></div><pre><code>NAME                                    STATUS     ROLES    AGE     VERSION            INTERNAL-IP       EXTERNAL-IP       OS-IMAGE                 KERNEL-VERSION   CONTAINER-RUNTIME
+k8s-cluster-101-control-plane-8nj7t     NotReady   master   2d20h   v1.18.6+vmware.1   192.168.100.147   192.168.100.147   VMware Photon OS/Linux   4.19.132-1.ph3   containerd://1.3.4
+k8s-cluster-101-md-0-577b7dc766-552hn   Ready      &lt;none&gt;   2d20h   v1.18.6+vmware.1   192.168.100.148   192.168.100.148   VMware Photon OS/Linux   4.19.132-1.ph3   containerd://1.3.4
+k8s-cluster-101-md-0-577b7dc766-m8wrc   Ready      &lt;none&gt;   2d20h   v1.18.6+vmware.1   192.168.100.149   192.168.100.149   VMware Photon OS/Linux   4.19.132-1.ph3   containerd://1.3.4
+k8s-cluster-101-md-0-577b7dc766-p2gkz   Ready      &lt;none&gt;   2d20h   v1.18.6+vmware.1   192.168.100.150   192.168.100.150   VMware Photon OS/Linux   4.19.132-1.ph3   containerd://1.3.4
+</code></pre><h5 id="oracle-container-registry">Oracle Container Registry</h5>
+<p>You will need an Oracle Container Registry account. The following steps will direct you to accept the Oracle Standard Terms and Restrictions to pull the WebLogic Server images.  Make note of your Oracle Account password and email.  This sample pertains to 12.2.1.4, but other versions may work as well.</p>
+<h4 id="install-weblogic-kubernetes-operator">Install WebLogic Kubernetes Operator</h4>
+<p>The WebLogic Kubernetes Operator is an adapter to integrate WebLogic Server and Kubernetes, allowing Kubernetes to serve as a container infrastructure hosting WLS instances.
+The operator runs as a Kubernetes Pod and stands ready to perform actions related to running WLS on Kubernetes.</p>
+<p>Clone the WebLogic Kubernetes Operator repository to your machine. We will use several scripts in this repository to create a WebLogic domain.
+Kubernetes Operators use <a href="https://helm.sh/">Helm</a> to manage Kubernetes applications. The operator’s Helm chart is located in the <code>kubernetes/charts/weblogic-operator</code> directory. Install the operator by running the following commands.</p>
+<p>Clone the repository.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ git clone --branch v3.2.3 https://github.com/oracle/weblogic-kubernetes-operator.git
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cd weblogic-kubernetes-operator
+</code></pre></div><p>Grant the Helm service account the cluster-admin role.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cat <span style="color:#e6db74">&lt;&lt;EOF | kubectl apply -f -
+</span><span style="color:#e6db74">apiVersion: rbac.authorization.k8s.io/v1
+</span><span style="color:#e6db74">kind: ClusterRoleBinding
+</span><span style="color:#e6db74">metadata:
+</span><span style="color:#e6db74">  name: helm-user-cluster-admin-role
+</span><span style="color:#e6db74">roleRef:
+</span><span style="color:#e6db74">  apiGroup: rbac.authorization.k8s.io
+</span><span style="color:#e6db74">  kind: ClusterRole
+</span><span style="color:#e6db74">  name: cluster-admin
+</span><span style="color:#e6db74">subjects:
+</span><span style="color:#e6db74">- kind: ServiceAccount
+</span><span style="color:#e6db74">  name: default
+</span><span style="color:#e6db74">  namespace: kube-system
+</span><span style="color:#e6db74">EOF</span>
+</code></pre></div><p>Create a namespace and service account for the operator.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl create namespace sample-weblogic-operator-ns
+</code></pre></div><pre><code>namespace/sample-weblogic-operator-ns created
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl create serviceaccount -n sample-weblogic-operator-ns sample-weblogic-operator-sa
+</code></pre></div><pre><code>serviceaccount/sample-weblogic-operator-sa created
+</code></pre><p>Install the operator.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ helm install weblogic-operator kubernetes/charts/weblogic-operator <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --namespace sample-weblogic-operator-ns <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --set serviceAccount<span style="color:#f92672">=</span>sample-weblogic-operator-sa <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --set <span style="color:#e6db74">&#34;enableClusterRoleBinding=true&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --set <span style="color:#e6db74">&#34;domainNamespaceSelectionStrategy=LabelSelector&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --set <span style="color:#e6db74">&#34;domainNamespaceLabelSelector=weblogic-operator\=enabled&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --wait
+</code></pre></div><pre><code>NAME: weblogic-operator
+LAST DEPLOYED: Tue Nov 17 09:33:58 2020
+NAMESPACE: sample-weblogic-operator-ns
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+</code></pre><p>Verify the operator with the following commands; the status will be running.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ helm list -A
+</code></pre></div><pre><code>NAME                        NAMESPACE                     REVISION   UPDATED                                 STATUS       CHART                   APP VERSION
+sample-weblogic-operator    sample-weblogic-operator-ns   1          2020-11-17 09:33:58.584239273 -0700 PDT deployed     weblogic-operator-3.1
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl get pods -n sample-weblogic-operator-ns
+</code></pre></div><pre><code>NAME                                 READY   STATUS    RESTARTS   AGE
+weblogic-operator-775b668c8f-nwwnn   1/1     Running   0          32s
+</code></pre><h4 id="create-an-image">Create an image</h4>
+<ul>
+<li><a href="#image-creation-prerequisites">Image creation prerequisites</a></li>
+<li><a href="#image-creation---introduction">Image creation - Introduction</a></li>
+<li><a href="#understanding-your-first-archive">Understanding your first archive</a></li>
+<li><a href="#staging-a-zip-file-of-the-archive">Staging a ZIP file of the archive</a></li>
+<li><a href="#staging-model-files">Staging model files</a></li>
+<li><a href="#creating-the-image-with-wit">Creating the image with WIT</a></li>
+</ul>
+<h5 id="image-creation-prerequisites">Image creation prerequisites</h5>
+<ol>
+<li>The <code>JAVA_HOME</code> environment variable must be set and must reference a valid JDK 8 or 11 installation.</li>
+<li>Copy the sample to a new directory; for example, use the directory <code>/tmp/mii-sample</code>.</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ mkdir /tmp/mii-sample
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cp -r /root/weblogic-kubernetes-operator/kubernetes/samples/scripts/create-weblogic-domain/model-in-image/* /tmp/mii-sample
+</code></pre></div><p><strong>Note</strong>: We will refer to this working copy of the sample as <code>/tmp/mii-sample</code>; however, you can use a different location.</p>
+<p>Download the latest WebLogic Deploying Tooling (WDT) and WebLogic Image Tool (WIT) installer ZIP files to your <code>/tmp/mii-sample/model-images</code> directory. Both WDT and WIT are required to create your Model in Image container images.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cd /tmp/mii-sample/model-images
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ curl -m <span style="color:#ae81ff">120</span> -fL https://github.com/oracle/weblogic-deploy-tooling/releases/latest/download/weblogic-deploy.zip <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -o /tmp/mii-sample/model-images/weblogic-deploy.zip
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ curl -m <span style="color:#ae81ff">120</span> -fL https://github.com/oracle/weblogic-image-tool/releases/latest/download/imagetool.zip <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  -o /tmp/mii-sample/model-images/imagetool.zip
+</code></pre></div><p>To set up the WebLogic Image Tool, run the following commands:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cd /tmp/mii-sample/model-images
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ unzip imagetool.zip
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ./imagetool/bin/imagetool.sh cache addInstaller <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --type wdt <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --version latest <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --path /tmp/mii-sample/model-images/weblogic-deploy.zip
+</code></pre></div><p>These steps will install WIT to the <code>/tmp/mii-sample/model-images/imagetool</code> directory, plus put a <code>wdt_latest</code> entry in the tool’s cache which points to the WDT ZIP file installer. You will use WIT later in the sample for creating model images.</p>
+<h5 id="image-creation---introduction">Image creation - Introduction</h5>
+<p>The goal of image creation is to demonstrate using the WebLogic Image Tool to create an image named <code>model-in-image:WLS-v1</code> from files that you will stage to <code>/tmp/mii-sample/model-images/model-in-image:WLS-v1/</code>.
+The staged files will contain a web application in a WDT archive, and WDT model configuration for a WebLogic Administration Server called <code>admin-server</code> and a WebLogic cluster called <code>cluster-1</code>.</p>
+<p>Overall, a Model in Image image must contain a WebLogic Server installation and a WebLogic Deploy Tooling installation in its <code>/u01/wdt/weblogic-deploy</code> directory.
+In addition, if you have WDT model archive files, then the image must also contain these files in its <code>/u01/wdt/models</code> directory.
+Finally, an image optionally may also contain your WDT model YAML file and properties files in the same <code>/u01/wdt/models</code> directory.
+If you do not specify a WDT model YAML file in your <code>/u01/wdt/models</code> directory, then the model YAML file must be supplied dynamically using a Kubernetes ConfigMap that is referenced by your Domain <code>spec.model.configMap</code> field.
+We provide an example of using a model ConfigMap later in this sample.</p>
+<p>The following sections contain the steps for creating the image <code>model-in-image:WLS-v1</code>.</p>
+<h5 id="understanding-your-first-archive">Understanding your first archive</h5>
+<p>The sample includes a predefined archive directory in <code>/tmp/mii-sample/archives/archive-v1</code> that you will use to create an archive ZIP file for the image.</p>
+<p>The archive top directory, named <code>wlsdeploy</code>, contains a directory named <code>applications</code>, which includes an ‘exploded’ sample JSP web application in the directory, <code>myapp-v1</code>. Three useful aspects to remember about WDT archives are:</p>
+<ul>
+<li>A model image can contain multiple WDT archives.</li>
+<li>WDT archives can contain multiple applications, libraries, and other components.</li>
+<li>WDT archives have a <a href="https://oracle.github.io/weblogic-deploy-tooling/concepts/archive/">well defined directory structure</a>, which always has <code>wlsdeploy</code> as the top directory.</li>
+</ul>
+<p>The application displays important details about the WebLogic Server instance that it’s running on: namely its domain name, cluster name, and server name, as well as the names of any data sources that are targeted to the server.</p>
+<h5 id="staging-a-zip-file-of-the-archive">Staging a ZIP file of the archive</h5>
+<p>When you create the image, you will use the files in the staging directory, <code>/tmp/mii-sample/model-in-image__WLS-v1</code>. In preparation, you need it to contain a ZIP file of the WDT application archive.</p>
+<p>Run the following commands to create your application archive ZIP file and put it in the expected directory:</p>
+<pre><code># Delete existing archive.zip in case we have an old leftover version
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ rm -f /tmp/mii-sample/model-images/model-in-image__WLS-v1/archive.zip
+</code></pre></div><pre><code># Move to the directory which contains the source files for our archive
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cd /tmp/mii-sample/archives/archive-v1
+</code></pre></div><pre><code># Zip the archive to the location will later use when we run the WebLogic Image Tool
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ zip -r /tmp/mii-sample/model-images/model-in-image__WLS-v1/archive.zip wlsdeploy
+</code></pre></div><h5 id="staging-model-files">Staging model files</h5>
+<p>In this step, you explore the staged WDT model YAML file and properties in the <code>/tmp/mii-sample/model-in-image__WLS-v1</code> directory. The model in this directory references the web application in your archive,
+configures a WebLogic Server Administration Server, and configures a WebLogic cluster. It consists of only two files, <code>model.10.properties</code>, a file with a single property, and, <code>model.10.yaml</code>, a YAML file with your WebLogic configuration <code>model.10.yaml</code>.</p>
+<pre><code>CLUSTER_SIZE=5
+</code></pre><p>Here is the WLS <code>model.10.yaml</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">domainInfo</span>:
+    <span style="color:#66d9ef">AdminUserName</span>: <span style="color:#e6db74">&#39;@@SECRET:__weblogic-credentials__:username@@&#39;</span>
+    <span style="color:#66d9ef">AdminPassword</span>: <span style="color:#e6db74">&#39;@@SECRET:__weblogic-credentials__:password@@&#39;</span>
+    <span style="color:#66d9ef">ServerStartMode</span>: <span style="color:#e6db74">&#39;prod&#39;</span>
+
+<span style="color:#66d9ef">topology</span>:
+    <span style="color:#66d9ef">Name</span>: <span style="color:#e6db74">&#39;@@ENV:CUSTOM_DOMAIN_NAME@@&#39;</span>
+    <span style="color:#66d9ef">AdminServerName</span>: <span style="color:#e6db74">&#39;admin-server&#39;</span>
+    <span style="color:#66d9ef">Cluster</span>:
+        <span style="color:#66d9ef">&#39;cluster-1&#39;</span>:
+            <span style="color:#66d9ef">DynamicServers</span>:
+                <span style="color:#66d9ef">ServerTemplate</span>:  <span style="color:#e6db74">&#39;cluster-1-template&#39;</span>
+                <span style="color:#66d9ef">ServerNamePrefix</span>: <span style="color:#e6db74">&#39;managed-server&#39;</span>
+                <span style="color:#66d9ef">DynamicClusterSize</span>: <span style="color:#e6db74">&#39;@@PROP:CLUSTER_SIZE@@&#39;</span>
+                <span style="color:#66d9ef">MaxDynamicClusterSize</span>: <span style="color:#e6db74">&#39;@@PROP:CLUSTER_SIZE@@&#39;</span>
+                <span style="color:#66d9ef">MinDynamicClusterSize</span>: <span style="color:#e6db74">&#39;0&#39;</span>
+                <span style="color:#66d9ef">CalculatedListenPorts</span>: <span style="color:#66d9ef">false</span>
+    <span style="color:#66d9ef">Server</span>:
+        <span style="color:#66d9ef">&#39;admin-server&#39;</span>:
+            <span style="color:#66d9ef">ListenPort</span>: <span style="color:#ae81ff">7001</span>
+    <span style="color:#66d9ef">ServerTemplate</span>:
+        <span style="color:#66d9ef">&#39;cluster-1-template&#39;</span>:
+            <span style="color:#66d9ef">Cluster</span>: <span style="color:#e6db74">&#39;cluster-1&#39;</span>
+            <span style="color:#66d9ef">ListenPort</span>: <span style="color:#ae81ff">8001</span>
+
+<span style="color:#66d9ef">appDeployments</span>:
+    <span style="color:#66d9ef">Application</span>:
+        <span style="color:#66d9ef">myapp</span>:
+            <span style="color:#66d9ef">SourcePath</span>: <span style="color:#e6db74">&#39;wlsdeploy/applications/myapp-v1&#39;</span>
+            <span style="color:#66d9ef">ModuleType</span>: ear
+            <span style="color:#66d9ef">Target</span>: <span style="color:#e6db74">&#39;cluster-1&#39;</span>
+</code></pre></div><p>The model files:</p>
+<ul>
+<li>
+<p>Define a WebLogic domain with:</p>
+<ul>
+<li>Cluster <code>cluster-1</code></li>
+<li>Administration Server <code>admin-server</code></li>
+<li>A <code>cluster-1</code> targeted EAR application that’s located in the WDT archive ZIP file at <code>wlsdeploy/applications/myapp-v1</code></li>
+</ul>
+</li>
+<li>
+<p>Leverage macros to inject external values:</p>
+<ul>
+<li>The property file <code>CLUSTER_SIZE</code> property is referenced in the model YAML file <code>DynamicClusterSize</code> and <code>MaxDynamicClusterSize</code> fields using a PROP macro.</li>
+<li>The model file domain name is injected using a custom environment variable named <code>CUSTOM_DOMAIN_NAME</code> using an ENV macro.
+<ul>
+<li>You set this environment variable later in this sample using an env field in its Domain.</li>
+<li><em>This conveniently provides a simple way to deploy multiple differently named domains using the same model image</em>.</li>
+</ul>
+</li>
+<li>The model file administrator user name and password are set using a <code>weblogic-credentials</code> secret macro reference to the WebLogic credential secret.
+<ul>
+<li>This secret is in turn referenced using the <code>webLogicCredentialsSecret</code> field in the Domain.</li>
+<li>The <code>weblogic-credentials</code> is a reserved name that always dereferences to the owning Domain actual WebLogic credentials secret name.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>A Model in Image image can contain multiple properties files, archive ZIP files, and YAML files but in this sample you use just one of each. For a complete discussion of Model in Images model file naming conventions, file loading order, and macro syntax, see <a href="/userguide/managing-domains/model-in-image/model-files/">Model files</a> files in the Model in Image user documentation.</p>
+<h5 id="creating-the-image-with-wit">Creating the image with WIT</h5>
+<p>At this point, you have staged all of the files needed for the image <code>model-in-image:WLS-v1</code>; they include:</p>
+<ul>
+<li><code>/tmp/mii-sample/model-images/weblogic-deploy.zip</code></li>
+<li><code>/tmp/mii-sample/model-images/model-in-image__WLS-v1/model.10.yaml</code></li>
+<li><code>/tmp/mii-sample/model-images/model-in-image__WLS-v1/model.10.properties</code></li>
+<li><code>/tmp/mii-sample/model-images/model-in-image__WLS-v1/archive.zip</code></li>
+</ul>
+<p>If you don’t see the <code>weblogic-deploy.zip</code> file, then you missed a step in the <a href="#image-creation-prerequisites">prerequisites</a>.</p>
+<p>Now, you use the Image Tool to create an image named <code>model-in-image:WLS-v1</code> that’s layered on a base WebLogic image. You’ve already set up this tool during the prerequisite steps.</p>
+<p>Run the following commands to create the model image and verify that it worked:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cd /tmp/mii-sample/model-images
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ ./imagetool/bin/imagetool.sh update <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --tag model-in-image:WLS-v1 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --fromImage container-registry.oracle.com/middleware/weblogic:12.2.1.4 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --wdtModel      ./model-in-image__WLS-v1/model.10.yaml <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --wdtVariables  ./model-in-image__WLS-v1/model.10.properties <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --wdtArchive    ./model-in-image__WLS-v1/archive.zip <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --wdtModelOnly <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --wdtDomainType WLS <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  --chown oracle:root
+</code></pre></div><p>If you don’t see the <code>imagetool</code> directory, then you missed a step in the prerequisites.</p>
+<p>This command runs the WebLogic Image Tool in its Model in Image mode, and does the following:</p>
+<ul>
+<li>Builds the final image as a layer on the <code>container-registry.oracle.com/middleware/weblogic:12.2.1.4</code> base image.</li>
+<li>Copies the WDT ZIP file that’s referenced in the WIT cache into the image.
+<ul>
+<li>Note that you cached WDT in WIT using the keyword <code>latest</code> when you set up the cache during the sample prerequisites steps.</li>
+<li>This lets WIT implicitly assume it’s the desired WDT version and removes the need to pass a <code>-wdtVersion</code> flag.</li>
+</ul>
+</li>
+<li>Copies the specified WDT model, properties, and application archives to image location <code>/u01/wdt/models</code>.</li>
+</ul>
+<p>When the command succeeds, it should end with output like the following:</p>
+<pre><code>[INFO   ] Build successful. Build time=36s. Image tag=model-in-image:WLS-v1
+</code></pre><p>Also, if you run the <code>docker images</code> command, then you will see an image named <code>model-in-image:WLS-v1</code>.</p>
+<blockquote>
+<p>Note: If you have Kubernetes cluster worker nodes that are remote to your local machine, then you need to put the image in a location that these nodes can access. See <a href="#ensuring-your-kubernetes-cluster-can-access-images">Ensuring your Kubernetes cluster can access images</a>.</p>
+</blockquote>
+<h4 id="create-weblogic-domain">Create WebLogic domain</h4>
+<p>In this section, you will deploy the new image to namespace <code>sample-domain1-ns</code>, including the following steps:</p>
+<ul>
+<li>Create a namespace for the WebLogic domain.</li>
+<li>Upgrade the operator to manage the WebLogic domain namespace.</li>
+<li>Create a Secret containing your WebLogic administrator user name and password.</li>
+<li>Create a Secret containing your Model in Image runtime encryption password:
+<ul>
+<li>All Model in Image domains must supply a runtime encryption Secret with a <code>password</code> value.</li>
+<li>It is used to encrypt configuration that is passed around internally by the operator.</li>
+<li>The value must be kept private but can be arbitrary; you can optionally supply a different secret value every time you restart the domain.</li>
+</ul>
+</li>
+<li>Deploy a Domain YAML file that references the new image.</li>
+<li>Wait for the domain’s Pods to start and reach their ready state.</li>
+</ul>
+<h5 id="namespace">Namespace</h5>
+<p>Create a namespace that can host one or more domains:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl create namespace sample-domain1-ns
+</code></pre></div><pre><code>## label the domain namespace so that the operator can autodetect and create WebLogic Server pods.
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl label namespace sample-domain1-ns weblogic-operator<span style="color:#f92672">=</span>enabled
+</code></pre></div><h5 id="secrets">Secrets</h5>
+<p>First, create the secrets needed by the WLS type model domain. In this case, you have two secrets.</p>
+<p>Run the following <code>kubectl</code> commands to deploy the required secrets:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl -n sample-domain1-ns create secret generic <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  sample-domain1-weblogic-credentials <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>   --from-literal<span style="color:#f92672">=</span>username<span style="color:#f92672">=</span>weblogic --from-literal<span style="color:#f92672">=</span>password<span style="color:#f92672">=</span>welcome1
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl -n sample-domain1-ns label  secret <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  sample-domain1-weblogic-credentials <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  weblogic.domainUID<span style="color:#f92672">=</span>sample-domain1
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl -n sample-domain1-ns create secret generic <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  sample-domain1-runtime-encryption-secret <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>   --from-literal<span style="color:#f92672">=</span>password<span style="color:#f92672">=</span>my_runtime_password
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl -n sample-domain1-ns label  secret <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  sample-domain1-runtime-encryption-secret <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>  weblogic.domainUID<span style="color:#f92672">=</span>sample-domain1
+</code></pre></div><p>Some important details about these secrets:</p>
+<ul>
+<li>
+<p>The WebLogic credentials secret:</p>
+<ul>
+<li>It is required and must contain <code>username</code> and <code>password</code> fields.</li>
+<li>It must be referenced by the <code>spec.webLogicCredentialsSecret</code> field in your Domain.</li>
+<li>It also must be referenced by macros in the <code>domainInfo.AdminUserName</code> and <code>domainInfo.AdminPassWord</code> fields in your model YAML file.</li>
+</ul>
+</li>
+<li>
+<p>The Model WDT runtime secret:</p>
+<ul>
+<li>This is a special secret required by Model in Image.</li>
+<li>It must contain a <code>password</code> field.</li>
+<li>It must be referenced using the <code>spec.model.runtimeEncryptionSecret</code> field in its Domain.</li>
+<li>It must remain the same for as long as the domain is deployed to Kubernetes but can be changed between deployments.</li>
+<li>It is used to encrypt data as it&rsquo;s internally passed using log files from the domain&rsquo;s introspector job and on to its WebLogic Server pods.</li>
+</ul>
+</li>
+<li>
+<p>Deleting and recreating the secrets:</p>
+<ul>
+<li>You delete a secret before creating it, otherwise the create command will fail if the secret already exists.</li>
+<li>This allows you to change the secret when using the <code>kubectl create secret</code> command.</li>
+</ul>
+</li>
+<li>
+<p>You name and label secrets using their associated domain UID for two reasons:</p>
+<ul>
+<li>To make it obvious which secrets belong to which domains.</li>
+<li>To make it easier to clean up a domain. Typical cleanup scripts use the <code>weblogic.domainUID</code> label as a convenience for finding all resources associated with a domain.</li>
+</ul>
+</li>
+</ul>
+<h5 id="domain-resource">Domain resource</h5>
+<p>Now, you create a Domain YAML file. A Domain is the key resource that tells the operator how to deploy a WebLogic domain.</p>
+<p>Copy the following to a file called <code>/tmp/mii-sample/mii-initial.yaml</code> or similar, or use the file <code>/tmp/mii-sample/domain-resources/WLS/mii-initial-d1-WLS-v1.yaml</code> that is included in the sample source.</p>
+
+<div class="expand">
+    <div class="expand-label" style="cursor: pointer;" onclick="$h = $(this);$h.next('div').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('div').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
+        <i style="font-size:x-small;" class="fas fa-chevron-right"></i>
+        <span>
+        
+    	
+    	Click here to view the WLS Domain YAML file.
+    	
+    	</span>
+    </div>
+    <div class="expand-content" style="display: none;">
+        <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">  <span style="color:#75715e">#</span>
+  <span style="color:#75715e"># This is an example of how to define a Domain resource.</span>
+  <span style="color:#75715e">#</span>
+  <span style="color:#66d9ef">apiVersion</span>: <span style="color:#e6db74">&#34;weblogic.oracle/v8&#34;</span>
+  <span style="color:#66d9ef">kind</span>: Domain
+  <span style="color:#66d9ef">metadata</span>:
+    <span style="color:#66d9ef">name</span>: sample-domain1
+    <span style="color:#66d9ef">namespace</span>: sample-domain1-ns
+    <span style="color:#66d9ef">labels</span>:
+      <span style="color:#66d9ef">weblogic.domainUID</span>: sample-domain1
+
+  <span style="color:#66d9ef">spec</span>:
+    <span style="color:#75715e"># Set to &#39;FromModel&#39; to indicate &#39;Model in Image&#39;.</span>
+    <span style="color:#66d9ef">domainHomeSourceType</span>: FromModel
+
+    <span style="color:#75715e"># The WebLogic Domain Home, this must be a location within</span>
+    <span style="color:#75715e"># the image for &#39;Model in Image&#39; domains.</span>
+    <span style="color:#66d9ef">domainHome</span>: /u01/domains/sample-domain1
+
+    <span style="color:#75715e"># The WebLogic Server image that the Operator uses to start the domain</span>
+    <span style="color:#66d9ef">image</span>: <span style="color:#e6db74">&#34;model-in-image:WLS-v1&#34;</span>
+
+    <span style="color:#75715e"># Defaults to &#34;Always&#34; if image tag (version) is &#39;:latest&#39;</span>
+    <span style="color:#66d9ef">imagePullPolicy</span>: <span style="color:#e6db74">&#34;IfNotPresent&#34;</span>
+
+    <span style="color:#75715e"># Identify which Secret contains the credentials for pulling an image</span>
+    <span style="color:#75715e">#imagePullSecrets:</span>
+    <span style="color:#75715e">#- name: regsecret</span>
+
+    <span style="color:#75715e"># Identify which Secret contains the WebLogic Admin credentials,</span>
+    <span style="color:#75715e"># the secret must contain &#39;username&#39; and &#39;password&#39; fields.</span>
+    <span style="color:#66d9ef">webLogicCredentialsSecret</span>:
+      <span style="color:#66d9ef">name</span>: sample-domain1-weblogic-credentials
+
+    <span style="color:#75715e"># Whether to include the WebLogic Server stdout in the pod&#39;s stdout, default is true</span>
+    <span style="color:#66d9ef">includeServerOutInPodLog</span>: <span style="color:#66d9ef">true</span>
+
+    <span style="color:#75715e"># Whether to enable overriding your log file location, see also &#39;logHome&#39;</span>
+    <span style="color:#75715e">#logHomeEnabled: false</span>
+
+    <span style="color:#75715e"># The location for domain log, server logs, server out, introspector out, and Node Manager log files</span>
+    <span style="color:#75715e"># see also &#39;logHomeEnabled&#39;, &#39;volumes&#39;, and &#39;volumeMounts&#39;.</span>
+    <span style="color:#75715e">#logHome: /shared/logs/sample-domain1</span>
+
+    <span style="color:#75715e"># Set which WebLogic Servers the Operator will start</span>
+    <span style="color:#75715e"># - &#34;NEVER&#34; will not start any server in the domain</span>
+    <span style="color:#75715e"># - &#34;ADMIN_ONLY&#34; will start up only the administration server (no managed servers will be started)</span>
+    <span style="color:#75715e"># - &#34;IF_NEEDED&#34; will start all non-clustered servers, including the administration server, and clustered servers up to their replica count.</span>
+    <span style="color:#66d9ef">serverStartPolicy</span>: <span style="color:#e6db74">&#34;IF_NEEDED&#34;</span>
+
+    <span style="color:#75715e"># Settings for all server pods in the domain including the introspector job pod</span>
+    <span style="color:#66d9ef">serverPod</span>:
+      <span style="color:#75715e"># Optional new or overridden environment variables for the domain&#39;s pods</span>
+      <span style="color:#75715e"># - This sample uses CUSTOM_DOMAIN_NAME in its image model file</span>
+      <span style="color:#75715e">#   to set the Weblogic domain name</span>
+      <span style="color:#66d9ef">env</span>:
+      - <span style="color:#66d9ef">name</span>: CUSTOM_DOMAIN_NAME
+        <span style="color:#66d9ef">value</span>: <span style="color:#e6db74">&#34;domain1&#34;</span>
+      - <span style="color:#66d9ef">name</span>: JAVA_OPTIONS
+        <span style="color:#66d9ef">value</span>: <span style="color:#e6db74">&#34;-Dweblogic.StdoutDebugEnabled=false&#34;</span>
+      - <span style="color:#66d9ef">name</span>: USER_MEM_ARGS
+        <span style="color:#66d9ef">value</span>: <span style="color:#e6db74">&#34;-XX:+UseContainerSupport -Djava.security.egd=file:/dev/./urandom &#34;</span>
+
+      <span style="color:#75715e"># Optional volumes and mounts for the domain&#39;s pods. See also &#39;logHome&#39;.</span>
+      <span style="color:#75715e">#volumes:</span>
+      <span style="color:#75715e">#- name: weblogic-domain-storage-volume</span>
+      <span style="color:#75715e">#  persistentVolumeClaim:</span>
+      <span style="color:#75715e">#    claimName: sample-domain1-weblogic-sample-pvc</span>
+      <span style="color:#75715e">#volumeMounts:</span>
+      <span style="color:#75715e">#- mountPath: /shared</span>
+      <span style="color:#75715e">#  name: weblogic-domain-storage-volume</span>
+
+    <span style="color:#75715e"># The desired behavior for starting the domain&#39;s administration server.</span>
+    <span style="color:#66d9ef">adminServer</span>:
+      <span style="color:#75715e"># The serverStartState legal values are &#34;RUNNING&#34; or &#34;ADMIN&#34;</span>
+      <span style="color:#75715e"># &#34;RUNNING&#34; means the listed server will be started up to &#34;RUNNING&#34; mode</span>
+      <span style="color:#75715e"># &#34;ADMIN&#34; means the listed server will be start up to &#34;ADMIN&#34; mode</span>
+      <span style="color:#66d9ef">serverStartState</span>: <span style="color:#e6db74">&#34;RUNNING&#34;</span>
+      <span style="color:#75715e"># Setup a Kubernetes node port for the administration server default channel</span>
+      <span style="color:#75715e">#adminService:</span>
+      <span style="color:#75715e">#  channels:</span>
+      <span style="color:#75715e">#  - channelName: default</span>
+      <span style="color:#75715e">#    nodePort: 30701</span>
+
+    <span style="color:#75715e"># The number of managed servers to start for unlisted clusters</span>
+    <span style="color:#66d9ef">replicas</span>: <span style="color:#ae81ff">1</span>
+
+    <span style="color:#75715e"># The desired behavior for starting a specific cluster&#39;s member servers</span>
+    <span style="color:#66d9ef">clusters</span>:
+    - <span style="color:#66d9ef">clusterName</span>: cluster<span style="color:#ae81ff">-1</span>
+      <span style="color:#66d9ef">serverStartState</span>: <span style="color:#e6db74">&#34;RUNNING&#34;</span>
+      <span style="color:#66d9ef">replicas</span>: <span style="color:#ae81ff">2</span>
+
+    <span style="color:#75715e"># Change the `restartVersion` to force the introspector job to rerun</span>
+    <span style="color:#75715e"># and apply any new model configuration, to also force a subsequent</span>
+    <span style="color:#75715e"># roll of your domain&#39;s WebLogic Server pods.</span>
+    <span style="color:#66d9ef">restartVersion</span>: <span style="color:#e6db74">&#39;1&#39;</span>
+
+    <span style="color:#66d9ef">configuration</span>:
+
+      <span style="color:#75715e"># Settings for domainHomeSourceType &#39;FromModel&#39;</span>
+      <span style="color:#66d9ef">model</span>:
+        <span style="color:#75715e"># Valid model domain types are &#39;WLS&#39;, &#39;JRF&#39;, and &#39;RestrictedJRF&#39;, default is &#39;WLS&#39;</span>
+        <span style="color:#66d9ef">domainType</span>: <span style="color:#e6db74">&#34;WLS&#34;</span>
+
+        <span style="color:#75715e"># Optional configmap for additional models and variable files</span>
+        <span style="color:#75715e">#configMap: sample-domain1-wdt-config-map</span>
+
+        <span style="color:#75715e"># All &#39;FromModel&#39; domains require a runtimeEncryptionSecret with a &#39;password&#39; field</span>
+        <span style="color:#66d9ef">runtimeEncryptionSecret</span>: sample-domain1-runtime-encryption-secret
+
+      <span style="color:#75715e"># Secrets that are referenced by model yaml macros</span>
+      <span style="color:#75715e"># (the model yaml in the optional configMap or in the image)</span>
+      <span style="color:#75715e">#secrets:</span>
+      <span style="color:#75715e">#- sample-domain1-datasource-secret</span>
+</code></pre></div>
+    </div>
+</div>
+<blockquote>
+<p><strong>Note</strong>: Before you deploy the domain custom resource, determine if you have Kubernetes cluster worker nodes that are remote to your local machine. If so, you need to put the Domain&rsquo;s image in a location that these nodes can access and you may also need to modify your Domain YAML file to reference the new location. See <a href="/samples/simple/domains/model-in-image/#ensuring-your-kubernetes-cluster-can-access-images">Ensuring your Kubernetes cluster can access images</a>.</p>
+</blockquote>
+<p>Run the following command to create the domain custom resource:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl apply -f /tmp/mii-sample/domain-resources/WLS/mii-initial-d1-WLS-v1.yaml
+</code></pre></div><blockquote>
+<p><strong>Note</strong>: If you are choosing not to use the predefined Domain YAML file and instead created your own Domain YAML file earlier, then substitute your custom file name in the above command. Previously, we suggested naming it <code>/tmp/mii-sample/mii-initial.yaml</code>.</p>
+</blockquote>
+<p>Verify the WebLogic Server pods are all running:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl get all -n sample-domain1-ns
+</code></pre></div><pre><code>NAME                                 READY   STATUS    RESTARTS   AGE
+pod/sample-domain1-admin-server      1/1     Running   0          41m
+pod/sample-domain1-managed-server1   1/1     Running   0          40m
+pod/sample-domain1-managed-server2   1/1     Running   0          40m
+
+NAME                                       TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+service/sample-domain1-admin-server        ClusterIP   None           &lt;none&gt;        7001/TCP   41m
+service/sample-domain1-cluster-cluster-1   ClusterIP   100.66.99.27   &lt;none&gt;        8001/TCP   40m
+service/sample-domain1-managed-server1     ClusterIP   None           &lt;none&gt;        8001/TCP   40m
+service/sample-domain1-managed-server2     ClusterIP   None           &lt;none&gt;        8001/TCP   40m
+
+</code></pre><h4 id="invoke-the-web-application">Invoke the web application</h4>
+<p>Create a load balancer to access the WebLogic Server Administration Console and applications deployed in the cluster.
+Tanzu supports the MetalLB load balancer and NGINX ingress for routing.</p>
+<p>Install the MetalLB load balancer by running following commands:</p>
+<pre><code>## create namespace metallb-system
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl create ns metallb-system
+</code></pre></div><pre><code>## deploy MetalLB load balancer
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl apply -f https://raw.githubusercontent.com/google/metallb/v0.9.2/manifests/metallb.yaml -n metallb-system
+</code></pre></div><pre><code>## create secret
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl create secret generic -n metallb-system memberlist --from-literal<span style="color:#f92672">=</span>secretkey<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>openssl rand -base64 128<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cat metallb-configmap.yaml
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: v1
+<span style="color:#66d9ef">kind</span>: ConfigMap
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">namespace</span>: metallb-system
+  <span style="color:#66d9ef">name</span>: config
+<span style="color:#66d9ef">data</span>:
+  <span style="color:#66d9ef">config</span>: <span style="color:#e6db74">|
+</span><span style="color:#e6db74">    address-pools:</span>
+    - <span style="color:#66d9ef">name</span>: default
+      <span style="color:#66d9ef">protocol</span>: layer2
+      <span style="color:#66d9ef">addresses</span>:
+      - <span style="color:#ae81ff">192.168.100.50-192.168.100.65</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl apply -f metallb-configmap.yaml
+</code></pre></div><pre><code>configmap/config created
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl get all -n metallb-system
+</code></pre></div><pre><code>NAME                              READY   STATUS    RESTARTS   AGE
+pod/controller-684f5d9b49-jkzfk   1/1     Running   0          2m14s
+pod/speaker-b457r                 1/1     Running   0          2m14s
+pod/speaker-bzmmj                 1/1     Running   0          2m14s
+pod/speaker-gphh5                 1/1     Running   0          2m14s
+pod/speaker-lktgc                 1/1     Running   0          2m14s
+
+NAME                     DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR                 AGE
+daemonset.apps/speaker   4         4         4       4            4           beta.kubernetes.io/os=linux   2m14s
+
+NAME                         READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/controller   1/1     1            1           2m14s
+
+NAME                                    DESIRED   CURRENT   READY   AGE
+replicaset.apps/controller-684f5d9b49   1         1         1       2m14s
+</code></pre><p>Install NGINX.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx --force-update
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ helm install ingress-nginx ingress-nginx/ingress-nginx
+</code></pre></div><p>Create ingress for accessing the application deployed in the cluster and to access the Administration console.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cat ingress.yaml
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">apiVersion</span>: networking.k8s.io/v1beta1
+<span style="color:#66d9ef">kind</span>: Ingress
+<span style="color:#66d9ef">metadata</span>:
+  <span style="color:#66d9ef">name</span>: sample-nginx-ingress-pathrouting
+  <span style="color:#66d9ef">namespace</span>: sample-domain1-ns
+  <span style="color:#66d9ef">annotations</span>:
+    <span style="color:#66d9ef">kubernetes.io/ingress.class</span>: nginx
+<span style="color:#66d9ef">spec</span>:
+  <span style="color:#66d9ef">rules</span>:
+  - <span style="color:#66d9ef">host</span>:
+    <span style="color:#66d9ef">http</span>:
+      <span style="color:#66d9ef">paths</span>:
+      - <span style="color:#66d9ef">path</span>: /
+        <span style="color:#66d9ef">backend</span>:
+          <span style="color:#66d9ef">serviceName</span>: sample-domain1-cluster-cluster<span style="color:#ae81ff">-1</span>
+          <span style="color:#66d9ef">servicePort</span>: <span style="color:#ae81ff">8001</span>
+      - <span style="color:#66d9ef">path</span>: /console
+        <span style="color:#66d9ef">backend</span>:
+          <span style="color:#66d9ef">serviceName</span>: sample-domain1-admin-server
+          <span style="color:#66d9ef">servicePort</span>: <span style="color:#ae81ff">7001</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl apply -f ingress.yaml
+</code></pre></div><p>Verify ingress is running.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ kubectl get ingresses -n sample-domain1-ns
+</code></pre></div><pre><code>NAME                               CLASS    HOSTS   ADDRESS          PORTS   AGE
+sample-nginx-ingress-pathrouting   &lt;none&gt;   *       192.168.100.50   80      7m18s
+</code></pre><p>Access the Administration Console using the load balancer IP address, <code>http://192.168.100.50/console</code></p>
+<p>Access the sample application.</p>
+<pre><code># Access the sample application using the load balancer IP (192.168.100.50)
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ curl http://192.168.100.50/myapp_war/index.jsp
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">html</span>&gt;&lt;<span style="color:#f92672">body</span>&gt;&lt;<span style="color:#f92672">pre</span>&gt;
+*****************************************************************
+
+Hello World! This is version &#39;v1&#39; of the mii-sample JSP web-app.
+
+Welcome to WebLogic Server &#39;managed-server1&#39;!
+
+ domain UID  = &#39;sample-domain1&#39;
+ domain name = &#39;domain1&#39;
+
+Found 1 local cluster runtime:
+  Cluster &#39;cluster-1&#39;
+
+Found 0 local data sources:
+
+*****************************************************************
+&lt;/<span style="color:#f92672">pre</span>&gt;&lt;/<span style="color:#f92672">body</span>&gt;&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ curl http://192.168.100.50/myapp_war/index.jsp
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">html</span>&gt;&lt;<span style="color:#f92672">body</span>&gt;&lt;<span style="color:#f92672">pre</span>&gt;
+*****************************************************************
+
+Hello World! This is version &#39;v1&#39; of the mii-sample JSP web-app.
+
+Welcome to WebLogic Server &#39;managed-server2&#39;!
+
+ domain UID  = &#39;sample-domain1&#39;
+ domain name = &#39;domain1&#39;
+
+Found 1 local cluster runtime:
+  Cluster &#39;cluster-1&#39;
+
+Found 0 local data sources:
+
+*****************************************************************
+&lt;/<span style="color:#f92672">pre</span>&gt;&lt;/<span style="color:#f92672">body</span>&gt;&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div>
+
+
+
+
+<footer class=" footline" >
 	
-  
+</footer>
+
         
         </div>
         
@@ -4294,20 +4884,6 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -4323,6 +4899,25 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
             
                 
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
                     
                 
                 
@@ -4760,6 +5355,7 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
+                    
                 
                 
 
@@ -4781,6 +5377,9 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -5428,8 +6027,10 @@ details of how to access our Slack workspace.  After you are logged in, please c
 	 
 	 
 		
+			<a class="nav nav-prev" href="/samples/simple/azure-kubernetes-service/troubleshooting/" title="Troubleshooting"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/quickstart/" title="Quick Start" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/developerguide/" title="Developer Guide" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -5461,4 +6062,3 @@ details of how to access our Slack workspace.  After you are logged in, please c
 
   </body>
 </html>
-

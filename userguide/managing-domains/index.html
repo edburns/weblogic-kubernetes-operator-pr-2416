@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="Hugo 0.75.0-DEV" />
-    <meta name="description" content="">
+    <meta name="description" content="Important considerations for WebLogic domains in Kubernetes.">
 
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title> :: WebLogic Kubernetes Operator</title>
+    <title>Manage WebLogic domains :: WebLogic Kubernetes Operator</title>
 
     
     <link href="/css/nucleus.css?1624489125" rel="stylesheet">
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/userguide/managing-domains/">
     <nav id="sidebar" class="">
 
 
@@ -266,7 +266,7 @@
   
     
     <li data-nav-id="/userguide/" title="User Guide" class="dd-item
-        
+        parent
         
         
         ">
@@ -682,8 +682,8 @@
   
     
     <li data-nav-id="/userguide/managing-domains/" title="Manage WebLogic domains" class="dd-item
-        
-        
+        parent
+        active
         
         ">
       <a href="/userguide/managing-domains/">
@@ -3243,87 +3243,312 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            
+            
+          
+          
+            <a href='/'></a> > <a href='/userguide/'>User Guide</a> > Manage WebLogic domains
+          
+        
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+        <li><a href="#meet-kubernetes-resource-name-restrictions">Meet Kubernetes resource name restrictions</a></li>
+        <li><a href="#creating-and-managing-weblogic-domains">Creating and managing WebLogic domains</a></li>
+        <li><a href="#modifying-domain-configurations">Modifying domain configurations</a></li>
+        <li><a href="#about-the-domain-resource">About the Domain resource</a></li>
+        <li><a href="#managing-lifecycle-operations">Managing lifecycle operations</a></li>
+        <li><a href="#scaling-clusters">Scaling clusters</a></li>
+        <li><a href="#about-domain-events">About domain events</a></li>
+        <li><a href="#log-files">Log files</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Manage WebLogic domains
+            </h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h3 id="weblogic-kubernetes-operator">WebLogic Kubernetes Operator</h3>
-<p>The WebLogic Kubernetes Operator (the “operator”) supports running your WebLogic Server and Fusion Middleware Infrastructure domains on Kubernetes, an industry standard, cloud neutral deployment platform. It lets you encapsulate your entire WebLogic Server installation and layered applications into a portable set of cloud neutral images and simple resource description files. You can run them on any on-premises or public cloud that supports Kubernetes where you&rsquo;ve deployed the operator.</p>
-<p>Furthermore, the operator is well suited to CI/CD processes. You can easily inject changes when moving between environments, such as from test to production. For example, you can externally inject database URLs and credentials during deployment or you can inject arbitrary changes to most WebLogic configurations.</p>
-<p>The operator takes advantage of the <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">Kubernetes operator pattern</a>, which means that it uses Kubernetes APIs to provide support for operations, such as: provisioning, lifecycle management, application versioning, product patching, scaling, and security. The operator also enables the use of tooling that is native to this infrastructure for monitoring, logging, tracing, and security.</p>
-<p>You can:</p>
+
+	<h4 id="contents">Contents</h4>
 <ul>
-<li>Deploy an operator that manages all WebLogic domains in all namespaces in a Kubernetes cluster, or that only manages domains in a specific subset of the namespaces, or that manages only domains that are located in the same namespace as the operator. At most, a namespace can be managed by one operator.</li>
-<li>Supply WebLogic domain configuration using:
-<ul>
-<li><em>Domain in PV</em>: Locates WebLogic domain homes in a Kubernetes PersistentVolume (PV). This PV can reside in an NFS file system or other Kubernetes volume types.</li>
-<li><em>Domain in Image</em>: Includes a WebLogic domain home in a container image.</li>
-<li><em>Model in Image</em>: Includes <a href="https://oracle.github.io/weblogic-deploy-tooling/">WebLogic Deploy Tooling</a> models and archives in a container image.</li>
+<li><a href="#important-considerations-for-weblogic-domains-in-kubernetes">Important considerations for WebLogic domains in Kubernetes</a></li>
+<li><a href="#meet-kubernetes-resource-name-restrictions">Meet Kubernetes resource name restrictions</a></li>
+<li><a href="#creating-and-managing-weblogic-domains">Creating and managing WebLogic domains</a></li>
+<li><a href="#modifying-domain-configurations">Modifying domain configurations</a></li>
+<li><a href="#about-the-domain-resource">About the Domain resource</a></li>
+<li><a href="#managing-lifecycle-operations">Managing lifecycle operations</a></li>
+<li><a href="#scaling-clusters">Scaling clusters</a></li>
+<li><a href="#about-domain-events">About domain events</a></li>
+<li><a href="#log-files">Log files</a></li>
 </ul>
-</li>
-<li>Configure deployment of WebLogic domains as a Kubernetes resource (using a Kubernetes custom resource definition).</li>
-<li>Override certain aspects of the WebLogic domain configuration; for example, use a different database password for different deployments.</li>
-<li>Start and stop servers and clusters in the domain based on declarative startup parameters and desired states.</li>
-<li>Scale WebLogic domains by starting and stopping Managed Servers on demand, or by integrating with a REST API to initiate scaling based on the WebLogic Diagnostics Framework (WLDF), Prometheus, Grafana, or other rules.</li>
-<li>Expose the WebLogic Server Administration Console outside the Kubernetes cluster, if desired.</li>
-<li>Expose T3 channels outside the Kubernetes domain, if desired.</li>
-<li>Expose HTTP paths on a WebLogic domain outside the Kubernetes domain with load balancing, and automatically update the load balancer when Managed Servers in the WebLogic domain are started or stopped.</li>
-<li>Publish operator and WebLogic Server logs into Elasticsearch and interact with them in Kibana.</li>
+<h4 id="important-considerations-for-weblogic-domains-in-kubernetes">Important considerations for WebLogic domains in Kubernetes</h4>
+<p>Be aware of the following important considerations for WebLogic domains running in Kubernetes:</p>
+<ul>
+<li>
+<p><em>Domain Home Location:</em> The WebLogic domain home location is determined by the Domain YAML file <code>domainHome</code>, if specified; otherwise, a default location is determined by the <code>domainHomeSourceType</code> setting.</p>
+<ul>
+<li>If the Domain <code>domainHome</code> field is not specified and <code>domainHomeSourceType</code> is <code>Image</code> (the default), then the operator will assume that the domain home is a directory under <code>/u01/oracle/user_projects/domains/</code>, and report an error if no domain is found or more than one domain is found.</li>
+<li>If the Domain <code>domainHome</code> field is not specified and <code>domainHomeSourceType</code> is <code>PersistentVolume</code>, then the operator will assume that the domain home is <code>/shared/domains/DOMAIN_UID</code>.</li>
+<li>Finally, if the Domain <code>domainHome</code> field is not specified and the <code>domainHomeSourceType</code> is <code>FromModel</code>, then the operator will assume that the domain home is <code>/u01/domains/DOMAIN_UID</code>.</li>
 </ul>
 
-<div class="notices tip" ><p>The fastest way to experience the operator is to follow the <a href="/quickstart/">Quick Start guide</a>, or you can peruse our <a href="/userguide/">documentation</a>, read our <a href="https://blogs.oracle.com/weblogicserver/how-to-weblogic-server-on-kubernetes">blogs</a>, or try out the <a href="/samples/simple/">samples</a>.
-Also, you can step through the <a href="https://github.com/oracle/weblogic-kubernetes-operator/blob/main/kubernetes/hands-on-lab/README.md">Tutorial</a>
-using the operator to deploy and run a WebLogic domain container-packaged web application on an Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE) cluster.</p>
+<div class="notices warning" ><p>Oracle strongly recommends storing an image containing a WebLogic domain home (<code>domainHomeSourceType</code> is <code>Image</code>)
+as private in the registry (for example, Oracle Cloud Infrastructure Registry, GitHub Container Registry, and such).
+A container image that contains a WebLogic domain has sensitive information including
+keys and credentials that are used to access external resources (for example, the data source password).
+For more information, see
+<a href="/security/domain-security/image-protection/#weblogic-domain-in-container-image-protection">WebLogic domain in container image protection</a>.</p>
 </div>
 
-<hr>
-<h4 id="current-production-release">Current production release</h4>
-<p>The <a href="https://github.com/oracle/weblogic-kubernetes-operator/releases">current release of the operator</a> is 3.2.3.
-This release was published on May 21, 2021. See the operator prerequisites and supported environments <a href="/userguide/introduction/introduction/#operator-prerequisites">here</a>.</p>
-<hr>
-<h4 id="recent-changes-and-known-issues">Recent changes and known issues</h4>
-<p>See the <a href="/release-notes/">Release Notes</a>  for recent changes to the operator and known issues.</p>
-<h4 id="operator-earlier-versions">Operator earlier versions</h4>
-<p>Documentation for prior releases of the operator: <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.5/">2.5.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.6/">2.6.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.0/">3.0.x</a>, and <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.1/">3.1.x</a>.</p>
-<h4 id="backward-compatibility-guidelines">Backward compatibility guidelines</h4>
-<p>Starting from the 2.0.1 release, operator releases are backward compatible with respect to the domain
-resource schema, operator Helm chart input values, configuration overrides template, Kubernetes resources created
-by the operator Helm chart, Kubernetes resources created by the operator, and the operator REST interface. We intend to
-maintain compatibility for three releases, except in the case of a clearly communicated deprecated feature, which will be
-maintained for one release after a replacement is available.</p>
-<h3 id="about-this-documentation">About this documentation</h3>
-<p>This documentation includes sections targeted to different audiences.  To help you find what you are looking for more easily,
-please consult this table of contents:</p>
+</li>
+<li>
+<p><em>Log File Locations:</em> The operator can automatically override WebLogic Server, domain, and introspector log locations.
+This occurs if the Domain <code>logHomeEnabled</code> field is explicitly set to <code>true</code>, or if <code>logHomeEnabled</code> isn&rsquo;t set
+and <code>domainHomeSourceType</code> is set to <code>PersistentVolume</code>.  When overriding, the log location will be the location specified by the <code>logHome</code> setting.
+For additional log file tuning information, see <a href="#log-files">Log files</a>.</p>
+</li>
+<li>
+<p><em>Listen Address Overrides:</em>  The operator will automatically override all WebLogic domain default,
+SSL, admin, or custom channel listen addresses (using situational configuration overrides).  These will become <code>domainUID</code> followed by a
+hyphen and then the server name, all lowercase, and underscores converted to hyphens.  For example, if <code>domainUID=domain1</code> and
+the WebLogic Server name is <code>Admin_Server</code>, then its listen address becomes <code>domain1-admin-server</code>.</p>
+</li>
+<li>
+<p><em>Domain, Cluster, Server, and Network-Access-Point Names:</em> WebLogic domain, cluster, server, and network-access-point (channel)
+names must contain only the characters <code>A-Z</code>, <code>a-z</code>, <code>0-9</code>, <code>-</code>, or <code>_</code>, and must be kept to a reasonable length.  This ensures that they can
+be safely used to form resource names that meet Kubernetes resource and DNS1123 naming requirements. For more details,
+see <a href="#meet-kubernetes-resource-name-restrictions">Meet Kubernetes resource name restrictions</a>.</p>
+</li>
+<li>
+<p><em>Node Ports:</em> If you choose to expose any WebLogic channels outside the Kubernetes cluster using a <code>NodePort</code>, for example, the
+administration port or a T3 channel to allow WLST access, you need to ensure that you allocate each channel a
+unique port number across the entire Kubernetes cluster.  If you expose the administration port in each WebLogic domain in
+the Kubernetes cluster, then each one must have a different port number.  This is required because <code>NodePorts</code> are used to
+expose channels outside the Kubernetes cluster.<br>
+
+<div class="notices warning" ><p>Exposing administrative, RMI, or T3 capable channels using a Kubernetes <code>NodePort</code>
+can create an insecure configuration. In general, only HTTP protocols should be made available externally and this exposure
+is usually accomplished by setting up an external load balancer that can access internal (non-<code>NodePort</code>) services.
+For more information, see <a href="/security/domain-security/weblogic-channels/#weblogic-t3-channels">T3 channels</a>.</p>
+</div>
+</p>
+</li>
+<li>
+<p><em>Host Path Persistent Volumes:</em> If using a <code>hostPath</code> persistent volume, then it must be available on all worker nodes in the cluster and have read/write/many permissions for all container/pods in the WebLogic Server deployment.  Be aware
+that many cloud provider&rsquo;s volume providers may not support volumes across availability zones.  You may want to use NFS or a clustered file system to work around this limitation.</p>
+</li>
+<li>
+<p><em>Security Note:</em> The <code>USER_MEM_ARGS</code> environment variable defaults to <code>-Djava.security.egd=file:/dev/./urandom</code> in all WebLogic Server pods and the WebLogic introspection job. It can be explicitly set to another value in your Domain YAML file using the <code>env</code> attribute under the <code>serverPod</code> configuration.</p>
+</li>
+<li>
+<p><em>JVM Memory and Java Option Arguments:</em> The following environment variables can be used to customize the JVM memory and Java options for both the WebLogic Server Managed Servers and Node Manager instances:</p>
 <ul>
-<li>The <a href="/quickstart/">Quick Start guide</a> explains how to quickly get the operator running, using the defaults, nothing special.</li>
-<li>The <a href="/userguide/">User guide</a> contains detailed usage information, including how to install and configure the operator,
-and how to use it to create and manage WebLogic domains.</li>
-<li>The <a href="/samples/simple/">Samples</a> provide detailed example code and instructions that show you how to perform
-various tasks related to the operator.</li>
-<li>The <a href="/developerguide/">Developer guide</a> provides details for people who want to understand how the operator is built, tested, and so on. Those who wish to <a href="/developerguide/contributing/">contribute</a> to the operator code will find useful information here.</li>
-<li><a href="/reference/">Reference</a> describes domain resource attributes and the operator REST API.</li>
-<li><a href="/security/">Security</a> describes Kubernetes, WebLogic, and OpenShift security requirements.</li>
-<li><a href="/faq/">Frequently asked questions</a> provides answers to common questions.</li>
+<li><code>JAVA_OPTIONS</code> - Java options for starting WebLogic Server</li>
+<li><code>USER_MEM_ARGS</code> - JVM memory arguments for starting WebLogic Server</li>
+<li><code>NODEMGR_JAVA_OPTIONS</code> - Java options for starting a Node Manager instance</li>
+<li><code>NODEMGR_MEM_ARGS</code> - JVM memory arguments for starting a Node Manager instance</li>
 </ul>
-<h3 id="oracle-support">Oracle support</h3>
-<p>To access Oracle support for running WebLogic Server domains on Kubernetes platforms, see <a href="https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=208317433106215&amp;id=2349228.1&amp;_afrWindowMode=0&amp;_adf.ctrl-state=c2nhai8p3_4">WebLogic Server Certifications on Kubernetes in My Oracle Support Doc ID 2349228.1</a>.</p>
-<h3 id="need-more-help-have-a-suggestion-come-and-say-hello">Need more help? Have a suggestion? Come and say, &ldquo;Hello!&rdquo;</h3>
-<p>We have a <strong>public Slack channel</strong> where you can get in touch with us to ask questions about using the operator or give us feedback
-or suggestions about what features and improvements you would like to see.  We would love to hear from you. To join our channel,
-please <a href="https://weblogic-slack-inviter.herokuapp.com/">visit this site to get an invitation</a>.  The invitation email will include
-details of how to access our Slack workspace.  After you are logged in, please come to <code>#operator</code> and say, &ldquo;hello!&rdquo;</p>
+<p>For more information, see <a href="/userguide/managing-domains/domain-resource/">Domain resource</a>.</p>
+</li>
+</ul>
+<p>The following features are <strong>not</strong> certified or supported in this release:</p>
+<ul>
+<li>Whole server migration</li>
+<li>Consensus leasing</li>
+<li>Node Manager (although it is used internally for the liveness probe and to start WebLogic Server instances)</li>
+<li>Multicast</li>
+<li>Multitenancy</li>
+<li>Production redeployment</li>
+<li>Mixed clusters (configured servers targeted to a dynamic cluster)</li>
+</ul>
+<p>For up-to-date information about the features of WebLogic Server that are supported in Kubernetes environments, see My Oracle Support Doc ID 2349228.1.</p>
+<h3 id="meet-kubernetes-resource-name-restrictions">Meet Kubernetes resource name restrictions</h3>
+<p>Kubernetes requires that the names of some resource types follow the DNS label standard as defined in <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-label-names">DNS Label Names</a> and <a href="https://tools.ietf.org/html/rfc1123">RFC 1123</a>. This requirement restricts the characters that are allowed in the names of these resources, and also limits the length of these names to no more than 63 characters.</p>
+<p>The following is a list of such Kubernetes resources that the operator generates when a domain resource is deployed, including how their names are constructed.</p>
+<ul>
+<li>A domain introspector job named <code>&lt;domainUID&gt;-&lt;introspectorJobNameSuffix&gt;</code>. The default suffix is <code>-introspector</code>, which can be overridden using the operator&rsquo;s Helm configuration <code>introspectorJobNameSuffix</code> (see <a href="/userguide/managing-operators/using-the-operator/using-helm/#weblogic-domain-management">WebLogic domain management</a>).</li>
+<li>A ClusterIP type service and a pod for each WebLogic Server named <code>&lt;domainUID&gt;-&lt;serverName&gt;</code>.</li>
+<li>A ClusterIP type service for each WebLogic cluster named <code>&lt;domainUID&gt;-cluster-&lt;clusterName&gt;</code>.</li>
+<li>An optional NodePort type service, also known as an external service, for the WebLogic Administration Server named <code>&lt;domainUID&gt;-&lt;adminServerName&gt;-&lt;externalServiceNameSuffix&gt;</code>. The default suffix is <code>-ext</code>, which can be overridden using the operator&rsquo;s Helm configuration <code>externalServiceNameSuffix</code> (see <a href="/userguide/managing-operators/using-the-operator/using-helm/#weblogic-domain-management">WebLogic domain management</a>).</li>
+</ul>
+<p>The operator puts in place certain validation checks and conversions to prevent these resources from violating Kubernetes restrictions.</p>
+<ul>
+<li>All the names previously described can contain only the characters <code>A-Z</code>, <code>a-z</code>, <code>0-9</code>, <code>-</code>, or <code>_</code>, and must start and end with an alphanumeric character. Note that when generating pod and service names, the operator will convert configured names to lowercase and substitute a hyphen (<code>-</code>) for each underscore (<code>_</code>).</li>
+<li>A <code>domainUID</code> is required to be no more than 45 characters.</li>
+<li>WebLogic domain configuration names, such as the cluster names, Administration Server name, and Managed Server names must be kept to a legal length so that the resultant resource names do not exceed Kubernetes&rsquo; limits.</li>
+</ul>
+<p>When a domain resource or WebLogic domain configuration violates the limits, the domain startup will fail, and actual validation errors are reported in the domain resource&rsquo;s status.</p>
+<h3 id="creating-and-managing-weblogic-domains">Creating and managing WebLogic domains</h3>
+<p>You can locate a WebLogic domain either in a persistent volume (PV) or in an image.
+For examples of each, see the <a href="/samples/simple/domains/">WebLogic Kubernetes Operator samples</a>.</p>
+<p>If you want to create your own container images, for example, to choose a specific set of patches or to create a domain
+with a specific configuration or applications deployed, then you can create the domain custom resource
+manually to deploy your domain.  This process is documented in <a href="/samples/simple/domains/manually-create-domain/">this
+sample</a>.</p>
+<h3 id="modifying-domain-configurations">Modifying domain configurations</h3>
+<p>You can modify the WebLogic domain configuration for Domain in PV, Domain in Image, and Model in Image before deploying a Domain YAML file:</p>
+<p>When the domain is in a persistent volume, you can use WLST or WDT to change the configuration.</p>
+<p>For Domain in Image and Domain in PV you can use <a href="/userguide/managing-domains/configoverrides/">configuration overrides</a>.</p>
+<p>Configuration overrides allow changing a configuration without modifying its original <code>config.xml</code> or system resource XML files, and supports
+parameterizing overrides so that you can inject values into them from Kubernetes Secrets. For example, you can inject database user names, passwords,
+and URLs that are stored in a secret.</p>
+<p>For Model in Image you use <a href="/userguide/managing-domains/model-in-image/runtime-updates/">Runtime Updates</a>.</p>
+<h3 id="about-the-domain-resource">About the Domain resource</h3>
+<p>For more information, see <a href="/userguide/managing-domains/domain-resource/">Domain resource</a>.</p>
+<h3 id="managing-lifecycle-operations">Managing lifecycle operations</h3>
+<p>You can perform lifecycle operations on WebLogic Servers, clusters, or domains.
+See <a href="/userguide/managing-domains/domain-lifecycle/startup/">Starting and stopping</a> and <a href="/userguide/managing-domains/domain-lifecycle/restarting/">Restarting</a> servers.</p>
+<h3 id="scaling-clusters">Scaling clusters</h3>
+<p>The operator lets you initiate scaling of clusters in various ways:</p>
+<ul>
+<li><a href="/userguide/managing-domains/domain-lifecycle/scaling/#on-demand-updating-the-domain-directly">Using kubectl to edit the Domain resource</a></li>
+<li><a href="/userguide/managing-domains/domain-lifecycle/scaling/#calling-the-operators-rest-scale-api">Using the operator&rsquo;s REST APIs</a></li>
+<li><a href="/userguide/managing-domains/domain-lifecycle/scaling/#using-a-wldf-policy-rule-and-script-action-to-call-the-operators-rest-scale-api">Using WLDF policies</a></li>
+<li><a href="/userguide/managing-domains/domain-lifecycle/scaling/#using-a-prometheus-alert-action-to-call-the-operators-rest-scale-api">Using a Prometheus action</a></li>
+</ul>
+<h3 id="about-domain-events">About domain events</h3>
+<p>The operator generates Kubernetes events at key points during domain processing.
+For more information, see <a href="/userguide/managing-domains/domain-events/">Domain events</a>.</p>
+<h3 id="log-files">Log files</h3>
+<p>The operator can automatically override WebLogic Server, domain, and introspector <code>.log</code> and <code>.out</code> locations.
+This occurs if the Domain <code>logHomeEnabled</code> field is explicitly set to <code>true</code>, or if <code>logHomeEnabled</code> isn&rsquo;t set
+and <code>domainHomeSourceType</code> is set to <code>PersistentVolume</code>.  When overriding, the log location will be the location specified by the <code>logHome</code> setting.</p>
+<p>If you want to fine tune the <code>.log</code> and <code>.out</code> rotation behavior for WebLogic Servers and domains, then
+you can update the related <code>Log MBean</code> in your WebLogic configuration. Alternatively, for WebLogic
+Servers, you can set corresponding system properties in <code>JAVA_OPTIONS</code>:</p>
+<ul>
+<li>
+<p>Here are some WLST offline examples for creating and accessing commonly tuned Log MBeans:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">domain</span> <span style="color:#a6e22e">log</span>
+<span style="color:#a6e22e">cd</span>(<span style="color:#e6db74">&#39;/&#39;</span>)
+<span style="color:#a6e22e">create</span>(<span style="color:#a6e22e">dname</span>,<span style="color:#e6db74">&#39;Log&#39;</span>)
+<span style="color:#a6e22e">cd</span>(<span style="color:#e6db74">&#39;/Log/&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">dname</span>);
+
+<span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">configured</span> <span style="color:#a6e22e">server</span> <span style="color:#a6e22e">log</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">server</span> <span style="color:#a6e22e">named</span> <span style="color:#e6db74">&#39;sname&#39;</span>
+<span style="color:#a6e22e">cd</span>(<span style="color:#e6db74">&#39;/Servers/&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">sname</span>)
+<span style="color:#a6e22e">create</span>(<span style="color:#a6e22e">sname</span>, <span style="color:#e6db74">&#39;Log&#39;</span>)
+<span style="color:#a6e22e">cd</span>(<span style="color:#e6db74">&#39;/Servers/&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">sname</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;/Log/&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">sname</span>)
+
+<span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">templated</span> (<span style="color:#a6e22e">dynamic</span>) <span style="color:#a6e22e">server</span> <span style="color:#a6e22e">log</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">template</span> <span style="color:#a6e22e">named</span> <span style="color:#e6db74">&#39;tname&#39;</span>
+<span style="color:#a6e22e">cd</span>(<span style="color:#e6db74">&#39;/ServerTemplates/&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">tname</span>)
+<span style="color:#a6e22e">create</span>(<span style="color:#a6e22e">tname</span>,<span style="color:#e6db74">&#39;Log&#39;</span>)
+<span style="color:#a6e22e">cd</span>(<span style="color:#e6db74">&#39;/ServerTemplates/&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">tname</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;/Log/&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">tname</span>)
+</code></pre></div></li>
+<li>
+<p>Here is sample WLST offline code for commonly tuned Log MBean attributes:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">minimum</span> <span style="color:#a6e22e">log</span> <span style="color:#a6e22e">file</span> <span style="color:#a6e22e">size</span> <span style="color:#a6e22e">before</span> <span style="color:#a6e22e">rotation</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">kilobytes</span>
+<span style="color:#a6e22e">set</span>(<span style="color:#e6db74">&#39;FileMinSize&#39;</span>, <span style="color:#ae81ff">1000</span>)
+
+<span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">maximum</span> <span style="color:#a6e22e">number</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">rotated</span> <span style="color:#a6e22e">files</span>
+<span style="color:#a6e22e">set</span>(<span style="color:#e6db74">&#39;FileCount&#39;</span>, <span style="color:#ae81ff">10</span>)
+
+<span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#a6e22e">set</span> <span style="color:#a6e22e">to</span> <span style="color:#66d9ef">true</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">rotate</span> <span style="color:#a6e22e">file</span> <span style="color:#a6e22e">every</span> <span style="color:#a6e22e">time</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">startup</span> (<span style="color:#a6e22e">instead</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">append</span>)
+<span style="color:#a6e22e">set</span>(<span style="color:#e6db74">&#39;RotateLogOnStartup&#39;</span>, <span style="color:#e6db74">&#39;true&#39;</span>)
+</code></pre></div></li>
+<li>
+<p>Here are the defaults for commonly tuned Log MBean attributes:</p>
+<table>
+<thead>
+<tr>
+<th>Log MBean Attribute</th>
+<th>Production Mode Default</th>
+<th>Development Mode Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FileMinSize (in kilobytes)</td>
+<td>5000</td>
+<td>500</td>
+</tr>
+<tr>
+<td>FileCount</td>
+<td>100</td>
+<td>7</td>
+</tr>
+<tr>
+<td>RotateLogOnStartup</td>
+<td>false</td>
+<td>true</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>For WebLogic Server <code>.log</code> and <code>.out</code> files (including both dynamic and configured servers), you can alternatively
+set logging attributes using system properties that start with <code>weblogic.log.</code>
+and that end with the corresponding Log MBean attribute name.</p>
+<p>For example, you can include <code>-Dweblogic.log.FileMinSize=1000 -Dweblogic.log.FileCount=10 -Dweblogic.log.RotateLogOnStartup=true</code> in <code>domain.spec.serverPod.env.name.JAVA_OPTIONS</code> to set the behavior for all WebLogic Servers in your domain. For information about setting <code>JAVA_OPTIONS</code>, see <a href="/userguide/managing-domains/domain-resource/#jvm-memory-and-java-option-environment-variables">Domain resource</a>.</p>
+</li>
+</ul>
+
+<div class="notices warning" ><p>Kubernetes stores pod logs on each of its nodes, and, depending on the Kubernetes implementation, extra steps may be necessary to limit their disk space usage.
+For more information, see <a href="https://kubernetes.io/docs/concepts/cluster-administration/logging/">Kubernetes Logging Architecture</a>.</p>
+</div>
+
+
+
+
+
+
+<footer class=" footline" >
 	
-  
+</footer>
+
         
         </div>
         
@@ -3486,6 +3711,7 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
+                    
                 
                 
 
@@ -3501,18 +3727,8 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
                         
-            
-            
-                
+                        
                     
                 
                 
@@ -3521,9 +3737,6 @@ details of how to access our Slack workspace.  After you are logged in, please c
                     
                     
 
-                    
-            
-        
                     
                         
             
@@ -3540,54 +3753,6 @@ details of how to access our Slack workspace.  After you are logged in, please c
                     
             
         
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
                     
                         
             
@@ -3650,6 +3815,70 @@ details of how to access our Slack workspace.  After you are logged in, please c
 
                     
                     
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
                         
                     
                     
@@ -3743,6 +3972,7 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
                 
                     
+                    
                 
                 
 
@@ -3757,6 +3987,9 @@ details of how to access our Slack workspace.  After you are logged in, please c
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -5428,8 +5661,10 @@ details of how to access our Slack workspace.  After you are logged in, please c
 	 
 	 
 		
+			<a class="nav nav-prev" href="/userguide/base-images/" title="WebLogic Server images"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/quickstart/" title="Quick Start" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/userguide/managing-domains/choosing-a-model/" title="Choose a domain home source type" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -5461,4 +5696,3 @@ details of how to access our Slack workspace.  After you are logged in, please c
 
   </body>
 </html>
-

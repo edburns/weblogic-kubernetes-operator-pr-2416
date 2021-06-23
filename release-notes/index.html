@@ -9,23 +9,23 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title> :: WebLogic Kubernetes Operator</title>
+    <title>Release Notes :: WebLogic Kubernetes Operator</title>
 
     
-    <link href="/css/nucleus.css?1624489125" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1624489125" rel="stylesheet">
-    <link href="/css/hybrid.css?1624489125" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1624489125" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1624489125" rel="stylesheet">
-    <link href="/css/auto-complete.css?1624489125" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1624489125" rel="stylesheet">
-    <link href="/css/theme.css?1624489125" rel="stylesheet">
-    <link href="/css/tabs.css?1624489125" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1624489125" rel="stylesheet">
+    <link href="/css/nucleus.css?1624489124" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1624489124" rel="stylesheet">
+    <link href="/css/hybrid.css?1624489124" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1624489124" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1624489124" rel="stylesheet">
+    <link href="/css/auto-complete.css?1624489124" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1624489124" rel="stylesheet">
+    <link href="/css/theme.css?1624489124" rel="stylesheet">
+    <link href="/css/tabs.css?1624489124" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1624489124" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1624489125"></script>
+    <script src="/js/jquery-3.3.1.min.js?1624489124"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -39,7 +39,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/">
+  <body class="" data-url="/release-notes/">
     <nav id="sidebar" class="">
 
 
@@ -59,14 +59,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1624489125"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1624489125"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1624489124"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1624489124"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/polite-dune-0a7bd1d10.azurestaticapps.net\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1624489125"></script>
+<script type="text/javascript" src="/js/search.js?1624489124"></script>
 
     
   </div>
@@ -3243,87 +3243,402 @@
         <div id="overlay"></div>
         <div class="padding highlightable">
               
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            <a href='/'></a> > Release Notes
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#releases">Releases</a></li>
+        <li><a href="#change-log">Change log</a></li>
+        <li><a href="#known-issues">Known issues</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
         <div id="head-tags">
         
         </div>
         
         <div id="body-inner">
           
+            <h1>
+              
+              Release Notes
+            </h1>
+          
 
         
 
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fas fa-bars"></i> navigation</a>
-</span>
 
- 
-<h3 id="weblogic-kubernetes-operator">WebLogic Kubernetes Operator</h3>
-<p>The WebLogic Kubernetes Operator (the “operator”) supports running your WebLogic Server and Fusion Middleware Infrastructure domains on Kubernetes, an industry standard, cloud neutral deployment platform. It lets you encapsulate your entire WebLogic Server installation and layered applications into a portable set of cloud neutral images and simple resource description files. You can run them on any on-premises or public cloud that supports Kubernetes where you&rsquo;ve deployed the operator.</p>
-<p>Furthermore, the operator is well suited to CI/CD processes. You can easily inject changes when moving between environments, such as from test to production. For example, you can externally inject database URLs and credentials during deployment or you can inject arbitrary changes to most WebLogic configurations.</p>
-<p>The operator takes advantage of the <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">Kubernetes operator pattern</a>, which means that it uses Kubernetes APIs to provide support for operations, such as: provisioning, lifecycle management, application versioning, product patching, scaling, and security. The operator also enables the use of tooling that is native to this infrastructure for monitoring, logging, tracing, and security.</p>
-<p>You can:</p>
+<h3 id="releases">Releases</h3>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Version</th>
+<th>Introduces backward incompatibilities?</th>
+<th>Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>May 21, 2021</td>
+<td>v3.2.3</td>
+<td>no</td>
+<td>Resolved several issues, including an issue related to preserving the operator-generated internal certificate, corrected the monitoring exporter integration to include the Administration Server, enhanced the model-in-image support to not require the use of configuration overrides, and updated the domain-home-in-image samples to support the WebLogic Image Tool.</td>
+</tr>
+<tr>
+<td>April 27, 2021</td>
+<td>v3.2.2</td>
+<td>no</td>
+<td>Resolved a set of issues with many related to reducing the operator&rsquo;s network utilization.</td>
+</tr>
+<tr>
+<td>April 5, 2021</td>
+<td>v3.2.1</td>
+<td>no</td>
+<td>Updated several dependencies, including the Oracle Linux base for the container image.</td>
+</tr>
+<tr>
+<td>March 31, 2021</td>
+<td>v3.2.0</td>
+<td>no</td>
+<td>Online updates for dynamic changes for Model in Image, injection of the WebLogic Monitoring Exporter, other features, and a significant number of additional fixes.</td>
+</tr>
+<tr>
+<td>March 1, 2021</td>
+<td>v3.1.4</td>
+<td>no</td>
+<td>Resolved an issue where the operator would ignore live data that was older than cached data, such as following an etcd restore and updated Kubernetes Java Client and Bouncy Castle dependencies.</td>
+</tr>
+<tr>
+<td>February 12, 2021</td>
+<td>v3.1.3</td>
+<td>no</td>
+<td>Resolved a pair of issues related to the operator running well in very large Kubernetes clusters.</td>
+</tr>
+<tr>
+<td>January 22, 2021</td>
+<td>v3.1.2</td>
+<td>no</td>
+<td>Resolved an issue where the operator failed to start servers in which the pods were configured to have an annotation containing a forward slash.</td>
+</tr>
+<tr>
+<td>December 17, 2020</td>
+<td>v3.1.1</td>
+<td>no</td>
+<td>Resolved an issue that caused unexpected server restarts when the domain had multiple WebLogic clusters.</td>
+</tr>
+<tr>
+<td>November 24, 2020</td>
+<td>v3.0.4</td>
+<td>no</td>
+<td>This release contains a back-ported fix from 3.1.0 for Managed Server pods that do not properly restart following a rolling activity.</td>
+</tr>
+<tr>
+<td>November 13, 2020</td>
+<td>v3.1.0</td>
+<td>no</td>
+<td>Enhanced options for specifying managed namespaces. Helm 3.1.3+ now required. Added support for Tanzu Kubernetes Service.</td>
+</tr>
+<tr>
+<td>November 9, 2020</td>
+<td>v3.0.3</td>
+<td>no</td>
+<td>This release contains a fix for pods that are stuck in the Terminating state after an unexpected shut down of a worker node.</td>
+</tr>
+<tr>
+<td>September 15, 2020</td>
+<td>v3.0.2</td>
+<td>no</td>
+<td>This release contains several fixes, including improvements to log rotation and a fix that avoids unnecessarily updating the domain status.</td>
+</tr>
+<tr>
+<td>August 13, 2020</td>
+<td>v3.0.1</td>
+<td>no</td>
+<td>Fixed an issue preventing the REST interface from working after a Helm upgrade. Helm 3.1.3+ now required.</td>
+</tr>
+<tr>
+<td>July 17, 2020</td>
+<td>v3.0.0</td>
+<td>yes; for more information, see <a href="/userguide/managing-operators/installation/#upgrade-the-operator">Upgrade the operator</a>.</td>
+<td>Adds Model in Image feature and support for applying topology and configuration override changes without downtime. Removal of support for Helm 2.x. Operator performance improvements to manage many domains in the same Kubernetes cluster.</td>
+</tr>
+<tr>
+<td>June 22, 2020</td>
+<td>v2.6.0</td>
+<td>no</td>
+<td>Kubernetes 1.16, 1.17, and 1.18 support. Removal of support for Kubernetes 1.13 and earlier. This release can be run in the same cluster with operators of either 2.5.0 and below, or with 3.x providing an upgrade path. Certified support of Oracle Linux Cloud Native Environment (OLCNE) 1.1 with Kubernetes 1.17.0.</td>
+</tr>
+<tr>
+<td>February 26, 2020</td>
+<td>v2.5.0</td>
+<td>no</td>
+<td>Support for Helm 3.x and OpenShift 4.3.  Operator can be installed in a namespace-dedicated mode where operator requires no cluster-level Kubernetes privileges. This version is not supported on Kubernetes 1.16+; check the <a href="/userguide/introduction/introduction/#operator-prerequisites">prerequisites</a>.</td>
+</tr>
+<tr>
+<td>November 15, 2019</td>
+<td>v2.4.0</td>
+<td>no</td>
+<td>Includes fixes for a variety of issues related to FMW infrastructure domains and pod variable substitution.  Operator now uses WebLogic Deploy Tooling 1.6.0 and the latest version of the Kubernetes Java Client.</td>
+</tr>
+<tr>
+<td>August 27, 2019</td>
+<td>v2.3.0</td>
+<td>no</td>
+<td>Added support for Coherence cluster rolling, pod templating and additional pod content, and experimental support for running under an Istio service mesh.</td>
+</tr>
+<tr>
+<td>June 20, 2019</td>
+<td>v2.2.1</td>
+<td>no</td>
+<td>The operator now supports Kubernetes 1.14.0+.  This release is primarily a bug fix release and resolves the following issues: Servers in domains, where the domain home is on a persistent volume, would sometimes fail to start. These failures would be during the introspection phase following a full domain shutdown.  Now, the introspection script better handles the relevant error conditions. Also, now the Domain provides an option to <a href="https://github.com/oracle/weblogic-kubernetes-operator/blob/main/documentation/domains/Domain.md#server-service">pre-create Kubernetes Services</a> for WebLogic Servers that are not yet running so that the DNS addresses of these services are resolvable.  These services are now created as non-headless so that they have an IP address.</td>
+</tr>
+<tr>
+<td>June 6, 2019</td>
+<td>v2.2.0</td>
+<td>no</td>
+<td>Added support for FMW Infrastructure domains. WebLogic Server instances are now gracefully shut down by default and shutdown options are configurable. Operator is now built and runs on JDK 11.</td>
+</tr>
+<tr>
+<td>April 4, 2019</td>
+<td>v2.1</td>
+<td>no</td>
+<td>Customers can add init and sidecar containers to generated pods.</td>
+</tr>
+<tr>
+<td>March 4, 2019</td>
+<td>v2.0.1</td>
+<td>no</td>
+<td>OpenShift support is now certified.  Many bug fixes, including fixes for configuration overrides, cluster services, and domain status processing.</td>
+</tr>
+<tr>
+<td>January 24, 2019</td>
+<td>v2.0</td>
+<td>yes; not compatible with 1.x releases, but is compatible with 2.0-rc2.</td>
+<td>Final version numbers and documentation updates.</td>
+</tr>
+<tr>
+<td>January 16, 2019</td>
+<td>v2.0-rc2</td>
+<td>yes</td>
+<td>Schema updates are completed, and various bugs fixed.</td>
+</tr>
+<tr>
+<td>December 20, 2018</td>
+<td>v2.0-rc1</td>
+<td>yes</td>
+<td>Operator is now installed using Helm charts, replacing the earlier scripts.  The operator now supports the domain home on a persistent volume or in image use cases, which required a redesign of the domain schema.  You can override the domain configuration using configuration override templates.  Now load balancers and ingresses can be independently configured.  You can direct WebLogic logs to a persistent volume or to the pod&rsquo;s log.  Added life cycle support for servers and significantly enhanced configurability for generated pods.  The final v2.0 release will be the initial release where the operator team intends to provide backward compatibility as part of future releases.</td>
+</tr>
+<tr>
+<td>September 11, 2018</td>
+<td>v1.1</td>
+<td>no</td>
+<td>Enhanced the documentation and fixed various bugs.</td>
+</tr>
+<tr>
+<td>May 7, 2018</td>
+<td>v1.0</td>
+<td>no</td>
+<td>Added support for dynamic clusters, the Apache HTTP Server, the Voyager Ingress Controller, and for PV in NFS storage for multi-node environments.</td>
+</tr>
+<tr>
+<td>April 4, 2018</td>
+<td>0.2</td>
+<td>yes</td>
+<td>Many Kubernetes artifact names and labels have changed. Also, the names of generated YAML files for creating a domain&rsquo;s PV and PVC have changed.  Because of these changes, customers must recreate their operators and domains.</td>
+</tr>
+<tr>
+<td>March 20, 2018</td>
+<td></td>
+<td>yes</td>
+<td>Several files and input parameters have been renamed.  This affects how operators and domains are created.  It also changes generated Kubernetes artifacts, therefore customers must recreate their operators and domains.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="change-log">Change log</h3>
+<h4 id="operator-323">Operator 3.2.3</h4>
 <ul>
-<li>Deploy an operator that manages all WebLogic domains in all namespaces in a Kubernetes cluster, or that only manages domains in a specific subset of the namespaces, or that manages only domains that are located in the same namespace as the operator. At most, a namespace can be managed by one operator.</li>
-<li>Supply WebLogic domain configuration using:
+<li>Resolved an issue related to preserving the operator-generated internal certificate (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2374">#2374</a>).</li>
+<li>Corrected the monitoring exporter integration to include the Administration Server (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2365">#2365</a>).</li>
+<li>Enhanced the model-in-image support to not require the use of configuration overrides (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2344">#2344</a>).</li>
+<li>Resolved an issue related to model-in-image domains performing a rolling restart when there had been no change to the model (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2348">#2348</a>).</li>
+<li>Resolved an issue related to RCU schema password updates (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2357">#2357</a>).</li>
+<li>Resolved an issue related to namespace starting and stopping events (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2345">#2345</a>).</li>
+<li>Added support for several new events related to rolling restarts (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2364">#2364</a>).</li>
+<li>Added support for customer-defined labels and annotations on the operator&rsquo;s pod (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2370">#2370</a>).</li>
+</ul>
+<h4 id="operator-322">Operator 3.2.2</h4>
 <ul>
-<li><em>Domain in PV</em>: Locates WebLogic domain homes in a Kubernetes PersistentVolume (PV). This PV can reside in an NFS file system or other Kubernetes volume types.</li>
-<li><em>Domain in Image</em>: Includes a WebLogic domain home in a container image.</li>
-<li><em>Model in Image</em>: Includes <a href="https://oracle.github.io/weblogic-deploy-tooling/">WebLogic Deploy Tooling</a> models and archives in a container image.</li>
+<li>Resolved an issue where the operator would retry Kubernetes API requests that timed out without a backoff causing increased network utilization (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2300">#2300</a>).</li>
+<li>Resolved an issue where the operator would select the incorrect WebLogic Server port for administrative traffic (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2301">#2301</a>).</li>
+<li>Resolved an issue where the operator, when running in a large and heavily loaded Kubernetes cluster, would not properly detect when a domain had been deleted and recreated (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2305">#2305</a> and <a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2314">#2314</a>).</li>
+<li>Resolved an issue where the operator would fail to recover and begin processing in a namespace if the operator did not immediately have privileges in that namespace when it was first detected (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2315">#2315</a>).</li>
+<li>The operator logs a message when it cannot generate a <code>NamespaceWatchingStopped</code> Event in a namespace because the operator no longer has privileges in that namespace (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2323">#2323</a>).</li>
+<li>Resolved an issue where the operator would repeatedly replace a ConfigMap causing increased network utilization (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2321">#2321</a>).</li>
+<li>Resolved an issue where the operator would repeatedly read a Secret causing increased network utilization (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2326">#2326</a>).</li>
+<li>Resolved an issue where the operator was not honoring <code>domain.spec.adminServer.serverService</code> (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2334">#2334</a>).</li>
 </ul>
-</li>
-<li>Configure deployment of WebLogic domains as a Kubernetes resource (using a Kubernetes custom resource definition).</li>
-<li>Override certain aspects of the WebLogic domain configuration; for example, use a different database password for different deployments.</li>
-<li>Start and stop servers and clusters in the domain based on declarative startup parameters and desired states.</li>
-<li>Scale WebLogic domains by starting and stopping Managed Servers on demand, or by integrating with a REST API to initiate scaling based on the WebLogic Diagnostics Framework (WLDF), Prometheus, Grafana, or other rules.</li>
-<li>Expose the WebLogic Server Administration Console outside the Kubernetes cluster, if desired.</li>
-<li>Expose T3 channels outside the Kubernetes domain, if desired.</li>
-<li>Expose HTTP paths on a WebLogic domain outside the Kubernetes domain with load balancing, and automatically update the load balancer when Managed Servers in the WebLogic domain are started or stopped.</li>
-<li>Publish operator and WebLogic Server logs into Elasticsearch and interact with them in Kibana.</li>
+<h4 id="operator-321">Operator 3.2.1</h4>
+<p>Updated several dependencies, including the Oracle Linux base for the container image.</p>
+<h4 id="operator-320">Operator 3.2.0</h4>
+<h5 id="features">Features</h5>
+<ul>
+<li>The operator&rsquo;s container image is based on Oracle Linux 8.</li>
+<li>WebLogic Server container images based on Oracle Linux 8 are supported.</li>
+<li><a href="/userguide/managing-domains/model-in-image/runtime-updates/#online-updates">Online updates</a> of dynamic configuration changes for Model in Image.</li>
+<li>Automatic injection of the <a href="https://github.com/oracle/weblogic-monitoring-exporter">WebLogic Monitoring Exporter</a> as a sidecar container.</li>
+<li><a href="/userguide/managing-domains/domain-events/">Events</a> are generated at important moments in the life cycle of the operator or a domain.</li>
+<li><a href="/userguide/introduction/architecture/#draining-a-node-and-poddisruptionbudget">PodDisruptionBudgets</a> are generated for clusters improving the ability to maintain cluster availability during planned node shutdowns and Kubernetes upgrade.</li>
+<li>Additional scripts to assist with common tasks, such as the <code>scaleCluster.sh</code> script.</li>
+<li>Support for TCP and UDP on the same channel when the SIP protocol is used.</li>
 </ul>
+<h5 id="fixes-for-bugs-or-regressions">Fixes for Bugs or Regressions</h5>
+<ul>
+<li>All fixes included in 3.1.1 through 3.1.4 are included in 3.2.0.</li>
+<li>Resolved an issue where clustered Managed Servers would not start when the Administration Server was not running (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2093">#2093</a>).</li>
+<li>Model in Image generated domain home file systems that exceed 1 MB are supported (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2095">#2095</a>).</li>
+<li>An event and status update are generated when a cluster can&rsquo;t be scaled past the cluster&rsquo;s maximum size (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2097">#2097</a>).</li>
+<li>Improved the operator&rsquo;s ability to recover from failures during its initialization (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2118">#2118</a>).</li>
+<li>Improved the ability for <code>scalingAction.sh</code> to discover the latest API version (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2130">#2130</a>).</li>
+<li>Resolved an issue where the operator&rsquo;s log would show incorrect warnings related to missing RBAC permissions (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2138">#2138</a>).</li>
+<li>Captured WDT errors related to validating the model (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2140">#2140</a>).</li>
+<li>Resolved an issue where the operator incorrectly missed Secrets or ConfigMaps in namespaces with a large number of either resource (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2199">#2199</a>).</li>
+<li>Resolved an issue where the operator could report incorrect information about an introspection job that failed (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2201">#2201</a>).</li>
+<li>Resolved an issue where a Service with the older naming pattern from operator 3.0.x could be stranded (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2208">#2208</a>).</li>
+<li>Resolved an issue in the domain and cluster start scripts related to overrides at specific Managed Servers (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2222">#2222</a>).</li>
+<li>The operator supports logging rotation and maximum file size configurations through Helm chart values (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2229">#2229</a>).</li>
+<li>Resolved an issue supporting session replication when Istio is in use (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2242">#2242</a>).</li>
+<li>Resolved an issue where the operator could swallow exceptions related to SSL negotiation failure (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2251">#2251</a>).</li>
+<li>Resolved an issue where introspection would detect the wrong SSL port (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2256">#2256</a>).</li>
+<li>Resolved an issue where introspection would fail if a referenced Secret or ConfigMap name was too long (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2257">#2257</a>).</li>
+</ul>
+<h4 id="operator-314">Operator 3.1.4</h4>
+<ul>
+<li>Resolved an issue where the operator would ignore live data that was older than cached data, such as following an etcd restore (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2196">#2196</a>).</li>
+<li>Updated Kubernetes Java Client and Bouncy Castle dependencies.</li>
+</ul>
+<h4 id="operator-313">Operator 3.1.3</h4>
+<ul>
+<li>Resolved an issue that caused some WebLogic Servers to fail to start in large Kubernetes clusters where Kubernetes watch notifications were not reliably delivered (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2188">#2188</a>).</li>
+<li>Resolved an issue that caused the operator to ignore some namespaces it was configured to manage in Kubernetes clusters that had more than 500 namespaces (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2189">#2189</a>).</li>
+</ul>
+<h4 id="operator-312">Operator 3.1.2</h4>
+<ul>
+<li>Resolved an issue where the operator failed to start servers in which the pods were configured to have an annotation containing a forward slash (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2089">#2089</a>).</li>
+</ul>
+<h4 id="operator-311">Operator 3.1.1</h4>
+<ul>
+<li>Resolved an issue that caused unexpected server restarts when the domain had multiple WebLogic clusters (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2109">#2109</a>).</li>
+</ul>
+<h4 id="operator-310">Operator 3.1.0</h4>
+<ul>
+<li>All fixes included in 3.0.1 through 3.0.4 are included in 3.1.0.</li>
+<li>Sample <a href="/userguide/managing-domains/domain-lifecycle/startup/#domain-lifecycle-sample-scripts">scripts to start and stop server instances</a> (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2002">#2002</a>).</li>
+<li>Support running with <a href="/security/openshift/#create-a-custom-security-context-constraint">OpenShift restrictive SCC</a> (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2007">#2007</a>).</li>
+<li>Updated <a href="/faq/resource-settings/">default resource and Java options</a> (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/1775">#1775</a>).</li>
+<li>Introspection failures are logged to the operator&rsquo;s log (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/1787">#1787</a>).</li>
+<li>Mirror introspector log to a rotating file in the log home (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/1827">#1827</a>).</li>
+<li>Reflect introspector status to domain status (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/1832">#1832</a>).</li>
+<li>Ensure operator detects pod state changes even when watch events are not delivered (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/1811">#1811</a>).</li>
+<li>Support configurable WDT model home (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/1828">#1828</a>).</li>
+<li><a href="/faq/namespace-management/">Namespace management enhancements</a> (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/1860">#1860</a>).</li>
+<li>Limit concurrent pod shut down while scaling down a cluster (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/1892">#1892</a>).</li>
+<li>List continuation and watch bookmark support (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/1881">#1881</a>).</li>
+<li>Fix scaling script when used with dedicated namespace mode (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/1921">#1921</a>).</li>
+<li>Fix token substitution for mount paths (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/1911">#1911</a>).</li>
+<li>Validate existence of service accounts during Helm chart processing (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/1939">#1939</a>).</li>
+<li>Use Kubernetes Java Client 10.0.0 (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/1937">#1937</a>).</li>
+<li>Better validation and guidance when using longer domainUID values (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/1979">#1979</a>).</li>
+<li>Update pods with label for introspection version (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2012">#2012</a>).</li>
+<li>Fix validation error during inrtrospector for certain static clusters (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2014">#2014</a>).</li>
+<li>Correct issue in wl-pod-wait.sh sample script (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2018">#2018</a>).</li>
+<li>Correct processing of ALWAYS serverStartPolicy (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/2020">#2020</a>).</li>
+</ul>
+<h4 id="operator-304">Operator 3.0.4</h4>
+<ul>
+<li>The operator now correctly completes restarting Managed Server pods in order to complete a rolling activity. This fix is already present in 3.1.0.</li>
+</ul>
+<h4 id="operator-303">Operator 3.0.3</h4>
+<ul>
+<li>The operator now responds to WebLogic Server instance pods that are stuck in the Terminating state when those pods are evicted from a node that has unexpectedly shut down and where Kubernetes has not removed the pod.</li>
+</ul>
+<h4 id="operator-302">Operator 3.0.2</h4>
+<ul>
+<li>Removed unnecessary duplicated parameter in initialize-internal-operator-identity.sh script (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/1867">#1867</a>).</li>
+<li>Support nodeAffinity and nodeSelector for the operator in its Helm chart (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/1869">#1869</a>).</li>
+<li>Log file rotation enhancements and documentation (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/1872">#1872</a>, <a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/1827">#1827</a>).</li>
+<li>Production support for the NGINX ingress controller (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/1878">#1878</a>).</li>
+<li>Prevent unnecessary changes to Domain status that were causing churn to the resourceVersion (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/1879">#1879</a>).</li>
+<li>Better reflect introspector status in the Domain status (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/1832">#1832</a>).</li>
+<li>Create each pod after any previous pods have been scheduled to allow for correct anti-affinity behavior (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/1855">#1855</a>).</li>
+</ul>
+<h4 id="operator-301">Operator 3.0.1</h4>
+<ul>
+<li>Resolved an issue where a Helm upgrade was incorrectly removing the operator&rsquo;s private key thereby disabling the operator&rsquo;s REST interface (<a href="https://github.com/oracle/weblogic-kubernetes-operator/pull/1846">#1846</a>).</li>
+</ul>
+<h3 id="known-issues">Known issues</h3>
+<table>
+<thead>
+<tr>
+<th>Issue</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>None currently</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 
-<div class="notices tip" ><p>The fastest way to experience the operator is to follow the <a href="/quickstart/">Quick Start guide</a>, or you can peruse our <a href="/userguide/">documentation</a>, read our <a href="https://blogs.oracle.com/weblogicserver/how-to-weblogic-server-on-kubernetes">blogs</a>, or try out the <a href="/samples/simple/">samples</a>.
-Also, you can step through the <a href="https://github.com/oracle/weblogic-kubernetes-operator/blob/main/kubernetes/hands-on-lab/README.md">Tutorial</a>
-using the operator to deploy and run a WebLogic domain container-packaged web application on an Oracle Cloud Infrastructure Container Engine for Kubernetes (OKE) cluster.</p>
-</div>
 
-<hr>
-<h4 id="current-production-release">Current production release</h4>
-<p>The <a href="https://github.com/oracle/weblogic-kubernetes-operator/releases">current release of the operator</a> is 3.2.3.
-This release was published on May 21, 2021. See the operator prerequisites and supported environments <a href="/userguide/introduction/introduction/#operator-prerequisites">here</a>.</p>
-<hr>
-<h4 id="recent-changes-and-known-issues">Recent changes and known issues</h4>
-<p>See the <a href="/release-notes/">Release Notes</a>  for recent changes to the operator and known issues.</p>
-<h4 id="operator-earlier-versions">Operator earlier versions</h4>
-<p>Documentation for prior releases of the operator: <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.5/">2.5.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/2.6/">2.6.0</a>, <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.0/">3.0.x</a>, and <a href="https://oracle.github.io/weblogic-kubernetes-operator/3.1/">3.1.x</a>.</p>
-<h4 id="backward-compatibility-guidelines">Backward compatibility guidelines</h4>
-<p>Starting from the 2.0.1 release, operator releases are backward compatible with respect to the domain
-resource schema, operator Helm chart input values, configuration overrides template, Kubernetes resources created
-by the operator Helm chart, Kubernetes resources created by the operator, and the operator REST interface. We intend to
-maintain compatibility for three releases, except in the case of a clearly communicated deprecated feature, which will be
-maintained for one release after a replacement is available.</p>
-<h3 id="about-this-documentation">About this documentation</h3>
-<p>This documentation includes sections targeted to different audiences.  To help you find what you are looking for more easily,
-please consult this table of contents:</p>
-<ul>
-<li>The <a href="/quickstart/">Quick Start guide</a> explains how to quickly get the operator running, using the defaults, nothing special.</li>
-<li>The <a href="/userguide/">User guide</a> contains detailed usage information, including how to install and configure the operator,
-and how to use it to create and manage WebLogic domains.</li>
-<li>The <a href="/samples/simple/">Samples</a> provide detailed example code and instructions that show you how to perform
-various tasks related to the operator.</li>
-<li>The <a href="/developerguide/">Developer guide</a> provides details for people who want to understand how the operator is built, tested, and so on. Those who wish to <a href="/developerguide/contributing/">contribute</a> to the operator code will find useful information here.</li>
-<li><a href="/reference/">Reference</a> describes domain resource attributes and the operator REST API.</li>
-<li><a href="/security/">Security</a> describes Kubernetes, WebLogic, and OpenShift security requirements.</li>
-<li><a href="/faq/">Frequently asked questions</a> provides answers to common questions.</li>
-</ul>
-<h3 id="oracle-support">Oracle support</h3>
-<p>To access Oracle support for running WebLogic Server domains on Kubernetes platforms, see <a href="https://support.oracle.com/epmos/faces/DocumentDisplay?_afrLoop=208317433106215&amp;id=2349228.1&amp;_afrWindowMode=0&amp;_adf.ctrl-state=c2nhai8p3_4">WebLogic Server Certifications on Kubernetes in My Oracle Support Doc ID 2349228.1</a>.</p>
-<h3 id="need-more-help-have-a-suggestion-come-and-say-hello">Need more help? Have a suggestion? Come and say, &ldquo;Hello!&rdquo;</h3>
-<p>We have a <strong>public Slack channel</strong> where you can get in touch with us to ask questions about using the operator or give us feedback
-or suggestions about what features and improvements you would like to see.  We would love to hear from you. To join our channel,
-please <a href="https://weblogic-slack-inviter.herokuapp.com/">visit this site to get an invitation</a>.  The invitation email will include
-details of how to access our Slack workspace.  After you are logged in, please come to <code>#operator</code> and say, &ldquo;hello!&rdquo;</p>
+<footer class="footline">
 	
-  
+</footer>
+
         
         </div>
         
@@ -5439,19 +5754,19 @@ details of how to access our Slack workspace.  After you are logged in, please c
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1624489125"></script>
-    <script src="/js/perfect-scrollbar.min.js?1624489125"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1624489125"></script>
-    <script src="/js/jquery.sticky.js?1624489125"></script>
-    <script src="/js/featherlight.min.js?1624489125"></script>
-    <script src="/js/highlight.pack.js?1624489125"></script>
+    <script src="/js/clipboard.min.js?1624489124"></script>
+    <script src="/js/perfect-scrollbar.min.js?1624489124"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1624489124"></script>
+    <script src="/js/jquery.sticky.js?1624489124"></script>
+    <script src="/js/featherlight.min.js?1624489124"></script>
+    <script src="/js/highlight.pack.js?1624489124"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1624489125"></script>
-    <script src="/js/learn.js?1624489125"></script>
-    <script src="/js/hugo-learn.js?1624489125"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1624489124"></script>
+    <script src="/js/learn.js?1624489124"></script>
+    <script src="/js/hugo-learn.js?1624489124"></script>
     
         
-            <script src="/mermaid/mermaid.js?1624489125"></script>
+            <script src="/mermaid/mermaid.js?1624489124"></script>
         
         <script>
             mermaid.initialize({ startOnLoad: true });
